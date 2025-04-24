@@ -1,0 +1,51 @@
+---
+title: "Pathogen Genome Analysis Fall 2025"
+---
+
+This is a rendering of hmtl files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.
+
+Intro and Unity labs
+
+* Lab U1 : Unity
+* Lab U2 : Unity
+
+Coding labs
+
+* Lab C1 : 
+* Lab C2 :
+* Lab C3 :
+* Lab C4 :
+* Lab G5 :
+* Lab C6 :
+* Lab C7 :
+* Lab C8 :
+* Lab C9 :
+* Lab C10 :
+* Lab C11 :
+
+Bioinformatics tool labs
+
+* Lab T1 : Measles
+* Lab T2 : 
+* Lab T3 :
+* Lab T4 : 
+* Lab T5 : 
+* Lab T6 : IMG and NEON
+* Lab T7 : 
+* Lab T8 :
+* Lab T9 :
+* Lab T10 :
+* Lab T11 :
+
+Special labs for graduates students in 678
+
+* Lab G1 : 
+* Lab G2 :
+* Lab G3 :
+* Lab G4 :
+
+Report
+
+* PathoGen Report : 
+
+
