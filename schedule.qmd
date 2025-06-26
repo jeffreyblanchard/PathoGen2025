@@ -1,0 +1,34 @@
+---
+title: "Pathogen Genome Analysis Fall 2025"
+---
+
+This is a rendering of hmtl files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.
+
+* Sept 3 (Wed) - Overview and getting set up on Unity
+* Sept 8 (Mon) - Coding with Generative AI tools
+* Sept 10 (Wed) - 
+* Sept 15 (Mon) - 
+* Sept 17 (Wed) - 
+* Sept 22 (Mon) -
+* Sept 24 (Wed) -
+* Sept 29 (Mon) -
+* Oct 1 (Wed) -
+* Oct 6 (Mon) -
+* Oct 8 (Wed) -
+* Oct 13 (Mon) Holiday – Indigenous People’s Day
+* Oct 15 (Wed) -
+* Oct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered
+* Oct 22 (Wed) -
+* Oct 27 (Mon) -
+* Oct 29 (Wed) -
+* Nov 3 (Mon) -
+* Nov 5 (Wed) -
+* Nov 10 (Mon) -
+* Nov 12 (Wed) -
+* Nov 17 (Mon) -
+* Nov 19 (Wed) -
+* Nov 24 (Mon) -
+* Nov 26 (Wed) Holiday - Thanksgiving
+* Dec 1 (Mon) -
+* Dec 3 (Wed) -
+* Dec 8 (Mon) -

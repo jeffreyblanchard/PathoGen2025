@@ -1,6 +1,22 @@
 project:
+  type: website
   output-dir: docs
-  
+
+website:
+  title: "PathoGen"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: schedule.qmd
+        text: Schedule
+      - href: projects.qmd
+        text: Projects
+      - href: methods.qmd
+        text: Methods
+      - href: labs.qmd
+        text: Labs
+
 format:
   html:
     toc: true
@@ -8,6 +24,11 @@ format:
     code-fold: show
     code-summary: "R code"
     embed-resources: true
+    theme: cyborg
+    css: styles.css
+
+editor: source
+
 execute:
   warning: false
   message: false

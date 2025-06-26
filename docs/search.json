@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Human [Environmental] Pathogen [Meta]Genome Analysis Fall 2025",
+    "section": "",
+    "text": "One Health - https://en.wikipedia.org/wiki/One_Health\n\n\nThis is a rendering of hmtl files from the course repository for Biology 478/678 Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard."
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Pathogen Genome Analysis Fall 2025",
+    "section": "",
+    "text": "This is a rendering of hmtl files from the course repository for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.\n\nSept 3 (Wed) - Overview and getting set up on Unity\nSept 8 (Mon) - Coding with Generative AI tools\nSept 10 (Wed) -\nSept 15 (Mon) -\nSept 17 (Wed) -\nSept 22 (Mon) -\nSept 24 (Wed) -\nSept 29 (Mon) -\nOct 1 (Wed) -\nOct 6 (Mon) -\nOct 8 (Wed) -\nOct 13 (Mon) Holiday – Indigenous People’s Day\nOct 15 (Wed) -\nOct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered\nOct 22 (Wed) -\nOct 27 (Mon) -\nOct 29 (Wed) -\nNov 3 (Mon) -\nNov 5 (Wed) -\nNov 10 (Mon) -\nNov 12 (Wed) -\nNov 17 (Mon) -\nNov 19 (Wed) -\nNov 24 (Mon) -\nNov 26 (Wed) Holiday - Thanksgiving\nDec 1 (Mon) -\nDec 3 (Wed) -\nDec 8 (Mon) -"
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods",
+    "section": "",
+    "text": "Reproducible research\n\n\nAttribution"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Project Space",
+    "section": "",
+    "text": "For our course projects we will work with the One Health framework. “One Health is a collaborative, multisectoral, and transdisciplinary approach — working at the local, regional, national, and global levels — with the goal of achieving optimal health outcomes recognizing the interconnection between people, animals, plants, and their shared environment.” -Center for Disease Control (CDC) One Health. In addition to the CDC One Health, the One Health perspective is supported by the One Health Commission (OHC), One Health Initiative, One Health Platform, CDC One Health Office, the Food and Agriculture Organization of the United Nations (FAO), the United Nations Environment Programme (UNEP), the World Organisation for Animal Health (WOAH, founded as OIE), and the World Health Organization (WHO) – One Health Joint Plan of Action, 2022–2026. “One Health issues include emerging, re-emerging, and endemic zoonotic diseases, neglected tropical diseases, vector-borne diseases, antimicrobial resistance, food safety and food security, environmental contamination, climate change and other health threats shared by people, animals, and the environment.” - Center for Disease Control (CDC) One Health\n\n\n\nOne Health - https://en.wikipedia.org/wiki/One_Health"
+  },
+  {
+    "objectID": "projects.html#one-health",
+    "href": "projects.html#one-health",
+    "title": "Project Space",
+    "section": "",
+    "text": "For our course projects we will work with the One Health framework. “One Health is a collaborative, multisectoral, and transdisciplinary approach — working at the local, regional, national, and global levels — with the goal of achieving optimal health outcomes recognizing the interconnection between people, animals, plants, and their shared environment.” -Center for Disease Control (CDC) One Health. In addition to the CDC One Health, the One Health perspective is supported by the One Health Commission (OHC), One Health Initiative, One Health Platform, CDC One Health Office, the Food and Agriculture Organization of the United Nations (FAO), the United Nations Environment Programme (UNEP), the World Organisation for Animal Health (WOAH, founded as OIE), and the World Health Organization (WHO) – One Health Joint Plan of Action, 2022–2026. “One Health issues include emerging, re-emerging, and endemic zoonotic diseases, neglected tropical diseases, vector-borne diseases, antimicrobial resistance, food safety and food security, environmental contamination, climate change and other health threats shared by people, animals, and the environment.” - Center for Disease Control (CDC) One Health\n\n\n\nOne Health - https://en.wikipedia.org/wiki/One_Health"
+  },
+  {
+    "objectID": "projects.html#the-national-science-foudation-nsf-national-ecological-observatory-network-neon",
+    "href": "projects.html#the-national-science-foudation-nsf-national-ecological-observatory-network-neon",
+    "title": "Project Space",
+    "section": "The National Science Foudation (NSF) National Ecological Observatory Network (NEON)",
+    "text": "The National Science Foudation (NSF) National Ecological Observatory Network (NEON)\nOur environmental data will come from the National Ecological Observatory Network (NEON) funded by the National Science Foundation."
+  },
+  {
+    "objectID": "projects.html#the-department-of-energy-doe-joint-genome-institute",
+    "href": "projects.html#the-department-of-energy-doe-joint-genome-institute",
+    "title": "Project Space",
+    "section": "The Department of Energy (DOE) Joint Genome Institute",
+    "text": "The Department of Energy (DOE) Joint Genome Institute\nOur metagenomic data comes from a collaboration between NEON and the Joint Genome Institute at the Lawrence Berkeley National Laboratory and supported by the US Department of Energy. We can browse the data at the Integrated Microbial Genome & Metagenome (IMG/M) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI. We will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.\n\n\n\nDOE JGI Metagenome Workflow - https://journals.asm.org/doi/10.1128/msystems.00804-20"
+  },
+  {
+    "objectID": "projects.html#the-national-ecological-observatory-network-neon",
+    "href": "projects.html#the-national-ecological-observatory-network-neon",
+    "title": "Project Space",
+    "section": "The National Ecological Observatory Network (NEON)",
+    "text": "The National Ecological Observatory Network (NEON)\n\nOverview\nOur environmental data will come from the National Ecological Observatory Network (NEON) funded through the National Science Foundation. NEON’s mission is to “To collect and freely share critical ecological data, samples, and infrastructure with researchers and the public to advance understanding of ecological processes and inform the sustainable management of U.S. ecosystems.” NEON’s data are an important part of the One Health framework.\n\n\n\nNEON Field Sites - https://www.neonscience.org/field-sites/about-field-sites\n\n\n\n\nNEON Harvard Forest and Quabbin Watershed sites\nThe NEON Harvard Forest and Quabbin Watershed sites are of particular interest to us in Massachusetts. The Quabbin Reservoir is the primary water supply for Boston, 40 towns in the Greater Boston area and several surrounding towns. There is a rich history of the river valley. The name Quabbin, meaning meeting of many waters, is after Native American chief Nani-Quaben. Artifacts show that people (ancestors of the Nipmucs) were living in the Swift River Valley as far back as 12,000 years - Ref. Here is a timeline of events including the removal of the towns of Dana, Prescott, Enfield and Greenwich. Today the Massachusetts Department of Conservation and Recreation (DCR) manages the forests surrounding the watershed which provide a living green bio-filter. The watershed “catches the rain, stores it, and releases it slowly, soaking up nutrients, keeping erosion to a minimum, and yielding a consistent supply of clean water.”\n\n\n\nNEON Harvard Forest and Quabbin sites\n\n\n\n\nNEON Data Portals\n\nNEON Soils\nNEON Soil Microbes\nNEON Aquatic Microbes\nNEON Pathogens\nNEON Biorepository"
+  },
+  {
+    "objectID": "labs.html",
+    "href": "labs.html",
+    "title": "Labs",
+    "section": "",
+    "text": "Labs\n\nLab 1\nLab 2\nLab 3\nLab 4\nLab 5\nLab 6\nLab 7\nLab 8\nLab 9\n\n\n\nSpecial labs for graduates students in 678\n\nLab G1 :\nLab G2 :\nLab G3 :\nLab G4 :\n\n\n\nReport\n\nPathoGen Report :"
+  }
+]

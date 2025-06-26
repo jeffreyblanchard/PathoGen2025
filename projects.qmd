@@ -1,0 +1,42 @@
+---
+title: "Project Space"
+---
+
+## One Health
+
+For our course projects we will work with the One Health framework. "One Health is a collaborative, multisectoral, and transdisciplinary approach — working at the local, regional, national, and global levels — with the goal of achieving optimal health outcomes recognizing the interconnection between people, animals, plants, and their shared environment." -[Center for Disease Control (CDC) One Health](https://www.cdc.gov/one-health/about/index.html). In addition to the CDC One Health, the One Health perspective is supported by the One Health Commission (OHC), One Health Initiative, One Health Platform, CDC One Health Office, the Food and Agriculture Organization of the United Nations (FAO), the United Nations Environment Programme (UNEP), the World Organisation for Animal Health (WOAH, founded as OIE), and the World Health Organization (WHO) – [One Health Joint Plan of Action, 2022–2026]( https://openknowledge.fao.org/items/fddae6a2-e7ef-4a2a-ad54-2463dbbb0b32). "One Health issues include emerging, re-emerging, and endemic zoonotic diseases, neglected tropical diseases, vector-borne diseases, antimicrobial resistance, food safety and food security, environmental contamination, climate change and other health threats shared by people, animals, and the environment." - [Center for Disease Control (CDC) One Health](https://www.cdc.gov/one-health/about/index.html)
+
+![One Health - https://en.wikipedia.org/wiki/One_Health](images/One_Health.svg){width="1000"}
+
+## The National Ecological Observatory Network (NEON)
+
+### Overview
+
+Our environmental data will come from the [National Ecological Observatory Network (NEON)](https://www.neonscience.org/) funded through the [National Science Foundation](https://www.nsf.gov/). NEON's mission is to "To collect and freely share critical ecological data, samples, and infrastructure with researchers and the public to advance understanding of ecological processes and inform the sustainable management of U.S. ecosystems." NEON's data are an important part of the One Health framework.
+
+![NEON Field Sites - https://www.neonscience.org/field-sites/about-field-sites](images/NEON_allsite.JPG){width="1000"}
+
+### NEON Harvard Forest and Quabbin Watershed sites
+
+The [NEON Harvard Forest and Quabbin Watershed sites](https://www.neonscience.org/field-sites/harv) are of particular interest to us in Massachusetts. The [Quabbin Reservoir](https://www.mass.gov/locations/quabbin-reservoir) is the primary water supply for Boston, 40 towns in the Greater Boston area and several surrounding towns. There is a rich history of the river valley. The name Quabbin, meaning meeting of many waters, is after Native American chief Nani-Quaben. Artifacts show that people (ancestors of the Nipmucs) were living in the Swift River Valley as far back as 12,000 years - [Ref]( https://frcog.org/wp-content/uploads/2014/05/Ch5-Archaeological-Resources.pdf). Here is a [timeline of events](https://friendsofquabbin.org/the-quabbin-reservoir/quabbin-chronology/) including the removal of the towns of Dana, Prescott, Enfield and Greenwich. Today the [Massachusetts Department of Conservation and Recreation (DCR)](https://www.mass.gov/info-details/dcr-watershed-forestry-program) manages the forests surrounding the watershed which provide a living green bio-filter. The watershed "catches the rain, stores it, and releases it slowly, soaking up nutrients, keeping erosion to a minimum, and yielding a consistent supply of clean water." 
+
+![NEON Harvard Forest and Quabbin sites](images/NEON_Quabbin_sites.JPG){width="1000"}
+
+### NEON Data Portals
+
+* [NEON Soils](https://www.neonscience.org/data-collection/soils)
+* [NEON Soil Microbes](https://biorepo.neonscience.org/portal/collections/misc/collprofiles.php?collid=69)
+* [NEON Aquatic Microbes](https://www.neonscience.org/data-collection/aquatic-microbes)
+* [NEON Pathogens](https://www.neonscience.org/data-collection/pathogens)
+* [NEON Biorepository](https://biorepo.neonscience.org/portal/)
+
+## The Department of Energy (DOE) Joint Genome Institute
+
+Our metagenomic data comes from a collaboration between NEON and the [Joint Genome Institute](https://jgi.doe.gov/) at the [Lawrence Berkeley National Laboratory](https://www.lbl.gov/) and supported by the [US Department of Energy](https://www.energy.gov/). We can browse the data at the [Integrated Microbial Genome & Metagenome (IMG/M)](https://img.jgi.doe.gov/) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI. We will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.
+
+![DOE JGI Metagenome Workflow - https://journals.asm.org/doi/10.1128/msystems.00804-20](images/jgi_workflow.jpg){width="1000"}
+
+
+
+
+

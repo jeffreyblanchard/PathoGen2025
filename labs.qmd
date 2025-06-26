@@ -1,0 +1,26 @@
+---
+title: "Labs"
+---
+
+### Labs
+
+* Lab 1
+* Lab 2
+* Lab 3
+* Lab 4
+* Lab 5
+* Lab 6
+* Lab 7
+* Lab 8
+* Lab 9
+
+### Special labs for graduates students in 678
+
+* Lab G1 : 
+* Lab G2 :
+* Lab G3 :
+* Lab G4 :
+
+### Report
+
+* PathoGen Report : 
