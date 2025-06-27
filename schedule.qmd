@@ -13,19 +13,19 @@ This is a rendering of hmtl files from the [course repository](https://github.co
 * Sept 24 (Wed) - Lab 4
 * Sept 29 (Mon) - CURE Plans
 * Oct 1 (Wed) - Lab 5
-* Oct 6 (Mon) -
+* Oct 6 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
 * Oct 8 (Wed) - Lab 6
 * Oct 13 (Mon) Holiday – Indigenous People’s Day
 * Oct 15 (Wed) - NEON Summit - No class
 * Oct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered
 * Oct 22 (Wed) - Lab 7
-* Oct 27 (Mon) -
+* Oct 27 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
 * Oct 29 (Wed) - Lab 8
-* Nov 3 (Mon) -
+* Nov 3 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
 * Nov 5 (Wed) - Lab 9
-* Nov 10 (Mon) -
+* Nov 10 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
 * Nov 12 (Wed) - Lab 10
-* Nov 17 (Mon) -
+* Nov 17 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
 * Nov 19 (Wed) - Project Workday
 * Nov 24 (Mon) - Project Workday
 * Nov 26 (Wed) Holiday - Thanksgiving
