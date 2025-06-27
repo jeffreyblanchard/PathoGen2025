@@ -1,0 +1,35 @@
+---
+title: "Manuscripts"
+---
+
+Should labs be in Manuscript form too?
+
+Quarto documentation on manuscripts
+https://quarto.org/docs/manuscripts/
+
+See Quarto section on RStudio IDE for spell checking
+https://quarto.org/docs/visual-editor/content.html
+
+Reproducible publishing with Quarto
+Dr. Mine Çetinkaya-Rundel
+Dr. Charlotte Wickham
+https://mine-cetinkaya-rundel.github.io/quarto-jsm24/4-manuscripts/4-manuscripts.html#/title-slide
+https://mine.quarto.pub/quarto-manuscripts-rmed/#/title-slide
+
+
+Cut the tyranny of copy-and-paste with these coding tools
+https://www.nature.com/articles/d41586-022-00563-z
+
+Notebooks now! https://data.agu.org/notebooks-now/
+
+Decent example with references - https://jperkel.github.io/computed_quarto_manuscript/
+
+Introducing eLife’s first computationally reproducible article
+https://elifesciences.org/labs/ad58f08d/introducing-elife-s-first-computationally-reproducible-article
+
+Pioneering ‘live-code’ article allows scientists to play with each other’s results
+https://www.nature.com/articles/d41586-019-00724-7
+
+
+
+

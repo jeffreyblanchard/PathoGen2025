@@ -30,9 +30,15 @@ The [NEON Harvard Forest and Quabbin Watershed sites](https://www.neonscience.or
 * [NEON Pathogens](https://www.neonscience.org/data-collection/pathogens)
 * [NEON Biorepository](https://biorepo.neonscience.org/portal/)
 
-## The Department of Energy (DOE) Joint Genome Institute
+## The Joint Genome Institute
 
-Our metagenomic data comes from a collaboration between NEON and the [Joint Genome Institute](https://jgi.doe.gov/) at the [Lawrence Berkeley National Laboratory](https://www.lbl.gov/) and supported by the [US Department of Energy](https://www.energy.gov/). We can browse the data at the [Integrated Microbial Genome & Metagenome (IMG/M)](https://img.jgi.doe.gov/) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI. We will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.
+### Overview
+
+Our metagenomic data comes from a collaboration between NEON and the [Joint Genome Institute](https://jgi.doe.gov/) at the [Lawrence Berkeley National Laboratory](https://www.lbl.gov/) and supported by the [US Department of Energy](https://www.energy.gov/). We can browse the data at the [Integrated Microbial Genome & Metagenome (IMG/M)](https://img.jgi.doe.gov/) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI. 
+
+### Our metagenome data
+
+We will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.
 
 ![DOE JGI Metagenome Workflow - https://journals.asm.org/doi/10.1128/msystems.00804-20](images/jgi_workflow.jpg){width="1000"}
 

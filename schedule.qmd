@@ -4,31 +4,32 @@ title: "Pathogen Genome Analysis Fall 2025"
 
 This is a rendering of hmtl files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.
 
-* Sept 3 (Wed) - Overview and getting set up on Unity
-* Sept 8 (Mon) - Coding with Generative AI tools
-* Sept 10 (Wed) - 
-* Sept 15 (Mon) - 
-* Sept 17 (Wed) - 
-* Sept 22 (Mon) -
-* Sept 24 (Wed) -
-* Sept 29 (Mon) -
-* Oct 1 (Wed) -
+* Sept 3 (Wed) - Lab 1
+* Sept 8 (Mon) - CURE Overview
+* Sept 10 (Wed) - Lab 2
+* Sept 15 (Mon) - CURE Ideas and Background Research
+* Sept 17 (Wed) - Lab 3
+* Sept 22 (Mon) - CURE Hypothesis and Method Discussion
+* Sept 24 (Wed) - Lab 4
+* Sept 29 (Mon) - CURE Plans
+* Oct 1 (Wed) - Lab 5
 * Oct 6 (Mon) -
-* Oct 8 (Wed) -
+* Oct 8 (Wed) - Lab 6
 * Oct 13 (Mon) Holiday – Indigenous People’s Day
-* Oct 15 (Wed) -
+* Oct 15 (Wed) - NEON Summit - No class
 * Oct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered
-* Oct 22 (Wed) -
+* Oct 22 (Wed) - Lab 7
 * Oct 27 (Mon) -
-* Oct 29 (Wed) -
+* Oct 29 (Wed) - Lab 8
 * Nov 3 (Mon) -
-* Nov 5 (Wed) -
+* Nov 5 (Wed) - Lab 9
 * Nov 10 (Mon) -
-* Nov 12 (Wed) -
+* Nov 12 (Wed) - Lab 10
 * Nov 17 (Mon) -
-* Nov 19 (Wed) -
-* Nov 24 (Mon) -
+* Nov 19 (Wed) - Project Workday
+* Nov 24 (Mon) - Project Workday
 * Nov 26 (Wed) Holiday - Thanksgiving
-* Dec 1 (Mon) -
-* Dec 3 (Wed) -
-* Dec 8 (Mon) -
+* Dec 1 (Mon) - Project Workday
+* Dec 3 (Wed) - Project Workday
+* Dec 8 (Mon) - Project Workday
+* Dec 10 (Wed) - Project Deadline

@@ -2,25 +2,27 @@
 title: "Labs"
 ---
 
-### Labs
+Labs
 
-* Lab 1
-* Lab 2
-* Lab 3
-* Lab 4
-* Lab 5
-* Lab 6
-* Lab 7
-* Lab 8
-* Lab 9
+* Lab 1 : Introduction to Working on Unity
+* Lab 2 : Introduction to R, RStudio and Reproducible Reports
+* Lab 3 : Running bioinformatics software on Unity (Blast, Read mapping)  
+* Lab 4 : NEON Data Transformation with dplyr
+* Lab 5 : NEON Data Visualization with ggplot
+* Lab 6 : Table joins of NEON MAG, metagenomic and chemistry data
+* Lab 7 : Mapping the NEON data
+* Lab 8: Genome representations
+* Lab 9 : Phylogenetic tree visualization using ggtree
+* Lab 10 : Visualizing NEON data on your phylogenetic trees
 
-### Special labs for graduates students in 678
+Sharing and Publishing
 
-* Lab G1 : 
-* Lab G2 :
-* Lab G3 :
-* Lab G4 :
+* Lab : Connecting a Github repo site with a RStudio project
+* Lab : Adding references to your report with Zotero
+* Lab : Quarto Manuscripts
+* Lab : Building a 5 tab web site with Quarto
+* Lab : R Shiny
 
-### Report
+Manuscript
 
-* PathoGen Report : 
+* PathoGen manuscript : Deadline Dec 10

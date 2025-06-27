@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Human [Environmental] Pathogen [Meta]Genome Analysis Fall 2025",
     "section": "",
-    "text": "One Health - https://en.wikipedia.org/wiki/One_Health\n\n\nThis is a rendering of hmtl files from the course repository for Biology 478/678 Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard."
+    "text": "“Metagnomes! They’re always on hand to help with mining sequence from those complicated microbiomes” - redpenblackpen\n\n\nThis is a rendering of hmtl files from the course repository for Biology 478/678 Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard."
   },
   {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Pathogen Genome Analysis Fall 2025",
     "section": "",
-    "text": "This is a rendering of hmtl files from the course repository for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.\n\nSept 3 (Wed) - Overview and getting set up on Unity\nSept 8 (Mon) - Coding with Generative AI tools\nSept 10 (Wed) -\nSept 15 (Mon) -\nSept 17 (Wed) -\nSept 22 (Mon) -\nSept 24 (Wed) -\nSept 29 (Mon) -\nOct 1 (Wed) -\nOct 6 (Mon) -\nOct 8 (Wed) -\nOct 13 (Mon) Holiday – Indigenous People’s Day\nOct 15 (Wed) -\nOct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered\nOct 22 (Wed) -\nOct 27 (Mon) -\nOct 29 (Wed) -\nNov 3 (Mon) -\nNov 5 (Wed) -\nNov 10 (Mon) -\nNov 12 (Wed) -\nNov 17 (Mon) -\nNov 19 (Wed) -\nNov 24 (Mon) -\nNov 26 (Wed) Holiday - Thanksgiving\nDec 1 (Mon) -\nDec 3 (Wed) -\nDec 8 (Mon) -"
+    "text": "This is a rendering of hmtl files from the course repository for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.\n\nSept 3 (Wed) - Lab 1\nSept 8 (Mon) - CURE Overview\nSept 10 (Wed) - Lab 2\nSept 15 (Mon) - CURE Ideas and Background Research\nSept 17 (Wed) - Lab 3\nSept 22 (Mon) - CURE Hypothesis and Method Discussion\nSept 24 (Wed) - Lab 4\nSept 29 (Mon) - CURE Plans\nOct 1 (Wed) - Lab 5\nOct 6 (Mon) -\nOct 8 (Wed) - Lab 6\nOct 13 (Mon) Holiday – Indigenous People’s Day\nOct 15 (Wed) - NEON Summit - No class\nOct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered\nOct 22 (Wed) - Lab 7\nOct 27 (Mon) -\nOct 29 (Wed) - Lab 8\nNov 3 (Mon) -\nNov 5 (Wed) - Lab 9\nNov 10 (Mon) -\nNov 12 (Wed) - Lab 10\nNov 17 (Mon) -\nNov 19 (Wed) - Project Workday\nNov 24 (Mon) - Project Workday\nNov 26 (Wed) Holiday - Thanksgiving\nDec 1 (Mon) - Project Workday\nDec 3 (Wed) - Project Workday\nDec 8 (Mon) - Project Workday\nDec 10 (Wed) - Project Deadline"
   },
   {
     "objectID": "methods.html",
@@ -46,7 +46,7 @@
     "href": "projects.html#the-department-of-energy-doe-joint-genome-institute",
     "title": "Project Space",
     "section": "The Department of Energy (DOE) Joint Genome Institute",
-    "text": "The Department of Energy (DOE) Joint Genome Institute\nOur metagenomic data comes from a collaboration between NEON and the Joint Genome Institute at the Lawrence Berkeley National Laboratory and supported by the US Department of Energy. We can browse the data at the Integrated Microbial Genome & Metagenome (IMG/M) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI. We will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.\n\n\n\nDOE JGI Metagenome Workflow - https://journals.asm.org/doi/10.1128/msystems.00804-20"
+    "text": "The Department of Energy (DOE) Joint Genome Institute\n\nOverview\nOur metagenomic data comes from a collaboration between NEON and the Joint Genome Institute at the Lawrence Berkeley National Laboratory and supported by the US Department of Energy. We can browse the data at the Integrated Microbial Genome & Metagenome (IMG/M) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI.\n\n\nOur metagenome data\nWe will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.\n\n\n\nDOE JGI Metagenome Workflow - https://journals.asm.org/doi/10.1128/msystems.00804-20"
   },
   {
     "objectID": "projects.html#the-national-ecological-observatory-network-neon",
@@ -60,6 +60,34 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "Labs\n\nLab 1\nLab 2\nLab 3\nLab 4\nLab 5\nLab 6\nLab 7\nLab 8\nLab 9\n\n\n\nSpecial labs for graduates students in 678\n\nLab G1 :\nLab G2 :\nLab G3 :\nLab G4 :\n\n\n\nReport\n\nPathoGen Report :"
+    "text": "Labs\n\nLab 1 : Introduction to Working on Unity\nLab 2 : Introduction to R, RStudio and Reproducible Reports\nLab 3 : Running bioinformatics software on Unity (Blast, Read mapping)\n\nLab 4 : NEON Data Transformation with dplyr\nLab 5 : NEON Data Visualization with ggplot\nLab 6 : Table joins of NEON MAG, metagenomic and chemistry data\nLab 7 : Mapping the NEON data\nLab 8: Genome representations\nLab 9 : Phylogenetic tree visualization using ggtree\nLab 10 : Visualizing NEON data on your phylogenetic trees\n\nSharing and Publishing\n\nLab : Connecting a Github repo site with a RStudio project\nLab : Adding references to your report with Zotero\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Pathogen Genome Analysis Fall 2025",
+    "section": "",
+    "text": "Report\nManuscript style with Title Abstract Intro Methods Results Discussion Future Directions\nPublic communication Poems"
+  },
+  {
+    "objectID": "projects.html#the-joint-genome-institute",
+    "href": "projects.html#the-joint-genome-institute",
+    "title": "Project Space",
+    "section": "The Joint Genome Institute",
+    "text": "The Joint Genome Institute\n\nOverview\nOur metagenomic data comes from a collaboration between NEON and the Joint Genome Institute at the Lawrence Berkeley National Laboratory and supported by the US Department of Energy. We can browse the data at the Integrated Microbial Genome & Metagenome (IMG/M) system which supports the annotation, analysis, and distribution of microbial genome and microbiome datasets sequenced at JGI.\n\n\nOur metagenome data\nWe will work with the Gs0166454 and Gs0161344 study sets. JGI has done all lot of data processing for us, but there is much still to do.\n\n\n\nDOE JGI Metagenome Workflow - https://journals.asm.org/doi/10.1128/msystems.00804-20"
+  },
+  {
+    "objectID": "manuscripts.html",
+    "href": "manuscripts.html",
+    "title": "Manuscripts",
+    "section": "",
+    "text": "Should labs be in Manuscript form too?\nQuarto documentation on manuscripts https://quarto.org/docs/manuscripts/\nSee Quarto section on RStudio IDE for spell checking https://quarto.org/docs/visual-editor/content.html\nReproducible publishing with Quarto Dr. Mine Çetinkaya-Rundel Dr. Charlotte Wickham https://mine-cetinkaya-rundel.github.io/quarto-jsm24/4-manuscripts/4-manuscripts.html#/title-slide https://mine.quarto.pub/quarto-manuscripts-rmed/#/title-slide\nCut the tyranny of copy-and-paste with these coding tools https://www.nature.com/articles/d41586-022-00563-z\nNotebooks now! https://data.agu.org/notebooks-now/\nDecent example with references - https://jperkel.github.io/computed_quarto_manuscript/\nIntroducing eLife’s first computationally reproducible article https://elifesciences.org/labs/ad58f08d/introducing-elife-s-first-computationally-reproducible-article\nPioneering ‘live-code’ article allows scientists to play with each other’s results https://www.nature.com/articles/d41586-019-00724-7"
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "A Zotero Workflow for R - https://www.anthonyschmidt.co/post/2021-10-25-a-zotero-workflow-for-r/"
   }
 ]

@@ -3,7 +3,8 @@ title: "Human [Environmental] Pathogen [Meta]Genome Analysis Fall 2025"
 ---
 
 
-![One Health - https://en.wikipedia.org/wiki/One_Health](images/One_Health.svg){width="1000"}
+!["Metagnomes! They're always on hand to help with mining sequence from those complicated microbiomes" - [redpenblackpen](https://www.instagram.com/redpenblackpen/)](images/redpenblackpen_metagnomes)
+
 
 
 This is a rendering of hmtl files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for Biology 478/678 Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by [Prof. Jeffrey Blanchard](https://jeffreyblanchard.github.io/lab/).

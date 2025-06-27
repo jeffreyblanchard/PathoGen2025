@@ -1,0 +1,7 @@
+---
+title: "References"
+---
+
+A Zotero Workflow for R - https://www.anthonyschmidt.co/post/2021-10-25-a-zotero-workflow-for-r/
+
+
