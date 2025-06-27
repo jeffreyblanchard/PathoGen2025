@@ -15,7 +15,7 @@ website:
       - href: projects.qmd
         text: Projects
       - href: methods.qmd
-        text: Methods
+        text: CURE Methods
 
 format:
   html:
