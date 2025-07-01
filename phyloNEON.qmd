@@ -190,7 +190,7 @@ neon.metaDB.my.soil |>
   scale_fill_viridis(discrete=FALSE, direction = -1) +
   scale_x_continuous(breaks = seq(2013, 2023, by = 1)) 
 ```
-Trying to do the heatmap for all sites, but have trouble with the matrix including plots from all sites
+### Plot of samples per plot per year at all sites
 
 ```{r, fig.height = 30}
 neon.metaDB.my.soil |> 
