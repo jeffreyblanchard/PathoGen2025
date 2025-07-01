@@ -13,7 +13,7 @@ Labs
 * Lab 7 : Mapping the NEON data
 * Lab 8: Genome representations
 * Lab 9 : Phylogenetic tree visualization using ggtree
-* Lab 10 : Visualizing NEON data on your phylogenetic trees
+* Lab 10 : Read abundance - normalization and statistics
 
 Sharing and Publishing
 

@@ -1,0 +1,58 @@
+---
+title: "Project Opportunities"
+---
+
+## Projects
+
+
+### Separate Core vs Combined Core Metagenomes
+
+We need to randomly pull 1/3 reads from each individual core then combinw, assemble and annotate
+
+#### Harvard Forest & Quabbin (HARV), Worcester County, MA
+https://www.neonscience.org/field-sites/harv
+
+* HARV_001-O-20230705-COMP-DNA1
+* HARV_002-O-20230706-COMP-DNA1
+* HARV_004-O-20230705-COMP-DNA1
+* HARV_005-O-20230710-COMP-DNA1
+* HARV_013-O-20230704-COMP-DNA1
+* HARV_021-O-20230706-COMP-DNA1
+* HARV_033-O-20230703-COMP-DNA1
+* HARV_035-O-20230704-COMP-DNA1
+
+#### San Joaquin Experimental Range (SJER), Madera County, CA
+https://www.neonscience.org/field-sites/sjer
+
+* SJER_001-M-20230227-COMP-DNA1
+* SJER_002-M-20230228-COMP-DNA1
+* SJER_005-M-20230306-COMP-DNA1
+* SJER_025-M-20230302-COMP-DNA1
+* SJER_045-M-20230227-COMP-DNA1
+* SJER_046-M-20230227-COMP-DNA1
+
+### Aquatic time series
+Possibility of combined assembly and mapping
+
+#### Hop Brook, New Salem, MA (Quabbin)
+
+* Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230117.DNA-DNA1
+* Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230221.DNA-DNA1
+* Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230419.DNA-DNA1
+* Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230620.DNA-DNA1
+* Freshwater microbial communities from Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230719.DNA-DNA1 (version 2)
+* Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230815.DNA-DNA1
+* Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20231017.DNA-DNA1
+
+
+#### Caribou Creek, Chatanika, Alaska
+https://www.neonscience.org/field-sites/cari
+
+* Freshwater microbial communities from Caribou Creek NEON Field Site, Chatanika, Alaska, USA - CARI.SS.20230110.DNA-DNA1
+* Freshwater microbial communities from Caribou Creek NEON Field Site, Chatanika, Alaska, USA - CARI.SS.20230314.DNA-DNA1
+* Freshwater microbial communities from Caribou Creek NEON Field Site, Chatanika, Alaska, USA - CARI.SS.20230502.DNA-DNA1
+* Freshwater microbial communities from Caribou Creek NEON Field Site, Chatanika, Alaska, USA - CARI.SS.20230731.DNA-DNA1
+* Freshwater microbial communities from Caribou Creek NEON Field Site, Chatanika, Alaska, USA - CARI.SS.20230905.DNA-DNA1
+* Freshwater microbial communities from Caribou Creek NEON Field Site, Chatanika, Alaska, USA - CARI.SS.20231031.DNA-DNA1
+
+
