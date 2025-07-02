@@ -103,13 +103,23 @@ neon_dnaSampleID_split <- neon_dnaSampleID |>
 
   mutate_at("dnaSampleID.sub", str_replace, "-201", "201") |>
   mutate_at("dnaSampleID.sub", str_replace, "-202", "202") |>
-  mutate_at("dnaSampleID.sub", str_replace, "201", "_201") |>
-  mutate_at("dnaSampleID.sub", str_replace, "202", "_202") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2013", "_2013") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2014", "_2014") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2015", "_2015") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2016", "_2016") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2017", "_2017") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2018", "_2018") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2019", "_2019") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2020", "_2020") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2021", "_2021") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2022", "_2022") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2023", "_2023") |>
+  mutate_at("dnaSampleID.sub", str_replace, "2024", "_2024") |>
   separate(`dnaSampleID.sub`, c("dnaSampleID.subplot","dnaSampleID.date"), "_") |> 
 
   unite(plotID, c(dnaSampleID.site, dnaSampleID.plot), sep='_', remove=FALSE)
 
-neon_dnaSampleID_split$dnaSampleID.data <- as.numeric(neon_dnaSampleID_split$dnaSampleID.date)
+neon_dnaSampleID_split$dnaSampleID.date <- as.numeric(neon_dnaSampleID_split$dnaSampleID.date)
 neon_dnaSampleID_split$dnaSampleID.date <- ymd(neon_dnaSampleID_split$dnaSampleID.date)
 ```
 #### Full table
@@ -164,16 +174,15 @@ neon_dnaSampleID_split |>
 
 ```{r, fig.height = 30}
 neon_dnaSampleID_split |> 
-  group_by(siteID, Year = lubridate::year(dnaSampleID.date), dnaSampleID.plot) |> 
+  group_by(dnaSampleID.site, Year = lubridate::year(dnaSampleID.date), dnaSampleID.plot) |> 
   count() |> 
   pivot_wider(names_from = Year, values_from = n) |> 
   mutate_all(funs(replace_na(.,0))) |> 
-  pivot_longer(!c(siteID, dnaSampleID.plot), names_to = "Year", values_to = "metagenomes") |> 
+  pivot_longer(!c(dnaSampleID.site, dnaSampleID.plot), names_to = "Year", values_to = "metagenomes") |> 
   ggplot(aes(x=Year, y = dnaSampleID.plot)) +
   geom_tile(aes(fill = metagenomes)) +
   scale_fill_viridis(discrete=FALSE, direction = -1) +
- # scale_x_continuous(breaks = seq(2013, 2023, by = 1)) +
-  facet_wrap(~siteID, scales ="free_y", ncol = 3) +
+  facet_wrap(~dnaSampleID.site, scales ="free_y", ncol = 3) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
 
