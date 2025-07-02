@@ -48,6 +48,11 @@ library(phyloNEON)
 library(DT)
 library(viridis)
 ```
+Save file to have version used
+
+```{r}
+write_csv(neon.metaDB, "data/NEON_metadata/neon.metaDB_20250701.csv")
+```
 
 To view the table neon.metaDB (Note set eval = FALSE or do not include in your R code or you will get an error when rendering)
 
@@ -137,22 +142,20 @@ To reformat dnasampleID column for aquatic samples
 neon.metaDB.my.aquatic <- neon.metaDB.my |> 
   filter(`Ecosystem Category` == "Aquatic") |> 
   filter(`GOLD Analysis Project Type` != "Combined Assembly") |> 
-
-  mutate_at("dnaSampleID", str_replace, ".202", "_202") |>
-  separate(`dnaSampleID`, c("dnaSampleID.site","dnaSampleID"), "_") |> 
+  
+  mutate(dnaSampleID.sub = dnaSampleID) |> 
+  mutate_at("dnaSampleID.sub", str_replace, ".202", "_202") |>
+  separate(`dnaSampleID.sub`, c("dnaSampleID.site","dnaSampleID.sub"), "_") |> 
   separate(`dnaSampleID.site`, c("dnaSampleID.site","dnaSampleID.code"), "\\.") |> 
   
-  mutate_at("dnaSampleID", str_replace, ".DNA", "_DNA") |>
-  separate(`dnaSampleID`, c("dnaSampleID","dnaSampleID.type"), "_") |> 
+  mutate_at("dnaSampleID.sub", str_replace, ".DNA", "_DNA") |>
+  separate(`dnaSampleID.sub`, c("dnaSampleID.sub","dnaSampleID.type"), "_") |> 
   
-  separate(`dnaSampleID`, c("dnaSampleID.data","dnaSampleID.niche", "dnaSampleID.num"), "\\.") |> 
+  separate(`dnaSampleID.sub`, c("dnaSampleID.data","dnaSampleID.niche", "dnaSampleID.num"), "\\.") |> 
 
   unite(dnaSampleID.niche, c(dnaSampleID.code, dnaSampleID.niche)) |> 
   mutate_at("dnaSampleID.niche", str_replace, "NA_", "") |>
   mutate_at("dnaSampleID.niche", str_replace, "_NA", "")
-
-
-
 ```
 
 
@@ -233,5 +236,4 @@ neon.metaDB.my.soil |>
   facet_wrap(~siteID, scales ="free_y", ncol = 3) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
-  
   

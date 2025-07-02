@@ -2,12 +2,18 @@
 title: "Access NEON Data for Metagenomics"
 ---
 
+
+
+
 From [Access NEON Data for Metagenomics](https://www.neonscience.org/resources/learning-hub/tutorials/neon-data-metagenomics)
 See 
 * [Update on the changing NEON microbial data](https://www.neonscience.org/impact/observatory-blog/update-changing-neon-microbial-data)
 * [Soil microbe metagenome sequences](https://data.neonscience.org/data-products/DP1.10107.001)
 
 Install packages
+
+
+
 ```{r, eval=FALSE}
 install.packages("neonUtilities")
 install.packages("neonOS")
@@ -39,7 +45,6 @@ soilChem <- loadByProduct(
 View(soilChem$sls_metagenomicsPooling)
 ```
 
-
 ```{r, eval=FALSE}
 metaGdata <- loadByProduct(dpID = 'DP1.10107.001',
 
@@ -54,20 +59,38 @@ write_csv(metaGdata_mms_metagenomeSequencing, "data/NEON_metadata/metaGdata_mms_
 ```
 
 
+
+
+
 This has HARV data collected up until 2022. The 2021 and 2022 data are not in the phyloNEON data. 
+
+
+
 
 ```{r, eval=FALSE}
 metaGdata_mms_metagenomeSequencing_HARV <- metaGdata$mms_metagenomeSequencing |> 
 write_csv(metaGdata_mms_metagenomeSequencing_HARV, "data/NEON_metadata/metaGdata_mms_metagenomeSequencing_HARV.csv")
 ```
 
+
+
+
 ### Read in saved file (all above in eval = FALSE)
+
+
+
 
 ```{r}
 metaGdata_mms_metagenomeSequencing <- read_csv("data/NEON_metadata/metaGdata_mms_metagenomeSequencing.csv")
 ```
 
+
+
+
 ### Create data frame from dnaSampleID
+
+
+
 
 ```{r}
 metaGdata_dnaSampleID <- metaGdata_mms_metagenomeSequencing |> 
@@ -82,7 +105,13 @@ neon_dnaSampleID <- rbind(metaGdata_dnaSampleID, neon_ay23_jgi_samples, neon_ay2
 
 ```
 
+
+
+
 #### Full table
+
+
+
 ```{r}
 neon_dnaSampleID_split <- neon_dnaSampleID |> 
 
@@ -122,7 +151,13 @@ neon_dnaSampleID_split <- neon_dnaSampleID |>
 neon_dnaSampleID_split$dnaSampleID.date <- as.numeric(neon_dnaSampleID_split$dnaSampleID.date)
 neon_dnaSampleID_split$dnaSampleID.date <- ymd(neon_dnaSampleID_split$dnaSampleID.date)
 ```
+
+
+
 #### Full table
+
+
+
 ```{r}
 metaGdata_mms_metagenomeSequencing <- metaGdata_mms_metagenomeSequencing |> 
 
@@ -153,7 +188,13 @@ metaGdata_mms_metagenomeSequencing$dnaSampleID.data <- as.numeric(metaGdata_mms_
 metaGdata_mms_metagenomeSequencing$dnaSampleID.date <- ymd(metaGdata_mms_metagenomeSequencing$dnaSampleID.date)
 ```
 
+
+
+
 ### Plot of HARV samples per plot per year
+
+
+
 
 ```{r}
 neon_dnaSampleID_split |> 
@@ -170,7 +211,13 @@ neon_dnaSampleID_split |>
 ```
 
 
+
+
+
 ### Plot of samples per plot per year at all sites
+
+
+
 
 ```{r, fig.height = 30}
 neon_dnaSampleID_split |> 
@@ -186,9 +233,15 @@ neon_dnaSampleID_split |>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
 ```
 
+
+
+
 ### Table of mean sampleFilteredReadNumber
 About 3-5x increase in reads in 2021 and 2022
 About 10-20x increase in 2023 over 2021 and 2022
+
+
+
 
 ```{r}
 metaGdata_mms_metagenomeSequencing |> 
@@ -197,9 +250,15 @@ metaGdata_mms_metagenomeSequencing |>
   summarize(mean_sampleFilteredReadNumber = mean(sampleFilteredReadNumber))
 ```
 
+
+
+
 ### Table of mean sampleTotalReadNumber
 About 3-5x increase in reads in 2021 and 2022
 About 10-20x increase in 2023 over 2021 and 2022
+
+
+
 
 ```{r}
 metaGdata_mms_metagenomeSequencing |> 
@@ -207,3 +266,4 @@ metaGdata_mms_metagenomeSequencing |>
   group_by(Year = lubridate::year(collectDate)) |> 
   summarize(mean_sampleTotalReadNumber = mean(sampleTotalReadNumber))
 ```
+

@@ -2,8 +2,6 @@
 title: "Pathogen Genome Analysis Fall 2025"
 ---
 
-This is a rendering of hmtl files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for the Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by Prof. Jeffrey Blanchard.
-
 * Sept 3 (Wed) - Lab 1
 * Sept 8 (Mon) - CURE Overview
 * Sept 10 (Wed) - Lab 2
