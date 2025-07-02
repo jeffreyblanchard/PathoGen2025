@@ -7319,6 +7319,7 @@ color: #333;
   <li><a href="#harv-metagenomes-by-year-and-plot" id="toc-harv-metagenomes-by-year-and-plot" class="nav-link" data-scroll-target="#harv-metagenomes-by-year-and-plot">HARV metagenomes by year and plot</a></li>
   <li><a href="#wref-metagenomes-by-year-and-plot" id="toc-wref-metagenomes-by-year-and-plot" class="nav-link" data-scroll-target="#wref-metagenomes-by-year-and-plot">WREF metagenomes by year and plot</a></li>
   <li><a href="#plot-of-harv-samples-per-plot-per-year" id="toc-plot-of-harv-samples-per-plot-per-year" class="nav-link" data-scroll-target="#plot-of-harv-samples-per-plot-per-year">Plot of HARV samples per plot per year</a></li>
+  <li><a href="#missing-years-at-harv" id="toc-missing-years-at-harv" class="nav-link" data-scroll-target="#missing-years-at-harv">Missing years at HARV</a></li>
   <li><a href="#plot-of-samples-per-plot-per-year-at-all-sites" id="toc-plot-of-samples-per-plot-per-year-at-all-sites" class="nav-link" data-scroll-target="#plot-of-samples-per-plot-per-year-at-all-sites">Plot of samples per plot per year at all sites</a></li>
   </ul></li>
   </ul></li>
@@ -7523,25 +7524,30 @@ install_github(&quot;NEONScience/phyloNEON/phyloNEON&quot;)
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Ecosystem Category</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;Terrestrial&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">GOLD Analysis Project Type</span><span class="st">`</span> <span class="sc">!=</span> <span class="st">&quot;Combined Assembly&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.site&quot;</span>,<span class="st">&quot;dnaSampleID&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.site&quot;</span>,<span class="st">&quot;dnaSampleID.sub&quot;</span>), <span class="st">&quot;_&quot;</span>, <span class="at">remove=</span><span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;-COMP&quot;</span>, <span class="st">&quot;_COMP&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;-GEN&quot;</span>, <span class="st">&quot;_GEN&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID&quot;</span>,<span class="st">&quot;dnaSampleID.type&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;-COMP&quot;</span>, <span class="st">&quot;_COMP&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;-GEN&quot;</span>, <span class="st">&quot;_GEN&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID.sub</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>,<span class="st">&quot;dnaSampleID.type&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;-M&quot;</span>, <span class="st">&quot;_M&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;-O&quot;</span>, <span class="st">&quot;_O&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.plot&quot;</span>,<span class="st">&quot;dnaSampleID&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;-M&quot;</span>, <span class="st">&quot;_M&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;-O&quot;</span>, <span class="st">&quot;_O&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID.sub</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.plot&quot;</span>,<span class="st">&quot;dnaSampleID.sub&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;M-&quot;</span>, <span class="st">&quot;M_&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;O-&quot;</span>, <span class="st">&quot;O_&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.layer&quot;</span>,<span class="st">&quot;dnaSampleID&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;M-&quot;</span>, <span class="st">&quot;M_&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;O-&quot;</span>, <span class="st">&quot;O_&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID.sub</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.layer&quot;</span>,<span class="st">&quot;dnaSampleID.sub&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;-201&quot;</span>, <span class="st">&quot;201&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;-202&quot;</span>, <span class="st">&quot;202&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;201&quot;</span>, <span class="st">&quot;_201&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID&quot;</span>, str_replace, <span class="st">&quot;202&quot;</span>, <span class="st">&quot;_202&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.subplot&quot;</span>,<span class="st">&quot;dnaSampleID.date&quot;</span>), <span class="st">&quot;_&quot;</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;-201&quot;</span>, <span class="st">&quot;201&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;-202&quot;</span>, <span class="st">&quot;202&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;201&quot;</span>, <span class="st">&quot;_201&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.sub&quot;</span>, str_replace, <span class="st">&quot;202&quot;</span>, <span class="st">&quot;_202&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="st">`</span><span class="at">dnaSampleID.sub</span><span class="st">`</span>, <span class="fu">c</span>(<span class="st">&quot;dnaSampleID.subplot&quot;</span>,<span class="st">&quot;dnaSampleID.date&quot;</span>), <span class="st">&quot;_&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(plotID, <span class="fu">c</span>(dnaSampleID.site, dnaSampleID.plot), <span class="at">sep=</span><span class="st">&#39;_&#39;</span>, <span class="at">remove=</span><span class="cn">FALSE</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>neon.metaDB.my.soil<span class="sc">$</span>dnaSampleID.data <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(neon.metaDB.my.soil<span class="sc">$</span>dnaSampleID.date)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>neon.metaDB.my.soil<span class="sc">$</span>dnaSampleID.date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(neon.metaDB.my.soil<span class="sc">$</span>dnaSampleID.date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>To reformat dnasampleID column for aquatic samples</p>
@@ -7563,7 +7569,7 @@ install_github(&quot;NEONScience/phyloNEON/phyloNEON&quot;)
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(dnaSampleID.niche, <span class="fu">c</span>(dnaSampleID.code, dnaSampleID.niche)) <span class="sc">|&gt;</span> </span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.niche&quot;</span>, str_replace, <span class="st">&quot;NA_&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.niche&quot;</span>, str_replace, <span class="st">&quot;_NA&quot;</span>, <span class="st">&quot;&quot;</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;dnaSampleID.niche&quot;</span>, str_replace, <span class="st">&quot;_NA&quot;</span>, <span class="st">&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -7582,8 +7588,8 @@ install_github(&quot;NEONScience/phyloNEON/phyloNEON&quot;)
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-3b614560766661e970b4" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3b614560766661e970b4">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[2013,2016,2017,2019,2020,2023],[9,1,0,0,1,4],[4,2,1,1,0,1],[3,1,1,1,1,4],[2,0,0,0,0,0],[0,2,0,1,1,4],[0,1,0,0,0,0],[0,1,1,1,1,4],[0,0,1,0,0,0],[0,0,1,1,1,4],[0,0,1,0,1,1],[0,0,1,1,1,1],[0,0,0,1,0,4],[0,0,0,0,1,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>001<\/th>\n      <th>004<\/th>\n      <th>013<\/th>\n      <th>016<\/th>\n      <th>002<\/th>\n      <th>010<\/th>\n      <th>035<\/th>\n      <th>020<\/th>\n      <th>033<\/th>\n      <th>034<\/th>\n      <th>037<\/th>\n      <th>005<\/th>\n      <th>021<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"001","targets":2},{"name":"004","targets":3},{"name":"013","targets":4},{"name":"016","targets":5},{"name":"002","targets":6},{"name":"010","targets":7},{"name":"035","targets":8},{"name":"020","targets":9},{"name":"033","targets":10},{"name":"034","targets":11},{"name":"037","targets":12},{"name":"005","targets":13},{"name":"021","targets":14}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-d1cc90b5d28046b261c4" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d1cc90b5d28046b261c4">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6"],[2013,2016,2017,2019,2020,2023],[9,1,0,0,1,4],[4,2,1,1,0,1],[3,1,1,1,1,4],[2,0,0,0,0,0],[0,2,0,1,1,4],[0,1,0,0,0,0],[0,1,1,1,1,4],[0,0,1,0,0,0],[0,0,1,1,1,4],[0,0,1,0,1,1],[0,0,1,1,1,1],[0,0,0,1,0,4],[0,0,0,0,1,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>001<\/th>\n      <th>004<\/th>\n      <th>013<\/th>\n      <th>016<\/th>\n      <th>002<\/th>\n      <th>010<\/th>\n      <th>035<\/th>\n      <th>020<\/th>\n      <th>033<\/th>\n      <th>034<\/th>\n      <th>037<\/th>\n      <th>005<\/th>\n      <th>021<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11,12,13,14]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"001","targets":2},{"name":"004","targets":3},{"name":"013","targets":4},{"name":"016","targets":5},{"name":"002","targets":6},{"name":"010","targets":7},{"name":"035","targets":8},{"name":"020","targets":9},{"name":"033","targets":10},{"name":"034","targets":11},{"name":"037","targets":12},{"name":"005","targets":13},{"name":"021","targets":14}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -7602,8 +7608,8 @@ install_github(&quot;NEONScience/phyloNEON/phyloNEON&quot;)
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-acf74564cb948d6bede3" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-acf74564cb948d6bede3">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],[2018,2019,2020,2021,2023],[1,1,0,0,1],[0,2,3,1,0],[0,2,2,2,1],[0,2,1,2,1],[0,1,1,0,0],[0,2,2,0,1],[0,2,2,0,1],[0,2,2,0,0],[0,2,2,0,2],[0,2,2,2,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>071<\/th>\n      <th>001<\/th>\n      <th>003<\/th>\n      <th>004<\/th>\n      <th>005<\/th>\n      <th>007<\/th>\n      <th>008<\/th>\n      <th>070<\/th>\n      <th>072<\/th>\n      <th>073<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"071","targets":2},{"name":"001","targets":3},{"name":"003","targets":4},{"name":"004","targets":5},{"name":"005","targets":6},{"name":"007","targets":7},{"name":"008","targets":8},{"name":"070","targets":9},{"name":"072","targets":10},{"name":"073","targets":11}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-31d76b0eddb1ee448db7" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-31d76b0eddb1ee448db7">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],[2018,2019,2020,2021,2023],[1,1,0,0,1],[0,2,3,1,0],[0,2,2,2,1],[0,2,1,2,1],[0,1,1,0,0],[0,2,2,0,1],[0,2,2,0,1],[0,2,2,0,0],[0,2,2,0,2],[0,2,2,2,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>071<\/th>\n      <th>001<\/th>\n      <th>003<\/th>\n      <th>004<\/th>\n      <th>005<\/th>\n      <th>007<\/th>\n      <th>008<\/th>\n      <th>070<\/th>\n      <th>072<\/th>\n      <th>073<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Year","targets":1},{"name":"071","targets":2},{"name":"001","targets":3},{"name":"003","targets":4},{"name":"004","targets":5},{"name":"005","targets":6},{"name":"007","targets":7},{"name":"008","targets":8},{"name":"070","targets":9},{"name":"072","targets":10},{"name":"073","targets":11}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -7633,23 +7639,79 @@ install_github(&quot;NEONScience/phyloNEON/phyloNEON&quot;)
 </div>
 </div>
 </section>
+<section id="missing-years-at-harv" class="level3">
+<h3 class="anchored" data-anchor-id="missing-years-at-harv">Missing years at HARV</h3>
+<p>All sites are missing data from 2021 and 2022. That should be in IMG soon. What about 2018?</p>
+<section id="collectdate" class="level4">
+<h4 class="anchored" data-anchor-id="collectdate">CollectDate</h4>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>neon.metaDB.my.soil <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(collectDate)) <span class="sc">|&gt;</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+# Groups:   Year [9]
+   Year     n
+  &lt;dbl&gt; &lt;int&gt;
+1  2013    63
+2  2014   106
+3  2016   229
+4  2017   326
+5  2018    45
+6  2019   231
+7  2020   185
+8  2021   117
+9  2023   303</code></pre>
+</div>
+</div>
+</section>
+<section id="dnasampleid.date" class="level4">
+<h4 class="anchored" data-anchor-id="dnasampleid.date">dnaSampleID.date</h4>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>neon.metaDB.my.soil <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(dnaSampleID.date)) <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+# Groups:   Year [9]
+   Year     n
+  &lt;dbl&gt; &lt;int&gt;
+1  2013    63
+2  2014   106
+3  2016   229
+4  2017   326
+5  2018    45
+6  2019   231
+7  2020   185
+8  2021   117
+9  2023   303</code></pre>
+</div>
+</div>
+</section>
+</section>
 <section id="plot-of-samples-per-plot-per-year-at-all-sites" class="level3">
 <h3 class="anchored" data-anchor-id="plot-of-samples-per-plot-per-year-at-all-sites">Plot of samples per plot per year at all sites</h3>
 <div class="cell">
 <details open class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>neon.metaDB.my.soil <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(siteID, <span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(collectDate), dnaSampleID.plot) <span class="sc">|&gt;</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Year, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span> </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="fu">funs</span>(<span class="fu">replace_na</span>(.,<span class="dv">0</span>))) <span class="sc">|&gt;</span> </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(siteID, dnaSampleID.plot), <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;metagenomes&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y =</span> dnaSampleID.plot)) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> metagenomes)) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">discrete=</span><span class="cn">FALSE</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_x_continuous(breaks = seq(2013, 2023, by = 1)) +</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>siteID, <span class="at">scales =</span><span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>neon.metaDB.my.soil <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(siteID, <span class="at">Year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(collectDate), dnaSampleID.plot) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Year, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="fu">funs</span>(<span class="fu">replace_na</span>(.,<span class="dv">0</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(siteID, dnaSampleID.plot), <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;metagenomes&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Year, <span class="at">y =</span> dnaSampleID.plot)) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> metagenomes)) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">discrete=</span><span class="cn">FALSE</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a> <span class="co"># scale_x_continuous(breaks = seq(2013, 2023, by = 1)) +</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>siteID, <span class="at">scales =</span><span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>

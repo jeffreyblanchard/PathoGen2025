@@ -104,25 +104,30 @@ neon.metaDB.my.soil <- neon.metaDB.my |>
   filter(`Ecosystem Category` == "Terrestrial") |> 
   filter(`GOLD Analysis Project Type` != "Combined Assembly") |> 
   
-  separate(`dnaSampleID`, c("dnaSampleID.site","dnaSampleID"), "_") |> 
+  separate(`dnaSampleID`, c("dnaSampleID.site","dnaSampleID.sub"), "_", remove=FALSE) |> 
   
-  mutate_at("dnaSampleID", str_replace, "-COMP", "_COMP") |>
-  mutate_at("dnaSampleID", str_replace, "-GEN", "_GEN") |>
-  separate(`dnaSampleID`, c("dnaSampleID","dnaSampleID.type"), "_") |> 
+  mutate_at("dnaSampleID.sub", str_replace, "-COMP", "_COMP") |>
+  mutate_at("dnaSampleID.sub", str_replace, "-GEN", "_GEN") |>
+  separate(`dnaSampleID.sub`, c("dnaSampleID.sub","dnaSampleID.type"), "_") |> 
   
-  mutate_at("dnaSampleID", str_replace, "-M", "_M") |>
-  mutate_at("dnaSampleID", str_replace, "-O", "_O") |>
-  separate(`dnaSampleID`, c("dnaSampleID.plot","dnaSampleID"), "_") |> 
+  mutate_at("dnaSampleID.sub", str_replace, "-M", "_M") |>
+  mutate_at("dnaSampleID.sub", str_replace, "-O", "_O") |>
+  separate(`dnaSampleID.sub`, c("dnaSampleID.plot","dnaSampleID.sub"), "_") |> 
   
-  mutate_at("dnaSampleID", str_replace, "M-", "M_") |>
-  mutate_at("dnaSampleID", str_replace, "O-", "O_") |>
-  separate(`dnaSampleID`, c("dnaSampleID.layer","dnaSampleID"), "_") |> 
+  mutate_at("dnaSampleID.sub", str_replace, "M-", "M_") |>
+  mutate_at("dnaSampleID.sub", str_replace, "O-", "O_") |>
+  separate(`dnaSampleID.sub`, c("dnaSampleID.layer","dnaSampleID.sub"), "_") |> 
 
-  mutate_at("dnaSampleID", str_replace, "-201", "201") |>
-  mutate_at("dnaSampleID", str_replace, "-202", "202") |>
-  mutate_at("dnaSampleID", str_replace, "201", "_201") |>
-  mutate_at("dnaSampleID", str_replace, "202", "_202") |>
-  separate(`dnaSampleID`, c("dnaSampleID.subplot","dnaSampleID.date"), "_") 
+  mutate_at("dnaSampleID.sub", str_replace, "-201", "201") |>
+  mutate_at("dnaSampleID.sub", str_replace, "-202", "202") |>
+  mutate_at("dnaSampleID.sub", str_replace, "201", "_201") |>
+  mutate_at("dnaSampleID.sub", str_replace, "202", "_202") |>
+  separate(`dnaSampleID.sub`, c("dnaSampleID.subplot","dnaSampleID.date"), "_") |> 
+
+  unite(plotID, c(dnaSampleID.site, dnaSampleID.plot), sep='_', remove=FALSE)
+
+neon.metaDB.my.soil$dnaSampleID.data <- as.numeric(neon.metaDB.my.soil$dnaSampleID.date)
+neon.metaDB.my.soil$dnaSampleID.date <- ymd(neon.metaDB.my.soil$dnaSampleID.date)
 ```
 
 
@@ -144,7 +149,10 @@ neon.metaDB.my.aquatic <- neon.metaDB.my |>
 
   unite(dnaSampleID.niche, c(dnaSampleID.code, dnaSampleID.niche)) |> 
   mutate_at("dnaSampleID.niche", str_replace, "NA_", "") |>
-  mutate_at("dnaSampleID.niche", str_replace, "_NA", "") 
+  mutate_at("dnaSampleID.niche", str_replace, "_NA", "")
+
+
+
 ```
 
 
@@ -190,6 +198,25 @@ neon.metaDB.my.soil |>
   scale_fill_viridis(discrete=FALSE, direction = -1) +
   scale_x_continuous(breaks = seq(2013, 2023, by = 1)) 
 ```
+### Missing years at HARV
+
+All sites are missing data from 2021 and 2022. That should be in IMG soon. What about 2018?
+
+
+#### CollectDate
+```{r}
+neon.metaDB.my.soil |> 
+  group_by(Year = lubridate::year(collectDate)) |> 
+  count() 
+```
+
+#### dnaSampleID.date
+```{r}
+neon.metaDB.my.soil |> 
+  group_by(Year = lubridate::year(dnaSampleID.date)) |> 
+  count() 
+```
+
 ### Plot of samples per plot per year at all sites
 
 ```{r, fig.height = 30}
