@@ -64,6 +64,7 @@ https://www.neonscience.org/field-sites/harv
 
 #### San Joaquin Experimental Range (SJER), Madera County, CA
 https://www.neonscience.org/field-sites/sjer
+
 * SJER_001-M-20230227-COMP-DNA1
 * SJER_002-M-20230228-COMP-DNA1
 * SJER_005-M-20230306-COMP-DNA1
@@ -75,6 +76,7 @@ https://www.neonscience.org/field-sites/sjer
 Possibility of combined assembly and mapping
 
 #### Hop Brook, New Salem, MA (Quabbin)
+https://www.neonscience.org/field-sites/hopb
 
 * Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230117.DNA-DNA1
 * Freshwater microbial communities from Lower Hop Brook NEON Field Site, New Salem, MA, USA - HOPB.SS.20230221.DNA-DNA1
