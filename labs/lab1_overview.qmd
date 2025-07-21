@@ -2,3 +2,13 @@
 title: "Lab 1 - Overview"
 ---
 
+High Performance Computing (Unity)
+Working on the command line (Unix)
+Bioinformatics Software
+Programming in R 
+RStudio
+  Quarto
+Github
+Copilot
+CURE
+Our NEON metagenomics data sets
