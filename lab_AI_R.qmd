@@ -1,0 +1,48 @@
+---
+title: "Learning R with the help of AI tools"
+---
+
+AI won't take your job, but someone using who knows how to use AI might. 
+Think of AI as a force multiplier. You have to learn to code first before you can use AI to help you. 
+ Y Combinator reports that over 25% of its startups are now relying on AI for 95% of their code base, while Google recently reported that about 25% of its new code is AI-generated.
+ 
+ Microsoft designed Copilot to work off of the latest version of OpenAI's GPT model, GPT-4,
+ 
+* github co-pilot - https://github.com/copilot
+* github education - https://github.com/education
+* RStudio github copilot - https://docs.posit.co/ide/user/ide/guide/tools/copilot.html
+* Microsoft Introduction to GitHub Copilot - https://learn.microsoft.com/en-us/training/modules/introduction-to-github-copilot/
+* Introduction to GitHub CoPilot videos - https://learn.microsoft.com/en-us/shows/introduction-to-github-copilot/
+* Set up co-pilot for learning - https://docs.github.com/en/get-started/learning-to-code/setting-up-copilot-for-learning-to-code
+* How to write better prompts for GitHub Copilot - https://github.blog/developer-skills/github/how-to-write-better-prompts-for-github-copilot/
+
+
+* AI Assisted Coding in RStudio - https://research-it.manchester.ac.uk/news/2024/11/29/ai-assisted-coding-in-rstudio/
+* RTutor AI -  https://rtutor.ai/
+* Syntha AI - https://syntha.ai/code-generators/r
+* R Code Generator - https://codingfleet.com/code-generator/r/
+* Learning the tidyverse with the help of AI tools - https://www.tidyverse.org/blog/2025/04/learn-tidyverse-ai/
+* Introducing vitals, a toolkit for evaluating LLM products in R - https://www.tidyverse.org/blog/2025/06/vitals-0-1-0/
+* Using AI with R - https://rfortherestofus.com/courses/ai
+* Boost Your R Skills with AI - https://artscience.ai/boost-your-r-skills-with-ai/
+* Beginner’s Tutorial for the OpenAI API in R - https://tilburg.ai/2024/03/tutorial-openai-api-in-r/
+* Codex - https://chatgpt.com/codex
+
+AI Assisted Coding in RStudio - https://research-it.manchester.ac.uk/news/2024/11/29/ai-assisted-coding-in-rstudio/
+Integrating OpenAI’s ChatGPT into RStudio is now possible with “Chattr”, “GPT Studio” and “GitHub Copilot”. These new tools will help you find the right functions and commands and to quickly generate code snippets to save you time.
+
+8 ChatGPT packages for R - https://www.infoworld.com/article/2338386/8-chatgpt-tools-for-r-programming.html
+
+* Vibe coding https://www.geeksforgeeks.org/techtips/what-is-vibe-coding/
+* What is vibe coding, exactly? - https://www.technologyreview.com/2025/04/16/1115135/what-is-vibe-coding-exactly/
+* What Is Vibe Coding? Definition, Tools, Pros, and Cons - https://www.datacamp.com/blog/vibe-coding
+
+* You can use GitHub and Git to collaborate on work.  https://docs.github.com/en/get-started/start-your-journey/about-github-and-git
+* Using co-pilot as your tutor - https://docs.github.com/en/get-started/learning-to-code/setting-up-copilot-for-learning-to-code
+
+* chattr - https://mlverse.github.io/chattr/
+
+Bioinformatics and AI
+* A data-intelligence-intensive bioinformatics copilot system for large-scale omics research and scientific insights - https://academic.oup.com/bib/article/26/4/bbaf312/8196318?login=true
+* Bioinformatics AI: Driving Future Biological Breakthroughs - https://biologyinsights.com/bioinformatics-ai-driving-future-biological-breakthroughs/
+

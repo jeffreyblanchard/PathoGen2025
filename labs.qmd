@@ -4,7 +4,7 @@ title: "Labs"
 
 Labs
 
-* Lab 1 : Introduction to Working on Unity
+* [Lab 1 : Introduction to Working on Unity](labs/lab1_overview.html)
 * Lab 2 : Introduction to R, RStudio and Reproducible Reports
 * Lab 3 : Running bioinformatics software on Unity (Blast, Read mapping)  
 * Lab 4 : NEON Data Transformation with dplyr
