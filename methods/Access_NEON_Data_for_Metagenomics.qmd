@@ -50,7 +50,7 @@ metaGdata <- loadByProduct(dpID = 'DP1.10107.001',
 
 ```{r, eval=FALSE}
 metaGdata_mms_metagenomeSequencing <- metaGdata$mms_metagenomeSequencing
-write_csv(metaGdata_mms_metagenomeSequencing, "data/NEON_metadata/metaGdata_mms_metagenomeSequencing.csv")
+write_csv(metaGdata_mms_metagenomeSequencing, "../data/NEON_metadata/metaGdata_mms_metagenomeSequencing.csv")
 ```
 
 
@@ -58,13 +58,13 @@ This has HARV data collected up until 2022. The 2021 and 2022 data are not in th
 
 ```{r, eval=FALSE}
 metaGdata_mms_metagenomeSequencing_HARV <- metaGdata$mms_metagenomeSequencing |> 
-write_csv(metaGdata_mms_metagenomeSequencing_HARV, "data/NEON_metadata/metaGdata_mms_metagenomeSequencing_HARV.csv")
+write_csv(metaGdata_mms_metagenomeSequencing_HARV, "../data/NEON_metadata/metaGdata_mms_metagenomeSequencing_HARV.csv")
 ```
 
 ### Read in saved file (all above in eval = FALSE)
 
 ```{r}
-metaGdata_mms_metagenomeSequencing <- read_csv("data/NEON_metadata/metaGdata_mms_metagenomeSequencing.csv")
+metaGdata_mms_metagenomeSequencing <- read_csv("../data/NEON_metadata/metaGdata_mms_metagenomeSequencing.csv")
 ```
 
 ### Create data frame from dnaSampleID
@@ -75,8 +75,8 @@ metaGdata_dnaSampleID <- metaGdata_mms_metagenomeSequencing |>
 
 # Read in 2023 and 2024 data that is not in the metagenome data product yet
 
-neon_ay23_jgi_samples <- read_csv("data/NEON_metadata/neon_ay23_jgi_samples_soil.csv")
-neon_ay24_jgi_samples <- read_csv("data/NEON_metadata/neon_ay24_jgi_samples_soil.csv")
+neon_ay23_jgi_samples <- read_csv("../data/NEON_metadata/neon_ay23_jgi_samples_soil.csv")
+neon_ay24_jgi_samples <- read_csv("../data/NEON_metadata/neon_ay24_jgi_samples_soil.csv")
 
 neon_dnaSampleID <- rbind(metaGdata_dnaSampleID, neon_ay23_jgi_samples, neon_ay24_jgi_samples)
 

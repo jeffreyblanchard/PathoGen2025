@@ -12,3 +12,4 @@ Github
 Copilot
 CURE
 Our NEON metagenomics data sets
+Conda
