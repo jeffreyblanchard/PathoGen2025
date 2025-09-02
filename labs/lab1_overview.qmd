@@ -111,7 +111,7 @@ To request a Unity account and access our course directory.
 
 ### RStudio using Open OnDemand
 
-[Open OnDemand](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) makes supercomputing accessible through a web portal. 
+[Open OnDemand](https://openondemand.org/) makes supercomputing accessible through a web portal. 
 
 - Go to [Unity](https://unity.rc.umass.edu/)
 - On the left menu select `OpenOnDemand`
