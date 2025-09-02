@@ -1,0 +1,99 @@
+---
+title: "Visualizing NEON samples within a plot"
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(viridis)
+```
+
+Load file 
+
+```{r}
+neon.plot.samples <- read_csv("../data/NEON_metadata/harvard_seasonal_study_coordinates.csv")
+```
+
+Plot of samples per plot per year at all HARV metagenome plots
+
+```{r}
+neon.plot.samples |> 
+  ggplot(aes(x=coreCoordinateX, y = coreCoordinateY, color = sampleTiming)) +
+  # add lines and annotate subplots
+  geom_hline(yintercept=20, color = "gray") +
+  geom_vline(xintercept=20, color = "gray") + 
+  annotate("text", x = 5, y = 5, label = "21", color = "black", size = 2) +
+  annotate("text", x = 5, y = 35, label = "39", color = "black", size = 2) +
+  annotate("text", x = 35, y = 5, label = "23", color = "black", size = 2) +
+  annotate("text", x = 35, y = 35, label = "41", color = "black", size = 2) +
+  geom_rect(aes(xmin = 0, xmax = 40, ymin = 0, ymax = 40), fill = NA, color = "black", linewidth = .1) +
+  # add rectangle with no soil sampling area
+  geom_rect(aes(xmin = 10, xmax = 30, ymin = 10, ymax = 30), fill = "white", color = "grey", linewidth = .1) +
+  annotate("text", x = 20, y = 23, label = "No soil", color = "black", size = 2) +
+  annotate("text", x = 20, y = 17, label = "sampling area", color = "black", size = 2) +
+  # sampling points
+  geom_point(aes(shape = candidate)) +
+  labs(title = "Plot position of organic soil samples from HARV in 2024") +
+  facet_wrap(~plotID) +
+  theme_minimal() +
+  coord_fixed()
+```
+  
+ ## Use pairwise distances and compute a total or average distance between the points in each set.
+ 
+ ### 33
+ 
+```{r}
+# Define two sets of 3 points
+set1 <- matrix(c(2.5, 15, 12, 31.5, 0.5, 35.5), ncol = 2, byrow = TRUE)  # Points: (21,2.5), (2,2), (3,3)
+set2 <- matrix(c(36, 19.5, 31.5, 16.5, 24.5, 0), ncol = 2, byrow = TRUE)  # Points: (1,1), (1.5,1.5), (2,2)
+
+# Function to compute total pairwise distance
+total_distance <- function(points) {
+  dist_matrix <- dist(points)  # Computes all pairwise distances
+  sum(dist_matrix)
+}
+
+# Compare sets
+dist1 <- total_distance(set1)
+dist2 <- total_distance(set2)
+
+cat("Set 1 total distance:", dist1, "\n")
+cat("Set 2 total distance:", dist2, "\n")
+
+if (dist1 < dist2) {
+  cat("Set 1 is closer together.\n")
+} else {
+  cat("Set 2 is closer together.\n")
+}
+```
+ 
+  ## Use pairwise distances and compute a total or average distance between the points in each set.
+ 
+ ### 34
+ 
+```{r}
+# Define two sets of 3 points
+set1 <- matrix(c(16.5, 31.5, 11, 34, 30, 28), ncol = 2, byrow = TRUE)  # Points: (21,2.5), (2,2), (3,3)
+set2 <- matrix(c(3, 2, 19, 8, 13.5, 9), ncol = 2, byrow = TRUE)  # Points: (1,1), (1.5,1.5), (2,2)
+
+# Function to compute total pairwise distance
+total_distance <- function(points) {
+  dist_matrix <- dist(points)  # Computes all pairwise distances
+  sum(dist_matrix)
+}
+
+# Compare sets
+dist1 <- total_distance(set1)
+dist2 <- total_distance(set2)
+
+cat("Set 1 total distance:", dist1, "\n")
+cat("Set 2 total distance:", dist2, "\n")
+
+if (dist1 < dist2) {
+  cat("Set 1 is closer together.\n")
+} else {
+  cat("Set 2 is closer together.\n")
+}
+```
+

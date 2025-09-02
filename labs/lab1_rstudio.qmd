@@ -4,62 +4,20 @@ title: 'Lab 1 : Introduction to R and Reproducible Research'
 
 ## Learning objectives
 
--   What is reproducible research?
--   Why become a data Scientist?
--   Overview of the R statistical programming language
 -   The RStudio Integrated Development Environment
 -   The Quarto scientific publishing system
 -   Working in R coding chunks in Quarto
 -   Reading error messages
 
-## Overview
-
-In recent years, the field of genomic analysis has sifted towards requiring some knowledge of R, Python/Perl/C and the use of high performance computers (often requiring some fundamental Unix skills) available at national computing centers for working with large data sets. While there are many great software packages available for particular computational problems in evolutionary biology, many software programs do not have a user interface (e.g. drop down menus and such) and are run in command line mode. The lab sessions in this course have been designed to give students an introduction to working with R and packages used for Human Genome Analysis.
-
-The lab course is divided into 3 parts
-
-1.  Introduction to R and the tidyverse
-2.  Gene Expression Analysis
-3.  Analysis of SNPs and your genetic data
-
-## Reproducible Research
-
-Reproducibility is the hallmark of science, which is based on empirical observations coupled with explanatory models. While reproducibility encompasses the full science lifecycle, and includes issues such as methodological consistency and treatment of bias, in this course we will focus on computational reproducibility: the ability to document data, analyses, and models sufficiently for other researchers to be able to understand and ideally re-execute the computations that lead to scientific results and conclusions. With current publishing practices, this can be difficult because data are typically unavailable, the method sections of papers do not detail the computational approaches used, and analyses and models are often conducted in graphical programs, or, when scripted analyses are employed, the code is not available. In this course we will learn how to write code that is integrated into reproducible reports.
-
-## Data Science
-
-Here a few links that I will go over in lab:
-
--   <a href="https://datascience.berkeley.edu/about/what-is-data-science/"target="_blank">What is Data Science? </a>\
--   <a href="https://blog.udacity.com/2014/11/data-science-job-skills.html"target="_blank">What is Data Science? 8 Skills That Will Get You Hired</a>\
--   <a href="https://www.nceas.ucsb.edu/news/open-science-kinder-science"target="_blank">Open Science is Kinder Science</a>\
--   <a href="https://datacarpentry.org/"target="_blank">Data Carpentry</a>\
--   <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.2005561"target="_blank">Building a local community of practice in scientific programming for life scientists</a>
-
-## High Performance Computing (Unity) and Unix
 
 
 
-## R
-
-R is the largest and most comprehensive public domain statistical computing environment. The core R package is enhanced by several hundred user-supplied add-on packages, including many for gene expression analysis, in the <a href="http://cran.r-project.org/"> Comprehensive R Archive Network (CRAN)</a>. Omegahat Project for Statistical Computing</a>. <a href="http://www.bioconductor.org/"> BioConductor</a> is an open source and open development software project for the analysis and comprehension of genomic data and is based primarily on the R programming language. R and Bioconductor are free, Open Source and available for Windows, MacOS and a wide variety of UNIX platforms.
 
 ### The RStudio Integrated Devopement Environment (IDE)
 
 The most popular way to write R programs and to interactively run code and create graphs is using the <a href="https://posit.co/products/open-source/rstudio/" target="_blank">RStudio Integrated Devopement Environment (IDE)</a>. It is open source software that is available for free. There are other ways to write and run R code, such as using text editors, VS Code editors, Neovim or Jupyter Notebooks, but we will focus on RStudio in this class.
 
-### R manuals, help and tutorials
 
-Many introductory and advance tutorials have been developed for R. Here are a few
-
--   <a href="http://cran.r-project.org/manuals.html#R-admin" target="_blank">The offical R manuals</a>
--   <a href="http://cran.r-project.org/doc/manuals/R-intro.html" target="_blank">CRAN's Introduction to R</a>
--   <a href="https://r4ds.had.co.nz/" target="_blank">R for Data Science</a> by Garrett Grolemund and Hadley Wickham
--   <a href="http://www.cookbook-r.com/Graphs/" target="_blank">R Graphics Cookbook</a> by Winston Chang
--   <a href="https://github.com/datacarpentry/genomics-workshop/" target="_blank">Data Carpentries Genomic Workshop Sessions</a>
--   <a href="https://datacarpentry.org/R-ecology-lesson/index.html" target="_blank">Data Analysis and Visualization in R for Ecologists</a>
-
-There are also many workshops and online R courses that you could take to follow up what you learn in this class.
 
 #### DIYers - Installing R and RStudio on your computer
 

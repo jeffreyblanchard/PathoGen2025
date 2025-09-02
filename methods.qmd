@@ -3,5 +3,6 @@ title: "CURE Project Specific Methods"
 ---
 
 * [phyloNEON](methods/phyloNEON.html)
-* [Access_NEON_Data_for_Metagenomics](methods/Access_NEON_Data_for_Metagenomics)
+* [Access_NEON_Data_for_Metagenomics](methods/Access_NEON_Data_for_Metagenomics.html)
+* [Visualizing NEON samples within a plot](methods/NEON_plot_samples.html)
 

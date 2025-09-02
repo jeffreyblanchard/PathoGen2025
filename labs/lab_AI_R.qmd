@@ -2,9 +2,7 @@
 title: "Learning R with the help of AI tools"
 ---
 
-AI won't take your job, but someone using who knows how to use AI might. 
-Think of AI as a force multiplier. You have to learn to code first before you can use AI to help you. 
- Y Combinator reports that over 25% of its startups are now relying on AI for 95% of their code base, while Google recently reported that about 25% of its new code is AI-generated.
+AI won't take your job, but someone using who knows how to use AI might. Think of AI as a force multiplier. You have to learn to code first before you can use AI to help you. Google recently reported that about 25% of its new code is AI-generated.
  
  Microsoft designed Copilot to work off of the latest version of OpenAI's GPT model, GPT-4,
  
