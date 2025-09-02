@@ -2,32 +2,31 @@
 title: "Pathogen Genome Analysis Fall 2025"
 ---
 
-* Sept 3 (Wed) - Lab 1
-* Sept 8 (Mon) - CURE Overview
-* Sept 10 (Wed) - Lab 2
-* Sept 15 (Mon) - CURE Ideas and Background Research
-* Sept 17 (Wed) - Lab 3
-* Sept 22 (Mon) - CURE Hypothesis and Method Discussion
-* Sept 24 (Wed) - Lab 4
-* Sept 29 (Mon) - CURE Plans
-* Oct 1 (Wed) - Lab 5
-* Oct 6 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
-* Oct 8 (Wed) - Lab 6
+* Sept 3 (Wed) - Course Introduction & Lab 1: Introduction to Unity, R and RStudio
+* Sept 8 (Mon) - Discussion of research project possibilities 
+* Sept 10 (Wed) - Lab 2: Coding in R with generative AI
+* Sept 15 (Mon) -  Project background research - Adding references to Quarto documents using Zotero
+* Sept 17 (Wed) - Lab 3: Running bioinformatics software on Unity (Blast, Read mapping)  
+* Sept 22 (Mon) - Discussion of project methods and the scope of what is possible (in 10 weeks)
+* Sept 24 (Wed) - Lab 4: NEON Data Transformation with dplyr
+* Sept 29 (Mon) - TBD
+* Oct 1 (Wed) - Lab 5: NEON Data Visualization with ggplot
+* Oct 6 (Mon) - TBD
+* Oct 8 (Wed) - Lab 6: Table joins of NEON MAG, metagenomic and chemistry data
 * Oct 13 (Mon) Holiday – Indigenous People’s Day
-* Oct 15 (Wed) - NEON Summit - No class
+* Oct 15 (Wed) - Lab 7: Geographic mapping the NEON data
 * Oct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered
-* Oct 22 (Wed) - Lab 7
-* Oct 27 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
-* Oct 29 (Wed) - Lab 8
-* Nov 3 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
-* Nov 5 (Wed) - Lab 9
-* Nov 10 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
-* Nov 12 (Wed) - Lab 10
-* Nov 17 (Mon) - Bioinformatics Software and Data Processing Related to CURE projects
-* Nov 19 (Wed) - Project Workday
-* Nov 24 (Mon) - Project Workday
+* Oct 22 (Wed) - Lab 8: Genome representations
+* Oct 27 (Mon) - TBD
+* Oct 29 (Wed) - Lab 9: Phylogenetic tree visualization using ggtree
+* Nov 3 (Mon) - TBD
+* Nov 5 (Wed) - Lab 10: Read abundance - normalization and statistics
+* Nov 10 (Mon) - TBD
+* Nov 12 (Wed) - Lab 11: TBD based on research project directions
+* Nov 17 (Mon) - TBD
+* Nov 19 (Wed) - Lab 12: TBD based on research project directions
+* Nov 24 (Mon) - Research project workday
 * Nov 26 (Wed) Holiday - Thanksgiving
-* Dec 1 (Mon) - Project Workday
-* Dec 3 (Wed) - Project Workday
-* Dec 8 (Mon) - Project Workday
-* Dec 10 (Wed) - Project Deadline
+* Dec 1 (Mon) - Research project workday
+* Dec 3 (Wed) - Research project presentations
+* Dec 8 (Mon) - Research project presentations

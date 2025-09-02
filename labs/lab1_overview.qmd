@@ -77,7 +77,7 @@ There are also many workshops and online R courses that you could take to follow
 
 ## GitHub
 
-[GitHub](https://github.com/) has become a popular way to manage, share and view code for open source projects. The tutorials created for this course will be written in [Quarto](https://quarto.org/)and posted on GitHub. Thus, you will be able to continue to see course materials after the end of the semester. You will use and make a GitHub web site for your research project.
+[GitHub](https://github.com/) has become a popular way to manage, share and view code for open source projects. The tutorials created for this course will be written in [Quarto](https://quarto.org/) and posted on GitHub. Thus, you will be able to continue to see course materials after the end of the semester. You will use and make a GitHub web site for your research project.
 
 ## Generative AI
 
@@ -103,20 +103,31 @@ If you haven't already done so, request a Unity HPC account and access to our co
 
 To request a Unity account and access our course directory.
 
--   Go to https://unity.rc.umass.edu/
+-   Go to [Unity](https://unity.rc.umass.edu/)
 -   Request an account
 -   Go to MyPIs, click on the + button and enter pi_bio678_umass_edu
 
 ## R and RStudio
 
-### Working in RStudio
+### RStudio using Open OnDemand
+
+[Open OnDemand](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) makes supercomputing accessible through a web portal. 
+
+- Go to [Unity](https://unity.rc.umass.edu/)
+- On the left menu select `OpenOnDemand`
+- In the top menu select `Interactive Apps` then `RStudio`
+- Set the job duration for 4 hrs to cover the length of the lab. Otherwise set the time to what you anticipate needing. 
+- Unless otherwise suggested set CPU Core Count to 2 and the memory to 8 gb.  
+- Click `Launch`. It takes about a minute the job to start and then you can launch the RStudio Interface.  
+
+### RStudio Interface
 
 The default R studio appearance includes 4 windows.
 
 1.  The R script(s) and data view (upper left window).
 2.  Console (bottom left window).
-3.  Workspace and history (upper right window).
-4.  Files, plots, packages and help (botton right window).
+3.  Work space and history (upper right window).
+4.  Files, plots, packages and help (bottom right window).
 
 ![RStudio Screenshot](../images/lab1/RStudio_interface.png)
 
