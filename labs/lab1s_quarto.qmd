@@ -225,7 +225,9 @@ Here’s a categorized list of the most useful options:
 
 ### **Example: Customized R Chunk**
 
-```{r pressure-plot, echo=FALSE, fig.width=6, fig.height=4, fig.cap="Pressure vs Temperature"}
+`{r pressure-plot, fig.width=6, fig.height=4, fig.cap="Pressure vs Temperature"}`
+
+```{r pressure-plot, fig.width=6, fig.height=4, fig.cap="Pressure vs Temperature"}
 plot(pressure)
 ```
 
