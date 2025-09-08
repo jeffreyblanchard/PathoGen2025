@@ -161,6 +161,7 @@ format:
     toc: true
     code-fold: true
     theme: cosmo
+    embed-resources: true
 execute:
   echo: true
   freeze: auto
@@ -168,6 +169,8 @@ execute:
 ```
 
 This configures: - An HTML output with a table of contents. - Collapsible code chunks. - A Bootstrap theme (`cosmo`). - Code execution settings.
+
+**Important for our class is the `embed-resources: true` line. This creates a single html file with the figures embeded in the file. If this line is not in the YAML block a new directory will be created which contains the images and is linked to the html file. This means that if you turn in this html file (without using embed-resources: true) the images will not be shown.**
 
 ### **Quarto vs R Markdown YAML**
 
