@@ -1,0 +1,248 @@
+---
+title: "Lab 1s - Quarto"
+---
+
+# Overview
+
+## Learning objectives
+
+-   Quarto
+-   Differences between R Markdown and Quarto
+-   YAML blocks
+-   Code blocks
+
+## Quarto
+
+-   [Quarto](https://quarto.org/) is the name of an open-source publishing system used for technical and scientific writing.
+
+-   It lets you combine text, code, and outputs in one document—perfect for data science, research, and reproducible reports.
+
+-   You can write in Python, R, Julia, or Observable JavaScript, and publish to formats like HTML, PDF, Word, and even full websites
+
+-   It’s considered the next generation of R Markdown, and works with tools like Jupyter Notebooks, VS Code, and RStudio.
+
+-   Because it is based on R Markdown, there is a wealth of related resources and books published on and using R Markdown. See some of on the [examples books using R](https://bookdown.org/) we will periodically using in the course.
+
+## Differences between R Markdown and Quarto
+
+R Markdown and Quarto are both tools for creating dynamic documents that combine code, text, and outputs (like plots or tables), but they differ in terms of design philosophy, features, and flexibility. Here's a breakdown of their key differences:
+
+### **1. Origin and Ecosystem**
+
+-   **R Markdown**:
+    -   Developed by RStudio.
+    -   Primarily designed for R users.
+    -   Built on top of **knitr** and **Pandoc**.
+    -   Deeply integrated into the RStudio IDE.
+-   **Quarto**:
+    -   Also developed by RStudio, but as a **next-generation** tool.
+    -   Language-agnostic: supports **R, Python, Julia, and Observable JavaScript**.
+    -   Uses **Pandoc** directly (not knitr).
+    -   Designed to unify and modernize the workflow across languages.
+
+### **2. Language Support**
+
+-   **R Markdown**: Best suited for R. Python support is possible but less seamless.
+-   **Quarto**: First-class support for **multiple languages** in a single document. You can mix R, Python, Julia, and JavaScript.
+
+### **3. Document Structure**
+
+-   **R Markdown**:
+    -   Uses YAML front matter for metadata.
+    -   Code chunks are written using triple backticks with language identifiers.
+-   **Quarto**:
+    -   Similar structure but more **consistent and extensible** YAML.
+    -   Supports **Markdown extensions** like callouts, citations, cross-referencing, and more.
+
+### **4. Output Formats**
+
+-   **R Markdown**:
+    -   Supports HTML, PDF, Word, slides (via xaringan or ioslides), etc.
+    -   Customization can be complex for advanced layouts.
+-   **Quarto**:
+    -   Supports all R Markdown formats **plus**:
+        -   **Reveal.js** slides.
+        -   **Books** and **websites** with built-in navigation and styling.
+        -   **Jupyter-style notebooks**.
+    -   Easier to configure and customize outputs.
+
+### **5. Reproducibility and Execution**
+
+-   **R Markdown**:
+    -   Executes code using knitr (for R) or reticulate (for Python).
+    -   Less control over execution environment.
+-   **Quarto**:
+    -   Uses **Jupyter kernels** or **R** directly.
+    -   Better support for **notebook-style interactivity** and **execution control**.
+
+### **6. Project Management**
+
+-   **R Markdown**:
+    -   No native concept of a "project" beyond RStudio projects.
+-   **Quarto**:
+    -   Supports **Quarto Projects**: collections of documents with shared configuration.
+    -   Ideal for **books, blogs, websites**, and **multi-document workflows**.
+
+### **7. Extensibility and Modern Features**
+
+-   **Quarto**:
+    -   More modern and extensible.
+    -   Supports **Lua filters**, **Markdown extensions**, **cross-referencing**, **citations**, and **interactive widgets**.
+    -   Better support for **version control** and **CI/CD workflows**.
+
+### **Summary Table**
+
+| Feature          | R Markdown        | Quarto               |
+|------------------|-------------------|----------------------|
+| Language Support | Primarily R       | R, Python, Julia, JS |
+| Execution Engine | knitr             | Jupyter / native     |
+| Output Formats   | Many              | More + easier config |
+| Interactivity    | Limited           | Rich (widgets, JS)   |
+| Project Support  | Basic             | Full project system  |
+| Extensibility    | Moderate          | High                 |
+| Ideal For        | R-centric reports | Multi-language docs  |
+
+------------------------------------------------------------------------
+
+## Adding links and figures in a Quarto document
+
+Let's go the the Quarto documentation for [Markdown basics](https://quarto.org/docs/authoring/markdown-basics.html) and more details on [Figures](https://quarto.org/docs/authoring/figures.html)
+
+It is important to specific where the figure is located relative to your `.qmd` file.  The path can be relative (giant_virus.jpg) or (images/giant_virus.jpg) or absolute (/home/pi_jlb_umass_edu/images/giant_virus.jpg).
+
+![giant virus](../images/giant_virus.jpg)
+
+## YAML blocks in Quarto
+
+In **Quarto**, a **YAML block** is a section at the top of a document that contains metadata and configuration settings. YAML stands for **"YAML Ain't Markup Language"**, and it's used to define things like the document title, author, output format, and more.
+
+### **Basic Structure of a YAML Block in Quarto**
+
+A YAML block is enclosed by triple dashes (`---`) at the beginning and end:
+
+``` yaml
+---
+title: "My Analysis Report"
+author: "Jeffrey Blanchard"
+date: "2025-09-08"
+format: html
+editor: visual
+---
+```
+
+This block tells Quarto: - The **title** of the document. - The **author** name. - The **date** to display. - The **output format** (e.g., HTML, PDF, Word). - The **editor** preference (e.g., visual or source).
+
+### **Common YAML Fields in Quarto**
+
+Here are some frequently used fields:
+
+| Field | Description |
+|--------------------------------------|---------------------------------|
+| `title` | Title of the document |
+| `author` | Author name(s) |
+| `date` | Date of publication |
+| `format` | Output format (e.g., `html`, `pdf`, `docx`, `revealjs`) |
+| `toc` | Table of contents (`true` or `false`) |
+| `number-sections` | Number section headings |
+| `theme` | Visual theme for HTML or slides |
+| `code-fold` | Whether code chunks can be collapsed |
+| `execute` | Controls code execution (e.g., `echo`, `eval`, `freeze`) |
+| `bibliography` | Path to `.bib` file for citations |
+| `filters` | Lua filters for advanced customization |
+
+### **Example: HTML Report with Table of Contents**
+
+``` yaml
+---
+title: "Data Exploration"
+author: "Jeffrey Blanchard"
+format:
+  html:
+    toc: true
+    code-fold: true
+    theme: cosmo
+execute:
+  echo: true
+  freeze: auto
+---
+```
+
+This configures: - An HTML output with a table of contents. - Collapsible code chunks. - A Bootstrap theme (`cosmo`). - Code execution settings.
+
+### **Quarto vs R Markdown YAML**
+
+Quarto YAML is: - **More consistent** and **extensible**. - Supports **nested configuration** (e.g., `format.html.toc`). - Easier to manage across **multi-format** outputs (e.g., HTML and PDF from one source).
+
+In **Quarto**, R code chunks are sections of code embedded in your document that get executed when the document is rendered. These chunks are enclosed in triple backticks and start with `{r}`. You can customize their behavior using **chunk options**, which control things like whether the code is shown, whether it's executed, how results are displayed, and more.
+
+## R Code Chunks in Quarto
+
+### **Basic R Code Chunk Syntax in Quarto**
+
+```{r}
+summary(cars)
+```
+
+### **Common Chunk Options in Quarto (for R)**
+
+Here’s a categorized list of the most useful options:
+
+#### 📦 **Execution Options**
+
+| Option    | Description                                      |
+|-----------|--------------------------------------------------|
+| `eval`    | Whether to evaluate the code (`TRUE` or `FALSE`) |
+| `echo`    | Show the code in the output (`TRUE` or `FALSE`)  |
+| `include` | Include both code and output (`TRUE` or `FALSE`) |
+| `error`   | Show errors in output (`TRUE` or `FALSE`)        |
+| `warning` | Show warnings (`TRUE` or `FALSE`)                |
+| `message` | Show messages (`TRUE` or `FALSE`)                |
+
+#### 📄 **Output Display**
+
+| Option       | Description                                             |
+|--------------|---------------------------------------------------------|
+| `results`    | How to display results (`"markup"`, `"asis"`, `"hide"`) |
+| `fig.width`  | Width of plots (in inches)                              |
+| `fig.height` | Height of plots (in inches)                             |
+| `fig.cap`    | Caption for figures                                     |
+| `fig.align`  | Alignment of figures (`"left"`, `"center"`, `"right"`)  |
+
+#### 🔁 **Caching and Reproducibility**
+
+| Option   | Description                                                   |
+|----------|---------------------------------------------------------------|
+| `cache`  | Cache results to avoid re-running code                        |
+| `freeze` | Freeze output to avoid re-execution unless explicitly updated |
+
+#### 🧹 **Code Formatting**
+
+| Option     | Description                              |
+|------------|------------------------------------------|
+| `tidy`     | Automatically tidy code before execution |
+| `collapse` | Collapse code and output together        |
+| `comment`  | Prefix for output lines                  |
+
+### **Example: Customized R Chunk**
+
+```{r pressure-plot, echo=FALSE, fig.width=6, fig.height=4, fig.cap="Pressure vs Temperature"}
+plot(pressure)
+```
+
+This chunk: - Hides the code (`echo=FALSE`) - Sets figure size - Adds a caption - Names the chunk (`pressure-plot`) for reference
+
+
+## Exercises
+
+Create a lab report that has
+
+1. A link out to an external web site.
+2. An image embedded.
+3. A table of contents using the YAML block
+4. The code folded using the YAML block
+5. A code chunk with `plot(cars)` in which the plot is sized to a figure width of 3 and height of 2
+6. A code chunk in which the output, but not the code is in the rendered file.
+
+## Acknowledgements
+
+This lab was created with assistance from [UMass Copilot](https://copilot.microsoft.com/)
