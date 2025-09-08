@@ -233,6 +233,10 @@ plot(pressure)
 
 This chunk: - Hides the code (`echo=FALSE`) - Sets figure size - Adds a caption - Names the chunk (`pressure-plot`) for reference
 
+## Quarto themes
+
+Try a different [Quarto theme](https://quarto.org/docs/output-formats/html-themes.html)
+
 
 ## Exercises
 
@@ -244,6 +248,7 @@ Create a lab report that has
 4. The code folded using the YAML block
 5. A code chunk with `plot(cars)` in which the plot is sized to a figure width of 3 and height of 2
 6. A code chunk in which the output, but not the code is in the rendered file.
+7. Try a different Quarto theme.
 
 ## Acknowledgements
 
