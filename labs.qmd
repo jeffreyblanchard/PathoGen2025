@@ -6,7 +6,7 @@ Labs
 
 * [Lab 1 : Overview & Getting Started](labs/lab1_overview.html)
 * [Lab 1s : Quarto](labs/lab1s_quarto.html)
-* Lab 2 : [Learning R with the help of AI tools starting graphing using ggplot](lab2_AI_ggplot.html)
+* [Lab 2 : Learning R with the help of AI tools starting with graphing using ggplot](lab2_AI_ggplot.html)
 * Lab 3 : Running bioinformatics software on Unity (Blast, Read mapping)  
 * Lab 4 : NEON Data Transformation with dplyr
 * Lab 5 : NEON Data Visualization with ggplot
