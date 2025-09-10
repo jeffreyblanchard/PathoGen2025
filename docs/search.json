@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "Labs\n\nLab 1 : Overview & Getting Started\nLab 1s : Quarto\nLab 2 : Introduction to R, RStudio and Reproducible Reports\nLab 3 : Running bioinformatics software on Unity (Blast, Read mapping)\n\nLab 4 : NEON Data Transformation with dplyr\nLab 5 : NEON Data Visualization with ggplot\nLab 6 : Table joins of NEON MAG, metagenomic and chemistry data\nLab 7 : Mapping the NEON data\nLab 8: Genome representations\nLab 9 : Phylogenetic tree visualization using ggtree\nLab 10 : Read abundance - normalization and statistics\n\nSharing and Publishing\n\nLab : Connecting a Github repo site with a RStudio project\nLab : Adding references to your report with Zotero\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+    "text": "Labs\n\nLab 1 : Overview & Getting Started\nLab 1s : Quarto\nLab 2 : Learning R with the help of AI tools starting graphing using ggplot\nLab 3 : Running bioinformatics software on Unity (Blast, Read mapping)\n\nLab 4 : NEON Data Transformation with dplyr\nLab 5 : NEON Data Visualization with ggplot\nLab 6 : Table joins of NEON MAG, metagenomic and chemistry data\nLab 7 : Mapping the NEON data\nLab 8: Genome representations\nLab 9 : Phylogenetic tree visualization using ggtree\nLab 10 : Read abundance - normalization and statistics\n\nSharing and Publishing\n\nLab : Connecting a Github repo site with a RStudio project\nLab : Adding references to your report with Zotero\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
   },
   {
     "objectID": "report.html",

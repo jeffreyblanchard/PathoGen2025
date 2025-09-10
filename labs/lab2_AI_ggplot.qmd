@@ -1,5 +1,5 @@
 ---
-title: "Learning R with the help of AI tools"
+title: "Learning R with the help of AI tools starting graphing using ggplot2"
 ---
 
 ## Learning objectives
