@@ -2,45 +2,186 @@
 title: "Learning R with the help of AI tools"
 ---
 
+## Learning objectives
+
+-   Generative AI
+-   Installing R packages
+-   Built-in R data sets and data set packages
+-   ggplot2
+
+## Generative AI
+
+### Climate Change
+
+* [Trends in Atmospheric Carbon Dioxide (CO2)](https://gml.noaa.gov/ccgg/trends/)
+* [NASA GISS Surface Temperature Analysis (GISTEMP v4)](https://data.giss.nasa.gov/gistemp/)
+* [Generative AI’s environmental costs are soaring — and mostly secret](https://www.nature.com/articles/d41586-024-00478-x)
+
+### AI and your future jobs
+
 AI won't take your job, but someone using who knows how to use AI might. Think of AI as a force multiplier. You have to learn to code first before you can use AI to help you. Google recently reported that about 25% of its new code is AI-generated.
+
+
+### UMass and Generative AI
+
+* [UMass Guidance on Generative Artificial Intelligence](Guidance on Generative Artificial Intelligence)
+* [UMass Responsible Use of Generative AI](https://www.umass.edu/provost/responsible-use-generative-ai)
+* [GenAI Products](https://www.umass.edu/it/genai/products)
+
+### Copilot
+
+ Microsoft designed Copilot to work off of the latest version of OpenAI's GPT model, GPT-4. GPT-5 is coming soon.
  
- Microsoft designed Copilot to work off of the latest version of OpenAI's GPT model, GPT-4,
- 
-* github co-pilot - https://github.com/copilot
-* github education - https://github.com/education
-* RStudio github copilot - https://docs.posit.co/ide/user/ide/guide/tools/copilot.html
-* Microsoft Introduction to GitHub Copilot - https://learn.microsoft.com/en-us/training/modules/introduction-to-github-copilot/
-* Introduction to GitHub CoPilot videos - https://learn.microsoft.com/en-us/shows/introduction-to-github-copilot/
-* Set up co-pilot for learning - https://docs.github.com/en/get-started/learning-to-code/setting-up-copilot-for-learning-to-code
-* How to write better prompts for GitHub Copilot - https://github.blog/developer-skills/github/how-to-write-better-prompts-for-github-copilot/
+* [github co-pilot](https://github.com/copilot)
+* [github education](https://github.com/education)
+* [Microsoft Introduction to GitHub Copilot](https://learn.microsoft.com/en-us/training/modules/introduction-to-github-copilot/)
+* [Introduction to GitHub CoPilot videos](https://learn.microsoft.com/en-us/shows/introduction-to-github-copilot/)
+* [Set up co-pilot for learning]( https://docs.github.com/en/get-started/learning-to-code/setting-up-copilot-for-learning-to-code)
+* [How to write better prompts for GitHub Copilot]( https://github.blog/developer-skills/github/how-to-write-better-prompts-for-github-copilot/)
 
+### AI and R
 
-* AI Assisted Coding in RStudio - https://research-it.manchester.ac.uk/news/2024/11/29/ai-assisted-coding-in-rstudio/
-* RTutor AI -  https://rtutor.ai/
-* Syntha AI - https://syntha.ai/code-generators/r
-* R Code Generator - https://codingfleet.com/code-generator/r/
-* Learning the tidyverse with the help of AI tools - https://www.tidyverse.org/blog/2025/04/learn-tidyverse-ai/
-* Introducing vitals, a toolkit for evaluating LLM products in R - https://www.tidyverse.org/blog/2025/06/vitals-0-1-0/
-* Using AI with R - https://rfortherestofus.com/courses/ai
-* Boost Your R Skills with AI - https://artscience.ai/boost-your-r-skills-with-ai/
-* Beginner’s Tutorial for the OpenAI API in R - https://tilburg.ai/2024/03/tutorial-openai-api-in-r/
-* Codex - https://chatgpt.com/codex
-
-AI Assisted Coding in RStudio - https://research-it.manchester.ac.uk/news/2024/11/29/ai-assisted-coding-in-rstudio/
+* [RStudio github copilot](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html)
+* [AI Assisted Coding in RStudio](https://research-it.manchester.ac.uk/news/2024/11/29/ai-assisted-coding-in-rstudio/)
 Integrating OpenAI’s ChatGPT into RStudio is now possible with “Chattr”, “GPT Studio” and “GitHub Copilot”. These new tools will help you find the right functions and commands and to quickly generate code snippets to save you time.
 
-8 ChatGPT packages for R - https://www.infoworld.com/article/2338386/8-chatgpt-tools-for-r-programming.html
+### Vibe coding
 
-* Vibe coding https://www.geeksforgeeks.org/techtips/what-is-vibe-coding/
-* What is vibe coding, exactly? - https://www.technologyreview.com/2025/04/16/1115135/what-is-vibe-coding-exactly/
-* What Is Vibe Coding? Definition, Tools, Pros, and Cons - https://www.datacamp.com/blog/vibe-coding
+* [Vibe coding](https://www.geeksforgeeks.org/techtips/what-is-vibe-coding/)
+* [What is vibe coding, exactly?](https://www.technologyreview.com/2025/04/16/1115135/what-is-vibe-coding-exactly/)
+* [What Is Vibe Coding? Definition, Tools, Pros, and Cons](https://www.datacamp.com/blog/vibe-coding)
 
-* You can use GitHub and Git to collaborate on work.  https://docs.github.com/en/get-started/start-your-journey/about-github-and-git
-* Using co-pilot as your tutor - https://docs.github.com/en/get-started/learning-to-code/setting-up-copilot-for-learning-to-code
+### Github, Git and AI
 
-* chattr - https://mlverse.github.io/chattr/
+* [You can use GitHub and Git to collaborate on work](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git)
+* [Using co-pilot as your tutor](https://docs.github.com/en/get-started/learning-to-code/setting-up-copilot-for-learning-to-code)
+* [chattr](https://mlverse.github.io/chattr/)
 
-Bioinformatics and AI
-* A data-intelligence-intensive bioinformatics copilot system for large-scale omics research and scientific insights - https://academic.oup.com/bib/article/26/4/bbaf312/8196318?login=true
-* Bioinformatics AI: Driving Future Biological Breakthroughs - https://biologyinsights.com/bioinformatics-ai-driving-future-biological-breakthroughs/
+### Bioinformatics and AI
+
+* [A data-intelligence-intensive bioinformatics copilot system for large-scale omics research and scientific insights](https://academic.oup.com/bib/article/26/4/bbaf312/8196318?login=true)
+* [Bioinformatics AI: Driving Future Biological Breakthroughs](https://biologyinsights.com/bioinformatics-ai-driving-future-biological-breakthroughs/)
+
+## Introduction to R Graphics
+
+R provides comprehensive graphics utilities for visualizing and exploring scientific data. To date we have been making a few plots using the R Base Graphics. In addition, several more recent graphics environments extend these utilities. These include the `grid`, `lattice` and `ggplot2` packages. All have the roles, but `ggplot2` environment that is part of the Tidyverse package has become popular and is now used for many R packages and in scientific publications.
+
+### ggplot2 and the Grammar of Graphics
+
+[ggplot2](https://ggplot2.tidyverse.org/index.html) is meant to be an implementation of the Grammar of Graphics, hence the gg in ggplot. The basic notion is that there is a grammar to the composition of graphical components in statistical graphics. By directly controlling that grammar, you can generate a large set of carefully constructed graphics from a relatively small set of operations. As Hadley Wickham (2010), the author of `ggplot2` said,
+
+"A good grammar will allow us to gain insight into the composition of complicated graphics, and reveal unexpected connections between seemingly different graphics."
+
+
+### Tutorials and resources
+
+You can make amazing graphs with ggplot, but there is a long learning curve so we will have multiple lab sessions on ggplot and graphing. Here are a few different resources for `ggplot`.
+
+-   Hadley Wickham and Garrett Grolemund released the second edition of [R for Data Science](https://r4ds.hadley.nz/).
+-   Data Carpentry's [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/)
+-   For those with a visual learning style there is [Maria Nattestad's Youtube videos](https://www.youtube.com/channel/UC2bWYX9h1KlaGWfTDuhASWg)
+-   The [ggplot cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+
+## On the Computer
+
+### Create and save your Quarto Markdown (qmd) file
+
+Just like last week we will be writing our code in a Quarto Markdown (qmd) file. Remember to use the following formatting in your YAML block. You can add different themes or change the parameters below, but you need to put in the `embed-resources: true` line true into the YAML block.
+
+```         
+---
+title: "Lab 2 Data Visualization"
+author: "You"
+format:
+  html:
+    toc: true
+    toc_float: true
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+---
+```
+
+### Installing and loading R packages
+
+In this course we will work with many different R packages that will need to be installed on your computer. I have already installed most of these packages for students on Posit Cloud. If you are working on your own computer or on Unity, you can install them using Tools \> Install Packages. You only need to install a package once!
+
+To work with an R package load it with the `library` command. I always load my packages at the beginning of my files.
+
+```{r}
+#| warning: false
+
+library(tidyverse)
+```
+
+### Data for today's lab
+
+In most labs we will be loading in data from files (e.g. our 23andME SNP data). Today and next week for simplicity we will work with data sets that come with R and the are available as R packages.
+
+#### Data sets (data frames) that come with R
+
+R contains pre-loaded data sets that will see in many examples posted on the internet. The `mtcars` and `iris` data sets are very popular. You can see the whole list by typing data(). This will pop up a window with a list of the data sets. Include `#| eval: false` within your R code chunk if you want to show but not run code. You can also use the older R Markdown style of including it in the header ````{r eval = FALSE}`
+
+```{r}
+#| eval: false
+
+data()
+```
+
+In class we will talk more about the structure of a data set, which can be summarized using the `str` command
+
+```{r}
+glimpse(iris)
+```
+
+You can see the whole data set by typing the name `iris` or by typing `view(iris)` which will pop up a window with the data set. However we don't want to show all 150 observations (rows) of the iris data set in this document. We can use the `head` command to show just the first 5 rows.
+
+```{r}
+head(iris)
+```
+
+#### Data sets that are part of R packages
+
+R for Data Science uses the `palmerpenguins` package, "which includes the penguins dataset containing body measurements for penguins on three islands in the Palmer Archipelago, and the ggthemes package, which offers a colorblind safe color palette. We will load these for our work today." You likely will need to install these packages before loading the libraries.
+
+```{r}
+library(palmerpenguins)
+library(ggthemes)
+```
+
+Data Analysis and Visualization in R for Ecologists uses the `ratdat` package, a long-term dataset from Portal, Arizona, in the Chihuahuan desert.
+
+```{r}
+library(ratdat)
+```
+
+The help command can be used to learn more about the `palmerpenguins` and `ratdat` packages. After running the below commands, in the right bottom corner under the `Help` tab the package documentation can be viewed. I used `#| eval: false` in the below code chunk.
+
+```{r}
+#| eval: false
+help(package="palmerpenguins")
+help(package="ratdat")
+```
+
+## Exercises
+
+### [R for Data Science Chapter 1](https://r4ds.hadley.nz/data-visualize)
+
+Today we will walk through Chapter 1 of R for Data Science. By **putting the examples and exercises** in our own Quarto Markdown file, we can create own personal path through the Chapter. Make are readable report by delineating the sections (e.g. 1.2.3 Creating a ggplot) with hashtags so they are visible in your report outline. Include all of the example code in the chapter in your report (In addition to the exercises). Answers to all the questions are available online thanks to [Martin Lukic](https://github.com/martin-lukic/r4ds-2e-exercise-solutions) and others. I recommend not using these, but learn how to use Copilot to help when your are not sure and to ask me questions during class, help sessions or email.
+
+In your report include notes on the places you used Copilot and your prompts. One way to do this would be to have
+
+#### Exercise 1
+
+##### Ex 1 Copilot notes
+
+There are probably better ways to do this. Think of one that works for you and clearly communicates to me your strategies.
+
+##### Ex 1 code chunk
+
+### What to upload to Canvas
+
+After you `Render` the qmd file to an html file, export the file to your computer and upload it to Canvas.
+
 
