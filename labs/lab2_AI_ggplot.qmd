@@ -168,7 +168,9 @@ help(package="ratdat")
 
 ### [R for Data Science Chapter 1](https://r4ds.hadley.nz/data-visualize)
 
-Today we will walk through Chapter 1 of R for Data Science. By **putting the examples and exercises** in our own Quarto Markdown file, we can create own personal path through the Chapter. Make are readable report by delineating the sections (e.g. 1.2.3 Creating a ggplot) with hashtags so they are visible in your report outline. Include all of the example code in the chapter in your report (In addition to the exercises). Answers to all the questions are available online thanks to [Martin Lukic](https://github.com/martin-lukic/r4ds-2e-exercise-solutions) and others. I recommend not using these, but learn how to use Copilot to help when your are not sure and to ask me questions during class, help sessions or email.
+Today we will walk through Chapter 1 of R for Data Science. By **putting the examples and exercises** in our own Quarto Markdown file, we can create own personal path through the Chapter. Make are readable report by delineating the sections (e.g. 1.2.3 Creating a ggplot) with hashtags so they are visible in your report outline. Include all of the example code in the chapter in your report (In addition to the exercises). 
+
+Working through the exercises is a great time to explore changing the code with or without Copilot! Answers to all the questions are available online thanks to [Martin Lukic](https://github.com/martin-lukic/r4ds-2e-exercise-solutions) and others. I recommend not using these, but learn how to use Copilot to help when your are not sure and to ask me questions during class, help sessions or email.
 
 In your report include notes on the places you used Copilot and your prompts. One way to do this would be to have
 
