@@ -6,11 +6,11 @@ title: "Pathogen Genome Analysis Fall 2025"
 * Sept 8 (Mon) - Discussion of research project possibilities 
 * Sept 10 (Wed) - Lab 2: Coding in R with generative AI
 * Sept 15 (Mon) - Project background research - Adding references to Quarto documents using Zotero
-* Sept 17 (Wed) - Lab 3: Running bioinformatics software on Unity (Blast, Read mapping)  
+* Sept 17 (Wed) - Lab 3: Data Transformation with dyplr 
 * Sept 22 (Mon) - Discussion of research project possibilities 
-* Sept 24 (Wed) - Lab 4: NEON Data Transformation with dplyr
+* Sept 24 (Wed) - Lab 4: NEON Data Transformation
 * Sept 29 (Mon) - Discussion of project methods and the scope of what is possible (in 10 weeks)
-* Oct 1 (Wed) - Lab 5: NEON Data Visualization with ggplot
+* Oct 1 (Wed) - Lab 5: NEON Data Visualization
 * Oct 6 (Mon) - TBD
 * Oct 8 (Wed) - Lab 6: Table joins of NEON MAG, metagenomic and chemistry data
 * Oct 13 (Mon) Holiday – Indigenous People’s Day

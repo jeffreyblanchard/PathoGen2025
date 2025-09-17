@@ -2,22 +2,26 @@
 title: "Labs"
 ---
 
-Labs
+R Labs
 
 * Lab 1 : [Overview & Getting Started](labs/lab1_overview.html)
-* Lab 1s : [Quarto](labs/lab1s_quarto.html)
 * Lab 2 : [Learning R with the help of AI tools starting with graphing using ggplot](labs/lab2_AI_ggplot.html)
-* Lab 3 : Running bioinformatics software on Unity (Blast, Read mapping)  
-* Lab 4 : NEON Data Transformation with dplyr
-* Lab 5 : NEON Data Visualization with ggplot
+* Lab 3 : [Data Transformation with dplyr](labs/lab3_data_transformation.qmd)
+* Lab 4 : NEON Data Transformation
+* Lab 5 : NEON Data Visualization
 * Lab 6 : Table joins of NEON MAG, metagenomic and chemistry data
 * Lab 7 : Mapping the NEON data
 * Lab 8: Genome representations
 * Lab 9 : Phylogenetic tree visualization using ggtree
 * Lab 10 : Read abundance - normalization and statistics
 
+Unity Labs
+
+* Lab : Running bioinformatics software on Unity (Blast, Read mapping) 
+
 Sharing and Publishing
 
+* Lab 1s : [Quarto](labs/lab1s_quarto.html)
 * Lab : Connecting a Github repo site with a RStudio project
 * Lab : Adding references to your report with Zotero
 * Lab : Quarto Manuscripts

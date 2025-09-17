@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Labs – PathoGen</title>
+<title>Lab 3 : Data Transformation with dplyr – PathoGen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,40 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1667,7 +1701,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4720,7 +4754,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">PathoGen</span>
     </a>
   </div>
@@ -4731,23 +4765,23 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./schedule.html"> 
+    <a class="nav-link" href="../schedule.html"> 
 <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./labs.html" aria-current="page"> 
+    <a class="nav-link" href="../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methods.html"> 
+    <a class="nav-link" href="../methods.html"> 
 <span class="menu-text">CURE Methods</span></a>
   </li>  
 </ul>
@@ -4761,15 +4795,34 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#load-libaries" id="toc-load-libaries" class="nav-link" data-scroll-target="#load-libaries">Load libaries</a></li>
+  <li><a href="#introduction-to-data-transformation" id="toc-introduction-to-data-transformation" class="nav-link" data-scroll-target="#introduction-to-data-transformation">Introduction to Data Transformation</a>
+  <ul class="collapse">
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables">Tables</a></li>
+  <li><a href="#pipes-and-shortcuts" id="toc-pipes-and-shortcuts" class="nav-link" data-scroll-target="#pipes-and-shortcuts">Pipes and shortcuts</a></li>
+  <li><a href="#checking-each-line-of-codes-are-you-write-it" id="toc-checking-each-line-of-codes-are-you-write-it" class="nav-link" data-scroll-target="#checking-each-line-of-codes-are-you-write-it">Checking each line of codes are you write it</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  <li><a href="#writing-pseudo-code" id="toc-writing-pseudo-code" class="nav-link" data-scroll-target="#writing-pseudo-code">Writing pseudo code</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#what-to-upload-to-canvas" id="toc-what-to-upload-to-canvas" class="nav-link" data-scroll-target="#what-to-upload-to-canvas">What to upload to Canvas</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Labs</h1>
+<h1 class="title">Lab 3 : Data Transformation with dplyr</h1>
 </div>
 
 
@@ -4786,38 +4839,217 @@ vertical-align: -.125em;
 </header>
 
 
-<p>R Labs</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li>Lab 1 : <a href="labs/lab1_overview.html">Overview &amp; Getting Started</a></li>
-<li>Lab 2 : <a href="labs/lab2_AI_ggplot.html">Learning R with the help of AI tools starting with graphing using ggplot</a></li>
-<li>Lab 3 : <a href="./labs/lab3_data_transformation.html">Data Transformation with dplyr</a></li>
-<li>Lab 4 : NEON Data Transformation</li>
-<li>Lab 5 : NEON Data Visualization</li>
-<li>Lab 6 : Table joins of NEON MAG, metagenomic and chemistry data</li>
-<li>Lab 7 : Mapping the NEON data</li>
-<li>Lab 8: Genome representations</li>
-<li>Lab 9 : Phylogenetic tree visualization using ggtree</li>
-<li>Lab 10 : Read abundance - normalization and statistics</li>
+<li>Data Transformation using dplyr</li>
 </ul>
-<p>Unity Labs</p>
-<ul>
-<li>Lab : Running bioinformatics software on Unity (Blast, Read mapping)</li>
-</ul>
-<p>Sharing and Publishing</p>
-<ul>
-<li>Lab 1s : <a href="labs/lab1s_quarto.html">Quarto</a></li>
-<li>Lab : Connecting a Github repo site with a RStudio project</li>
-<li>Lab : Adding references to your report with Zotero</li>
-<li>Lab : Quarto Manuscripts</li>
-<li>Lab : Building a 5 tab web site with Quarto</li>
-<li>Lab : R Shiny</li>
-</ul>
-<p>Manuscript</p>
-<ul>
-<li>PathoGen manuscript : Deadline Dec 10</li>
-</ul>
+</section>
+<section id="load-libaries" class="level2">
+<h2 class="anchored" data-anchor-id="load-libaries">Load libaries</h2>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="introduction-to-data-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-data-transformation">Introduction to Data Transformation</h2>
+<section id="tables" class="level3">
+<h3 class="anchored" data-anchor-id="tables">Tables</h3>
+<p>How they are displayed in your qmd file is different from how they are rendered into a html, pdf and other files.</p>
+</section>
+<section id="pipes-and-shortcuts" class="level3">
+<h3 class="anchored" data-anchor-id="pipes-and-shortcuts">Pipes and shortcuts</h3>
+<p>In the last few years <code>|&gt;</code> pipe was introduced as a simpler alternative to the <code>%&gt;%</code> pipe that has been used in R and Tidyverse for the last 10 years. In many online examples you will see the <code>%&gt;%</code> used and at times in code from generative AI. For many uses in this class they are interchangeable.</p>
+<p>The shortcut keys for generative the <code>|&gt;</code> is Ctrl/Cmd + Shift + M.</p>
+<p>The shortcut keys for a new R code chuck are <code>trl + Alt + I</code></p>
+</section>
+<section id="checking-each-line-of-codes-are-you-write-it" class="level3">
+<h3 class="anchored" data-anchor-id="checking-each-line-of-codes-are-you-write-it">Checking each line of codes are you write it</h3>
+<p>Today we will see in Chapter 4 the following code chunk</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;IAH&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month) <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+# Groups:   year [1]
+    year month arr_delay
+   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;
+ 1  2013     1     4.16 
+ 2  2013     2     5.40 
+ 3  2013     3    -1.19 
+ 4  2013     4    14.8  
+ 5  2013     5     0.972
+ 6  2013     6    11.1  
+ 7  2013     7    11    
+ 8  2013     8     0.705
+ 9  2013     9   -10.6  
+10  2013    10     1.81 
+11  2013    11    -1.78 
+12  2013    12    14.5  </code></pre>
+</div>
+</div>
+<p>If I was writing the code I would check (run the code chunk) each line as a wrote it to make sure I was getting the right result and to simplify trouble shooting error messages</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;IAH&quot;</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7,198 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      623            627        -4      933            932
+ 4  2013     1     1      728            732        -4     1041           1038
+ 5  2013     1     1      739            739         0     1104           1038
+ 6  2013     1     1      908            908         0     1228           1219
+ 7  2013     1     1     1028           1026         2     1350           1339
+ 8  2013     1     1     1044           1045        -1     1352           1351
+ 9  2013     1     1     1114            900       134     1447           1222
+10  2013     1     1     1205           1200         5     1503           1505
+# ℹ 7,188 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;IAH&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7,198 × 19
+# Groups:   year, month [12]
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      623            627        -4      933            932
+ 4  2013     1     1      728            732        -4     1041           1038
+ 5  2013     1     1      739            739         0     1104           1038
+ 6  2013     1     1      908            908         0     1228           1219
+ 7  2013     1     1     1028           1026         2     1350           1339
+ 8  2013     1     1     1044           1045        -1     1352           1351
+ 9  2013     1     1     1114            900       134     1447           1222
+10  2013     1     1     1205           1200         5     1503           1505
+# ℹ 7,188 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;IAH&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+# Groups:   year [1]
+    year month arr_delay
+   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;
+ 1  2013     1     4.16 
+ 2  2013     2     5.40 
+ 3  2013     3    -1.19 
+ 4  2013     4    14.8  
+ 5  2013     5     0.972
+ 6  2013     6    11.1  
+ 7  2013     7    11    
+ 8  2013     8     0.705
+ 9  2013     9   -10.6  
+10  2013    10     1.81 
+11  2013    11    -1.78 
+12  2013    12    14.5  </code></pre>
+</div>
+</div>
+</section>
+<section id="assignment" class="level3">
+<h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
+<p>In the first lab with went over assignment of a number or a character sting to a variable</p>
+<p>x &lt;- 2</p>
+<p>The above code does not create a new variable. After running the code <code>flights</code> is unchanged. This is good in many situations working with large data because we don’t want to be creating new variables that use up more computer memory and it is easier to keep track of fewer variables. If we wish to save the end results, we can assign this to a new variable (e.g. <code>IAH_arr_delay_by_month</code>)</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>IAH_arr_delay_by_month <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;IAH&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Notice that nothing prints out. The new table is put in the data object <code>IAH_arr_delay_by_month</code>. Now you could use this object repeatedly in your code without running the larger code chunk above each time. You can view <code>IAH_arr_delay_by_month</code> by using view(IAH_arr_delay_by_month) or clicking on the object in the <code>Environment</code> window.</p>
+</section>
+<section id="writing-pseudo-code" class="level3">
+<h3 class="anchored" data-anchor-id="writing-pseudo-code">Writing pseudo code</h3>
+<p>Was there a flight on every month of 2013?</p>
+<p>Before writing any code it is best to break this down into the tasks we need to accomplish</p>
+<ol type="1">
+<li>filter flight data set to the year 2013</li>
+<li>show only 1 row for each month</li>
+<li>display table to see if each month is present or count to see if rows equal 12</li>
+</ol>
+<p>This is actually the hard part of solving a coding challenge. Writing the codes is relatively easy when you know the steps. This is the greatest challenge in using Generative AI to assist you in coding.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 1
+   month
+   &lt;int&gt;
+ 1     1
+ 2    10
+ 3    11
+ 4    12
+ 5     2
+ 6     3
+ 7     4
+ 8     5
+ 9     6
+10     7
+11     8
+12     9</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p><a href="https://r4ds.hadley.nz/data-transform">R for Data Science Chapter 3</a>.</p>
+<p>Today we will walk through Chapter 3 Data Transformation in R for Data Science. As we did last week, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.</p>
+<section id="what-to-upload-to-canvas" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-upload-to-canvas">What to upload to Canvas</h3>
+<p>After you <code>Render</code> the qmd file to an html file, export the file to your computer and upload it to Canvas.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
