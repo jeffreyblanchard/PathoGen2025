@@ -1,0 +1,27 @@
+---
+title: 'Lab 4 : Coding Basics, Style and Data Read/Write'
+---
+
+## Learning objectives
+
+-   Comments
+-   Functions
+-   Good code style
+-   Reading from and writing to files
+
+## Exercises
+
+[R for Data Science Chapter 3](https://r4ds.hadley.nz/data-transform). 
+
+Today we will go through three short chapters
+
+*  Chapter 2 Workflow: basics
+*  Chapter 4  Workflow: code style
+*  Chapter 7  Data import. 
+
+As we did last week, put the examples and exercises in a Quarto Markdown file with well organized headings and an outline. 
+
+
+### What to upload to Canvas
+
+After you `Render` the qmd file to an html file, export the file to your computer and upload it to Canvas.

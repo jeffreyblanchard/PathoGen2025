@@ -8,7 +8,7 @@ title: "Pathogen Genome Analysis Fall 2025"
 * Sept 15 (Mon) - Project background research - Adding references to Quarto documents using Zotero
 * Sept 17 (Wed) - Lab 3: Data Transformation with dyplr 
 * Sept 22 (Mon) - Discussion of research project possibilities 
-* Sept 24 (Wed) - Lab 4: NEON Data Transformation
+* Sept 24 (Wed) - Lab 4: Coding Basics, Style and Data Read/Write
 * Sept 29 (Mon) - Discussion of project methods and the scope of what is possible (in 10 weeks)
 * Oct 1 (Wed) - Lab 5: NEON Data Visualization
 * Oct 6 (Mon) - TBD

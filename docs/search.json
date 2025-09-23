@@ -11,7 +11,7 @@
     "href": "schedule.html",
     "title": "Pathogen Genome Analysis Fall 2025",
     "section": "",
-    "text": "Sept 3 (Wed) - Course Introduction & Lab 1: Introduction to Unity, R and RStudio\nSept 8 (Mon) - Discussion of research project possibilities\nSept 10 (Wed) - Lab 2: Coding in R with generative AI\nSept 15 (Mon) - Project background research - Adding references to Quarto documents using Zotero\nSept 17 (Wed) - Lab 3: Data Transformation with dyplr\nSept 22 (Mon) - Discussion of research project possibilities\nSept 24 (Wed) - Lab 4: NEON Data Transformation\nSept 29 (Mon) - Discussion of project methods and the scope of what is possible (in 10 weeks)\nOct 1 (Wed) - Lab 5: NEON Data Visualization\nOct 6 (Mon) - TBD\nOct 8 (Wed) - Lab 6: Table joins of NEON MAG, metagenomic and chemistry data\nOct 13 (Mon) Holiday – Indigenous People’s Day\nOct 15 (Wed) - Lab 7: Geographic mapping the NEON data\nOct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered\nOct 22 (Wed) - Lab 8: Genome representations\nOct 27 (Mon) - TBD\nOct 29 (Wed) - Lab 9: Phylogenetic tree visualization using ggtree\nNov 3 (Mon) - TBD\nNov 5 (Wed) - Lab 10: Read abundance - normalization and statistics\nNov 10 (Mon) - TBD\nNov 12 (Wed) - Lab 11: TBD based on research project directions\nNov 17 (Mon) - TBD\nNov 19 (Wed) - Lab 12: TBD based on research project directions\nNov 24 (Mon) - Research project workday\nNov 26 (Wed) Holiday - Thanksgiving\nDec 1 (Mon) - Research project workday\nDec 3 (Wed) - Research project presentations\nDec 8 (Mon) - Research project presentations"
+    "text": "Sept 3 (Wed) - Course Introduction & Lab 1: Introduction to Unity, R and RStudio\nSept 8 (Mon) - Discussion of research project possibilities\nSept 10 (Wed) - Lab 2: Coding in R with generative AI\nSept 15 (Mon) - Project background research - Adding references to Quarto documents using Zotero\nSept 17 (Wed) - Lab 3: Data Transformation with dyplr\nSept 22 (Mon) - Discussion of research project possibilities\nSept 24 (Wed) - Lab 4: Coding Basics, Style and Data Read/Write\nSept 29 (Mon) - Discussion of project methods and the scope of what is possible (in 10 weeks)\nOct 1 (Wed) - Lab 5: NEON Data Visualization\nOct 6 (Mon) - TBD\nOct 8 (Wed) - Lab 6: Table joins of NEON MAG, metagenomic and chemistry data\nOct 13 (Mon) Holiday – Indigenous People’s Day\nOct 15 (Wed) - Lab 7: Geographic mapping the NEON data\nOct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered\nOct 22 (Wed) - Lab 8: Genome representations\nOct 27 (Mon) - TBD\nOct 29 (Wed) - Lab 9: Phylogenetic tree visualization using ggtree\nNov 3 (Mon) - TBD\nNov 5 (Wed) - Lab 10: Read abundance - normalization and statistics\nNov 10 (Mon) - TBD\nNov 12 (Wed) - Lab 11: TBD based on research project directions\nNov 17 (Mon) - TBD\nNov 19 (Wed) - Lab 12: TBD based on research project directions\nNov 24 (Mon) - Research project workday\nNov 26 (Wed) Holiday - Thanksgiving\nDec 1 (Mon) - Research project workday\nDec 3 (Wed) - Research project presentations\nDec 8 (Mon) - Research project presentations"
   },
   {
     "objectID": "methods.html",
@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the help of AI tools starting with graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : NEON Data Transformation\nLab 5 : NEON Data Visualization\nLab 6 : Table joins of NEON MAG, metagenomic and chemistry data\nLab 7 : Mapping the NEON data\nLab 8: Genome representations\nLab 9 : Phylogenetic tree visualization using ggtree\nLab 10 : Read abundance - normalization and statistics\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab 1s : Quarto\nLab : Connecting a Github repo site with a RStudio project\nLab : Adding references to your report with Zotero\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the help of AI tools starting with graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : NEON Data Visualization\nLab 6 : Table joins of NEON MAG, metagenomic and chemistry data\nLab 7 : Mapping the NEON data\nLab 8: Genome representations\nLab 9 : Phylogenetic tree visualization using ggtree\nLab 10 : Read abundance - normalization and statistics\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab 1s : Quarto\nLab : Connecting a Github repo site with a RStudio project\nLab : Adding references to your report with Zotero\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
   },
   {
     "objectID": "report.html",
@@ -579,5 +579,26 @@
     "title": "Lab 3 : Data Transformation with dplyr",
     "section": "Exercises",
     "text": "Exercises\nR for Data Science Chapter 3.\nToday we will walk through Chapter 3 Data Transformation in R for Data Science. As we did last week, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.\n\nWhat to upload to Canvas\nAfter you Render the qmd file to an html file, export the file to your computer and upload it to Canvas."
+  },
+  {
+    "objectID": "labs/lab4_coding_import.html",
+    "href": "labs/lab4_coding_import.html",
+    "title": "Lab 4 : Coding Basics, Style and Data Read/Write",
+    "section": "",
+    "text": "Comments\nFunctions\nGood code style\nReading from and writing to files"
+  },
+  {
+    "objectID": "labs/lab4_coding_import.html#learning-objectives",
+    "href": "labs/lab4_coding_import.html#learning-objectives",
+    "title": "Lab 4 : Coding Basics, Style and Data Read/Write",
+    "section": "",
+    "text": "Comments\nFunctions\nGood code style\nReading from and writing to files"
+  },
+  {
+    "objectID": "labs/lab4_coding_import.html#exercises",
+    "href": "labs/lab4_coding_import.html#exercises",
+    "title": "Lab 4 : Coding Basics, Style and Data Read/Write",
+    "section": "Exercises",
+    "text": "Exercises\nR for Data Science Chapter 3.\nToday we will go through three short chapters\n\nChapter 2 Workflow: basics\nChapter 4 Workflow: code style\nChapter 7 Data import.\n\nAs we did last week, put the examples and exercises in a Quarto Markdown file with well organized headings and an outline.\n\nWhat to upload to Canvas\nAfter you Render the qmd file to an html file, export the file to your computer and upload it to Canvas."
   }
 ]
