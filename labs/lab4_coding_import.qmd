@@ -11,9 +11,9 @@ title: 'Lab 4 : Coding Basics, Style and Data Read/Write'
 
 ## Exercises
 
-[R for Data Science Chapter 3](https://r4ds.hadley.nz/data-transform). 
+[R for Data Science](https://r4ds.hadley.nz/data-transform). 
 
-Today we will go through three short chapters
+Today we will go through three short chapters in [R for Data Science](https://r4ds.hadley.nz/data-transform). 
 
 *  Chapter 2 Workflow: basics
 *  Chapter 4  Workflow: code style
