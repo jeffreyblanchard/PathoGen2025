@@ -37,7 +37,7 @@ library(DT)
 
 **Don't display tables with thousands of rows.** If you do you may run out of memory and/or you will generate a very large html file.
 
-By default, R Markdown displays data frames and matrixes as they would be in the R terminal (in a monospaced font). You have seen already what they look like. Here is an example for the `iris` data set that is preloaded when you start R. We will make a subset of the table.
+By default, Quarto displays data frames and matrixes as they would be in the R terminal (in a monospaced font). You have seen already what they look like. Here is an example for the `iris` data set that is preloaded when you start R. We will make a subset of the table.
 
 ```{r}
 iris_setosa <- iris %>% 
@@ -250,11 +250,12 @@ Display using DT::datatable the NEON MAGs from the individual assemblies that ha
 
 ### Exercise 3
 
-Display a table of the MAGs from `Lower Teakettle` with only the columns for the `genome_name`, `gtdb_taxonomy_lineage`, and estimated MAG genome size.
+Display a table of the MAGs from `Lower Tombigbee` with only the columns for the `genome_name`, `gtdb_taxonomy_lineage`, and estimated MAG genome size.
 
 ### Exercise 4
 
-Display a table with the Class counts at LBJ National Grasslands.
+Display a table with the Class counts at `Lyndon B. Johnson National Grasslands`.
+
 ### Exercise 5
 
-Display a table with the counts for the Phylum Actinobacteriota at each Site.
+Display a table with the counts for the Phylum Actinomycetota at each Site.

@@ -1,0 +1,23 @@
+---
+title: "Lab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)"
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+simple_csv <- "
+  x
+  10
+  .
+  20
+  30"
+```
+
+```{r}
+read_csv(simple_csv)
+```
+
+
