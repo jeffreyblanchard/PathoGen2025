@@ -40,8 +40,8 @@ library(DT)
 By default, Quarto displays data frames and matrixes as they would be in the R terminal (in a monospaced font). You have seen already what they look like. Here is an example for the `iris` data set that is preloaded when you start R. We will make a subset of the table.
 
 ```{r}
-iris_setosa <- iris %>% 
-filter(Species == "setosa") %>% 
+iris_setosa <- iris |> 
+filter(Species == "setosa") |> 
 filter(Sepal.Length > 5)
 ```
 
@@ -65,8 +65,8 @@ There are two options for using `datatable` in your R code chunk. (1) Bound the 
 
 ```{r}
 datatable(
-  iris %>% 
-    filter(Species == "setosa") %>% 
+  iris |> 
+    filter(Species == "setosa") |> 
     filter(Sepal.Length > 5)
 )
 ```
@@ -74,8 +74,8 @@ datatable(
 Or create a new object
 
 ```{r}
-iris_setosa <- iris %>% 
-  filter(Species == "setosa") %>% 
+iris_setosa <- iris |> 
+  filter(Species == "setosa") |> 
   filter(Sepal.Length > 5)
 
 datatable(iris_setosa)
@@ -143,7 +143,7 @@ NEON_MAGs <- NEON_MAGs |> janitor::clean_names()
 Count the number of MQ and HQ genomes
 
 ```{r}
-NEON_MAGs %>% 
+NEON_MAGs |> 
   count(bin_quality, sort = TRUE) 
 ```
 
@@ -151,7 +151,7 @@ Make a `knitr::kable` table of the bin quality counts
 
 ```{r}
 kable(
-  NEON_MAGs %>% 
+  NEON_MAGs |> 
    count(bin_quality) 
 )
 ```
@@ -160,7 +160,7 @@ Filter so that Bin Quality = HQ and display in `DT::datatable`
 
 ```{r}
 datatable(
-  NEON_MAGs%>% 
+  NEON_MAGs|> 
     filter(bin_quality == "HQ")
 )
 ```
@@ -169,8 +169,8 @@ Select the GTDB taxonomy and the MAGs genome size then filter to all MAGs greate
 
 ```{r}
 kable(
-NEON_MAGs %>% 
-  select(c(gtdb_taxonomy_lineage, total_number_of_bases)) %>% 
+NEON_MAGs |> 
+  select(c(gtdb_taxonomy_lineage, total_number_of_bases)) |> 
   filter(total_number_of_bases > 10000000)
 )
 ```
@@ -179,7 +179,7 @@ We can use the `stringr` package to filter based on a word or string of characte
 
 ```{r}
 datatable(
-NEON_MAGs %>% 
+NEON_MAGs |> 
   filter(str_detect(gtdb_taxonomy_lineage, 'Bacteroidota'))
 )
 ```
@@ -188,7 +188,7 @@ Filter to include only the samples from `Yellowstone NP`
 
 ```{r}
 datatable(
-NEON_MAGs %>% 
+NEON_MAGs |> 
   filter(str_detect(genome_name, 'Yellowstone NP'))
 )
 ```
@@ -196,7 +196,7 @@ NEON_MAGs %>%
 Since the the taxonomic categories in `GTDB-Tk Taxonomy Lineage` are separated by the `;` we can use the `separate` function to create new columns for each of the taxonomic categories. The `remove = FALSE` keeps the original `GTDB-Tk Taxonomy Lineage` column
 
 ```{r}
-NEON_MAGs_tax <- NEON_MAGs %>% 
+NEON_MAGs_tax <- NEON_MAGs |> 
   separate(gtdb_taxonomy_lineage, c("domain", "phylum", "class", "order", "family", "genus"), "; ", remove = FALSE) 
 ```
 
@@ -204,7 +204,7 @@ Count the number of MAGs for each Phylum and display in `DT::datatable`
 
 ```{r}
 datatable(
-  NEON_MAGs_tax %>% 
+  NEON_MAGs_tax |> 
     count(phylum, sort = TRUE)
 )
 ```
@@ -214,15 +214,15 @@ Note that there is one category with no name. This were MAGs that were not annot
 There is a lot of information in `genome_name`. Let's unpack it into separate columns. Note here where the double quotes and grave accents are used
 
 ```{r}
-NEON_MAGs_tax_sample <- NEON_MAGs_tax %>% 
+NEON_MAGs_tax_sample <- NEON_MAGs_tax |> 
   # Get rid of the the common string "Soil microbial communities from "
-  mutate_at("genome_name", str_replace, "Terrestrial soil microbial communities from ", "") %>% 
+  mutate_at("genome_name", str_replace, "Terrestrial soil microbial communities from ", "") |> 
   # Use the first `-` to split the column in two
-  separate(genome_name, c("site","sample_name"), " - ") %>% 
+  separate(genome_name, c("site","sample_name"), " - ") |> 
   # Get rid of the the common string "S-comp-1"
-  mutate_at("sample_name", str_replace, "-comp-1", "") %>%
+  mutate_at("sample_name", str_replace, "-comp-1", "") |>
   # separate the Sample Name into Site ID and plot info
-  separate(sample_name, c("site_ID","subplot.layer.date"), "_", remove = FALSE,) %>% 
+  separate(sample_name, c("site_ID","subplot.layer.date"), "_", remove = FALSE,) |> 
   # separate the plot info into 3 columns
   separate(`subplot.layer.date`, c("subplot", "layer", "date"), "-") 
 ```
@@ -233,7 +233,7 @@ Let's see which Site has the most MAGs
 
 ```{r}
 datatable(
-  NEON_MAGs_tax_sample %>% 
+  NEON_MAGs_tax_sample |> 
     count(site, sort = TRUE)
 )
 ```
