@@ -16,7 +16,6 @@ We will going over the following in class
 -   [NEON](https://www.neonscience.org/)
 -   [Joint Genome Institute](https://jgi.doe.gov/) and the [Integrated Microbial Genomes and Microbiomes(IMG/MER)](https://img.jgi.doe.gov/cgi-bin/mer/main.cgi)
 -   [DOE JGI Metagenome Workflow](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8269246/)
--   [Terabase-scale metagenome coassembly with MetaHipMer](https://www.nature.com/articles/s41598-020-67416-5)
 -   [JGI GOLD database](https://gold.jgi.doe.gov/study?id=Gs0166454) summary of our project
 
 ## Our Project Space
