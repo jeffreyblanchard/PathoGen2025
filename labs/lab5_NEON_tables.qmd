@@ -246,7 +246,7 @@ Use `view(iris)` to see the whole data table. Subset the table based on a differ
 
 ### Exercise 2
 
-Display using DT::datatable the NEON MAGs from the individual assemblies that have at least 1 16S rRNA
+Display using DT::datatable the NEON MAGs that have at least 1 16S rRNA
 
 ### Exercise 3
 
@@ -254,7 +254,7 @@ Display a table of the MAGs from `Lower Tombigbee` with only the columns for the
 
 ### Exercise 4
 
-Display a table with the Class counts at `Lyndon B. Johnson National Grasslands`.
+Display a table with the counts of each class names at `Lyndon B. Johnson National Grasslands`.
 
 ### Exercise 5
 
