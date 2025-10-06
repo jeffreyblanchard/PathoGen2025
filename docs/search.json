@@ -698,5 +698,117 @@
     "title": "Lab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)",
     "section": "",
     "text": "R code\nlibrary(tidyverse)\n\n\n\n\nR code\nsimple_csv &lt;- \"\n  x\n  10\n  .\n  20\n  30\"\n\n\n\n\nR code\nread_csv(simple_csv)\n\n\n# A tibble: 4 × 1\n  x    \n  &lt;chr&gt;\n1 10   \n2 .    \n3 20   \n4 30"
+  },
+  {
+    "objectID": "labs/lab6_biblio.html",
+    "href": "labs/lab6_biblio.html",
+    "title": "Lab 6s : Adding references exported from zotero to your quarto documents",
+    "section": "",
+    "text": "Adding references exported from Zotero to your report"
+  },
+  {
+    "objectID": "labs/lab6_biblio.html#learning-objectives",
+    "href": "labs/lab6_biblio.html#learning-objectives",
+    "title": "Lab 6s : Adding references exported from zotero to your quarto documents",
+    "section": "",
+    "text": "Adding references exported from Zotero to your report"
+  },
+  {
+    "objectID": "labs/lab6_biblio.html#background",
+    "href": "labs/lab6_biblio.html#background",
+    "title": "Lab 6s : Adding references exported from zotero to your quarto documents",
+    "section": "Background",
+    "text": "Background\n\nZotero"
+  },
+  {
+    "objectID": "labs/lab6_biblio.html#adding-references-to-your-report",
+    "href": "labs/lab6_biblio.html#adding-references-to-your-report",
+    "title": "Lab 6s : Adding references exported from zotero to your quarto documents",
+    "section": "Adding references to your report",
+    "text": "Adding references to your report\n\nStep 1: Set up Zotero on your computer\nDownload Zotero to your computer and add the Zotero plugin to your web browser.\n\n\nStep 2: Get references from Zotero\nGo to PubMed and search for metagenome. Add 3 articles to your Zotero database\n\n\nStep 3: Export the 3 references from Zotero\n\nSelect the 3 references and select File &gt; Export Library\nExport in BibTeX format. This will generate a file with a .bib extension. Do not include any spaces in your file name.\nUpload the .bib file to Unity.\n\n\n\nStep 4: Add the file name of your references library to your YAML block\n---\ntitle: \"Lab 6\"\nauthor: \"Your name\"\nformat:\n  html:\n    toc: true\n    toc_float: true\n    embed-resources: true\nexecute: \n  warning: false\n  message: false\nbibliography: MyReferences.bib\n---\n\n\nStep 5: Cite the references in the text of your document\nMy reference file looks like this.\n@Misc{Chang2015,\n  Title                    = {shiny: Web Application Framework for R. R package version 0.12.1},\n\n  Author                   = {Chang, W. and Cheng, J. and Allaire, JJ. and Xie, Y. and McPherson, J. },\n  Year                     = {2015},\n\n  Type                     = {Computer Program},\n  Url                      = {http://CRAN.R-project.org/package=shiny}\n}\n\n\n@Article{RCoreTeam,\n  Title                    = {R: A Language and Environment for Statistical Computing},\n  Author                   = {{R Core Team}},\n  Year                     = {2015},\n\n  Type                     = {Journal Article},\n  Url                      = {http://www.R-project.org}\n}\nTo cite this in my document I would use the following format.\nApplication written in R [@RCoreTeam] using the Shiny framework [@Chang2015].\n\n\nAdd a section header for the references at the end of your document\nWhen you Render the document the references will be added to the end of the document. To define this section and to make it visable in our outline put # References on the last line (or the appropriate header level for your report)."
+  },
+  {
+    "objectID": "labs/lab6_biblio.html#exercises",
+    "href": "labs/lab6_biblio.html#exercises",
+    "title": "Lab 6s : Adding references exported from zotero to your quarto documents",
+    "section": "Exercises",
+    "text": "Exercises\nMake a document that has 3 references."
+  },
+  {
+    "objectID": "labs/lab6_biblio.html#acknowledgements",
+    "href": "labs/lab6_biblio.html#acknowledgements",
+    "title": "Lab 6s : Adding references exported from zotero to your quarto documents",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nOur labs are written in R (R Core Team 2015) and past labs have used th Shiny framework (Chang et al. 2015)."
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html",
+    "href": "labs/lab1m_quarto.html",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "Quarto\nDifferences between R Markdown and Quarto\nYAML blocks\nCode blocks\n\n\n\n\n\nQuarto is the name of an open-source publishing system used for technical and scientific writing.\nIt lets you combine text, code, and outputs in one document—perfect for data science, research, and reproducible reports.\nYou can write in Python, R, Julia, or Observable JavaScript, and publish to formats like HTML, PDF, Word, and even full websites\nIt’s considered the next generation of R Markdown, and works with tools like Jupyter Notebooks, VS Code, and RStudio.\nBecause it is based on R Markdown, there is a wealth of related resources and books published on and using R Markdown. See some of on the examples books using R we will periodically using in the course.\n\n\n\n\nR Markdown and Quarto are both tools for creating dynamic documents that combine code, text, and outputs (like plots or tables), but they differ in terms of design philosophy, features, and flexibility. Here’s a breakdown of their key differences:\n\n\n\nR Markdown:\n\nDeveloped by RStudio.\nPrimarily designed for R users.\nBuilt on top of knitr and Pandoc.\nDeeply integrated into the RStudio IDE.\n\nQuarto:\n\nAlso developed by RStudio, but as a next-generation tool.\nLanguage-agnostic: supports R, Python, Julia, and Observable JavaScript.\nUses Pandoc directly (not knitr).\nDesigned to unify and modernize the workflow across languages.\n\n\n\n\n\n\nR Markdown: Best suited for R. Python support is possible but less seamless.\nQuarto: First-class support for multiple languages in a single document. You can mix R, Python, Julia, and JavaScript.\n\n\n\n\n\nR Markdown:\n\nUses YAML front matter for metadata.\nCode chunks are written using triple backticks with language identifiers.\n\nQuarto:\n\nSimilar structure but more consistent and extensible YAML.\nSupports Markdown extensions like callouts, citations, cross-referencing, and more.\n\n\n\n\n\n\nR Markdown:\n\nSupports HTML, PDF, Word, slides (via xaringan or ioslides), etc.\nCustomization can be complex for advanced layouts.\n\nQuarto:\n\nSupports all R Markdown formats plus:\n\nReveal.js slides.\nBooks and websites with built-in navigation and styling.\nJupyter-style notebooks.\n\nEasier to configure and customize outputs.\n\n\n\n\n\n\nR Markdown:\n\nExecutes code using knitr (for R) or reticulate (for Python).\nLess control over execution environment.\n\nQuarto:\n\nUses Jupyter kernels or R directly.\nBetter support for notebook-style interactivity and execution control.\n\n\n\n\n\n\nR Markdown:\n\nNo native concept of a “project” beyond RStudio projects.\n\nQuarto:\n\nSupports Quarto Projects: collections of documents with shared configuration.\nIdeal for books, blogs, websites, and multi-document workflows.\n\n\n\n\n\n\nQuarto:\n\nMore modern and extensible.\nSupports Lua filters, Markdown extensions, cross-referencing, citations, and interactive widgets.\nBetter support for version control and CI/CD workflows.\n\n\n\n\n\n\n\n\nFeature\nR Markdown\nQuarto\n\n\n\n\nLanguage Support\nPrimarily R\nR, Python, Julia, JS\n\n\nExecution Engine\nknitr\nJupyter / native\n\n\nOutput Formats\nMany\nMore + easier config\n\n\nInteractivity\nLimited\nRich (widgets, JS)\n\n\nProject Support\nBasic\nFull project system\n\n\nExtensibility\nModerate\nHigh\n\n\nIdeal For\nR-centric reports\nMulti-language docs\n\n\n\n\n\n\n\n\nLet’s go the the Quarto documentation for Markdown basics and more details on Figures\nIt is important to specific where the figure is located relative to your .qmd file. The path can be relative (giant_virus.jpg) or (images/giant_virus.jpg) or absolute (/home/pi_jlb_umass_edu/images/giant_virus.jpg).\n\n\n\ngiant virus\n\n\n\n\n\nIn Quarto, a YAML block is a section at the top of a document that contains metadata and configuration settings. YAML stands for “YAML Ain’t Markup Language”, and it’s used to define things like the document title, author, output format, and more.\n\n\nA YAML block is enclosed by triple dashes (---) at the beginning and end:\n---\ntitle: \"My Analysis Report\"\nauthor: \"Jeffrey Blanchard\"\ndate: \"2025-09-08\"\nformat: html\neditor: visual\n---\nThis block tells Quarto: - The title of the document. - The author name. - The date to display. - The output format (e.g., HTML, PDF, Word). - The editor preference (e.g., visual or source).\n\n\n\nHere are some frequently used fields:\n\n\n\n\n\n\n\nField\nDescription\n\n\n\n\ntitle\nTitle of the document\n\n\nauthor\nAuthor name(s)\n\n\ndate\nDate of publication\n\n\nformat\nOutput format (e.g., html, pdf, docx, revealjs)\n\n\ntoc\nTable of contents (true or false)\n\n\nnumber-sections\nNumber section headings\n\n\ntheme\nVisual theme for HTML or slides\n\n\ncode-fold\nWhether code chunks can be collapsed\n\n\nexecute\nControls code execution (e.g., echo, eval, freeze)\n\n\nbibliography\nPath to .bib file for citations\n\n\nfilters\nLua filters for advanced customization\n\n\n\n\n\n\n---\ntitle: \"Data Exploration\"\nauthor: \"Jeffrey Blanchard\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    theme: cosmo\n    embed-resources: true\nexecute:\n  echo: true\n  freeze: auto\n---\nThis configures: - An HTML output with a table of contents. - Collapsible code chunks. - A Bootstrap theme (cosmo). - Code execution settings.\nImportant for our class is the embed-resources: true line. This creates a single html file with the figures embeded in the file. If this line is not in the YAML block a new directory will be created which contains the images and is linked to the html file. This means that if you turn in this html file (without using embed-resources: true) the images will not be shown.\n\n\n\nQuarto YAML is: - More consistent and extensible. - Supports nested configuration (e.g., format.html.toc). - Easier to manage across multi-format outputs (e.g., HTML and PDF from one source).\nIn Quarto, R code chunks are sections of code embedded in your document that get executed when the document is rendered. These chunks are enclosed in triple backticks and start with {r}. You can customize their behavior using chunk options, which control things like whether the code is shown, whether it’s executed, how results are displayed, and more.\n\n\n\n\n\n\n\n\nR code\nsummary(cars)\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n\n\n\n\n\nHere’s a categorized list of the most useful options:\n\n\n\n\n\nOption\nDescription\n\n\n\n\neval\nWhether to evaluate the code (TRUE or FALSE)\n\n\necho\nShow the code in the output (TRUE or FALSE)\n\n\ninclude\nInclude both code and output (TRUE or FALSE)\n\n\nerror\nShow errors in output (TRUE or FALSE)\n\n\nwarning\nShow warnings (TRUE or FALSE)\n\n\nmessage\nShow messages (TRUE or FALSE)\n\n\n\n\n\n\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\nresults\nHow to display results (\"markup\", \"asis\", \"hide\")\n\n\nfig.width\nWidth of plots (in inches)\n\n\nfig.height\nHeight of plots (in inches)\n\n\nfig.cap\nCaption for figures\n\n\nfig.align\nAlignment of figures (\"left\", \"center\", \"right\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\ncache\nCache results to avoid re-running code\n\n\nfreeze\nFreeze output to avoid re-execution unless explicitly updated\n\n\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\ntidy\nAutomatically tidy code before execution\n\n\ncollapse\nCollapse code and output together\n\n\ncomment\nPrefix for output lines\n\n\n\n\n\n\n\n{r pressure-plot, fig.width=6, fig.height=4, fig.cap=\"Pressure vs Temperature\"}\n\n\nR code\nplot(pressure)\n\n\n\n\n\nPressure vs Temperature\n\n\n\n\nThis chunk: - Hides the code (echo=FALSE) - Sets figure size - Adds a caption - Names the chunk (pressure-plot) for reference\n\n\n\n\nTry a different Quarto theme\n\n\n\nCreate a lab report that has\n\nA link out to an external web site.\nAn image embedded.\nA table of contents using the YAML block\nThe code folded using the YAML block\nA code chunk with plot(cars) in which the plot is sized to a figure width of 3 and height of 2\nA code chunk in which the output, but not the code is in the rendered file.\nTry a different Quarto theme.\n\n\n\n\nThis lab was created with assistance from UMass Copilot"
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#learning-objectives",
+    "href": "labs/lab1m_quarto.html#learning-objectives",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "Quarto\nDifferences between R Markdown and Quarto\nYAML blocks\nCode blocks"
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#quarto",
+    "href": "labs/lab1m_quarto.html#quarto",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "Quarto is the name of an open-source publishing system used for technical and scientific writing.\nIt lets you combine text, code, and outputs in one document—perfect for data science, research, and reproducible reports.\nYou can write in Python, R, Julia, or Observable JavaScript, and publish to formats like HTML, PDF, Word, and even full websites\nIt’s considered the next generation of R Markdown, and works with tools like Jupyter Notebooks, VS Code, and RStudio.\nBecause it is based on R Markdown, there is a wealth of related resources and books published on and using R Markdown. See some of on the examples books using R we will periodically using in the course."
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#differences-between-r-markdown-and-quarto",
+    "href": "labs/lab1m_quarto.html#differences-between-r-markdown-and-quarto",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "R Markdown and Quarto are both tools for creating dynamic documents that combine code, text, and outputs (like plots or tables), but they differ in terms of design philosophy, features, and flexibility. Here’s a breakdown of their key differences:\n\n\n\nR Markdown:\n\nDeveloped by RStudio.\nPrimarily designed for R users.\nBuilt on top of knitr and Pandoc.\nDeeply integrated into the RStudio IDE.\n\nQuarto:\n\nAlso developed by RStudio, but as a next-generation tool.\nLanguage-agnostic: supports R, Python, Julia, and Observable JavaScript.\nUses Pandoc directly (not knitr).\nDesigned to unify and modernize the workflow across languages.\n\n\n\n\n\n\nR Markdown: Best suited for R. Python support is possible but less seamless.\nQuarto: First-class support for multiple languages in a single document. You can mix R, Python, Julia, and JavaScript.\n\n\n\n\n\nR Markdown:\n\nUses YAML front matter for metadata.\nCode chunks are written using triple backticks with language identifiers.\n\nQuarto:\n\nSimilar structure but more consistent and extensible YAML.\nSupports Markdown extensions like callouts, citations, cross-referencing, and more.\n\n\n\n\n\n\nR Markdown:\n\nSupports HTML, PDF, Word, slides (via xaringan or ioslides), etc.\nCustomization can be complex for advanced layouts.\n\nQuarto:\n\nSupports all R Markdown formats plus:\n\nReveal.js slides.\nBooks and websites with built-in navigation and styling.\nJupyter-style notebooks.\n\nEasier to configure and customize outputs.\n\n\n\n\n\n\nR Markdown:\n\nExecutes code using knitr (for R) or reticulate (for Python).\nLess control over execution environment.\n\nQuarto:\n\nUses Jupyter kernels or R directly.\nBetter support for notebook-style interactivity and execution control.\n\n\n\n\n\n\nR Markdown:\n\nNo native concept of a “project” beyond RStudio projects.\n\nQuarto:\n\nSupports Quarto Projects: collections of documents with shared configuration.\nIdeal for books, blogs, websites, and multi-document workflows.\n\n\n\n\n\n\nQuarto:\n\nMore modern and extensible.\nSupports Lua filters, Markdown extensions, cross-referencing, citations, and interactive widgets.\nBetter support for version control and CI/CD workflows.\n\n\n\n\n\n\n\n\nFeature\nR Markdown\nQuarto\n\n\n\n\nLanguage Support\nPrimarily R\nR, Python, Julia, JS\n\n\nExecution Engine\nknitr\nJupyter / native\n\n\nOutput Formats\nMany\nMore + easier config\n\n\nInteractivity\nLimited\nRich (widgets, JS)\n\n\nProject Support\nBasic\nFull project system\n\n\nExtensibility\nModerate\nHigh\n\n\nIdeal For\nR-centric reports\nMulti-language docs"
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#adding-links-and-figures-in-a-quarto-document",
+    "href": "labs/lab1m_quarto.html#adding-links-and-figures-in-a-quarto-document",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "Let’s go the the Quarto documentation for Markdown basics and more details on Figures\nIt is important to specific where the figure is located relative to your .qmd file. The path can be relative (giant_virus.jpg) or (images/giant_virus.jpg) or absolute (/home/pi_jlb_umass_edu/images/giant_virus.jpg).\n\n\n\ngiant virus"
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#yaml-blocks-in-quarto",
+    "href": "labs/lab1m_quarto.html#yaml-blocks-in-quarto",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "In Quarto, a YAML block is a section at the top of a document that contains metadata and configuration settings. YAML stands for “YAML Ain’t Markup Language”, and it’s used to define things like the document title, author, output format, and more.\n\n\nA YAML block is enclosed by triple dashes (---) at the beginning and end:\n---\ntitle: \"My Analysis Report\"\nauthor: \"Jeffrey Blanchard\"\ndate: \"2025-09-08\"\nformat: html\neditor: visual\n---\nThis block tells Quarto: - The title of the document. - The author name. - The date to display. - The output format (e.g., HTML, PDF, Word). - The editor preference (e.g., visual or source).\n\n\n\nHere are some frequently used fields:\n\n\n\n\n\n\n\nField\nDescription\n\n\n\n\ntitle\nTitle of the document\n\n\nauthor\nAuthor name(s)\n\n\ndate\nDate of publication\n\n\nformat\nOutput format (e.g., html, pdf, docx, revealjs)\n\n\ntoc\nTable of contents (true or false)\n\n\nnumber-sections\nNumber section headings\n\n\ntheme\nVisual theme for HTML or slides\n\n\ncode-fold\nWhether code chunks can be collapsed\n\n\nexecute\nControls code execution (e.g., echo, eval, freeze)\n\n\nbibliography\nPath to .bib file for citations\n\n\nfilters\nLua filters for advanced customization\n\n\n\n\n\n\n---\ntitle: \"Data Exploration\"\nauthor: \"Jeffrey Blanchard\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    theme: cosmo\n    embed-resources: true\nexecute:\n  echo: true\n  freeze: auto\n---\nThis configures: - An HTML output with a table of contents. - Collapsible code chunks. - A Bootstrap theme (cosmo). - Code execution settings.\nImportant for our class is the embed-resources: true line. This creates a single html file with the figures embeded in the file. If this line is not in the YAML block a new directory will be created which contains the images and is linked to the html file. This means that if you turn in this html file (without using embed-resources: true) the images will not be shown.\n\n\n\nQuarto YAML is: - More consistent and extensible. - Supports nested configuration (e.g., format.html.toc). - Easier to manage across multi-format outputs (e.g., HTML and PDF from one source).\nIn Quarto, R code chunks are sections of code embedded in your document that get executed when the document is rendered. These chunks are enclosed in triple backticks and start with {r}. You can customize their behavior using chunk options, which control things like whether the code is shown, whether it’s executed, how results are displayed, and more."
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#r-code-chunks-in-quarto",
+    "href": "labs/lab1m_quarto.html#r-code-chunks-in-quarto",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "R code\nsummary(cars)\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n\n\n\n\n\nHere’s a categorized list of the most useful options:\n\n\n\n\n\nOption\nDescription\n\n\n\n\neval\nWhether to evaluate the code (TRUE or FALSE)\n\n\necho\nShow the code in the output (TRUE or FALSE)\n\n\ninclude\nInclude both code and output (TRUE or FALSE)\n\n\nerror\nShow errors in output (TRUE or FALSE)\n\n\nwarning\nShow warnings (TRUE or FALSE)\n\n\nmessage\nShow messages (TRUE or FALSE)\n\n\n\n\n\n\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\nresults\nHow to display results (\"markup\", \"asis\", \"hide\")\n\n\nfig.width\nWidth of plots (in inches)\n\n\nfig.height\nHeight of plots (in inches)\n\n\nfig.cap\nCaption for figures\n\n\nfig.align\nAlignment of figures (\"left\", \"center\", \"right\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\ncache\nCache results to avoid re-running code\n\n\nfreeze\nFreeze output to avoid re-execution unless explicitly updated\n\n\n\n\n\n\n\n\n\nOption\nDescription\n\n\n\n\ntidy\nAutomatically tidy code before execution\n\n\ncollapse\nCollapse code and output together\n\n\ncomment\nPrefix for output lines\n\n\n\n\n\n\n\n{r pressure-plot, fig.width=6, fig.height=4, fig.cap=\"Pressure vs Temperature\"}\n\n\nR code\nplot(pressure)\n\n\n\n\n\nPressure vs Temperature\n\n\n\n\nThis chunk: - Hides the code (echo=FALSE) - Sets figure size - Adds a caption - Names the chunk (pressure-plot) for reference"
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#quarto-themes",
+    "href": "labs/lab1m_quarto.html#quarto-themes",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "Try a different Quarto theme"
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#exercises",
+    "href": "labs/lab1m_quarto.html#exercises",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "Create a lab report that has\n\nA link out to an external web site.\nAn image embedded.\nA table of contents using the YAML block\nThe code folded using the YAML block\nA code chunk with plot(cars) in which the plot is sized to a figure width of 3 and height of 2\nA code chunk in which the output, but not the code is in the rendered file.\nTry a different Quarto theme."
+  },
+  {
+    "objectID": "labs/lab1m_quarto.html#acknowledgements",
+    "href": "labs/lab1m_quarto.html#acknowledgements",
+    "title": "Lab 1s - Quarto",
+    "section": "",
+    "text": "This lab was created with assistance from UMass Copilot"
   }
 ]

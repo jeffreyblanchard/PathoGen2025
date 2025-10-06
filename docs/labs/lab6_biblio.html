@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab 4 : Coding Basics, Style and Data Read/Write – PathoGen</title>
+<title>Lab 6s : Adding references exported from zotero to your quarto documents – PathoGen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +19,27 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
-</style>
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}</style>
 
 
 <script>const headroomChanged = new CustomEvent("quarto-hrChanged", {
@@ -4767,10 +4787,18 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <li><a href="#adding-references-to-your-report" id="toc-adding-references-to-your-report" class="nav-link" data-scroll-target="#adding-references-to-your-report">Adding references to your report</a>
   <ul class="collapse">
-  <li><a href="#what-to-upload-to-canvas" id="toc-what-to-upload-to-canvas" class="nav-link" data-scroll-target="#what-to-upload-to-canvas">What to upload to Canvas</a></li>
+  <li><a href="#step-1-set-up-zotero-on-your-computer" id="toc-step-1-set-up-zotero-on-your-computer" class="nav-link" data-scroll-target="#step-1-set-up-zotero-on-your-computer">Step 1: Set up Zotero on your computer</a></li>
+  <li><a href="#step-2-get-references-from-zotero" id="toc-step-2-get-references-from-zotero" class="nav-link" data-scroll-target="#step-2-get-references-from-zotero">Step 2: Get references from Zotero</a></li>
+  <li><a href="#step-3-export-the-3-references-from-zotero" id="toc-step-3-export-the-3-references-from-zotero" class="nav-link" data-scroll-target="#step-3-export-the-3-references-from-zotero">Step 3: Export the 3 references from Zotero</a></li>
+  <li><a href="#step-4-add-the-file-name-of-your-references-library-to-your-yaml-block" id="toc-step-4-add-the-file-name-of-your-references-library-to-your-yaml-block" class="nav-link" data-scroll-target="#step-4-add-the-file-name-of-your-references-library-to-your-yaml-block">Step 4: Add the file name of your references library to your YAML block</a></li>
+  <li><a href="#step-5-cite-the-references-in-the-text-of-your-document" id="toc-step-5-cite-the-references-in-the-text-of-your-document" class="nav-link" data-scroll-target="#step-5-cite-the-references-in-the-text-of-your-document">Step 5: Cite the references in the text of your document</a></li>
+  <li><a href="#add-a-section-header-for-the-references-at-the-end-of-your-document" id="toc-add-a-section-header-for-the-references-at-the-end-of-your-document" class="nav-link" data-scroll-target="#add-a-section-header-for-the-references-at-the-end-of-your-document">Add a section header for the references at the end of your document</a></li>
   </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -4779,7 +4807,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 4 : Coding Basics, Style and Data Read/Write</h1>
+<h1 class="title">Lab 6s : Adding references exported from zotero to your quarto documents</h1>
 </div>
 
 
@@ -4799,31 +4827,96 @@ vertical-align: -.125em;
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li>Comments</li>
-<li>Functions</li>
-<li>Good code style</li>
-<li>Reading from and writing to files</li>
+<li>Adding references exported from Zotero to your report</li>
 </ul>
+</section>
+<section id="adding-references-to-your-report" class="level2">
+<h2 class="anchored" data-anchor-id="adding-references-to-your-report">Adding references to your report</h2>
+<section id="step-1-set-up-zotero-on-your-computer" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-set-up-zotero-on-your-computer">Step 1: Set up Zotero on your computer</h3>
+<p>Download <a href="https://www.zotero.org/">Zotero</a> to your computer and add the Zotero plugin to your web browser.</p>
+</section>
+<section id="step-2-get-references-from-zotero" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-get-references-from-zotero">Step 2: Get references from Zotero</h3>
+<p>Go to <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a> and search for metagenome. Add 3 articles to your Zotero database</p>
+</section>
+<section id="step-3-export-the-3-references-from-zotero" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-export-the-3-references-from-zotero">Step 3: Export the 3 references from Zotero</h3>
+<ul>
+<li>Select the 3 references and select File &gt; Export Library</li>
+<li>Export in <code>BibTeX</code> format. This will generate a file with a <code>.bib</code> extension. Do not include any spaces in your file name.</li>
+<li>Upload the <code>.bib</code> file to Unity.</li>
+</ul>
+</section>
+<section id="step-4-add-the-file-name-of-your-references-library-to-your-yaml-block" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-add-the-file-name-of-your-references-library-to-your-yaml-block">Step 4: Add the file name of your references library to your YAML block</h3>
+<pre><code>---
+title: &quot;Lab 6&quot;
+author: &quot;Your name&quot;
+format:
+  html:
+    toc: true
+    toc_float: true
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+bibliography: MyReferences.bib
+---</code></pre>
+</section>
+<section id="step-5-cite-the-references-in-the-text-of-your-document" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-cite-the-references-in-the-text-of-your-document">Step 5: Cite the references in the text of your document</h3>
+<p>My reference file looks like this.</p>
+<pre><code>@Misc{Chang2015,
+  Title                    = {shiny: Web Application Framework for R. R package version 0.12.1},
+
+  Author                   = {Chang, W. and Cheng, J. and Allaire, JJ. and Xie, Y. and McPherson, J. },
+  Year                     = {2015},
+
+  Type                     = {Computer Program},
+  Url                      = {http://CRAN.R-project.org/package=shiny}
+}
+
+
+@Article{RCoreTeam,
+  Title                    = {R: A Language and Environment for Statistical Computing},
+  Author                   = {{R Core Team}},
+  Year                     = {2015},
+
+  Type                     = {Journal Article},
+  Url                      = {http://www.R-project.org}
+}</code></pre>
+<p>To cite this in my document I would use the following format.</p>
+<p><code>Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].</code></p>
+</section>
+<section id="add-a-section-header-for-the-references-at-the-end-of-your-document" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-section-header-for-the-references-at-the-end-of-your-document">Add a section header for the references at the end of your document</h3>
+<p>When you Render the document the references will be added to the end of the document. To define this section and to make it visable in our outline put <code># References</code> on the last line (or the appropriate header level for your report).</p>
+</section>
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p><a href="https://r4ds.hadley.nz/data-transform">R for Data Science</a>.</p>
-<p>Today we will go through three short chapters in <a href="https://r4ds.hadley.nz/data-transform">R for Data Science</a>.</p>
-<ul>
-<li>Chapter 2 Workflow: basics</li>
-<li>Chapter 4 Workflow: code style</li>
-<li>Chapter 7 Data import.</li>
-</ul>
-<p>As we did last week, put the examples and exercises in a Quarto Markdown file with well organized headings and an outline.</p>
-<section id="what-to-upload-to-canvas" class="level3">
-<h3 class="anchored" data-anchor-id="what-to-upload-to-canvas">What to upload to Canvas</h3>
-<p>After you <code>Render</code> the qmd file to an html file, export the file to your computer and upload it to Canvas.</p>
+<p>Make a document that has 3 references.</p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>Our labs are written in R <span class="citation" data-cites="RCoreTeam">(<a href="#ref-RCoreTeam" role="doc-biblioref">R Core Team 2015</a>)</span> and past labs have used th Shiny framework <span class="citation" data-cites="Chang2015">(<a href="#ref-Chang2015" role="doc-biblioref">Chang et al. 2015</a>)</span>.</p>
+</section>
+<section id="references" class="level2">
+
+
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Chang2015" class="csl-entry" role="listitem">
+Chang, W., J. Cheng, JJ. Allaire, Y. Xie, and J. McPherson. 2015. <span>“Shiny: Web Application Framework for r. R Package Version 0.12.1.”</span> Computer Program. <a href="http://CRAN.R-project.org/package=shiny">http://CRAN.R-project.org/package=shiny</a>.
+</div>
+<div id="ref-RCoreTeam" class="csl-entry" role="listitem">
+R Core Team. 2015. <span>“R: A Language and Environment for Statistical Computing.”</span> Journal Article. <a href="http://www.R-project.org">http://www.R-project.org</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

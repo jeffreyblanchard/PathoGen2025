@@ -5,7 +5,7 @@ title: "Labs"
 R Labs
 
 * Lab 1 : [Overview & Getting Started](labs/lab1_overview.html)
-* Lab 2 : [Learning R with the help of AI tools starting with graphing using ggplot](labs/lab2_AI_ggplot.html)
+* Lab 2 : [Learning R with the Help of AI tools Starting with Graphing using ggplot](labs/lab2_AI_ggplot.html)
 * Lab 3 : [Data Transformation with dplyr](labs/lab3_data_transformation.qmd)
 * Lab 4 : [Coding Basics, Style and Data Read/Write](labs/lab4_coding_import.qmd)
 * Lab 5 : [Working with NEON Metagenome Assembled Genomes (MAGs / bins)](labs/lab5_NEON_tables.qmd)
@@ -22,8 +22,8 @@ Unity Labs
 Sharing and Publishing
 
 * Lab 1s : [Quarto](labs/lab1s_quarto.html)
+* Lab 2s: [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
 * Lab : Connecting a Github repo site with a RStudio project
-* Lab : Adding references to your report with Zotero
 * Lab : Quarto Manuscripts
 * Lab : Building a 5 tab web site with Quarto
 * Lab : R Shiny

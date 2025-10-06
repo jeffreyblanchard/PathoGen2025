@@ -1,0 +1,86 @@
+---
+title: "Lab 2s : Adding references to your report with Zotero"
+bibliography: references.bib
+---
+
+## Learning objectives
+
+-   Adding references exported from Zotero to your report
+
+## Adding references to your report
+
+### Step 1: Set up Zotero on your computer
+
+Download [Zotero](https://www.zotero.org/) to your computer and add the Zotero plugin to your web browser.
+
+### Step 2: Get references from Zotero
+
+Go to [PubMed](https://pubmed.ncbi.nlm.nih.gov/) and search for metagenome. Add 3 articles to your Zotero database
+
+### Step 3: Export the 3 references from Zotero
+
+-   Select the 3 references and select File \> Export Library
+-   Export in `BibTeX` format. This will generate a file with a `.bib` extension. Do not include any spaces in your file name.
+-   Upload the `.bib` file to Unity.
+
+### Step 4: Add the file name of your references library to your YAML block
+
+```         
+---
+title: "Lab 6"
+author: "Your name"
+format:
+  html:
+    toc: true
+    toc_float: true
+    embed-resources: true
+execute: 
+  warning: false
+  message: false
+bibliography: MyReferences.bib
+---
+```
+
+### Step 5: Cite the references in the text of your document
+
+My reference file looks like this.
+
+```         
+@Misc{Chang2015,
+  Title                    = {shiny: Web Application Framework for R. R package version 0.12.1},
+
+  Author                   = {Chang, W. and Cheng, J. and Allaire, JJ. and Xie, Y. and McPherson, J. },
+  Year                     = {2015},
+
+  Type                     = {Computer Program},
+  Url                      = {http://CRAN.R-project.org/package=shiny}
+}
+
+
+@Article{RCoreTeam,
+  Title                    = {R: A Language and Environment for Statistical Computing},
+  Author                   = {{R Core Team}},
+  Year                     = {2015},
+
+  Type                     = {Journal Article},
+  Url                      = {http://www.R-project.org}
+}
+```
+
+To cite this in my document I would use the following format.
+
+`Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].`
+
+### Add a section header for the references at the end of your document
+
+When you Render the document the references will be added to the end of the document. To define this section and to make it visable in our outline put `# References` on the last line (or the appropriate header level for your report).
+
+## Exercises
+
+Make a document that has 3 references.
+
+## Acknowledgements
+
+Our labs are written in R [@RCoreTeam] and past labs have used th Shiny framework [@Chang2015].
+
+## References
