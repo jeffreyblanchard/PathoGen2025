@@ -21,8 +21,8 @@ Unity Labs
 
 Sharing and Publishing
 
-* Lab 1s : [Quarto](labs/lab1s_quarto.html)
-* Lab 2s: [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
+* Lab S1 : [Quarto](labs/lab1s_quarto.html)
+* Lab S2 : [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
 * Lab : Connecting a Github repo site with a RStudio project
 * Lab : Quarto Manuscripts
 * Lab : Building a 5 tab web site with Quarto

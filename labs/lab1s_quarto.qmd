@@ -1,5 +1,5 @@
 ---
-title: "Lab 1s - Quarto"
+title: "Lab S1 - Quarto"
 ---
 
 # Overview

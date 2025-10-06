@@ -1,5 +1,5 @@
 ---
-title: "Lab 2s : Adding references to your report with Zotero"
+title: "Lab S2 : Adding References to Your Report with Zotero"
 bibliography: references.bib
 ---
 
@@ -77,7 +77,7 @@ When you Render the document the references will be added to the end of the docu
 
 ## Exercises
 
-Make a document that has 3 references.
+Create and turn in a report that has 3 references.
 
 ## Acknowledgements
 
