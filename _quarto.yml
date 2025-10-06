@@ -24,7 +24,7 @@ format:
     code-fold: show
     code-summary: "R code"
     embed-resources: true
-    theme: cyborg
+    theme: cerulean
     css: styles.css
 
 editor: source
