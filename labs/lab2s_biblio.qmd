@@ -73,9 +73,9 @@ To cite this in my document I would use the following format.
 
 Open your `.bib` file to see the appropriate `@` names for your references.
 
-### Add a section header for the references at the end of your document
+### Step 6: Add a section header for the references at the end of your document
 
-When you Render the document the references will be added to the end of the document. To define this section and to make it visable in our outline put `# References` on the last line (or the appropriate header level for your report).
+When you Render the document the references will be added to the end of the document. To define this section and to make it visible in our outline put `# References` on the last line (or the appropriate header level for your report).
 
 ## Exercises
 
