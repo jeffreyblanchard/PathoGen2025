@@ -8,8 +8,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: schedule.qmd
-        text: Schedule
       - href: labs.qmd
         text: Labs
       - href: projects.qmd
