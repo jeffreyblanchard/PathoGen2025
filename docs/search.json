@@ -144,7 +144,7 @@
     "href": "projects.html#our-project-space",
     "title": "Project Space",
     "section": "Our Project Space",
-    "text": "Our Project Space\nNEON has produced metagenomic data as data product since xx. The JGI annotated version is Gs0144570. However, these metagenomes do not have many reads. Give details\nLast year JGI and NEON collaborated to produce metagenomes which are xx deeper which allow for better assemble of reads into gene length and greater fragments. We will work with the NEON 2023 Gs0166454 and NEON 2021 Pilot - Gs0161344 study sets."
+    "text": "Our Project Space\nNEON has produced metagenomic data as data product since 2014. The Joint Genome Institute has recently annotated version all reads prior to 20222 Gs0144570. However, these metagenomes have a low sequencing depth and therefore are difficult to use for assembling bacterial genomes.\nLast year JGI and NEON collaborated to produce metagenomes which are ~10-fold deeper which allow for better assemble of reads into gene length and greater fragments. We will work with the NEON 2023 Gs0166454 study set. Although some of the data for 2024 is available, JGI is still processing the data and producing annotations (see above illustration)."
   },
   {
     "objectID": "projects.html#projects",
