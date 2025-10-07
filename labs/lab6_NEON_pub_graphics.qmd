@@ -5,10 +5,10 @@ title: "Lab 6 : ggplotting with NEON MAG data"
 ## Learning objectives
 
 -   Be able to add title, axis labels, legends, colors to ggplot graphs
--   Resize graphs in RMarkdown
+-   Resize graphs within R code chunks
 -   Print graphics to a file (e.g. jpeg, pdf)
--   Loading images into a RMarkdown file
--   Making interactive graphs and in RMarkdown
+-   Loading images into Markdown
+-   Making interactive graphs
 
 ## Fine tuning ggplots
 
@@ -147,9 +147,9 @@ or the absolute path
 "home/jlb/images/iris_example_plot1.pdf"
 ```
 
-### Controlling graph size in RMarkdown
+### Controlling graph size in Markdown
 
-In the opening line of the RMarkdown code chunk {r} you can control the output of the code, graphs, tables using knitr syntax. For example if {r, eval = FALSE} the code will not be run, but will be shown. If {r, code = FALSE} the code will not be shown, but will be run and the output will be shown (useful in reports where the reader is only interested in the results/graphs, but not the code). You can also suppress error messages and warnings so that the reader isn't bothered by them (but you should take notice). YOU CAN ALSO DO THIS NOW IN THE VISUAL EDITOR MODE IN RSTUDIO.
+In the opening line of the Markdown code chunk {r} you can control the output of the code, graphs, tables using knitr syntax. For example if {r, eval = FALSE} the code will not be run, but will be shown. If {r, code = FALSE} the code will not be shown, but will be run and the output will be shown (useful in reports where the reader is only interested in the results/graphs, but not the code). You can also suppress error messages and warnings so that the reader isn't bothered by them (but you should take notice). YOU CAN ALSO DO THIS NOW IN THE VISUAL EDITOR MODE IN RSTUDIO.
 
 The dimensions of an individual graph in the Markdown document be adjusted by specifying the graph dimensions in the header for the r code chunk.
 
@@ -190,12 +190,12 @@ dev.off()
 
 For more details on sizing output <a href="http://www.cookbook-r.com/Graphs/Output_to_a_file/">Cookbook for R - Output to a file - PDF, PNG, TIFF, SVG </a>
 
-### RMarkdown loading images
+### Markdown loading images
 
-Sometimes it is useful in controlling the image layout for a report to file with the graph and then subsequently load it into the .Rmd file. This works with png files, but not pdfs. You can also upload images made with other bioinformatic tools into your RMarkdown report.
+Sometimes it is useful in controlling the image layout for a report to file with the graph and then subsequently load it into the .qmd file. This works with png files, but not pdfs. You can also upload images made with other bioinformatic tools into your report.
 
 ```{r eval = FALSE}
-# This is the RMarkdown style for inserting images
+# This is the Markdown style for inserting images
 # Your image must be in your working directory
 # This command is put OUTSIDE the r code chunk
 
@@ -206,7 +206,7 @@ Sometimes it is useful in controlling the image layout for a report to file with
 
 Another way to present a graph without the code is adding echo = FALSE within the r{} chunk - {r echo = FALSE}. This prevents code, but not the results from appearing in the knitr file.
 
-### Interactive graphs in RMarkdown reports
+### Interactive graphs
 
 With plotly/ggplotly (<https://plot.ly/ggplot2/>) you can make interactive graphs in your lab report.
 
