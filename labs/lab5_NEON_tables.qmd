@@ -120,7 +120,7 @@ Let's load the table into R
 ```{r, message=FALSE}
 # This is the location used for Github
 NEON_MAGs <- read_tsv("../data/NEON_metadata/exported_img_bins_Gs0166454_NEON.tsv")
-# This is the locaton used for the class data directory on Unity
+# This is the location used for the class data directory on Unity
 # NEON_MAGs <- read_tsv("/work/pi_bio678_umass_edu/data_NEON/exported_img_bins_Gs0166454_NEON.tsv")
 ```
 
