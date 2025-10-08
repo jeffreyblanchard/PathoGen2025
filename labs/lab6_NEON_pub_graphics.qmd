@@ -365,6 +365,7 @@ Note that in this graph ggplot produces the count automatically
 #| fig-height: 10
 #| fig-width: 8
 NEON_MAGs |> 
+mutate(phylum = replace_na(phylum, "***NOVEL***")) |>
 ggplot(aes(x = phylum)) +
   geom_bar() +
   coord_flip()
