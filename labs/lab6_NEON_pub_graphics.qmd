@@ -526,7 +526,12 @@ What is the relationship between MAGs genome size and the number of genes? Color
 
 What is the relationship between scaffold count and MAG completeness?
 
+
 ### Exercise 10
+
+Separate out bin_id (e.g 3300078752_s0) into 2 columns `metagenome_id` and `bin_num`.
+
+### Exercise 11
 
 The `site` column has strings like 
 
@@ -540,6 +545,5 @@ Separate out this string into 4 columns `site name` (e.g. Rio Cupeyes), 'NEON fi
 
 This is a tough one that may require back and forth with copilot.
 
-### Exercise 11
-
+### Exercise 12
 Make a graph showing the number of MAGs in each state.
