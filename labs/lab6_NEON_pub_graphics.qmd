@@ -525,3 +525,21 @@ What is the relationship between MAGs genome size and the number of genes? Color
 ### Exercise 9
 
 What is the relationship between scaffold count and MAG completeness?
+
+### Exercise 10
+
+The `site` column has strings like 
+
+*   Rio Cupeyes NEON Field Site, San Germán, Puerto Rico
+*   Sycamore Creek NEON Field Site, Rio Verde, Arizona, USA
+*   San Joaquin Experimental Range NEON Field site, Yosemite Lakes, California, USA
+*   San Joaquin Experimental Range NEON Field Site, California, USA
+*   Oak Ridge NEON Field Station, Tennessee, USA
+
+Separate out this string into 4 columns `site name` (e.g. Rio Cupeyes), 'NEON field site` (e.g. NEON Field Site/Station), `region` (e.g. Yosemite Lakes) and `state`.  
+
+This is a tough one that may require back and forth with copilot.
+
+### Exercise 11
+
+Make a graph showing the number of MAGs in each state.
