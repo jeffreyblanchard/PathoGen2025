@@ -195,11 +195,7 @@ For more details on sizing output <a href="http://www.cookbook-r.com/Graphs/Outp
 
 Sometimes it is useful in controlling the image layout for a report to file with the graph and then subsequently load it into the .qmd file. This works with png files, but not pdfs. You can also upload images made with other bioinformatic tools into your report.
 
-```{r eval = FALSE}
-# This is the Markdown style for inserting images
-# Your image must be in your working directory
-# This command is put OUTSIDE the r code chunk
-
+```
 ![Iris example plot](../images/iris_example_plot2.png) 
 ```
 
