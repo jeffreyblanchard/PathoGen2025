@@ -150,8 +150,6 @@ or the absolute path
 
 ### Controlling graph size in Markdown
 
-In the opening line of the Markdown code chunk {r} you can control the output of the code, graphs, tables using knitr syntax. For example if {r, eval = FALSE} the code will not be run, but will be shown. If {r, code = FALSE} the code will not be shown, but will be run and the output will be shown (useful in reports where the reader is only interested in the results/graphs, but not the code). You can also suppress error messages and warnings so that the reader isn't bothered by them (but you should take notice). YOU CAN ALSO DO THIS NOW IN THE VISUAL EDITOR MODE IN RSTUDIO.
-
 The dimensions of an individual graph in the Markdown document be adjusted by specifying the graph dimensions in the header for the r code chunk.
 
 ```         
@@ -163,6 +161,12 @@ This is similar to what we used in previous labs where we wanted to show but not
 
 ```         
 #| eval: false
+```
+
+If you want to run the code but not show the code
+
+```         
+#| echo: false
 ```
 
 ### Graphic Output
