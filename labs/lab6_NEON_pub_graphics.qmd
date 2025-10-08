@@ -241,7 +241,7 @@ Let's load the table into R. This week I have made a number of changes to the da
 # This is the location used for Github
 NEON_MAGs_prelim <- read_tsv("../data/NEON_metadata/exported_img_bins_Gs0166454_NEON.tsv") |> 
 # This is the location used for the class data directory on Unity
-# NEON_MAGs <- read_tsv("/work/pi_bio678_umass_edu/data_NEON/exported_img_bins_Gs0166454_NEON.tsv")
+# NEON_MAGs_prelim <- read_tsv("/work/pi_bio678_umass_edu/data_NEON/exported_img_bins_Gs0166454_NEON.tsv")
   
   clean_names() |> 
   
