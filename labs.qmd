@@ -10,7 +10,7 @@ R Labs
 * Lab 4 : [Coding Basics, Style and Data Read/Write](labs/lab4_coding_import.qmd)
 * Lab 5 : [Working with NEON Metagenome Assembled Genomes (MAGs / bins)](labs/lab5_NEON_tables.qmd)
 * Lab 6 : [ggplotting with NEON MAG data](labs/lab6_NEON_pub_graphics.html)
-* Lab 7 : Mapping the NEON data
+* Lab 7 : [Data Tidying, Transformation and Visualization with COVID-19 reporting data](labs/lab7_covid.html)
 * Lab 8: Genome representations
 * Lab 9 : Phylogenetic tree visualization using ggtree
 * Lab 10 : Read abundance - normalization and statistics

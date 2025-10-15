@@ -439,7 +439,7 @@ ggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +
 #| fig-height: 10
 #| fig-width: 8
 NEON_MAGs |> 
-mutate(phylum = replace_na(phylum, "***NOVEL***")) 
+mutate(phylum = replace_na(phylum, "***NOVEL***")) |>
 ggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +
   geom_bar(position = "dodge") +
   coord_flip()
