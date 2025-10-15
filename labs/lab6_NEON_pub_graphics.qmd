@@ -280,6 +280,21 @@ NEON_MAGs_prelim <- read_tsv("../data/NEON_metadata/exported_img_bins_Gs0166454_
     str_detect(sample_name, ".C2.") ~ "C2",
     TRUE ~ NA_character_
   )) |> 
+
+# These fields are all associated with "Freshwater microbial communities from...   
+# SS - near stream sensor
+# C0 - non-stratified lake/river surface near buoy
+# C1 - stratified lake surface/epilimnion near buoy
+# C2 - stratified lake hypolimnion near buoy
+# EPIPSAMMON  - biofilm on sand/silt
+# EPILITHON - biofilm on rocks/cobbles
+# EPIPHYTON - biofilm that grows on the stems and leaves of aquatic plants
+  
+# These fields are all associated with "Freshwater biofilm microbial communities from
+# EPILITHON - biofilm on rocks/cobbles
+  
+# These fields are all associated with "Freshwater sediment microbial communities from 
+# EPIPSAMMON - biofilm on sand/silt
   
   mutate_at("sample_name", str_replace, ".SS", "") |> 
   mutate_at("sample_name", str_replace, ".C0", "") |> 
@@ -398,7 +413,7 @@ ggplot(aes(x = phylum, y = n)) +
 
 To put in descending order
 
-```{r}
+```{r}"Sepal Width
 #| fig-height: 10
 #| fig-width: 8
 NEON_MAGs |> 
@@ -411,18 +426,20 @@ ggplot(aes(x = reorder(phylum, n), y = n)) +
 #### Stacked vs multiple bar plots
 
 ```{r}
-#| fig-height: 10
-#| fig-width: 8
+
 NEON_MAGs |> 
+  mutate(phylum = replace_na(phylum, "***UNKNOWN***")) |> 
 ggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +
   geom_bar() +
-  coord_flip()
+  coord_flip() +
+  labs(title = "2023 and 2024 NEON MAG Taxonomic Distribution", x = "Count", y = "Phylum") 
 ```
 
 ```{r}
 #| fig-height: 10
 #| fig-width: 8
 NEON_MAGs |> 
+mutate(phylum = replace_na(phylum, "***NOVEL***")) 
 ggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +
   geom_bar(position = "dodge") +
   coord_flip()
@@ -434,6 +451,7 @@ Notice that the bars are of different width. This can be adjusted by setting the
 #| fig-height: 10
 #| fig-width: 8
 NEON_MAGs |> 
+mutate(phylum = replace_na(phylum, "***NOVEL***")) |> 
 ggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +
   geom_bar(position = position_dodge2(width = 0.9, preserve = "single")) +
   coord_flip()
