@@ -128,6 +128,7 @@ time_series_confirmed_long_daily <-time_series_confirmed_long |>
 
 Now for a graph with the US data
 
+
 ```{r}
 time_series_confirmed_long_daily |> 
     filter (Country_Region == "US") |> 

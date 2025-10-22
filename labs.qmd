@@ -11,7 +11,7 @@ R Labs
 * Lab 5 : [Working with NEON Metagenome Assembled Genomes (MAGs / bins)](labs/lab5_NEON_tables.qmd)
 * Lab 6 : [ggplotting with NEON MAG data](labs/lab6_NEON_pub_graphics.html)
 * Lab 7 : [Data Tidying, Transformation and Visualization with COVID-19 reporting data](labs/lab7_covid.html)
-* Lab 8: Genome representations
+* Lab 8: Summary and [metagenome brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
 * Lab 9 : Phylogenetic tree visualization using ggtree
 * Lab 10 : Read abundance - normalization and statistics
 
