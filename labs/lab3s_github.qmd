@@ -146,8 +146,12 @@ to get a prompt where you can paste your PAT: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 * You can quickly spice up your page by adding a theme to your `YAML` block of your index.qmd (available themes are “default”, “bootstrap”, “cerulean”, “cosmo”, “darkly”, “flatly”, “journal”, “lumen”, “paper”, “readable”, “sandstone”, “simplex”, “spacelab”, “united”, “yeti”)
 * You could also try [prettydoc](https://prettydoc.statr.me/0
 
+### Example Repo
 
-## Linking an existing R project with a new Github repo
+Here is what the [example repo](https://github.com/jeffreyblanchard/pathogen-test) created above looks like.
+
+
+## Linking an existing R project with a new Github repo (not intended for most people)
 
 ### On the github website
 
