@@ -20,7 +20,89 @@ This lab is a slighlty modified update of [Stephen Turner's ggtree tutorial](htt
 * Phylogenetic Inference
 * Tree visualization using ggtree
 
-/work/pi_bio678_umass_edu/data/lab13/
+## Bioconductor
+
+[Bioconductor](https://bioconductor.org/) is an open source, open development software project for genomic data analysis. There are thousands of software packages available and an active user community. R/Bioconductor is one of the primary mechanisms for publishing new genomic data analysis tools. We will use Bioconductor in the this and the following weeks labs.
+
+### Installing Bioconductor, ggtree and Biostrings
+
+**Bioconductor is already installed on Unity.**
+
+Install Bioconductor locally on your computer or Unity by typing in the R console.
+
+```{r}
+#| eval: false
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "3.19")
+```
+
+You may get an error message that BioConductor is already installed.
+
+Individual packages that are not part of the BioConductor core such as ggtree and Biostrings can be installed using
+
+```{r}
+#| eval: false
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ggtree")
+```
+
+```{r}
+#| eval: false
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Biostrings")
+```
+
+### The `ggtree` Package
+
+**ggtree** is an R package that extends ggplot2 for visualizating and annotating phylogenetic trees. It is available from [Bioconductor](http://www.bioconductor.org/). Bioconductor is a project to provide tools for analyzing and annotating various kinds of genomic data. You can search and browse Bioconductor packages [here](http://www.bioconductor.org/packages/release/BiocViews.html#___Software).
+
+1.  **ggtree Bioconductor page**: [bioconductor.org/packages/ggtree](http://bioconductor.org/packages/release/bioc/html/ggtree.html).
+2.  **ggtree homepage**: [guangchuangyu.github.io/ggtree](https://github.com/YuLab-SMU/ggtree) (contains more information about the package, more documentation, a gallery of beautiful images, and links to related resources).
+3.  **ggtree publication**: Yu, Guangchuang [Data Integration, Manipulation and Visualization of Phylogenetic Trees](https://yulab-smu.top/treedata-book/)
+
+Bioconductor packages usually have great documentation in the form of *vignettes*. Take a look at the [landing page for ggtree](http://bioconductor.org/packages/release/bioc/html/ggtree.html) -- about halfway down the page under the "Documentation" heading there are multiple walkthrough tutorials directed to different applications and functionalities of ggtree, chock full of runnable examples and explanations.
+
+Just like R packages from CRAN, you only need to install Bioconductor packages once, then load them every time you start a new R session. Load the tidyverse package first.
+
+```{r load_ggtree_without_junk, echo=FALSE}
+suppressPackageStartupMessages(suppressWarnings(library(tidyverse)))
+suppressPackageStartupMessages(suppressWarnings(library(ggtree)))
+```
+
+```{r load_ggtree}
+# You may need to install the treeio, rphylopic and ggimage packages
+library(tidyverse)
+library(ggtree)
+library(treeio)
+library(rphylopic)
+library(ggimage)
+```
+
+*A note on masked functions*: Take a second and look through some of the output that you see when you load ggtree after tidyverse. When you first installed ggtree it may have taken a while, because ggtree *depends* on a number of other R packages. Each of these, in turn, may depend on other packages. These are all loaded into your working environment when you load ggtree. Also notice the lines that start with `The following objects are masked from 'package:...`. One example of this is the `collapse()` function from dplyr. When ggtree was loaded, it loaded it's own function called `collapse()`. Now, if you wanted to use dplyr's collapse function, you'll have to call it explicitly using this kind of syntax: `dplyr::collapse()`. [See this Q&A thread for more](http://stackoverflow.com/questions/4879377/r-masked-functions).
+
+## Connecting to JupyterLab on Unity
+
+In addition to RStudio, today we are going to connect to Unity using the JupyterLab interface
+
+![](../images/lab13/interactive_apps.png)
+
+Once you open JupyterLab you can navigate to our course site by clicking on the folder icon just to the left of your /home 
+
+![](../images/lab13/foldericon.png)
+
+Than click on work > pi_bio678_umass_edu > data > lab13
+
+![](../images/lab13/jupyterlab.png)
+
+You can now open these files by clicking on them. These are the files we will work with today. 
+
+***You will need to change the path to the files in the examples below by adding `/work/pi_bio678_umass_edu/data/lab13/`
+
 
 ## Sequence Alignment Background
 
@@ -188,7 +270,7 @@ The most commonly used are Clustal, Muscle and MAFFT. MAFFT is commonly implemen
 
 Carl Woese sequenced isolated and sequenced ribosomal RNA to discover a new domain of life, the Archaea. His discovery was dependent on using phylogenetic methods to determine the relationship of his microbial sequence to other sequences in the database. Since his discovery, progress sequencing specfic genes from genomic DNA has greatly simplified the process of understanding microbial phylogenies. In this project you will be given a DNA sequence, then construct a multiple sequence alignment and do a phylogenetic analysis to show the relationships among the taxa represented by the DNA sequences. 
 
-From a practical perspective, phylogenetic analysis is broken up into methods related to tree building and tree visualization. I have assembled a core group DNA sequences of small subunit ribosomal gene from our national DNA database Genbank to provide an example `Tree_of_Life_Core_Sequences.txt`. The files contains data for the following species.
+From a practical perspective, phylogenetic analysis is broken up into methods related to tree building and tree visualization. I have assembled a core group DNA sequences of small subunit ribosomal gene from our national DNA database Genbank to provide an example `Tree_of_Life_Core_Sequences.txt`. This file us in our Unity course directory `/work/pi_bio678_umass_edu/data/lab13/` and on our [course GitHub site](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/labs/data/lab13) directory contains data for the following species.
 
 * Thermoplasma volcanium
 * Halalkalicoccus jeotgali
@@ -216,7 +298,7 @@ From a practical perspective, phylogenetic analysis is broken up into methods re
 
 This web server is great place to learn the basic workflow for phylogenetic analysis and I use it on occasion when I just need a quick see of the relationships among a small set of sequences. Doing a phylogenetic analysis involves (1) assembling a group of sequences to evaluate, (2) aligning the sequences so that a distance can be calculate between the sequences, (3) determining the relationships among the sequences, and (4) visualizing the relationships. Step 1 was accomplished above by getting representative archaeal, bacterial and eukaryotic sequences from GenBank. Steps 2-4 will be done on web server that has been set up to run these steps at the same time. Go to the site [Robust Phylogenetic Analysis For The Non-Specialist](https://ngphylogeny.fr/). Scroll down and under Phylogenetic Analysis select "One Click". Upload or paste in your DNA sequences from the file in Moodle. Then click submit. This will start the analysis process. The numbers of the tree represent statistical support for the relationship. The more robust the relationship the closer the value will be to 1. The scale at the bottom represents sequence distance (e.g. 0.2 is 20%).
 
-The newick tree file was added to the /work/pi_bio678_umass_edu/data/lab13/ directory
+The newick tree file was added to the `/work/pi_bio678_umass_edu/data/lab13/` directory
 
 
 ## Phylogenetic tree visualization
@@ -225,71 +307,7 @@ The tree visualizations on NGPhylogeny.fr are ok for some purposes, but often fo
 
 Historically most phylogenetic analysis and tree visualization has been done with independent software tools. There has been a growing move towards using R for phylogenetic analyses. The package [ape: Analysis of Phylogenetics and Evolution](https://rdrr.io/cran/ape/) can access popular multiple sequence alignment and phylogenetic analysis methods. [ggtree](https://bioconductor.org/packages/release/bioc/html/ggtree.html) extends the 'ggplot2' for visualization and annotation of phylogenetic trees with their annotation data. The author, Guangchuang Yu, has recently published an R book [Data Integration, Manipulation and Visualization of Phylogenetic Trees](https://yulab-smu.top/treedata-book/).
 
-### Bioconductor
 
-[Bioconductor](https://bioconductor.org/) is an open source, open development software project for genomic data analysis. There are thousands of software packages available and an active user community. R/Bioconductor is one of the primary mechanisms for publishing new genomic data analysis tools. We will use Bioconductor in the this and the following weeks labs.
-
-### Installing Bioconductor, ggtree and Biostrings
-
-**Bioconductor, ggtree and Biostrings is already installed on Posit.**
-
-Install Bioconductor locally on your computer or Unity by typing in the R console
-
-```{r}
-#| eval: false
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install(version = "3.19")
-```
-
-You may get an error message that BioConductor is already installed.
-
-Individual packages that are not part of the BioConductor core such as ggtree and Biostrings can be installed using
-
-```{r}
-#| eval: false
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("ggtree")
-```
-
-```{r}
-#| eval: false
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("Biostrings")
-```
-
-## The `ggtree` Package
-
-**ggtree** is an R package that extends ggplot2 for visualizating and annotating phylogenetic trees. It is available from [Bioconductor](http://www.bioconductor.org/). Bioconductor is a project to provide tools for analyzing and annotating various kinds of genomic data. You can search and browse Bioconductor packages [here](http://www.bioconductor.org/packages/release/BiocViews.html#___Software).
-
-1.  **ggtree Bioconductor page**: [bioconductor.org/packages/ggtree](http://bioconductor.org/packages/release/bioc/html/ggtree.html).
-2.  **ggtree homepage**: [guangchuangyu.github.io/ggtree](https://github.com/YuLab-SMU/ggtree) (contains more information about the package, more documentation, a gallery of beautiful images, and links to related resources).
-3.  **ggtree publication**: Yu, Guangchuang [Data Integration, Manipulation and Visualization of Phylogenetic Trees](https://yulab-smu.top/treedata-book/)
-
-Bioconductor packages usually have great documentation in the form of *vignettes*. Take a look at the [landing page for ggtree](http://bioconductor.org/packages/release/bioc/html/ggtree.html) -- about halfway down the page under the "Documentation" heading there are multiple walkthrough tutorials directed to different applications and functionalities of ggtree, chock full of runnable examples and explanations.
-
-Just like R packages from CRAN, you only need to install Bioconductor packages once, then load them every time you start a new R session. Load the tidyverse package first.
-
-```{r load_ggtree_without_junk, echo=FALSE}
-suppressPackageStartupMessages(suppressWarnings(library(tidyverse)))
-suppressPackageStartupMessages(suppressWarnings(library(ggtree)))
-```
-
-```{r load_ggtree}
-library(tidyverse)
-library(ggtree)
-# added treeio and ggimage library
-library(treeio)
-library(rphylopic)
-library(ggimage)
-
-```
-
-*A note on masked functions*: Take a second and look through some of the output that you see when you load ggtree after tidyverse. When you first installed ggtree it may have taken a while, because ggtree *depends* on a number of other R packages. Each of these, in turn, may depend on other packages. These are all loaded into your working environment when you load ggtree. Also notice the lines that start with `The following objects are masked from 'package:...`. One example of this is the `collapse()` function from dplyr. When ggtree was loaded, it loaded it's own function called `collapse()`. Now, if you wanted to use dplyr's collapse function, you'll have to call it explicitly using this kind of syntax: `dplyr::collapse()`. [See this Q&A thread for more](http://stackoverflow.com/questions/4879377/r-masked-functions).
 
 ## Tree Import
 
@@ -336,8 +354,6 @@ The `ggtree` package implement several parser functions, including:
 Let's first import our tree data. We're going to work with a made-up phylogeny with 13 taxa `tree_newick.nwk`. Let's load the libraries you'll need if you haven't already, and then import the tree using `read.tree()`. Displaying the object itself really isn't useful. The output just tells you a little bit about the tree itself.
 
 ```{r read.tree}
-library(tidyverse)
-library(ggtree)
 tree <- read.tree("data/lab13/tree_newick.nwk")
 tree
 ```
