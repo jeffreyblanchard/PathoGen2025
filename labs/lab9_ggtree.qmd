@@ -89,19 +89,19 @@ library(ggimage)
 
 In addition to RStudio, today we are going to connect to Unity using the JupyterLab interface
 
-![](../images/lab13/interactive_apps.png)
+![](../images/lab9/interactive_apps.png)
 
 Once you open JupyterLab you can navigate to our course site by clicking on the folder icon just to the left of your /home 
 
-![](../images/lab13/foldericon.png)
+![](../images/lab9/foldericon.png)
 
-Than click on work > pi_bio678_umass_edu > data > lab13
+Than click on work > pi_bio678_umass_edu > data > lab9
 
-![](../images/lab13/jupyterlab.png)
+![](../images/lab9/jupyterlab.png)
 
 You can now open these files by clicking on them. These are the files we will work with today. 
 
-***You will need to change the path to the files in the examples below by adding `/work/pi_bio678_umass_edu/data/lab13/`
+***You will need to change the path to the files in the examples below by adding `/work/pi_bio678_umass_edu/data/lab9/`
 
 
 ## Sequence Alignment Background
@@ -123,7 +123,7 @@ The dot plot displays graphically any possible sequence alignments as diagonals 
 Insertions, deletions, direct repeats and inverted repeats can be visually detected on a dot plot.   Dot plot can also detect regions of RNA that are self-complementary and thus might form secondary structure.
 
 
-<img src="../images/lab13/dotplot.gif" width="500" alt="Dot plot" /><br>
+<img src="../images/lab9/dotplot.gif" width="500" alt="Dot plot" /><br>
 
 Ref:<a href="http://mummer.sourceforge.net/manual/"></a>
 
@@ -208,7 +208,7 @@ Amino Acid          Side chain polarity Side chain acidity or basicity
 As time goes on and sequence divergence gets larger it gets harder to account for multiple substitutions at the same amino acid position.  PAM protein matrices are based on global alignments of closely related proteins.  However, sequence changes over long evolutionary time scales are not well approximated by compounding small changes that occur over short time scales.  For comparing more distantly related sequence other types of matrices are used.  One of the most common is the The BLOSUM (BLOck SUbstitution Matrix) series of matrices created by Steve Henikoff and colleagues.  Both the PAM and BLOSUM are not expressed as transformation frequencies but the probabilities of transformation are expressed by log-odds scores as shown below for a BLOSUM62 matrix.
   
 
-<img src="../images/lab13/400px-BLOSUM62.gif" width="700" alt="BLOSUM62">
+<img src="../images/lab9/400px-BLOSUM62.gif" width="700" alt="BLOSUM62">
 
 Ref: http://en.wikipedia.org/wiki/Substitution_matrix
 
@@ -270,7 +270,7 @@ The most commonly used are Clustal, Muscle and MAFFT. MAFFT is commonly implemen
 
 Carl Woese sequenced isolated and sequenced ribosomal RNA to discover a new domain of life, the Archaea. His discovery was dependent on using phylogenetic methods to determine the relationship of his microbial sequence to other sequences in the database. Since his discovery, progress sequencing specfic genes from genomic DNA has greatly simplified the process of understanding microbial phylogenies. In this project you will be given a DNA sequence, then construct a multiple sequence alignment and do a phylogenetic analysis to show the relationships among the taxa represented by the DNA sequences. 
 
-From a practical perspective, phylogenetic analysis is broken up into methods related to tree building and tree visualization. I have assembled a core group DNA sequences of small subunit ribosomal gene from our national DNA database Genbank to provide an example `Tree_of_Life_Core_Sequences.txt`. This file us in our Unity course directory `/work/pi_bio678_umass_edu/data/lab13/` and on our [course GitHub site](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/labs/data/lab13) directory contains data for the following species.
+From a practical perspective, phylogenetic analysis is broken up into methods related to tree building and tree visualization. I have assembled a core group DNA sequences of small subunit ribosomal gene from our national DNA database Genbank to provide an example `Tree_of_Life_Core_Sequences.txt`. This file us in our Unity course directory `/work/pi_bio678_umass_edu/data/lab9/` and on our [course GitHub site](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/labs/data/lab9) directory contains data for the following species.
 
 * Thermoplasma volcanium
 * Halalkalicoccus jeotgali
@@ -298,7 +298,7 @@ From a practical perspective, phylogenetic analysis is broken up into methods re
 
 This web server is great place to learn the basic workflow for phylogenetic analysis and I use it on occasion when I just need a quick see of the relationships among a small set of sequences. Doing a phylogenetic analysis involves (1) assembling a group of sequences to evaluate, (2) aligning the sequences so that a distance can be calculate between the sequences, (3) determining the relationships among the sequences, and (4) visualizing the relationships. Step 1 was accomplished above by getting representative archaeal, bacterial and eukaryotic sequences from GenBank. Steps 2-4 will be done on web server that has been set up to run these steps at the same time. Go to the site [Robust Phylogenetic Analysis For The Non-Specialist](https://ngphylogeny.fr/). Scroll down and under Phylogenetic Analysis select "One Click". Upload or paste in your DNA sequences from the file in Moodle. Then click submit. This will start the analysis process. The numbers of the tree represent statistical support for the relationship. The more robust the relationship the closer the value will be to 1. The scale at the bottom represents sequence distance (e.g. 0.2 is 20%).
 
-The newick tree file was added to the `/work/pi_bio678_umass_edu/data/lab13/` directory
+The newick tree file was added to the `/work/pi_bio678_umass_edu/data/lab9/` directory
 
 
 ## Phylogenetic tree visualization
@@ -354,7 +354,7 @@ The `ggtree` package implement several parser functions, including:
 Let's first import our tree data. We're going to work with a made-up phylogeny with 13 taxa `tree_newick.nwk`. Let's load the libraries you'll need if you haven't already, and then import the tree using `read.tree()`. Displaying the object itself really isn't useful. The output just tells you a little bit about the tree itself.
 
 ```{r read.tree}
-tree <- read.tree("data/lab13/tree_newick.nwk")
+tree <- read.tree("data/lab9/tree_newick.nwk")
 tree
 ```
 
@@ -603,7 +603,7 @@ Finally, let's add some tip labels. We'll want to right-align them, and by defau
 
 ```{r beastplot, fig.keep="last", fig.width=11, fig.height=11}
 # Read the data
-tree <- read.beast("data/lab13/flu_tree_beast.tree")
+tree <- read.beast("data/lab9/flu_tree_beast.tree")
 # supply a most recent sampling date so you get the dates
 # and add a scale bar
 ggtree(tree, mrsd="2013-01-01") + 
@@ -618,7 +618,7 @@ ggtree(tree, mrsd="2013-01-01") +
 Finally, let's look at `?msaplot`. This puts the multiple sequence alignment and the tree side-by-side. The function takes a tree object (produced with `ggtree()`) and the path to the FASTA multiple sequence alignment. You can do it with the entire MSA, or you could restrict to just a window. Want something interesting-looking, but maybe not all that useful? Try changing the coordinate system of the plot itself by passing `+ coord_polar(theta="y")` to the end of the command!
 
 ```{r msaplot, fig.width=11, fig.height=11}
-msaplot(p=ggtree(tree), fasta="data/lab13/flu_aasequence.fasta", window=c(150, 175))
+msaplot(p=ggtree(tree), fasta="data/lab9/flu_aasequence.fasta", window=c(150, 175))
 ```
 
 
@@ -718,7 +718,7 @@ ggtree(tree) +
 
 You can order the layers when highlighting for certain effects
 
-![](../images/lab13/TOL.png)
+![](../images/lab9/TOL.png)
 
 
 
