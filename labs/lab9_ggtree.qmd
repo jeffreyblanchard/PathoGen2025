@@ -123,7 +123,7 @@ The dot plot displays graphically any possible sequence alignments as diagonals 
 Insertions, deletions, direct repeats and inverted repeats can be visually detected on a dot plot.   Dot plot can also detect regions of RNA that are self-complementary and thus might form secondary structure.
 
 
-<img src="../../imageslab13/dotplot.gif" width="500" alt="Dot plot" /><br>
+<img src="../images/lab13/dotplot.gif" width="500" alt="Dot plot" /><br>
 
 Ref:<a href="http://mummer.sourceforge.net/manual/"></a>
 
@@ -208,7 +208,7 @@ Amino Acid          Side chain polarity Side chain acidity or basicity
 As time goes on and sequence divergence gets larger it gets harder to account for multiple substitutions at the same amino acid position.  PAM protein matrices are based on global alignments of closely related proteins.  However, sequence changes over long evolutionary time scales are not well approximated by compounding small changes that occur over short time scales.  For comparing more distantly related sequence other types of matrices are used.  One of the most common is the The BLOSUM (BLOck SUbstitution Matrix) series of matrices created by Steve Henikoff and colleagues.  Both the PAM and BLOSUM are not expressed as transformation frequencies but the probabilities of transformation are expressed by log-odds scores as shown below for a BLOSUM62 matrix.
   
 
-<img src="../imageslab13/400px-BLOSUM62.gif" width="700" alt="BLOSUM62">
+<img src="../images/lab13/400px-BLOSUM62.gif" width="700" alt="BLOSUM62">
 
 Ref: http://en.wikipedia.org/wiki/Substitution_matrix
 
@@ -307,9 +307,9 @@ The tree visualizations on NGPhylogeny.fr are ok for some purposes, but often fo
 
 Historically most phylogenetic analysis and tree visualization has been done with independent software tools. There has been a growing move towards using R for phylogenetic analyses. The package [ape: Analysis of Phylogenetics and Evolution](https://rdrr.io/cran/ape/) can access popular multiple sequence alignment and phylogenetic analysis methods. [ggtree](https://bioconductor.org/packages/release/bioc/html/ggtree.html) extends the 'ggplot2' for visualization and annotation of phylogenetic trees with their annotation data. The author, Guangchuang Yu, has recently published an R book [Data Integration, Manipulation and Visualization of Phylogenetic Trees](https://yulab-smu.top/treedata-book/).
 
+## ggtree
 
-
-## Tree Import
+### Tree Import
 
 From the [ggtree landing page](http://bioconductor.org/packages/release/bioc/html/ggtree.html) take a look at the [Tree Data Import vignette](http://bioconductor.org/packages/release/bioc/vignettes/ggtree/inst/doc/treeImport.html). There are many different software packages for creating phylogenetic trees from different types of data, and there are many formats for storing the resulting phylogenetic trees they produce.
 
@@ -349,7 +349,7 @@ The `ggtree` package implement several parser functions, including:
 -   `read.r8s` for parsing output of [r8s](loco.biosci.arizona.edu/r8s/)
 -   `read.raxml` for parsing output of [RAxML](http://sco.h-its.org/exelixis/web/software/raxml/)
 
-## Basic trees
+### Basic trees
 
 Let's first import our tree data. We're going to work with a made-up phylogeny with 13 taxa `tree_newick.nwk`. Let's load the libraries you'll need if you haven't already, and then import the tree using `read.tree()`. Displaying the object itself really isn't useful. The output just tells you a little bit about the tree itself.
 
@@ -394,7 +394,7 @@ ggtree(tree, branch.length="none", color="blue", size=2, linetype=3)
 
 <!-- ### Exercise `r .ex``r .ex=.ex+1` -->
 
-### Exercise 1
+#### Exercise 1
 
 Look at the help again for `?ggtree`, specifically at the `layout=` option. By default, it produces a rectangular layout.
 
@@ -411,7 +411,7 @@ ggtree(tree, layout="circular", branch.length="none", color="red", size=3)
 
 ------------------------------------------------------------------------
 
-### Other tree geoms
+#### Other tree geoms
 
 Let's add additional layers. We can create a plot object, e.g., `p`, to store the basic layout of a ggplot, and add more layers to it as we desire. Let's add node and tip points. Let's finally label the tips.
 
@@ -430,7 +430,7 @@ p + geom_tiplab()
 
 <!-- ### Exercise `r .ex``r .ex=.ex+1` -->
 
-### Exercise 2
+#### Exercise 2
 
 Similar to how we change the aesthetics for the tree inside the `ggtree()` call, we can also change the aesthetics of the points themselves by passing graphical parameters inside the `geom_nodepoint()` or `geom_tippoint()` calls. Create a phylogeny with the following aesthetic characteristics:
 
@@ -451,11 +451,11 @@ p +
 
 ------------------------------------------------------------------------
 
-## Tree annotation
+### Tree annotation
 
 The `geom_tiplab()` function adds some very rudimentary annotation. Let's take annotation a bit further. 
 
-### Internal node number
+#### Internal node number
 
 Before we can go further we need to understand how ggtree is handling the tree structure internally. Some of the functions in ggtree for annotating clades need a parameter specifying the internal node number. To get the internal node number, user can use `geom_text` to display it, where the label is an aesthetic mapping to the "node variable" stored inside the tree object (think of this like the continent variable inside the gapminder object). We also supply the `hjust` option so that the labels aren't sitting right on top of the nodes. 
 
@@ -553,7 +553,7 @@ ggtree(tree) +
 
 <!-- ### Exercise `r .ex``r .ex=.ex+1` -->
 
-## Exercise 3
+#### Exercise 3
 
 Produce the figure below.
 
@@ -587,7 +587,7 @@ ggtree(tree) +
 
 ------------------------------------------------------------------------
 
-## Advanced tree annotation
+### Advanced tree annotation
 
 Let's use a previously published dataset from this paper:
 
@@ -622,7 +622,7 @@ msaplot(p=ggtree(tree), fasta="data/lab13/flu_aasequence.fasta", window=c(150, 1
 ```
 
 
-## Bonus!
+### Bonus!
 
 See the [ggtree vignettes](http://bioconductor.org/packages/release/bioc/html/ggtree.html) for more details on how these work.
 
@@ -637,7 +637,7 @@ class(trees) <- "multiPhylo"
 ggtree(trees) + facet_wrap(~.id, scale="free", ncol=4) + ggtitle("Many trees. Such phylogenetics. Wow.")
 ```
 
-### Plot tree with other data
+### Plotting trees with other data
 
 For showing a phylogenetic tree alongside other panels with your own data, the `facet_plot()` function accepts a input data.frame and a `geom` function to draw the input data.
 
@@ -684,7 +684,7 @@ p
 ```
 
 
-## Tips
+### Tips
 
 If you the tree is not fitting in the plot space you can modify the `xlim`
 
