@@ -713,7 +713,7 @@ To change the size of the highlighted clade you can use `extend`
 
 ```{r, eval=FALSE}
 ggtree(tree) +
-  geom_hilight(node=34, fill="gold", extend = 0.5) 
+  geom_hilight(node=9, fill="gold", extend = 0.5) 
 ```
 
 You can order the layers when highlighting for certain effects
