@@ -1,0 +1,190 @@
+---
+title: Lab S4 - Working on the command line in Terminal with Shell
+---
+
+## Learning Objectives
+
+In this lesson, you will learn:
+
+-   Learn basic shell commands to navigate, manage files, and perform simple tasks in the terminal.
+
+## Introduction to the Shell and Terminal
+
+The **terminal** is a text-based interface that allows users to interact with their computer by typing commands. It’s a powerful tool for controlling the system, running programs, and managing files.
+
+The **shell** is the program that interprets these commands. When you open a terminal window, you're typically interacting with a shell—commonly **bash** (Bourne Again SHell), though others like **zsh**, **fish**, or **sh** may be used.
+
+### Key Concepts:
+
+-   **Prompt**: The line where you type commands, often ending in `$` for regular users or `#` for root.
+-   **Commands**: Instructions you give to the shell, like `ls` (list files), `cd` (change directory), or `mkdir` (make directory).
+-   **Arguments**: Extra information passed to commands, e.g., `ls -l` lists files in long format.
+-   **Pipes and Redirection**: You can chain commands (`|`) or redirect output (`>` or `<`) to files.
+-   **Scripts**: You can write shell scripts—text files with a series of commands—to automate tasks.
+
+### Why Use the Shell?
+
+-   **Efficiency**: Perform tasks faster than with a graphical interface.
+-   **Automation**: Easily automate repetitive tasks.
+-   **Remote Access**: Manage systems over SSH.
+-   **Control**: Fine-grained control over system behavior and configuration.
+
+## Accessing the Shell and Terminal on Unity
+
+On Microsoft's Windows and Apple's OSX there are terminal programs available, but user's in those communities rarely use the terminal to run shell commands.
+
+There are many ways to access the Shell and Terminal on Unity.
+
+1. You can access the shell directly without launching a new job.
+
+![](../images/labS4/unity_shell_access.png)
+
+![](../images/labS4/unity_shell.png)
+
+2. In RStudio the terminal is available in the bottom left quadrant
+
+![](../images/labS4/R_terminal.png)
+3. Using JypterLab
+
+![](../images/labS4/launcher.png)
+
+## Shell Tutorial
+
+### Getting started
+
+-   On Unity under `Interactive Apps` Open a `JupyterLab` session
+-   In the `Launcher` start a terminal session.
+
+
+**Try This:**
+
+-   Type: echo "Hello, world!"
+-   This prints text to the screen.
+
+### Navigating the Filesystem
+
+**Key Commands:**
+
+-   `pwd` – Print current directory.
+-   `ls` – List files.
+-   `cd` – Change directory.
+
+**Try This:**
+
+```
+$ pwd
+
+$ ls
+
+$ cd \~        \# Go to home directory
+
+$ cd /        \# Go to root directory
+
+$ cd -        \# Go back to previous directory
+
+$ cd pathogen         \# To move into a directory
+
+$ cd ..         \# To go up one directory
+```
+
+**Tips:**
+
+-   Use `ls -l` for detailed listing.
+-   Use `ls -a` to show hidden files.
+
+### Working with Files and Directories
+
+**Key Commands:**
+
+-   `touch` – Create a file.
+-   `mkdir` – Make a directory.
+-   `rm` – Remove a file.
+-   `rmdir` – Remove a directory.
+-   `cp` – Copy files.
+-   `mv` – Move or rename files.
+
+**Try This:**
+
+```
+$ mkdir test_folder
+
+$ cd test_folder
+
+$ touch file1.txt
+
+$ ls
+
+$ cp file1.txt file2.txt
+
+$ mv file2.txt renamed.txt
+
+$ rm file1.txt
+
+$ cd ..
+
+$ rmdir test_folder
+
+**Caution:** `rm` deletes files permanently. Use with care.
+
+```
+
+### Viewing and Editing Files
+
+**Key Commands:**
+-   `cat` – View file contents.
+-   `less` – Scroll through file.
+-   `nano` – Simple text editor.
+
+**Try This:**
+
+```
+$ touch test.txt
+
+$ echo "This is a test file." > test.txt
+
+$ cat test.txt
+
+## To exit type `q`
+
+$ less test.txt
+
+## To exit type `q`
+
+$ nano test.txt
+
+## To exit `type`ctr x`
+```
+
+**Tip:** Press `Ctrl+X` to exit `nano`.
+
+### Useful Tools and Shortcuts
+
+**Key Concepts:**
+
+-   `man` – Manual pages.
+-   `history` – View command history.
+-   `clear` – Clear terminal screen.
+-   Tab completion – Auto-complete file names.
+-   Arrow keys – Navigate command history.
+
+**Try This:**
+
+```
+$ man ls
+
+$ history
+
+$ clear
+```
+
+**Bonus:**
+
+-   Use `grep` to search inside files:
+
+```
+$ grep "test" test.txt
+```
+
+## Exercises
+
+Complete the above commands. Open a text file and save as `myhistory.txt`. Type `history` into the shell as above. Copy and paste the history into the `myhistory.txt` file.  Download the file to your computer and then upload the file to Canvas.

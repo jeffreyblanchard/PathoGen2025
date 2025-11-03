@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What will viruses do next?, the first AI genomes and metagenome brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Read abundance - normalization and statistics\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab : Connecting a Github repo site with a RStudio project\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What will viruses do next?, the first AI genomes and metagenome brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Read abundance - normalization and statistics\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project(labs/lab3s_github.html)\nLab S4 : Working on the command line in Terminal with Shell(labs/lab4s_shell.html)\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quarto\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
   },
   {
     "objectID": "report.html",
@@ -954,16 +954,16 @@
   {
     "objectID": "labs/lab3s_github.html",
     "href": "labs/lab3s_github.html",
-    "title": "Lab S4 - Working on the command line",
+    "title": "Lab S3 - “Connecting a Github repo site with a new RStudio project”",
     "section": "",
-    "text": "In this lesson, you will learn:\n\nLearn basic shell commands to navigate, manage files, and perform simple tasks in the terminal."
+    "text": "Much of the material for this lesson was borrowed from or inspired by Matt Jones’ NCEAS Reproducible Research Techniques for Synthesis workshop"
   },
   {
     "objectID": "labs/lab3s_github.html#learning-objectives",
     "href": "labs/lab3s_github.html#learning-objectives",
-    "title": "Lab S4 - Working on the command line",
-    "section": "",
-    "text": "In this lesson, you will learn:\n\nLearn basic shell commands to navigate, manage files, and perform simple tasks in the terminal."
+    "title": "Lab S3 - “Connecting a Github repo site with a new RStudio project”",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nIn this lesson, you will learn:\n\nWhat computational reproducibility is and why it is useful\nHow version control can increase computational reproducibility\nHow to start a Github repo and Pages site\nto set up your own RStudio Project and sync with your GitHub repo\nHow to make a simple web page for your site"
   },
   {
     "objectID": "labs/lab3s_github.html#background",
@@ -1263,6 +1263,48 @@
     "objectID": "labs/lab3s_github.html#exercises",
     "href": "labs/lab3s_github.html#exercises",
     "title": "Lab S4 - Working on the command line",
+    "section": "Exercises",
+    "text": "Exercises\nComplete the above commands. Open a text file and save as myhistory.txt. Type history into the shell as above. Copy and paste the history into the myhistory.txt file. Download the file to your computer and then upload the file to Canvas."
+  },
+  {
+    "objectID": "labs/lab4s_shell.html",
+    "href": "labs/lab4s_shell.html",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "",
+    "text": "In this lesson, you will learn:\n\nLearn basic shell commands to navigate, manage files, and perform simple tasks in the terminal."
+  },
+  {
+    "objectID": "labs/lab4s_shell.html#learning-objectives",
+    "href": "labs/lab4s_shell.html#learning-objectives",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "",
+    "text": "In this lesson, you will learn:\n\nLearn basic shell commands to navigate, manage files, and perform simple tasks in the terminal."
+  },
+  {
+    "objectID": "labs/lab4s_shell.html#introduction-to-the-shell-and-terminal",
+    "href": "labs/lab4s_shell.html#introduction-to-the-shell-and-terminal",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "Introduction to the Shell and Terminal",
+    "text": "Introduction to the Shell and Terminal\nThe terminal is a text-based interface that allows users to interact with their computer by typing commands. It’s a powerful tool for controlling the system, running programs, and managing files.\nThe shell is the program that interprets these commands. When you open a terminal window, you’re typically interacting with a shell—commonly bash (Bourne Again SHell), though others like zsh, fish, or sh may be used.\n\nKey Concepts:\n\nPrompt: The line where you type commands, often ending in $ for regular users or # for root.\nCommands: Instructions you give to the shell, like ls (list files), cd (change directory), or mkdir (make directory).\nArguments: Extra information passed to commands, e.g., ls -l lists files in long format.\nPipes and Redirection: You can chain commands (|) or redirect output (&gt; or &lt;) to files.\nScripts: You can write shell scripts—text files with a series of commands—to automate tasks.\n\n\n\nWhy Use the Shell?\n\nEfficiency: Perform tasks faster than with a graphical interface.\nAutomation: Easily automate repetitive tasks.\nRemote Access: Manage systems over SSH.\nControl: Fine-grained control over system behavior and configuration."
+  },
+  {
+    "objectID": "labs/lab4s_shell.html#accessing-the-shell-and-terminal-on-unity",
+    "href": "labs/lab4s_shell.html#accessing-the-shell-and-terminal-on-unity",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "Accessing the Shell and Terminal on Unity",
+    "text": "Accessing the Shell and Terminal on Unity\nOn Microsoft’s Windows and Apple’s OSX there are terminal programs available, but user’s in those communities rarely use the terminal to run shell commands.\nThere are many ways to access the Shell and Terminal on Unity.\n\nYou can access the shell directly without launching a new job.\n\n\n\n\nIn RStudio the terminal is available in the bottom left quadrant\n\n 3. Using JypterLab"
+  },
+  {
+    "objectID": "labs/lab4s_shell.html#shell-tutorial",
+    "href": "labs/lab4s_shell.html#shell-tutorial",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "Shell Tutorial",
+    "text": "Shell Tutorial\n\nGetting started\n\nOn Unity under Interactive Apps Open a JupyterLab session\nIn the Launcher start a terminal session.\n\nTry This:\n\nType: echo “Hello, world!”\nThis prints text to the screen.\n\n\n\nNavigating the Filesystem\nKey Commands:\n\npwd – Print current directory.\nls – List files.\ncd – Change directory.\n\nTry This:\n$ pwd\n\n$ ls\n\n$ cd \\~        \\# Go to home directory\n\n$ cd /        \\# Go to root directory\n\n$ cd -        \\# Go back to previous directory\n\n$ cd pathogen         \\# To move into a directory\n\n$ cd ..         \\# To go up one directory\nTips:\n\nUse ls -l for detailed listing.\nUse ls -a to show hidden files.\n\n\n\nWorking with Files and Directories\nKey Commands:\n\ntouch – Create a file.\nmkdir – Make a directory.\nrm – Remove a file.\nrmdir – Remove a directory.\ncp – Copy files.\nmv – Move or rename files.\n\nTry This:\n$ mkdir test_folder\n\n$ cd test_folder\n\n$ touch file1.txt\n\n$ ls\n\n$ cp file1.txt file2.txt\n\n$ mv file2.txt renamed.txt\n\n$ rm file1.txt\n\n$ cd ..\n\n$ rmdir test_folder\n\n**Caution:** `rm` deletes files permanently. Use with care.\n\n\n\nViewing and Editing Files\nKey Commands: - cat – View file contents. - less – Scroll through file. - nano – Simple text editor.\nTry This:\n$ touch test.txt\n\n$ echo \"This is a test file.\" &gt; test.txt\n\n$ cat test.txt\n\n## To exit type `q`\n\n$ less test.txt\n\n## To exit type `q`\n\n$ nano test.txt\n\n## To exit `type`ctr x`\nTip: Press Ctrl+X to exit nano.\n\n\nUseful Tools and Shortcuts\nKey Concepts:\n\nman – Manual pages.\nhistory – View command history.\nclear – Clear terminal screen.\nTab completion – Auto-complete file names.\nArrow keys – Navigate command history.\n\nTry This:\n$ man ls\n\n$ history\n\n$ clear\nBonus:\n\nUse grep to search inside files:\n\n$ grep \"test\" test.txt"
+  },
+  {
+    "objectID": "labs/lab4s_shell.html#exercises",
+    "href": "labs/lab4s_shell.html#exercises",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
     "section": "Exercises",
     "text": "Exercises\nComplete the above commands. Open a text file and save as myhistory.txt. Type history into the shell as above. Copy and paste the history into the myhistory.txt file. Download the file to your computer and then upload the file to Canvas."
   }
