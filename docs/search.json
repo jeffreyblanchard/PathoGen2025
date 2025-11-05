@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What will viruses do next?, the first AI genomes and metagenome brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Read abundance - normalization and statistics\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\nLab S4 : Working on the command line in Terminal with Shell\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quart\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What will viruses do next?, the first AI genomes and metagenome brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\nLab S4 : Working on the command line in Terminal with Shell\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quart\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
   },
   {
     "objectID": "report.html",
@@ -886,7 +886,7 @@
     "href": "labs/lab6_NEON_pub_graphics.html#neon-graphs",
     "title": "Lab 6 : ggplotting with NEON MAG data",
     "section": "NEON graphs",
-    "text": "NEON graphs\n\nBar plots\n\nCounts produced by ggplot\nNote that in this graph ggplot produces the count automatically\n\n\nR code\nNEON_MAGs |&gt; \nmutate(phylum = replace_na(phylum, \"***NOVEL***\")) |&gt;\nggplot(aes(x = phylum)) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nUse the forcats package in tidyverse to put the counts in descending order\n\n\nR code\nNEON_MAGs |&gt; \nggplot(aes(x = fct_infreq(phylum))) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n\n\nCounts passed to ggplot\nThis is different code that creates the same graph as above. Note in this case the counts were first calculated in dplyr then passed to ggplot. Both x and y values are needed. Within geom_bar stat is set to “identify”\n\n\nR code\nNEON_MAGs |&gt; \n  count(phylum) |&gt; \nggplot(aes(x = phylum, y = n)) +\n  geom_col(stat = \"identity\") +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nTo put in descending order\noye\"Sepal Width #| fig-height: 10 #| fig-width: 8 NEON_MAGs |&gt;    count(phylum) |&gt;  ggplot(aes(x = reorder(phylum, n), y = n)) +   geom_col(stat = \"identity\") +   coord_flip()\n\n\nStacked vs multiple bar plots\n\n\nR code\nNEON_MAGs |&gt; \n  mutate(phylum = replace_na(phylum, \"***UNKNOWN***\")) |&gt; \nggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +\n  geom_bar() +\n  coord_flip() +\n  labs(title = \"2023 and 2024 NEON MAG Taxonomic Distribution\", x = \"Count\", y = \"Phylum\") \n\n\n\n\n\n\n\n\n\n\n\nR code\nNEON_MAGs |&gt; \nmutate(phylum = replace_na(phylum, \"***NOVEL***\")) |&gt;\nggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +\n  geom_bar(position = \"dodge\") +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nNotice that the bars are of different width. This can be adjusted by setting the width\n\n\nR code\nNEON_MAGs |&gt; \nmutate(phylum = replace_na(phylum, \"***NOVEL***\")) |&gt; \nggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +\n  geom_bar(position = position_dodge2(width = 0.9, preserve = \"single\")) +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple panels (facet_wrap)\n\n\nR code\nNEON_MAGs |&gt; \nggplot(aes(x = phylum, fill = type)) +\n  geom_bar(position = position_dodge2(width = 0.9, preserve = \"single\")) +\n  coord_flip() +\n  facet_wrap(vars(site_ID), scales = \"free\", ncol = 2)\n\n\n\n\n\n\n\n\n\n\n\nHistogram\n\n\nR code\nNEON_MAGs |&gt; \nggplot(aes(x = total_number_of_bases)) +\n  geom_histogram(bins = 50) \n\n\n\n\n\n\n\n\n\n\n\nBox plot\n\n\nR code\nNEON_MAGs  |&gt;    \nggplot(aes(x = fct_infreq(phylum), y = total_number_of_bases)) +\n  geom_boxplot() +\n  theme(axis.text.x = element_text(angle=45, vjust=1, hjust=1))\n\n\n\n\n\n\n\n\n\n\n\nShowing each point in the above plot\n\n\nR code\nNEON_MAGs |&gt;   \nggplot(aes(x = fct_infreq(phylum), y = total_number_of_bases)) +\n  geom_point() +\n  coord_flip()"
+    "text": "NEON graphs\n\nBar plots\n\nCounts produced by ggplot\nNote that in this graph ggplot produces the count automatically\n\n\nR code\nNEON_MAGs |&gt; \nmutate(phylum = replace_na(phylum, \"***NOVEL***\")) |&gt;\nggplot(aes(x = phylum)) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nUse the forcats package in tidyverse to put the counts in descending order\n\n\nR code\nNEON_MAGs |&gt; \nggplot(aes(x = fct_infreq(phylum))) +\n  geom_bar() +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n\n\nCounts passed to ggplot\nThis is different code that creates the same graph as above. Note in this case the counts were first calculated in dplyr then passed to ggplot. Both x and y values are needed. Within geom_bar stat is set to “identify”\n\n\nR code\nNEON_MAGs |&gt; \n  count(phylum) |&gt; \nggplot(aes(x = phylum, y = n)) +\n  geom_col(stat = \"identity\") +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nTo put in descending order\nkbh\"Sepal Width #| fig-height: 10 #| fig-width: 8 NEON_MAGs |&gt;    count(phylum) |&gt;  ggplot(aes(x = reorder(phylum, n), y = n)) +   geom_col(stat = \"identity\") +   coord_flip()\n\n\nStacked vs multiple bar plots\n\n\nR code\nNEON_MAGs |&gt; \n  mutate(phylum = replace_na(phylum, \"***UNKNOWN***\")) |&gt; \nggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +\n  geom_bar() +\n  coord_flip() +\n  labs(title = \"2023 and 2024 NEON MAG Taxonomic Distribution\", x = \"Count\", y = \"Phylum\") \n\n\n\n\n\n\n\n\n\n\n\nR code\nNEON_MAGs |&gt; \nmutate(phylum = replace_na(phylum, \"***NOVEL***\")) |&gt;\nggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +\n  geom_bar(position = \"dodge\") +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nNotice that the bars are of different width. This can be adjusted by setting the width\n\n\nR code\nNEON_MAGs |&gt; \nmutate(phylum = replace_na(phylum, \"***NOVEL***\")) |&gt; \nggplot(aes(x = fct_rev(fct_infreq(phylum)), fill = type)) +\n  geom_bar(position = position_dodge2(width = 0.9, preserve = \"single\")) +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple panels (facet_wrap)\n\n\nR code\nNEON_MAGs |&gt; \nggplot(aes(x = phylum, fill = type)) +\n  geom_bar(position = position_dodge2(width = 0.9, preserve = \"single\")) +\n  coord_flip() +\n  facet_wrap(vars(site_ID), scales = \"free\", ncol = 2)\n\n\n\n\n\n\n\n\n\n\n\nHistogram\n\n\nR code\nNEON_MAGs |&gt; \nggplot(aes(x = total_number_of_bases)) +\n  geom_histogram(bins = 50) \n\n\n\n\n\n\n\n\n\n\n\nBox plot\n\n\nR code\nNEON_MAGs  |&gt;    \nggplot(aes(x = fct_infreq(phylum), y = total_number_of_bases)) +\n  geom_boxplot() +\n  theme(axis.text.x = element_text(angle=45, vjust=1, hjust=1))\n\n\n\n\n\n\n\n\n\n\n\nShowing each point in the above plot\n\n\nR code\nNEON_MAGs |&gt;   \nggplot(aes(x = fct_infreq(phylum), y = total_number_of_bases)) +\n  geom_point() +\n  coord_flip()"
   },
   {
     "objectID": "labs/lab6_freshwater.html",
@@ -1307,5 +1307,89 @@
     "title": "Lab S4 - Working on the command line in Terminal with Shell",
     "section": "Exercises",
     "text": "Exercises\nComplete the above commands. Open a text file and save as myhistory.txt. Type history into the shell as above. Copy and paste the history into the myhistory.txt file. Download the file to your computer and then upload the file to Canvas."
+  },
+  {
+    "objectID": "labs/lab10_regex.html",
+    "href": "labs/lab10_regex.html",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "",
+    "text": "How to use regular expressions in R"
+  },
+  {
+    "objectID": "labs/lab10_regex.html#learning-objectives",
+    "href": "labs/lab10_regex.html#learning-objectives",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "",
+    "text": "How to use regular expressions in R"
+  },
+  {
+    "objectID": "labs/lab10_regex.html#load-libaries",
+    "href": "labs/lab10_regex.html#load-libaries",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Load libaries",
+    "text": "Load libaries\n\n\nR code\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "labs/lab10_regex.html#what-are-regular-expressions",
+    "href": "labs/lab10_regex.html#what-are-regular-expressions",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "What Are Regular Expressions?",
+    "text": "What Are Regular Expressions?\nRegular expressions are sequences of characters that define search patterns. In R, they are commonly used for:\n\nSearching text\nExtracting substrings\nReplacing patterns\nValidating formats (e.g., emails, dates)\n\n\nKey Functions in R for Regex\nR provides several base functions that support regular expressions:\n\n\n1. grep() / grepl()\n\ngrep() returns indices of matches.\ngrepl() returns a logical vector indicating matches.\n\n\n\nR code\ngrepl(\"cat\", c(\"cat\", \"dog\", \"catalog\"))\n\n\n[1]  TRUE FALSE  TRUE\n\n\n\n2. sub() / gsub()\n\nsub() replaces the first match.\ngsub() replaces all matches.\n\n\n\nR code\ngsub(\"dog\", \"cat\", \"dog and dog\")\n\n\n[1] \"cat and cat\"\n\n\n\n\n3. regexpr() / gregexpr()\n\nReturn the position of the first/all matches and their lengths.\n\n\n\n4. regmatches()\n\nExtracts matched substrings based on regexpr() or gregexpr().\n\n\n\n\nRegex Syntax Basics\nHere are some commonly used regex symbols:\n\n\n\n\n\n\n\n\nSymbol\nMeaning\nExample\n\n\n\n\n.\nAny character except newline\n\"a.b\" matches “acb”, “a1b”\n\n\n^\nStart of string\n\"^cat\" matches “catfish”\n\n\n$\nEnd of string\n\"cat$\" matches “bobcat”\n\n\n*\n0 or more repetitions\n\"ca*t\" matches “ct”, “cat”, “caaaat”\n\n\n+\n1 or more repetitions\n\"ca+t\" matches “cat”, “caaaat”\n\n\n?\n0 or 1 repetition\n\"ca?t\" matches “ct”, “cat”\n\n\n[]\nCharacter class\n\"[cd]og\" matches “dog”, “cog”\n\n\n|\nOR\n\"cat|dog\" matches either\n\n\n()\nGrouping\n\"(cat|dog)s?\" matches “cat”, “cats”, “dog”, “dogs”\n\n\n\\\\\nEscape special characters\n\"\\\\.\" matches a literal dot\n\n\n\n\n\nExample Use Case\n\n\nR code\ntext &lt;- c(\"apple\", \"banana\", \"cherry\", \"date\")\ngrep(\"a\", text, value = TRUE)  # Matches strings containing 'a'\n\n\n[1] \"apple\"  \"banana\" \"date\"  \n\n\nR code\ngrep(\"^a\", text, value = TRUE)  # Matches strings starting with 'a'\n\n\n[1] \"apple\"\n\n\nR code\ngrep(\"a$\", text, value = TRUE)  # Matches strings ending with 'a'\n\n\n[1] \"banana\""
+  },
+  {
+    "objectID": "labs/lab10_regex.html#key-functions-in-r-for-regex",
+    "href": "labs/lab10_regex.html#key-functions-in-r-for-regex",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Key Functions in R for Regex",
+    "text": "Key Functions in R for Regex\nR provides several base functions that support regular expressions:\n\n1. grep() / grepl()\n\ngrep() returns indices of matches.\ngrepl() returns a logical vector indicating matches.\n\n\n\nR code\ngrepl(\"cat\", c(\"cat\", \"dog\", \"catalog\"))\n\n\n[1]  TRUE FALSE  TRUE\n\n\n\n\n2. sub() / gsub()\n\nsub() replaces the first match.\ngsub() replaces all matches.\n\n\n\nR code\ngsub(\"dog\", \"cat\", \"dog and dog\")\n\n\n[1] \"cat and cat\"\n\n\n\n\n3. regexpr() / gregexpr()\n\nReturn the position of the first/all matches and their lengths.\n\n\n\n4. regmatches()\n\nExtracts matched substrings based on regexpr() or gregexpr()."
+  },
+  {
+    "objectID": "labs/lab10_regex.html#regex-syntax-basics",
+    "href": "labs/lab10_regex.html#regex-syntax-basics",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Regex Syntax Basics",
+    "text": "Regex Syntax Basics\nHere are some commonly used regex symbols:\n\n\n\n\n\n\n\n\nSymbol\nMeaning\nExample\n\n\n\n\n.\nAny character except newline\n\"a.b\" matches “acb”, “a1b”\n\n\n^\nStart of string\n\"^cat\" matches “catfish”\n\n\n$\nEnd of string\n\"cat$\" matches “bobcat”\n\n\n*\n0 or more repetitions\n\"ca*t\" matches “ct”, “cat”, “caaaat”\n\n\n+\n1 or more repetitions\n\"ca+t\" matches “cat”, “caaaat”\n\n\n?\n0 or 1 repetition\n\"ca?t\" matches “ct”, “cat”\n\n\n[]\nCharacter class\n\"[cd]og\" matches “dog”, “cog”\n\n\n|\nOR\n\"cat|dog\" matches either\n\n\n()\nGrouping\n\"(cat|dog)s?\" matches “cat”, “cats”, “dog”, “dogs”\n\n\n\\\\\nEscape special characters\n\"\\\\.\" matches a literal dot"
+  },
+  {
+    "objectID": "labs/lab10_regex.html#example-use-case",
+    "href": "labs/lab10_regex.html#example-use-case",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Example Use Case",
+    "text": "Example Use Case\n\n\nR code\ntext &lt;- c(\"apple\", \"banana\", \"cherry\", \"date\")\ngrep(\"a\", text, value = TRUE)  # Matches strings containing 'a'\n\n\n[1] \"apple\"  \"banana\" \"date\"  \n\n\nR code\ngrep(\"^a\", text, value = TRUE)  # Matches strings starting with 'a'\n\n\n[1] \"apple\"\n\n\nR code\ngrep(\"a$\", text, value = TRUE)  # Matches strings ending with 'a'\n\n\n[1] \"banana\""
+  },
+  {
+    "objectID": "labs/lab10_regex.html#introduction-to-stringr",
+    "href": "labs/lab10_regex.html#introduction-to-stringr",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Introduction to stringr",
+    "text": "Introduction to stringr\nThe base R regular expressions are great to use if you already use regular expressions in another programming language. Starting out the stringr package, part of the tidyverse, provides a cohesive and consistent set of functions for string manipulation. It simplifies working with regular expressions by offering:\n\nConsistent function names (str_*)\nPredictable argument order (string first, pattern second)\nBuilt-in support for vectorized operations\nBetter integration with tidyverse workflows\n\n\nWhy Use stringr rather than base R regex functions?\n\nCleaner syntax: Easier to read and write than base R regex functions.\nTidyverse-friendly: Works well with dplyr, purrr, and other packages.\nConsistent behavior: Avoids quirks of base R functions like grep() and sub().\n\n\n\nCommon stringr Functions for Regex\nHere are some of the most useful functions when working with regular expressions:\n\n1. str_detect()\nChecks if a pattern exists in a string.\n\n\nR code\nstr_detect(c(\"apple\", \"banana\", \"cherry\"), \"^a\")\n\n\n[1]  TRUE FALSE FALSE\n\n\n\n\n2. str_replace() / str_replace_all()\nReplaces the first or all occurrences of a pattern.\n\n\nR code\nstr_replace(\"cat and dog\", \"dog\", \"mouse\")\n\n\n[1] \"cat and mouse\"\n\n\n\n\nR code\nstr_replace_all(\"cat and dog and dog\", \"dog\", \"mouse\")\n\n\n[1] \"cat and mouse and mouse\"\n\n\n\n\n3. str_extract() / str_extract_all()\nExtracts the first or all matches of a pattern.\n\n\nR code\nstr_extract(\"My email is test@example.com\", \"[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,}\")\n\n\n[1] \"test@example.com\"\n\n\n\n\n4. str_match() / str_match_all()\nExtracts matched groups using parentheses.\n\n\nR code\nstr_match(\"Name: John\", \"Name: (\\\\w+)\")\n\n\n     [,1]         [,2]  \n[1,] \"Name: John\" \"John\"\n\n\n\n\n5. str_split()\nSplits strings based on a pattern.\n\n\nR code\nstr_split(\"apple,banana,cherry\", \",\")\n\n\n[[1]]\n[1] \"apple\"  \"banana\" \"cherry\"\n\n\n\n\n\nRegex Integration\nAll stringr functions accept regular expressions by default. You can use:\n\n^, $, ., *, +, ?, [], (), | — standard regex symbols\nEscaped characters like \\\\d, \\\\s, \\\\w for digits, whitespace, and word characters"
+  },
+  {
+    "objectID": "labs/lab10_regex.html#why-use-stringr-rather-than-base-r-regex-functions",
+    "href": "labs/lab10_regex.html#why-use-stringr-rather-than-base-r-regex-functions",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Why Use stringr rather than base R regex functions?",
+    "text": "Why Use stringr rather than base R regex functions?\n\nCleaner syntax: Easier to read and write than base R regex functions.\nTidyverse-friendly: Works well with dplyr, purrr, and other packages.\nConsistent behavior: Avoids quirks of base R functions like grep() and sub()."
+  },
+  {
+    "objectID": "labs/lab10_regex.html#common-stringr-functions-for-regex",
+    "href": "labs/lab10_regex.html#common-stringr-functions-for-regex",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Common stringr Functions for Regex",
+    "text": "Common stringr Functions for Regex\nHere are some of the most useful functions when working with regular expressions:\n\n1. str_detect()\nChecks if a pattern exists in a string.\n\n\nR code\nstr_detect(c(\"apple\", \"banana\", \"cherry\"), \"^a\")\n\n\n[1]  TRUE FALSE FALSE\n\n\n\n\n2. str_replace() / str_replace_all()\nReplaces the first or all occurrences of a pattern.\n\n\nR code\nstr_replace(\"cat and dog\", \"dog\", \"mouse\")\n\n\n[1] \"cat and mouse\"\n\n\n\n\nR code\nstr_replace_all(\"cat and dog and dog\", \"dog\", \"mouse\")\n\n\n[1] \"cat and mouse and mouse\"\n\n\n\n\n3. str_extract() / str_extract_all()\nExtracts the first or all matches of a pattern.\n\n\nR code\nstr_extract(\"My email is test@example.com\", \"[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,}\")\n\n\n[1] \"test@example.com\"\n\n\n\n\n4. str_match() / str_match_all()\nExtracts matched groups using parentheses.\n\n\nR code\nstr_match(\"Name: John\", \"Name: (\\\\w+)\")\n\n\n     [,1]         [,2]  \n[1,] \"Name: John\" \"John\"\n\n\n\n\n5. str_split()\nSplits strings based on a pattern.\n\n\nR code\nstr_split(\"apple,banana,cherry\", \",\")\n\n\n[[1]]\n[1] \"apple\"  \"banana\" \"cherry\""
+  },
+  {
+    "objectID": "labs/lab10_regex.html#regex-integration",
+    "href": "labs/lab10_regex.html#regex-integration",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Regex Integration",
+    "text": "Regex Integration\nAll stringr functions accept regular expressions by default. You can use:\n\n^, $, ., *, +, ?, [], (), | — standard regex symbols\nEscaped characters like \\\\d, \\\\s, \\\\w for digits, whitespace, and word characters"
+  },
+  {
+    "objectID": "labs/lab10_regex.html#exercises",
+    "href": "labs/lab10_regex.html#exercises",
+    "title": "Lab 10 : Detecting Patters with Regular Expressions",
+    "section": "Exercises",
+    "text": "Exercises\nR for Data Science Chapter 3.\nToday we will walk through Chapter 15 Regular expressions in R for Data Science. As we did last week, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.\n\nWhat to upload to Canvas\nAfter you Render the qmd file to an html file, export the file to your computer and upload it to Canvas."
   }
 ]

@@ -1,0 +1,154 @@
+---
+title: 'Lab 10 : Detecting Patters with Regular Expressions'
+---
+
+## Learning objectives
+
+-   How to use regular expressions in R
+
+## Load libaries
+
+```{r}
+library(tidyverse)
+```
+
+## What Are Regular Expressions?
+
+Regular expressions are sequences of characters that define search patterns. In R, they are commonly used for:
+
+- Searching text
+- Extracting substrings
+- Replacing patterns
+- Validating formats (e.g., emails, dates)
+
+
+### Key Functions in R for Regex
+
+R provides several base functions that support regular expressions:
+
+### 1. `grep()` / `grepl()`
+- **`grep()`** returns indices of matches.
+- **`grepl()`** returns a logical vector indicating matches.
+
+```{r}
+grepl("cat", c("cat", "dog", "catalog"))
+```
+
+#### 2. `sub()` / `gsub()`
+- **`sub()`** replaces the first match.
+- **`gsub()`** replaces all matches.
+
+```{r}
+gsub("dog", "cat", "dog and dog")
+```
+
+#### 3. `regexpr()` / `gregexpr()`
+- Return the position of the first/all matches and their lengths.
+
+#### 4. `regmatches()`
+- Extracts matched substrings based on `regexpr()` or `gregexpr()`.
+
+
+### Regex Syntax Basics
+
+Here are some commonly used regex symbols:
+
+| Symbol | Meaning                          | Example         |
+|--------|----------------------------------|-----------------|
+| `.`    | Any character except newline     | `"a.b"` matches "acb", "a1b" |
+| `^`    | Start of string                  | `"^cat"` matches "catfish" |
+| `$`    | End of string                    | `"cat$"` matches "bobcat" |
+| `*`    | 0 or more repetitions            | `"ca*t"` matches "ct", "cat", "caaaat" |
+| `+`    | 1 or more repetitions            | `"ca+t"` matches "cat", "caaaat" |
+| `?`    | 0 or 1 repetition                | `"ca?t"` matches "ct", "cat" |
+| `[]`   | Character class                  | `"[cd]og"` matches "dog", "cog" |
+| `|`    | OR                               | `"cat|dog"` matches either |
+| `()`   | Grouping                         | `"(cat|dog)s?"` matches "cat", "cats", "dog", "dogs" |
+| `\\`   | Escape special characters        | `"\\."` matches a literal dot |
+
+###  Example Use Case
+
+```{r}
+text <- c("apple", "banana", "cherry", "date")
+grep("a", text, value = TRUE)  # Matches strings containing 'a'
+grep("^a", text, value = TRUE)  # Matches strings starting with 'a'
+grep("a$", text, value = TRUE)  # Matches strings ending with 'a'
+```
+
+## Introduction to `stringr`
+
+The base R regular expressions are great to use if you already use regular expressions in another programming language. Starting out the **`stringr`** package, part of the **tidyverse**, provides a cohesive and consistent set of functions for string manipulation. It simplifies working with regular expressions by offering:
+
+- **Consistent function names** (`str_*`)
+- **Predictable argument order** (string first, pattern second)
+- **Built-in support for vectorized operations**
+- **Better integration with tidyverse workflows**
+
+
+### Why Use `stringr` rather than base R regex functions?
+
+- **Cleaner syntax**: Easier to read and write than base R regex functions.
+- **Tidyverse-friendly**: Works well with `dplyr`, `purrr`, and other packages.
+- **Consistent behavior**: Avoids quirks of base R functions like `grep()` and `sub()`.
+
+
+### Common `stringr` Functions for Regex
+
+Here are some of the most useful functions when working with regular expressions:
+
+#### 1. `str_detect()`
+Checks if a pattern exists in a string.
+
+```{r}
+str_detect(c("apple", "banana", "cherry"), "^a")
+```
+
+#### 2. `str_replace()` / `str_replace_all()`
+Replaces the first or all occurrences of a pattern.
+
+```{r}
+str_replace("cat and dog", "dog", "mouse")
+```
+
+```{r}
+str_replace_all("cat and dog and dog", "dog", "mouse")
+
+```
+
+#### 3. `str_extract()` / `str_extract_all()`
+Extracts the first or all matches of a pattern.
+
+```{r}
+str_extract("My email is test@example.com", "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}")
+```
+
+#### 4. `str_match()` / `str_match_all()`
+Extracts matched groups using parentheses.
+
+```{r}
+str_match("Name: John", "Name: (\\w+)")
+```
+
+#### 5. `str_split()`
+Splits strings based on a pattern.
+
+```{r}
+str_split("apple,banana,cherry", ",")
+```
+
+### Regex Integration
+
+All `stringr` functions accept regular expressions by default. You can use:
+
+- `^`, `$`, `.`, `*`, `+`, `?`, `[]`, `()`, `|` — standard regex symbols
+- Escaped characters like `\\d`, `\\s`, `\\w` for digits, whitespace, and word characters
+
+## Exercises
+
+[R for Data Science Chapter 3](https://r4ds.hadley.nz/data-transform).
+
+Today we will walk through Chapter 15 Regular expressions in R for Data Science. As we did last week, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.
+
+### What to upload to Canvas
+
+After you `Render` the qmd file to an html file, export the file to your computer and upload it to Canvas.

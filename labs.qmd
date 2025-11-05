@@ -13,7 +13,7 @@ R Labs
 * Lab 7 : [Data Tidying, Transformation and Visualization with COVID-19 reporting data](labs/lab7_covid.html)
 * Lab 8: Catch up, [What will viruses do next?](https://www.nature.com/articles/d41586-024-04195-3), [the first AI genomes](https://arcinstitute.org/news/hie-king-first-synthetic-phage) and [metagenome brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
 * Lab 9 - [Sequence Alignment, Phylogenetic Analysis and Tree Visualization](labs/lab9_ggtree.html) 
-* Lab 10 : Read abundance - normalization and statistics
+* Lab 10 : [Detecting Patters with Regular Expressions](labs/lab10_regex.html)
 
 Unity Labs
 
