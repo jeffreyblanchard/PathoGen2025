@@ -143,6 +143,10 @@ All `stringr` functions accept regular expressions by default. You can use:
 - `^`, `$`, `.`, `*`, `+`, `?`, `[]`, `()`, `|` — standard regex symbols
 - Escaped characters like `\\d`, `\\s`, `\\w` for digits, whitespace, and word characters
 
+### `stringi`
+
+`stringr` is built on top of the stringi package. `stringr` is useful when you’re learning because it exposes a minimal set of functions, which have been carefully picked to handle the most common string manipulation functions. `stringi`, on the other hand, is designed to be comprehensive. It contains almost every function you might ever need: stringi has 250 functions to stringr’s 49.
+
 ## Exercises
 
 [R for Data Science Chapter 15](https://r4ds.hadley.nz/regexps.html).
