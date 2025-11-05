@@ -26,7 +26,7 @@ Regular expressions are sequences of characters that define search patterns. In 
 
 R provides several base functions that support regular expressions:
 
-### 1. `grep()` / `grepl()`
+#### 1. `grep()` / `grepl()`
 - **`grep()`** returns indices of matches.
 - **`grepl()`** returns a logical vector indicating matches.
 
