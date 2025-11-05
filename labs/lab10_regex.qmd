@@ -1,5 +1,5 @@
 ---
-title: 'Lab 10 : Detecting Patters with Regular Expressions'
+title: 'Lab 10 : Detecting Patterns with Regular Expressions'
 ---
 
 ## Learning objectives
