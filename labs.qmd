@@ -25,9 +25,9 @@ Sharing and Publishing
 * Lab S2 : [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
 * Lab S3 : [Connecting a Github repo site with a RStudio project](labs/lab3s_github.html)
 * Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
+* Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
 * Lab : Quarto Manuscripts
 * Lab : Building a 5 tab web site with Quart
-* Lab : R Shiny
 
 Manuscript
 

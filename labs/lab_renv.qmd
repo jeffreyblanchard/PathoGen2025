@@ -1,0 +1,8 @@
+---
+title: Lab S4 - Working on the command line in Terminal with Shell
+---
+
+## Learning Objectives
+
+Example of R run on the command line
+

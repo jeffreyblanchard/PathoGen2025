@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Labs – PathoGen</title>
+<title>Lab S5 - Running bioinformatics software interactively and in batches – PathoGen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,40 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1667,7 +1701,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4720,7 +4754,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">PathoGen</span>
     </a>
   </div>
@@ -4731,19 +4765,19 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./labs.html" aria-current="page"> 
+    <a class="nav-link" href="../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methods.html"> 
+    <a class="nav-link" href="../methods.html"> 
 <span class="menu-text">CURE Methods</span></a>
   </li>  
 </ul>
@@ -4757,15 +4791,41 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#environment-modules" id="toc-environment-modules" class="nav-link" data-scroll-target="#environment-modules">Environment modules</a>
+  <ul class="collapse">
+  <li><a href="#check-if-modules-are-installed" id="toc-check-if-modules-are-installed" class="nav-link" data-scroll-target="#check-if-modules-are-installed">Check If Modules Are Installed</a></li>
+  <li><a href="#list-available-modules" id="toc-list-available-modules" class="nav-link" data-scroll-target="#list-available-modules">List Available Modules</a></li>
+  <li><a href="#load-a-module" id="toc-load-a-module" class="nav-link" data-scroll-target="#load-a-module">Load a Module</a></li>
+  <li><a href="#running-an-r-script-from-the-command-line" id="toc-running-an-r-script-from-the-command-line" class="nav-link" data-scroll-target="#running-an-r-script-from-the-command-line">Running an R script from the command line</a></li>
+  <li><a href="#see-loaded-modules" id="toc-see-loaded-modules" class="nav-link" data-scroll-target="#see-loaded-modules">See Loaded Modules</a></li>
+  <li><a href="#unload-a-module" id="toc-unload-a-module" class="nav-link" data-scroll-target="#unload-a-module">Unload a Module</a></li>
+  <li><a href="#purge-all-modules" id="toc-purge-all-modules" class="nav-link" data-scroll-target="#purge-all-modules">Purge All Modules</a></li>
+  <li><a href="#bonus-tips" id="toc-bonus-tips" class="nav-link" data-scroll-target="#bonus-tips">Bonus Tips</a></li>
+  </ul></li>
+  <li><a href="#submitting-jobs-with-sbatch-and-slurm" id="toc-submitting-jobs-with-sbatch-and-slurm" class="nav-link" data-scroll-target="#submitting-jobs-with-sbatch-and-slurm">Submitting Jobs with <code>sbatch</code> and SLURM</a>
+  <ul class="collapse">
+  <li><a href="#create-a-job-script" id="toc-create-a-job-script" class="nav-link" data-scroll-target="#create-a-job-script">Create a Job Script</a></li>
+  <li><a href="#making-the-shell-script-executable" id="toc-making-the-shell-script-executable" class="nav-link" data-scroll-target="#making-the-shell-script-executable">Making the shell script executable</a></li>
+  <li><a href="#submit-the-job" id="toc-submit-the-job" class="nav-link" data-scroll-target="#submit-the-job">Submit the Job</a></li>
+  <li><a href="#monitor-the-job" id="toc-monitor-the-job" class="nav-link" data-scroll-target="#monitor-the-job">Monitor the Job</a></li>
+  <li><a href="#common-slurm-directives" id="toc-common-slurm-directives" class="nav-link" data-scroll-target="#common-slurm-directives">Common SLURM Directives</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Labs</h1>
+<h1 class="title">Lab S5 - Running bioinformatics software interactively and in batches</h1>
 </div>
 
 
@@ -4782,39 +4842,190 @@ vertical-align: -.125em;
 </header>
 
 
-<p>R Labs</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>Lab 1 : <a href="labs/lab1_overview.html">Overview &amp; Getting Started</a></li>
-<li>Lab 2 : <a href="labs/lab2_AI_ggplot.html">Learning R with the Help of AI tools Starting with Graphing using ggplot</a></li>
-<li>Lab 3 : <a href="./labs/lab3_data_transformation.html">Data Transformation with dplyr</a></li>
-<li>Lab 4 : <a href="./labs/lab4_coding_import.html">Coding Basics, Style and Data Read/Write</a></li>
-<li>Lab 5 : <a href="./labs/lab5_NEON_tables.html">Working with NEON Metagenome Assembled Genomes (MAGs / bins)</a></li>
-<li>Lab 6 : <a href="labs/lab6_NEON_pub_graphics.html">ggplotting with NEON MAG data</a></li>
-<li>Lab 7 : <a href="labs/lab7_covid.html">Data Tidying, Transformation and Visualization with COVID-19 reporting data</a></li>
-<li>Lab 8: Catch up, <a href="https://www.nature.com/articles/d41586-024-04195-3">What will viruses do next?</a>, <a href="https://arcinstitute.org/news/hie-king-first-synthetic-phage">the first AI genomes</a> and <a href="https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc">metagenome brainstorming</a></li>
-<li>Lab 9 - <a href="labs/lab9_ggtree.html">Sequence Alignment, Phylogenetic Analysis and Tree Visualization</a></li>
-<li>Lab 10 : <a href="labs/lab10_regex.html">Detecting Patters with Regular Expressions</a></li>
+<li>Running bioinformatics software interactively on the command line</li>
+<li>Submitting batch jobs through SLURM</li>
 </ul>
-<p>Unity Labs</p>
+<p>As Unity users we can not install software. This is done by the Unity admins.</p>
+<p>Open a terminal in JupyterLab or otherwise.</p>
+</section>
+<section id="environment-modules" class="level2">
+<h2 class="anchored" data-anchor-id="environment-modules">Environment modules</h2>
+<p>Most of the bioinformatics software we use on Unity needs to be loaded using <code>environmental modules</code>. <code>Environment modules</code> are a convenient and efficient way to use non-standard and version-specific software in Unity.</p>
+<p>Open up a terminal using JupyterLab or otherwise</p>
+<section id="check-if-modules-are-installed" class="level3">
+<h3 class="anchored" data-anchor-id="check-if-modules-are-installed">Check If Modules Are Installed</h3>
+<p>Run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since modules are install on Unity will get a version number, you’re good to go. If not, you may need to load the module system manually or ask your system administrator.</p>
+</section>
+<section id="list-available-modules" class="level3">
+<h3 class="anchored" data-anchor-id="list-available-modules">List Available Modules</h3>
+<p>To see all available modules:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> available</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also use</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> avail</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> av</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ml</span> av</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will show a list of software packages and versions you can load.</p>
+<p>Some modules are hidden. They can be shown with <code>module --show_hidden avail</code>. Some modules can only be found after their parent modules have been loaded. To find version numbers and parent modules, you can use the command: $ module –show_hidden spider <modulename> or our web interface: https://ood.unity.rc.umass.edu/pun/sys/module-explorer</modulename></p>
+</section>
+<section id="load-a-module" class="level3">
+<h3 class="anchored" data-anchor-id="load-a-module">Load a Module</h3>
+<p>To load a module (e.g., R 4.4.0):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load  r/4.4.0  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This updates your environment variables (like <code>PATH</code>, <code>LD_LIBRARY_PATH</code>, etc.) so you can use that version of R. However, it does not start R. To do this simply type</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will start R version 4.4.0 (2024-04-24) – “Puppy Cup”</p>
+<p>Now you can work in the R console. The R console is also available in RStudio in the bottom left corner.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>To quit the R console</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="running-an-r-script-from-the-command-line" class="level3">
+<h3 class="anchored" data-anchor-id="running-an-r-script-from-the-command-line">Running an R script from the command line</h3>
+<p>Open a new file using <code>nano</code> or in JupyterLab Select File &gt; New &gt; Text File</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> addition.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Add the R code (do not use the code chunk format, bust the commands you ran above)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">x</span> <span class="op">&lt;</span>- 1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">y</span> <span class="op">&lt;</span>- 2</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">x</span> + y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use <code>ctr x</code> to save and exit nano</p>
+<p>Now on the terminal run the R code (make sure you loaded the r module above)</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> addition.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="see-loaded-modules" class="level3">
+<h3 class="anchored" data-anchor-id="see-loaded-modules">See Loaded Modules</h3>
+<p>To list currently loaded modules:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="unload-a-module" class="level3">
+<h3 class="anchored" data-anchor-id="unload-a-module">Unload a Module</h3>
+<p>To remove a module from your environment:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> unload r/4.4.0 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="purge-all-modules" class="level3">
+<h3 class="anchored" data-anchor-id="purge-all-modules">Purge All Modules</h3>
+<p>To unload all currently loaded modules:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> purge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bonus-tips" class="level3">
+<h3 class="anchored" data-anchor-id="bonus-tips">Bonus Tips</h3>
 <ul>
-<li>Lab : Running bioinformatics software on Unity (Blast, Read mapping)</li>
+<li><p><strong>Search for all versions of a module</strong>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> spider r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Get help on a module</strong>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> help r/4.4.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<p>Sharing and Publishing</p>
-<ul>
-<li>Lab S1 : <a href="labs/lab1s_quarto.html">Quarto</a></li>
-<li>Lab S2 : <a href="labs/lab2s_biblio.html">Adding References to Your Report with Zotero</a></li>
-<li>Lab S3 : <a href="labs/lab3s_github.html">Connecting a Github repo site with a RStudio project</a></li>
-<li>Lab S4 : <a href="labs/lab4s_shell.html">Working on the command line in Terminal with Shell</a></li>
-<li>Lab S5 - <a href="labs/lab5s_jobs.html">Running bioinformatics software interactively and in batches</a></li>
-<li>Lab : Quarto Manuscripts</li>
-<li>Lab : Building a 5 tab web site with Quart</li>
-</ul>
-<p>Manuscript</p>
-<ul>
-<li>PathoGen manuscript : Deadline Dec 10</li>
-</ul>
+</section>
+</section>
+<section id="submitting-jobs-with-sbatch-and-slurm" class="level2">
+<h2 class="anchored" data-anchor-id="submitting-jobs-with-sbatch-and-slurm">Submitting Jobs with <code>sbatch</code> and SLURM</h2>
+<p>A batch job refers to a task or a series of tasks that can be executed without user intervention. These jobs are submitted to a job scheduler, which manages resources and executes them when the required resources (such as CPUs, memory, etc.) become available. Unity uses Slurm (Simple Linux Utility for Resource Management), a popular open-source job scheduler used in many supercomputing clusters and high-performance computing (HPC) setups.</p>
+<p><code>sbatch</code> is a command within Slurm that is used to submit batch jobs. <code>sbatch</code> is a non-blocking command, meaning there is no circumstance where running the command will cause it to hold. If the resources requested in the batch job are unavailable, the job will be placed into a queue and will start to run once resources become available.</p>
+<p>Here are the steps</p>
+<p>Open a new file using <code>nano</code> or in JupyterLab Select <code>File &gt; New &gt; Text File</code></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> additions_sbatch.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="create-a-job-script" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-job-script">Create a Job Script</h3>
+<p>A job script is a Bash script with SLURM directives at the top. Here’s a basic example:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -J addition_sbatch.sh  # Name of the file</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -c 2  # Number of cpus</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=4G # Requested Memor</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=4G # Requested Memory</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -o slurm-%j.out  # %j = job ID</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load modules</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load r/4.4.0</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Run your command</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> addition.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Save this as <code>sbatch_addition.sh</code>.</p>
+</section>
+<section id="making-the-shell-script-executable" class="level3">
+<h3 class="anchored" data-anchor-id="making-the-shell-script-executable">Making the shell script executable</h3>
+<p>To be able to run <code>sbatch_addition.sh</code> it the file permissions must be changed. This is done in the terminal using chmod (for more info see https://cets.seas.upenn.edu/answers/chmod.html).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="submit-the-job" class="level3">
+<h3 class="anchored" data-anchor-id="submit-the-job">Submit the Job</h3>
+<p>Use <code>sbatch</code> to submit the job:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> sbatch_addition.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>SLURM will return a job ID, e.g.:</p>
+<pre><code>Submitted batch job 123456</code></pre>
+<p>When the job is complete you will see a new file in your directory with your ID slurm-123456.txt</p>
+<p>We could also include in our addition.R file code to print to a file</p>
+</section>
+<section id="monitor-the-job" class="level3">
+<h3 class="anchored" data-anchor-id="monitor-the-job">Monitor the Job</h3>
+<p>Check job status:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cancel a job:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scancel</span> <span class="op">&lt;</span>job_id<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="common-slurm-directives" class="level3">
+<h3 class="anchored" data-anchor-id="common-slurm-directives">Common SLURM Directives</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--job-name</code></td>
+<td>Name of the job</td>
+</tr>
+<tr class="even">
+<td><code>--output</code> / <code>--error</code></td>
+<td>Output and error file names</td>
+</tr>
+<tr class="odd">
+<td><code>--time</code></td>
+<td>Max runtime</td>
+</tr>
+<tr class="even">
+<td><code>--partition</code></td>
+<td>Which queue/partition to use</td>
+</tr>
+<tr class="odd">
+<td><code>--ntasks</code></td>
+<td>Number of tasks (often 1 for serial jobs)</td>
+</tr>
+<tr class="even">
+<td><code>--cpus-per-task</code></td>
+<td>Number of CPU cores per task</td>
+</tr>
+<tr class="odd">
+<td><code>--mem</code></td>
+<td>Memory per node</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>Like last week complete the above commands. Open a text file and save as <code>myhistory_lab5s.txt</code>. Type <code>history</code> into the terminal. Copy and paste the history into the <code>myhistory.txt</code> file. Download the file to your computer and then upload the file to Canvas.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

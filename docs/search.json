@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What will viruses do next?, the first AI genomes and metagenome brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\nLab S4 : Working on the command line in Terminal with Shell\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quart\nLab : R Shiny\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What will viruses do next?, the first AI genomes and metagenome brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\n\nUnity Labs\n\nLab : Running bioinformatics software on Unity (Blast, Read mapping)\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\nLab S4 : Working on the command line in Terminal with Shell\nLab S5 - Running bioinformatics software interactively and in batches\nLab : Quarto Manuscripts\nLab : Building a 5 tab web site with Quart\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
   },
   {
     "objectID": "report.html",
@@ -1391,5 +1391,61 @@
     "title": "Lab 10 : Detecting Patterns with Regular Expressions",
     "section": "Exercises",
     "text": "Exercises\nR for Data Science Chapter 15.\nToday we will walk through Chapter 15 Regular expressions in R for Data Science. As we did last week, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.\n\nWhat to upload to Canvas\nAfter you Render the qmd file to an html file, export the file to your computer and upload it to Canvas."
+  },
+  {
+    "objectID": "labs/lab5s_jobs.html",
+    "href": "labs/lab5s_jobs.html",
+    "title": "Lab S5 - Running bioinformatics software interactively and in batches",
+    "section": "",
+    "text": "Running bioinformatics software interactively on the command line\nSubmitting batch jobs through SLURM\n\nAs Unity users we can not install software. This is done by the Unity admins.\nOpen a terminal in JupyterLab or otherwise."
+  },
+  {
+    "objectID": "labs/lab5s_jobs.html#learning-objectives",
+    "href": "labs/lab5s_jobs.html#learning-objectives",
+    "title": "Lab S5 - Running bioinformatics software interactively and in batches",
+    "section": "",
+    "text": "Running bioinformatics software interactively on the command line\nSubmitting batch jobs through SLURM\n\nAs Unity users we can not install software. This is done by the Unity admins.\nOpen a terminal in JupyterLab or otherwise."
+  },
+  {
+    "objectID": "labs/lab5s_jobs.html#environment-modules",
+    "href": "labs/lab5s_jobs.html#environment-modules",
+    "title": "Lab S5 - Running bioinformatics software interactively and in batches",
+    "section": "Environment modules",
+    "text": "Environment modules\nMost of the bioinformatics software we use on Unity needs to be loaded using environmental modules. Environment modules are a convenient and efficient way to use non-standard and version-specific software in Unity.\nOpen up a terminal using JupyterLab or otherwise\n\nCheck If Modules Are Installed\nRun:\nmodule --version\nSince modules are install on Unity will get a version number, you’re good to go. If not, you may need to load the module system manually or ask your system administrator.\n\n\nList Available Modules\nTo see all available modules:\nmodule available\nYou can also use\nmodule avail\nmodule av\nml av\nThis will show a list of software packages and versions you can load.\nSome modules are hidden. They can be shown with module --show_hidden avail. Some modules can only be found after their parent modules have been loaded. To find version numbers and parent modules, you can use the command: $ module –show_hidden spider  or our web interface: https://ood.unity.rc.umass.edu/pun/sys/module-explorer\n\n\nLoad a Module\nTo load a module (e.g., R 4.4.0):\nmodule load  r/4.4.0  \nThis updates your environment variables (like PATH, LD_LIBRARY_PATH, etc.) so you can use that version of R. However, it does not start R. To do this simply type\nR\nThis will start R version 4.4.0 (2024-04-24) – “Puppy Cup”\nNow you can work in the R console. The R console is also available in RStudio in the bottom left corner.\n\n\nR code\nx &lt;- 1\ny &lt;- 2\nx + y\n\n\nTo quit the R console\n\n\nR code\nquit()\n\n\n\n\nRunning an R script from the command line\nOpen a new file using nano or in JupyterLab Select File &gt; New &gt; Text File\nnano addition.R\nAdd the R code (do not use the code chunk format, bust the commands you ran above)\nx &lt;- 1\ny &lt;- 2\nx + y\nUse ctr x to save and exit nano\nNow on the terminal run the R code (make sure you loaded the r module above)\nRscript addition.R\n\n\nSee Loaded Modules\nTo list currently loaded modules:\nmodule list\n\n\nUnload a Module\nTo remove a module from your environment:\nmodule unload r/4.4.0 \n\n\nPurge All Modules\nTo unload all currently loaded modules:\nmodule purge\n\n\nBonus Tips\n\nSearch for all versions of a module:\nmodule spider r\nGet help on a module:\nmodule help r/4.4.0"
+  },
+  {
+    "objectID": "labs/lab5s_jobs.html#conda-environments",
+    "href": "labs/lab5s_jobs.html#conda-environments",
+    "title": "Lab S5 - Working on the command line in Terminal with Shell",
+    "section": "Conda environments",
+    "text": "Conda environments\nThe conda package manager allows users to compile software easily and without administrator privileges. Conda creates environments for a set of compatible software, and you can activate the environments as needed.\nRelevant Documentation:\nConda environments"
+  },
+  {
+    "objectID": "labs/lab_renv.html",
+    "href": "labs/lab_renv.html",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "",
+    "text": "Example of R run on the command line"
+  },
+  {
+    "objectID": "labs/lab_renv.html#learning-objectives",
+    "href": "labs/lab_renv.html#learning-objectives",
+    "title": "Lab S4 - Working on the command line in Terminal with Shell",
+    "section": "",
+    "text": "Example of R run on the command line"
+  },
+  {
+    "objectID": "labs/lab5s_jobs.html#submitting-jobs-with-sbatch-and-slurm",
+    "href": "labs/lab5s_jobs.html#submitting-jobs-with-sbatch-and-slurm",
+    "title": "Lab S5 - Running bioinformatics software interactively and in batches",
+    "section": "Submitting Jobs with sbatch and SLURM",
+    "text": "Submitting Jobs with sbatch and SLURM\nA batch job refers to a task or a series of tasks that can be executed without user intervention. These jobs are submitted to a job scheduler, which manages resources and executes them when the required resources (such as CPUs, memory, etc.) become available. Unity uses Slurm (Simple Linux Utility for Resource Management), a popular open-source job scheduler used in many supercomputing clusters and high-performance computing (HPC) setups.\nsbatch is a command within Slurm that is used to submit batch jobs. sbatch is a non-blocking command, meaning there is no circumstance where running the command will cause it to hold. If the resources requested in the batch job are unavailable, the job will be placed into a queue and will start to run once resources become available.\nHere are the steps\nOpen a new file using nano or in JupyterLab Select File &gt; New &gt; Text File\nnano additions_sbatch.sh\n\nCreate a Job Script\nA job script is a Bash script with SLURM directives at the top. Here’s a basic example:\n#!/bin/bash\n#SBATCH -J addition_sbatch.sh  # Name of the file\n#SBATCH -c 2  # Number of cpus\n#SBATCH --mem=4G # Requested Memor\n#SBATCH --mem=4G # Requested Memory\n#SBATCH -o slurm-%j.out  # %j = job ID\n\n# Load modules\nmodule load r/4.4.0\n\n# Run your command\nRscript addition.R\nSave this as sbatch_addition.sh.\n\n\nMaking the shell script executable\nTo be able to run sbatch_addition.sh it the file permissions must be changed. This is done in the terminal using chmod (for more info see https://cets.seas.upenn.edu/answers/chmod.html).\nchmod +x \n\n\nSubmit the Job\nUse sbatch to submit the job:\nsbatch sbatch_addition.sh\nSLURM will return a job ID, e.g.:\nSubmitted batch job 123456\nWhen the job is complete you will see a new file in your directory with your ID slurm-123456.txt\nWe could also include in our addition.R file code to print to a file\n\n\nMonitor the Job\nCheck job status:\nsqueue -u $USER\nCancel a job:\nscancel &lt;job_id&gt;\n\n\nCommon SLURM Directives\n\n\n\nDirective\nDescription\n\n\n\n\n--job-name\nName of the job\n\n\n--output / --error\nOutput and error file names\n\n\n--time\nMax runtime\n\n\n--partition\nWhich queue/partition to use\n\n\n--ntasks\nNumber of tasks (often 1 for serial jobs)\n\n\n--cpus-per-task\nNumber of CPU cores per task\n\n\n--mem\nMemory per node"
+  },
+  {
+    "objectID": "labs/lab5s_jobs.html#exercises",
+    "href": "labs/lab5s_jobs.html#exercises",
+    "title": "Lab S5 - Running bioinformatics software interactively and in batches",
+    "section": "Exercises",
+    "text": "Exercises\nLike last week complete the above commands. Open a text file and save as myhistory_lab5s.txt. Type history into the terminal. Copy and paste the history into the myhistory.txt file. Download the file to your computer and then upload the file to Canvas."
   }
 ]

@@ -1,0 +1,233 @@
+---
+title: Lab S5 - Running bioinformatics software interactively and in batches
+---
+
+## Learning Objectives
+
+-   Running bioinformatics software interactively on the command line
+-   Submitting batch jobs through SLURM
+
+As Unity users we can not install software. This is done by the Unity admins.
+
+Open a terminal in JupyterLab or otherwise.
+
+## Environment modules
+
+Most of the bioinformatics software we use on Unity needs to be loaded using `environmental modules`. `Environment modules` are a convenient and efficient way to use non-standard and version-specific software in Unity.
+
+Open up a terminal using JupyterLab or otherwise
+
+### Check If Modules Are Installed
+
+Run:
+
+``` bash
+module --version
+```
+
+Since modules are install on Unity will get a version number, you're good to go. If not, you may need to load the module system manually or ask your system administrator.
+
+### List Available Modules
+
+To see all available modules:
+
+``` bash
+module available
+```
+
+You can also use
+
+``` bash
+module avail
+module av
+ml av
+```
+
+This will show a list of software packages and versions you can load.
+
+Some modules are hidden. They can be shown with `module --show_hidden avail`. Some modules can only be found after their parent modules have been loaded. To find version numbers and parent modules, you can use the command: \$ module --show_hidden spider <modulename> or our web interface: https://ood.unity.rc.umass.edu/pun/sys/module-explorer
+
+### Load a Module
+
+To load a module (e.g., R 4.4.0):
+
+``` bash
+module load  r/4.4.0  
+```
+
+This updates your environment variables (like `PATH`, `LD_LIBRARY_PATH`, etc.) so you can use that version of R. However, it does not start R. To do this simply type
+
+``` bash
+R
+```
+
+This will start R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+
+Now you can work in the R console. The R console is also available in RStudio in the bottom left corner.
+
+```{r}
+#| eval: false
+x <- 1
+y <- 2
+x + y
+```
+
+To quit the R console
+
+```{r}
+#| eval: false
+quit()
+```
+
+### Running an R script from the command line
+
+Open a new file using `nano` or in JupyterLab Select File \> New \> Text File
+
+``` bash
+nano addition.R
+```
+
+Add the R code (do not use the code chunk format, bust the commands you ran above)
+
+``` bash
+x <- 1
+y <- 2
+x + y
+```
+
+Use `ctr x` to save and exit nano
+
+Now on the terminal run the R code (make sure you loaded the r module above)
+
+``` bash
+Rscript addition.R
+```
+
+### See Loaded Modules
+
+To list currently loaded modules:
+
+``` bash
+module list
+```
+
+### Unload a Module
+
+To remove a module from your environment:
+
+``` bash
+module unload r/4.4.0 
+```
+
+### Purge All Modules
+
+To unload all currently loaded modules:
+
+``` bash
+module purge
+```
+
+### Bonus Tips
+
+-   **Search for all versions of a module**:
+
+    ``` bash
+    module spider r
+    ```
+
+-   **Get help on a module**:
+
+    ``` bash
+    module help r/4.4.0
+    ```
+
+## Submitting Jobs with `sbatch` and SLURM
+
+A batch job refers to a task or a series of tasks that can be executed without user intervention. These jobs are submitted to a job scheduler, which manages resources and executes them when the required resources (such as CPUs, memory, etc.) become available. Unity uses Slurm (Simple Linux Utility for Resource Management), a popular open-source job scheduler used in many supercomputing clusters and high-performance computing (HPC) setups.
+
+`sbatch` is a command within Slurm that is used to submit batch jobs. `sbatch` is a non-blocking command, meaning there is no circumstance where running the command will cause it to hold. If the resources requested in the batch job are unavailable, the job will be placed into a queue and will start to run once resources become available.
+
+Here are the steps
+
+Open a new file using `nano` or in JupyterLab Select `File > New > Text File`
+
+``` bash
+nano additions_sbatch.sh
+```
+
+### Create a Job Script
+
+A job script is a Bash script with SLURM directives at the top. Here's a basic example:
+
+``` bash
+#!/bin/bash
+#SBATCH -J addition_sbatch.sh  # Name of the file
+#SBATCH -c 2  # Number of cpus
+#SBATCH --mem=4G # Requested Memor
+#SBATCH --mem=4G # Requested Memory
+#SBATCH -o slurm-%j.out  # %j = job ID
+
+# Load modules
+module load r/4.4.0
+
+# Run your command
+Rscript addition.R
+```
+
+Save this as `sbatch_addition.sh`.
+
+### Making the shell script executable
+
+To be able to run `sbatch_addition.sh` it the file permissions must be changed. This is done in the terminal using chmod (for more info see https://cets.seas.upenn.edu/answers/chmod.html).
+
+``` bash
+chmod +x 
+```
+
+### Submit the Job
+
+Use `sbatch` to submit the job:
+
+``` bash
+sbatch sbatch_addition.sh
+```
+
+SLURM will return a job ID, e.g.:
+
+```         
+Submitted batch job 123456
+```
+
+When the job is complete you will see a new file in your directory with your ID slurm-123456.txt
+
+We could also include in our addition.R file code to print to a file
+
+### Monitor the Job
+
+Check job status:
+
+``` bash
+squeue -u $USER
+```
+
+Cancel a job:
+
+``` bash
+scancel <job_id>
+```
+
+### Common SLURM Directives
+
+| Directive              | Description                               |
+|------------------------|-------------------------------------------|
+| `--job-name`           | Name of the job                           |
+| `--output` / `--error` | Output and error file names               |
+| `--time`               | Max runtime                               |
+| `--partition`          | Which queue/partition to use              |
+| `--ntasks`             | Number of tasks (often 1 for serial jobs) |
+| `--cpus-per-task`      | Number of CPU cores per task              |
+| `--mem`                | Memory per node                           |
+
+## Exercises
+
+Like last week complete the above commands. Open a text file and save as `myhistory_lab5s.txt`. Type `history` into the terminal. Copy and paste the history into the `myhistory.txt` file. Download the file to your computer and then upload the file to Canvas.

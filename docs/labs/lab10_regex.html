@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Labs – PathoGen</title>
+<title>Lab 10 : Detecting Patterns with Regular Expressions – PathoGen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,40 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1667,7 +1701,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4720,7 +4754,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">PathoGen</span>
     </a>
   </div>
@@ -4731,19 +4765,19 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./labs.html" aria-current="page"> 
+    <a class="nav-link" href="../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methods.html"> 
+    <a class="nav-link" href="../methods.html"> 
 <span class="menu-text">CURE Methods</span></a>
   </li>  
 </ul>
@@ -4757,15 +4791,39 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#load-libaries" id="toc-load-libaries" class="nav-link" data-scroll-target="#load-libaries">Load libaries</a></li>
+  <li><a href="#what-are-regular-expressions" id="toc-what-are-regular-expressions" class="nav-link" data-scroll-target="#what-are-regular-expressions">What Are Regular Expressions?</a>
+  <ul class="collapse">
+  <li><a href="#key-functions-in-r-for-regex" id="toc-key-functions-in-r-for-regex" class="nav-link" data-scroll-target="#key-functions-in-r-for-regex">Key Functions in R for Regex</a></li>
+  <li><a href="#regex-syntax-basics" id="toc-regex-syntax-basics" class="nav-link" data-scroll-target="#regex-syntax-basics">Regex Syntax Basics</a></li>
+  <li><a href="#example-use-case" id="toc-example-use-case" class="nav-link" data-scroll-target="#example-use-case">Example Use Case</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-stringr" id="toc-introduction-to-stringr" class="nav-link" data-scroll-target="#introduction-to-stringr">Introduction to <code>stringr</code></a>
+  <ul class="collapse">
+  <li><a href="#why-use-stringr-rather-than-base-r-regex-functions" id="toc-why-use-stringr-rather-than-base-r-regex-functions" class="nav-link" data-scroll-target="#why-use-stringr-rather-than-base-r-regex-functions">Why Use <code>stringr</code> rather than base R regex functions?</a></li>
+  <li><a href="#common-stringr-functions-for-regex" id="toc-common-stringr-functions-for-regex" class="nav-link" data-scroll-target="#common-stringr-functions-for-regex">Common <code>stringr</code> Functions for Regex</a></li>
+  <li><a href="#regex-integration" id="toc-regex-integration" class="nav-link" data-scroll-target="#regex-integration">Regex Integration</a></li>
+  <li><a href="#stringi" id="toc-stringi" class="nav-link" data-scroll-target="#stringi"><code>stringi</code></a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#what-to-upload-to-canvas" id="toc-what-to-upload-to-canvas" class="nav-link" data-scroll-target="#what-to-upload-to-canvas">What to upload to Canvas</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Labs</h1>
+<h1 class="title">Lab 10 : Detecting Patterns with Regular Expressions</h1>
 </div>
 
 
@@ -4782,39 +4840,297 @@ vertical-align: -.125em;
 </header>
 
 
-<p>R Labs</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li>Lab 1 : <a href="labs/lab1_overview.html">Overview &amp; Getting Started</a></li>
-<li>Lab 2 : <a href="labs/lab2_AI_ggplot.html">Learning R with the Help of AI tools Starting with Graphing using ggplot</a></li>
-<li>Lab 3 : <a href="./labs/lab3_data_transformation.html">Data Transformation with dplyr</a></li>
-<li>Lab 4 : <a href="./labs/lab4_coding_import.html">Coding Basics, Style and Data Read/Write</a></li>
-<li>Lab 5 : <a href="./labs/lab5_NEON_tables.html">Working with NEON Metagenome Assembled Genomes (MAGs / bins)</a></li>
-<li>Lab 6 : <a href="labs/lab6_NEON_pub_graphics.html">ggplotting with NEON MAG data</a></li>
-<li>Lab 7 : <a href="labs/lab7_covid.html">Data Tidying, Transformation and Visualization with COVID-19 reporting data</a></li>
-<li>Lab 8: Catch up, <a href="https://www.nature.com/articles/d41586-024-04195-3">What will viruses do next?</a>, <a href="https://arcinstitute.org/news/hie-king-first-synthetic-phage">the first AI genomes</a> and <a href="https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc">metagenome brainstorming</a></li>
-<li>Lab 9 - <a href="labs/lab9_ggtree.html">Sequence Alignment, Phylogenetic Analysis and Tree Visualization</a></li>
-<li>Lab 10 : <a href="labs/lab10_regex.html">Detecting Patters with Regular Expressions</a></li>
+<li>How to use regular expressions in R</li>
 </ul>
-<p>Unity Labs</p>
+</section>
+<section id="load-libaries" class="level2">
+<h2 class="anchored" data-anchor-id="load-libaries">Load libaries</h2>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="what-are-regular-expressions" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-regular-expressions">What Are Regular Expressions?</h2>
+<p>Regular expressions are sequences of characters that define search patterns. In R, they are commonly used for:</p>
 <ul>
-<li>Lab : Running bioinformatics software on Unity (Blast, Read mapping)</li>
+<li>Searching text</li>
+<li>Extracting substrings</li>
+<li>Replacing patterns</li>
+<li>Validating formats (e.g., emails, dates)</li>
 </ul>
-<p>Sharing and Publishing</p>
+<section id="key-functions-in-r-for-regex" class="level3">
+<h3 class="anchored" data-anchor-id="key-functions-in-r-for-regex">Key Functions in R for Regex</h3>
+<p>R provides several base functions that support regular expressions:</p>
+<section id="grep-grepl" class="level4">
+<h4 class="anchored" data-anchor-id="grep-grepl">1. <code>grep()</code> / <code>grepl()</code></h4>
 <ul>
-<li>Lab S1 : <a href="labs/lab1s_quarto.html">Quarto</a></li>
-<li>Lab S2 : <a href="labs/lab2s_biblio.html">Adding References to Your Report with Zotero</a></li>
-<li>Lab S3 : <a href="labs/lab3s_github.html">Connecting a Github repo site with a RStudio project</a></li>
-<li>Lab S4 : <a href="labs/lab4s_shell.html">Working on the command line in Terminal with Shell</a></li>
-<li>Lab S5 - <a href="labs/lab5s_jobs.html">Running bioinformatics software interactively and in batches</a></li>
-<li>Lab : Quarto Manuscripts</li>
-<li>Lab : Building a 5 tab web site with Quart</li>
+<li><strong><code>grep()</code></strong> returns indices of matches.</li>
+<li><strong><code>grepl()</code></strong> returns a logical vector indicating matches.</li>
 </ul>
-<p>Manuscript</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">&quot;cat&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;catalog&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="sub-gsub" class="level4">
+<h4 class="anchored" data-anchor-id="sub-gsub">2. <code>sub()</code> / <code>gsub()</code></h4>
 <ul>
-<li>PathoGen manuscript : Deadline Dec 10</li>
+<li><strong><code>sub()</code></strong> replaces the first match.</li>
+<li><strong><code>gsub()</code></strong> replaces all matches.</li>
 </ul>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog and dog&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;cat and cat&quot;</code></pre>
+</div>
+</div>
+</section>
+<section id="regexpr-gregexpr" class="level4">
+<h4 class="anchored" data-anchor-id="regexpr-gregexpr">3. <code>regexpr()</code> / <code>gregexpr()</code></h4>
+<ul>
+<li>Return the position of the first/all matches and their lengths.</li>
+</ul>
+</section>
+<section id="regmatches" class="level4">
+<h4 class="anchored" data-anchor-id="regmatches">4. <code>regmatches()</code></h4>
+<ul>
+<li>Extracts matched substrings based on <code>regexpr()</code> or <code>gregexpr()</code>.</li>
+</ul>
+</section>
+</section>
+<section id="regex-syntax-basics" class="level3">
+<h3 class="anchored" data-anchor-id="regex-syntax-basics">Regex Syntax Basics</h3>
+<p>Here are some commonly used regex symbols:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 57%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.</code></td>
+<td>Any character except newline</td>
+<td><code>&quot;a.b&quot;</code> matches “acb”, “a1b”</td>
+</tr>
+<tr class="even">
+<td><code>^</code></td>
+<td>Start of string</td>
+<td><code>&quot;^cat&quot;</code> matches “catfish”</td>
+</tr>
+<tr class="odd">
+<td><code>$</code></td>
+<td>End of string</td>
+<td><code>&quot;cat$&quot;</code> matches “bobcat”</td>
+</tr>
+<tr class="even">
+<td><code>*</code></td>
+<td>0 or more repetitions</td>
+<td><code>&quot;ca*t&quot;</code> matches “ct”, “cat”, “caaaat”</td>
+</tr>
+<tr class="odd">
+<td><code>+</code></td>
+<td>1 or more repetitions</td>
+<td><code>&quot;ca+t&quot;</code> matches “cat”, “caaaat”</td>
+</tr>
+<tr class="even">
+<td><code>?</code></td>
+<td>0 or 1 repetition</td>
+<td><code>&quot;ca?t&quot;</code> matches “ct”, “cat”</td>
+</tr>
+<tr class="odd">
+<td><code>[]</code></td>
+<td>Character class</td>
+<td><code>&quot;[cd]og&quot;</code> matches “dog”, “cog”</td>
+</tr>
+<tr class="even">
+<td><code>|</code></td>
+<td>OR</td>
+<td><code>&quot;cat|dog&quot;</code> matches either</td>
+</tr>
+<tr class="odd">
+<td><code>()</code></td>
+<td>Grouping</td>
+<td><code>&quot;(cat|dog)s?&quot;</code> matches “cat”, “cats”, “dog”, “dogs”</td>
+</tr>
+<tr class="even">
+<td><code>\\</code></td>
+<td>Escape special characters</td>
+<td><code>&quot;\\.&quot;</code> matches a literal dot</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-use-case" class="level3">
+<h3 class="anchored" data-anchor-id="example-use-case">Example Use Case</h3>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>, <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;a&quot;</span>, text, <span class="at">value =</span> <span class="cn">TRUE</span>)  <span class="co"># Matches strings containing &#39;a&#39;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;apple&quot;  &quot;banana&quot; &quot;date&quot;  </code></pre>
+</div>
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;^a&quot;</span>, text, <span class="at">value =</span> <span class="cn">TRUE</span>)  <span class="co"># Matches strings starting with &#39;a&#39;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;apple&quot;</code></pre>
+</div>
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;a$&quot;</span>, text, <span class="at">value =</span> <span class="cn">TRUE</span>)  <span class="co"># Matches strings ending with &#39;a&#39;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;banana&quot;</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="introduction-to-stringr" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-stringr">Introduction to <code>stringr</code></h2>
+<p>The base R regular expressions are great to use if you already use regular expressions in another programming language. Starting out the <strong><code>stringr</code></strong> package, part of the <strong>tidyverse</strong>, provides a cohesive and consistent set of functions for string manipulation. It simplifies working with regular expressions by offering:</p>
+<ul>
+<li><strong>Consistent function names</strong> (<code>str_*</code>)</li>
+<li><strong>Predictable argument order</strong> (string first, pattern second)</li>
+<li><strong>Built-in support for vectorized operations</strong></li>
+<li><strong>Better integration with tidyverse workflows</strong></li>
+</ul>
+<section id="why-use-stringr-rather-than-base-r-regex-functions" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-stringr-rather-than-base-r-regex-functions">Why Use <code>stringr</code> rather than base R regex functions?</h3>
+<ul>
+<li><strong>Cleaner syntax</strong>: Easier to read and write than base R regex functions.</li>
+<li><strong>Tidyverse-friendly</strong>: Works well with <code>dplyr</code>, <code>purrr</code>, and other packages.</li>
+<li><strong>Consistent behavior</strong>: Avoids quirks of base R functions like <code>grep()</code> and <code>sub()</code>.</li>
+</ul>
+</section>
+<section id="common-stringr-functions-for-regex" class="level3">
+<h3 class="anchored" data-anchor-id="common-stringr-functions-for-regex">Common <code>stringr</code> Functions for Regex</h3>
+<p>Here are some of the most useful functions when working with regular expressions:</p>
+<section id="str_detect" class="level4">
+<h4 class="anchored" data-anchor-id="str_detect">1. <code>str_detect()</code></h4>
+<p>Checks if a pattern exists in a string.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;cherry&quot;</span>), <span class="st">&quot;^a&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="str_replace-str_replace_all" class="level4">
+<h4 class="anchored" data-anchor-id="str_replace-str_replace_all">2. <code>str_replace()</code> / <code>str_replace_all()</code></h4>
+<p>Replaces the first or all occurrences of a pattern.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(<span class="st">&quot;cat and dog&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;mouse&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;cat and mouse&quot;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(<span class="st">&quot;cat and dog and dog&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;mouse&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;cat and mouse and mouse&quot;</code></pre>
+</div>
+</div>
+</section>
+<section id="str_extract-str_extract_all" class="level4">
+<h4 class="anchored" data-anchor-id="str_extract-str_extract_all">3. <code>str_extract()</code> / <code>str_extract_all()</code></h4>
+<p>Extracts the first or all matches of a pattern.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="st">&quot;My email is test@example.com&quot;</span>, <span class="st">&quot;[a-z0-9._%+-]+@[a-z0-9.-]+</span><span class="sc">\\</span><span class="st">.[a-z]{2,}&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;test@example.com&quot;</code></pre>
+</div>
+</div>
+</section>
+<section id="str_match-str_match_all" class="level4">
+<h4 class="anchored" data-anchor-id="str_match-str_match_all">4. <code>str_match()</code> / <code>str_match_all()</code></h4>
+<p>Extracts matched groups using parentheses.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match</span>(<span class="st">&quot;Name: John&quot;</span>, <span class="st">&quot;Name: (</span><span class="sc">\\</span><span class="st">w+)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]         [,2]  
+[1,] &quot;Name: John&quot; &quot;John&quot;</code></pre>
+</div>
+</div>
+</section>
+<section id="str_split" class="level4">
+<h4 class="anchored" data-anchor-id="str_split">5. <code>str_split()</code></h4>
+<p>Splits strings based on a pattern.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(<span class="st">&quot;apple,banana,cherry&quot;</span>, <span class="st">&quot;,&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] &quot;apple&quot;  &quot;banana&quot; &quot;cherry&quot;</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="regex-integration" class="level3">
+<h3 class="anchored" data-anchor-id="regex-integration">Regex Integration</h3>
+<p>All <code>stringr</code> functions accept regular expressions by default. You can use:</p>
+<ul>
+<li><code>^</code>, <code>$</code>, <code>.</code>, <code>*</code>, <code>+</code>, <code>?</code>, <code>[]</code>, <code>()</code>, <code>|</code> — standard regex symbols</li>
+<li>Escaped characters like <code>\\d</code>, <code>\\s</code>, <code>\\w</code> for digits, whitespace, and word characters</li>
+</ul>
+</section>
+<section id="stringi" class="level3">
+<h3 class="anchored" data-anchor-id="stringi"><code>stringi</code></h3>
+<p><code>stringr</code> is built on top of the stringi package. <code>stringr</code> is useful when you’re learning because it exposes a minimal set of functions, which have been carefully picked to handle the most common string manipulation functions. <code>stringi</code>, on the other hand, is designed to be comprehensive. It contains almost every function you might ever need: stringi has 250 functions to stringr’s 49.</p>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p><a href="https://r4ds.hadley.nz/regexps.html">R for Data Science Chapter 15</a>.</p>
+<p>Today we will walk through Chapter 15 Regular expressions in R for Data Science. As we did last week, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.</p>
+<section id="what-to-upload-to-canvas" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-upload-to-canvas">What to upload to Canvas</h3>
+<p>After you <code>Render</code> the qmd file to an html file, export the file to your computer and upload it to Canvas.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
