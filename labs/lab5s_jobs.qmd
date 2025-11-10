@@ -164,7 +164,7 @@ A job script is a Bash script with SLURM directives at the top. Here's a basic e
 #SBATCH -J addition_sbatch.sh  # Name of the file
 #SBATCH -c 2  # Number of cpus
 #SBATCH --mem=4G # Requested Memor
-#SBATCH --mem=4G # Requested Memory
+#SBATCH -t 01:00:00  # Job time limit
 #SBATCH -o slurm-%j.out  # %j = job ID
 
 # Load modules
@@ -181,7 +181,7 @@ Save this as `sbatch_addition.sh`.
 To be able to run `sbatch_addition.sh` it the file permissions must be changed. This is done in the terminal using chmod (for more info see https://cets.seas.upenn.edu/answers/chmod.html).
 
 ``` bash
-chmod +x 
+chmod +x sbatch_addition.sh
 ```
 
 ### Submit the Job
