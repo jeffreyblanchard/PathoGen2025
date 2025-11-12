@@ -1451,28 +1451,28 @@
   {
     "objectID": "labs/lab11_joins.html",
     "href": "labs/lab11_joins.html",
-    "title": "Lab 11 : Joining data frames",
+    "title": "Lab 11 : Joining Data Frames",
     "section": "",
     "text": "Keys\nBasic joins\nFiltering joins\nNon-equi joins"
   },
   {
     "objectID": "labs/lab11_joins.html#learning-objectives",
     "href": "labs/lab11_joins.html#learning-objectives",
-    "title": "Lab 11 : Joining data frames",
+    "title": "Lab 11 : Joining Data Frames",
     "section": "",
     "text": "Keys\nBasic joins\nFiltering joins\nNon-equi joins"
   },
   {
     "objectID": "labs/lab11_joins.html#exercises",
     "href": "labs/lab11_joins.html#exercises",
-    "title": "Lab 11 : Joining data frames",
+    "title": "Lab 11 : Joining Data Frames",
     "section": "Exercises",
     "text": "Exercises\nToday in preparation for joining data frames with NEON data we will walk through Chapter 19 Joins in R for Data Science. As we did earlier, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter.\n\nWhat to upload to Canvas\nAfter you Render the qmd file to an html file, export the file to your computer and upload it to Canvas."
   },
   {
     "objectID": "labs/lab11_joins.html#overview",
     "href": "labs/lab11_joins.html#overview",
-    "title": "Lab 11 : Joining data frames",
+    "title": "Lab 11 : Joining Data Frames",
     "section": "Overview",
     "text": "Overview\n\n1. Load the tidyverse\n\n\nR code\nlibrary(tidyverse)\n\n\n\n\nCommon Join Functions\ndplyr offers several types of joins:\n\ninner_join(x, y, by): Keeps only rows with matching keys in both data frames.\nleft_join(x, y, by): Keeps all rows from x and adds matching data from y.\nright_join(x, y, by): Keeps all rows from y and adds matching data from x.\nfull_join(x, y, by): Keeps all rows from both data frames.\nsemi_join(x, y, by): Keeps rows from x that have a match in y (no columns from y).\nanti_join(x, y, by): Keeps rows from x that do not have a match in y.\n\n\n\nExample Dat\n\n\nR code\nspecies &lt;- tibble(id = c(1, 2, 3),\n              name = c(\"Species1\", \"Species2\", \"Species3\"))\n\nabundance &lt;- tibble(id = c(2, 3, 4),\n              abundance = c(85, 90, 95))\n\n\n\n\nPerform Joins\n\nLeft Join\n\n\nR code\nleft_join(species, abundance, by = \"id\")\n\n\n# A tibble: 3 × 3\n     id name     abundance\n  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1     1 Species1        NA\n2     2 Species2        85\n3     3 Species3        90\n\n\nResult: All rows from species, scores added where available.\n\n\nInner Join\n\n\nR code\ninner_join(species, abundance, by = \"id\")\n\n\n# A tibble: 2 × 3\n     id name     abundance\n  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1     2 Species2        85\n2     3 Species3        90\n\n\nResult: Only rows with id 2 and 3.\n\n\nFull Join\n\n\nR code\nfull_join(species, abundance, by = \"id\")\n\n\n# A tibble: 4 × 3\n     id name     abundance\n  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1     1 Species1        NA\n2     2 Species2        85\n3     3 Species3        90\n4     4 &lt;NA&gt;            95\n\n\nResult: All rows from both, with NA where no match.\n\n\n\nNotes\n\nIf column names differ, use by = c(\"col_in_x\" = \"col_in_y\").\nJoins preserve the order of the first data frame."
   }
