@@ -14,7 +14,7 @@ R Labs
 * Lab 8: Catch up, [What Will viruses Do Next?](https://www.nature.com/articles/d41586-024-04195-3), [The First AI Genomes](https://arcinstitute.org/news/hie-king-first-synthetic-phage) and [metagenome Brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
 * Lab 9 - [Sequence Alignment, Phylogenetic Analysis and Tree Visualization](labs/lab9_ggtree.html) 
 * Lab 10 : [Detecting Patters with Regular Expressions](labs/lab10_regex.html)
-* Lab 10 : [Joining Data Frames](labs/lab11_joins.html)
+* Lab 11 : [Joining Data Frames](labs/lab11_joins.html)
 
 Unity Labs
 
