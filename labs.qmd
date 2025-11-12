@@ -11,23 +11,23 @@ R Labs
 * Lab 5 : [Working with NEON Metagenome Assembled Genomes (MAGs / bins)](labs/lab5_NEON_tables.qmd)
 * Lab 6 : [ggplotting with NEON MAG data](labs/lab6_NEON_pub_graphics.html)
 * Lab 7 : [Data Tidying, Transformation and Visualization with COVID-19 reporting data](labs/lab7_covid.html)
-* Lab 8: Catch up, [What will viruses do next?](https://www.nature.com/articles/d41586-024-04195-3), [the first AI genomes](https://arcinstitute.org/news/hie-king-first-synthetic-phage) and [metagenome brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
+* Lab 8: Catch up, [What Will viruses Do Next?](https://www.nature.com/articles/d41586-024-04195-3), [The First AI Genomes](https://arcinstitute.org/news/hie-king-first-synthetic-phage) and [metagenome Brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
 * Lab 9 - [Sequence Alignment, Phylogenetic Analysis and Tree Visualization](labs/lab9_ggtree.html) 
 * Lab 10 : [Detecting Patters with Regular Expressions](labs/lab10_regex.html)
+* Lab 10 : [Joining Data Frames](labs/lab11_joins.html)
 
 Unity Labs
 
-* Lab : Running bioinformatics software on Unity (Blast, Read mapping) 
+* Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
+* Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
 
 Sharing and Publishing
 
 * Lab S1 : [Quarto](labs/lab1s_quarto.html)
 * Lab S2 : [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
 * Lab S3 : [Connecting a Github repo site with a RStudio project](labs/lab3s_github.html)
-* Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
-* Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
-* Lab : Quarto Manuscripts
-* Lab : Building a 5 tab web site with Quart
+
+
 
 Manuscript
 
