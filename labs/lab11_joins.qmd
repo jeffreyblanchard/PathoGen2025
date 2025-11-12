@@ -11,7 +11,7 @@ title: 'Lab 11 : Joining Data Frames'
 
 ## Overview
 
-### **1. Load the tidyverse**
+### Load the tidyverse
 
 ```{r}
 library(tidyverse)
@@ -75,7 +75,7 @@ Result: All rows from both, with `NA` where no match.
 
 ## Exercises
 
-Today in preparation for joining data frames with NEON data we will walk through [Chapter 19 Joins in R for Data Science](https://r4ds.hadley.nz/joins.html#sec-non-equi-joins). As we did earlier, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter. 
+Today in preparation for joining data frames with NEON data we will walk through [Chapter 19 Joins in R for Data Science](https://r4ds.hadley.nz/joins.html). As we did earlier, by putting the examples and exercises in our own Quarto Markdown file, we can create own personal path through the Chapter. 
 
 
 ### What to upload to Canvas
