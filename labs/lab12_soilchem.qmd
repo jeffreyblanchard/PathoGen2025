@@ -1,0 +1,364 @@
+---
+title: "Lab 12 - Accessing NEON Metadata for Metagenomics"
+---
+
+This lab was designed based on the tutorial [Access NEON Data for Metagenomics](https://www.neonscience.org/resources/learning-hub/tutorials/neon-data-metagenomics) by Kaye Shek and Hugh Cross. Some of the text blocks are repeated verbatim. See
+
+## Learning objectives
+
+-   Storing Multiple Data Frames in a Single Object in R
+-   How to save and read RDS files
+-   Accessing data from a national repository
+-   Joinging data frames
+
+## Fixing lab 9 and future labs
+
+The conflict in lab 9 was the result of RStudio and Quarto using a different order of preferred R library paths. To resolve this.
+
+After you start RStudio on Unity type in the R console
+
+```r
+ .libPaths()
+```
+
+This is the result in my Unity directory is
+ 
+```
+[1] "/home/jlb_umass_edu/R/x86_64-pc-linux-gnu-library/4.5"
+[2] "/usr/local/lib/R/site-library"                        
+[3] "/usr/local/lib/R/library"  
+```
+
+In your quarto .qmd file, after the YAML block add the following R code chunk which includes your personal libPath. For example
+
+```
+.libPaths(c("/home/jlb_umass_edu/R/x86_64-pc-linux-gnu-library/4.5", "/usr/local/lib/R/site-library", "/usr/local/lib/R/library"))
+```
+
+Do this for lab 9 and all future labs
+
+## Why Store Multiple Data Frames in a Single Object in R?
+
+When working with R, it’s common to handle multiple datasets—whether they represent different time periods, experimental conditions, or subsets of a larger dataset. Instead of scattering these data frames across your environment, storing them in a single object offers several practical advantages. Here’s why this approach is considered a best practice.
+
+### 1. Better Organization and Readability
+
+Managing numerous standalone data frames can quickly become messy. By grouping them into a single object—typically a **list** or a **named list**—you create a structured container that keeps related data together. This makes your workspace cleaner and your code easier to read.
+
+### 2. Simplifies Iterative Operations
+
+Lists allow you to apply functions across all data frames without repetitive code. Functions like `lapply()`, `purrr::map()`, or `dplyr` pipelines make it easy to automate transformations, summaries, and visualizations.
+
+### 3. Dynamic Handling of Data
+
+If you’re importing multiple files or working with an unknown number of datasets, storing them in a single object enables programmatic handling. You can loop through files, read them into data frames, and store them in a list without hardcoding names.
+
+### 4. Facilitates Automation and Reproducibility
+
+A single object can be saved using `saveRDS()` or `save()`, ensuring all related data frames are preserved together. This makes sharing and reproducing analyses straightforward.
+
+### 5. Supports Complex Workflows
+
+Lists can hold not only data frames but also metadata, models, and other objects. This flexibility is useful for hierarchical data structures or multi-step analyses where related components need to stay grouped.
+
+### 6. Reduces Risk of Errors
+
+When data frames are stored in a single object, you avoid naming conflicts and accidental overwriting. It also makes it easier to track which datasets belong to a project.
+
+## RDS file format
+
+RDS files are a format used in R for saving single R objects, allowing for easy storage and retrieval of data. You can save an object using the `saveRDS()` function and load it back with `readRDS()`, which helps preserve the object's structure and type.
+
+## RDS Files
+
+RDS files are a specific format used in R for saving single R objects. This format is beneficial for preserving the structure and attributes of the data, making it ideal for data serialization, the process of translating a data structure or object state into a format that can be stored or transmitted and reconstructed later.
+
+### Saving R Objects as RDS Files
+
+To save an R object as an RDS file, you can use the `saveRDS()` function. Here’s how it works:
+
+-   **Syntax**:
+
+``` r
+saveRDS(object, file = "filename.rds")
+```
+
+-   **Example**:
+
+``` r
+saveRDS(mtcars, "mtcars.rds")
+```
+
+This command saves the `mtcars` dataset into a file named `mtcars.rds`.
+
+### Reading RDS Files
+
+To read an RDS file back into R, use the `readRDS()` function:
+
+-   **Syntax**:
+
+```r
+object <- readRDS(file = "filename.rds")
+```
+-   **Example**:
+
+```r
+my_data <- readRDS("mtcars.rds")
+```
+
+This command restores the `mtcars` dataset from the RDS file into the variable `my_data`. We will use a RDS file to save the NEON data
+
+### Key Features of RDS File
+
+-   **Single Object Storage**: RDS files are designed to store a single R object, unlike other formats that can store multiple objects.
+
+-   **Compression**: RDS files can be compressed, which helps save disk space.
+
+-   **Preservation of Structure**: When saving data in RDS format, the data structure (like data frames, lists, etc.) and attributes are preserved.
+
+### Comparison with Other Formats
+
+| **Feature** | **RDS Files** | **CSV Files** |
+|:-----------------------|:-----------------------|:-----------------------|
+| Stores | Single R object | Tabular data |
+| Structure Preservation | Yes | No |
+| Compression | Yes | No |
+| Read/Write Functions | `saveRDS()`, `readRDS()` | `write.csv()`, `read.csv()` |
+
+Using RDS files is a great way to save and load R objects efficiently while maintaining their integrity.
+
+## Accessing NEON data
+
+**You do not need to run the code in this section. It is for completeness and reproducibility purposes**
+
+### Install NEON packages
+
+```{r}
+#| eval: false
+install.packages("neonUtilities")
+install.packages("neonOS")
+```
+
+### Load libraries 
+```{r}
+#| eval: false
+library(neonUtilities)
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(viridis)
+```
+
+### Download the NEON soil chemistry data
+
+```{r}
+#| eval: false
+soilChem <- loadByProduct(
+  dpID='DP1.10086.001',
+  startdate = "2023-01",
+  enddate = "2023-12",
+  check.size = FALSE,
+  package='expanded')
+```
+
+This is collection of data frames called a `list` or `list of data frames`. Because it takes a while to download we will save it. This will also ensure that we are using this version of the soil chemistry data for all future analysis ()
+
+```{r}
+#| eval: false
+
+## This is the path for working on Unity
+# saveRDS("/work/pi_bio678_umass_edu/data_NEON/soilChem.rds")
+
+## This is the path for Jeff's personal computer
+saveRDS(soilChem, file = "../data/NEON_metadata/soilChem.rds")
+```
+
+## On the computer
+
+Start by loading in the R data object that was saved above (you do not need to run the above code)
+
+### Load the libraries
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(viridis)
+```
+
+### Read in the NEON soil chemistry data
+
+```{r}
+## This is the path for working on Unity
+# soilChem <- readRDS("/work/pi_bio678_umass_edu/data_NEON/soilChem.rds")
+
+## This is the path for Jeff's personal computer
+soilChem <- readRDS("../data/NEON_metadata/soilChem.rds")
+```
+
+In the your `Environment` window in the upper right corner of RStudio click on the `soilChem` data.  
+
+![soilChem data](../images/lab12/soilChem.png)
+This is a list of the data frames in this object. You can click on the tabs to see the columns in each data frame.
+
+### Wrangling sample data for metagenomic samples
+
+Now that you are familiar with downloading and viewing the soilChem data, we can start to focus on linking the data to the metagenomic samples. **For soil samples, the DNA samples for metagenomics are combined from up to 3 individual soil samples.** This is why you will not see any of the chemistry data we just viewed corresponding to any metagenomic DNA sample directly. We need to access the list of samples that were combined to create a soil composite sample, so we can link these data directly. For this we look at the sls_metagenomicsPooling table.
+
+In this table `soilChem$sls_metagenomicsPooling` the list for each composite DNA sample is in the column genomicsPooledIDList. For example, if we want to look at the list of samples used for the composite sample 'HARV_013-O-20230704-COMP' (sample is in the genomicsSampleID field), we can pull up the list for the 11th sample in the table:
+
+```{r}
+soilChem$sls_metagenomicsPooling[5,'genomicsSampleID']
+soilChem$sls_metagenomicsPooling[5,'collectDate']
+soilChem$sls_metagenomicsPooling$genomicsPooledIDList[5]
+```
+
+From the list you can see that there are three samples for the composite sample (there can be anywhere from 1-3 samples for each composite), all from plot HARV_013 collected on 7/04/2023, and all from the organic soil horizon (O). Now we can observe the chemical measurements for those specific samples. We will use tidyverse to help get the fields from the table. Let's take the first one as an example:
+
+```{r}
+#| eval: false
+# View(soilChem$sls_soilChemistry # No soil chemistry data for HARV
+soilChem$sls_soilMoisture |> 
+  filter(sampleID == "HARV_013-O-39-20230704") |> 
+  select(sampleID, soilMoisture)
+```
+
+We would like to be able to get these measurements for all the metagenomic subsamples. For this, we will first have to get the list for each composite sample and create a new table.
+
+```{r}
+# split up the pooled list into new columns
+genomicSamples <- soilChem$sls_metagenomicsPooling |>
+  tidyr::separate(genomicsPooledIDList, into=c("first","second","third"),sep="\\|",fill="right") |>
+  dplyr::select(genomicsSampleID,first,second,third)
+
+head(genomicSamples)
+```
+
+Now we will adjust the table so that each sampleID is a row, with the genomicsSampleID listed for each sample:
+
+```{r}
+genSampleExample <- genomicSamples |> 
+  tidyr::pivot_longer(cols=c("first","second","third"),values_to = "sampleID") |>
+  dplyr::select(sampleID,genomicsSampleID) |>
+  drop_na()
+```
+
+Now that you have all samples for each metagenomic sample listed, you can easily combine this table with other tables, using the sampleID. As an example we will go back to the soil chemistry data:
+
+```{r}
+chemEx <- soilChem$sls_soilMoisture |>
+  dplyr::select(sampleID,soilMoisture)
+
+## now combine the tables 
+combinedTab <- left_join(genSampleExample,chemEx, by = "sampleID") |> drop_na()
+
+## Show the data table
+head(combinedTab)
+```
+
+### Merging metadata around composite samples
+
+We now have a table that includes the genetic subsamples and their corresponding biogeochemical measurements. However, if we want to compare the biogeochemical data directly with the metagenomic genomic samples, you may want to merge the rows in the table back to a single row for each composite sample. This means we will need to average the chemical measurements across the subsamples for each composite sample. Care must be taken, however, when averaging across certain measurements (see in particular the example for averaging pH, below). Here is a basic example for our table:
+
+```{r}
+genome_groups_mean <- combinedTab %>%
+  group_by(genomicsSampleID) %>%
+  summarize_at(c("soilMoisture"), mean)
+
+head(genome_groups_mean)
+```
+
+## Additional examples for accessing data
+
+Here are some other examples to help you get started with NEON metagenomic data
+
+### Merging pH measurements
+
+The example above showing how to merge data works for many straightforward measurements, for which calculating the mean is logical. For pH measures, however, this won't work. Since pH is a logarithmic scale, averaging them will not work. Fortunately, the R package `respirometry` includes the function `mean_pH` for averaging pH measurements. This function first converts each pH measure to hydrogen ion concentration \[H+\], averages the measures, then converts back to the logarithmic scale.
+
+Below we show an example with the existing data. First we will create a new table with pH measurements, only keeping the samples from our metagenomic set:
+
+```{r}
+soilpH_Example <- soilChem$sls_soilpH %>%
+  dplyr::filter(sampleID %in% combinedTab$sampleID) %>%
+  dplyr::select(sampleID,soilInWaterpH,soilInCaClpH)
+
+# now join with the existing table
+combinedTab_pH <- left_join(combinedTab,soilpH_Example, by = "sampleID")
+
+# and the final
+head(combinedTab_pH)
+```
+
+Now, we can apply the same kind of tidyverse approach as the previous example, only using the `mean_pH` function:
+
+```{r}
+# Remember to install the respirometry package
+library(respirometry)
+
+genome_groups_pH <- combinedTab_pH %>%
+  group_by(genomicsSampleID) %>%
+  summarize_at(c("soilInWaterpH","soilInCaClpH"), mean_pH) 
+
+head(genome_groups_pH)
+```
+
+One thing to note with the previous command is that all the other chemical data was lost when you ran the command. In this example we use two `summarize_at` commands to apply different functions to the two types of variables, and then `left_join` will combine them:
+
+```{r}
+genome_groups_all_mean <- combinedTab_pH %>%
+  group_by(genomicsSampleID) %>%
+  {left_join(
+    summarize_at(.,vars("soilMoisture"), mean),
+    summarize_at(.,vars("soilInWaterpH","soilInCaClpH"), mean_pH)
+  )}
+
+head(genome_groups_all_mean)
+```
+
+## Exercises
+
+### Exercise 1
+
+The dataframe sls_soilCoreCollection contains alot of useful information for analyzing the NEON MAGs. Create a new dataframe `coreCollectionSubset` with just the following columns
+
+- sampleID
+- decimalLatitude
+- decimalLongitude
+- elevation
+- soilTemp
+
+### Exercise 2
+
+Following the above examples with `chemEx` join `genSampleExample` and `coreCollectionSubset`.
+
+### Exercise 3
+
+Get the mean for each mean for each metagenome `genomicsSampleID` for each column in your data frame from Ex. 2.
+
+### Exercise 4
+
+Join the data frame from Ex. 3 with the soil moisture and pH measurments in `genome_groups_all_mean`.
+
+### Exercise 5 
+
+Using the `genomicsSampleID` column, make a new column with the siteID (e.g. HARV). There is a similar example in lab 6 where we parsed the NEON MAG data.  
+
+### Exercise 6 
+
+Make a box plot with the soilpH by siteID
+
+### Exercise 7
+
+Calculate the mean soilTemp and soilMoisture for each siteID. Make a graph of mean soilTemp vs soilMoisture
+
+### Exercise 8
+
+Join your data frame from Ex 4 with the `NEON_MAGs_soil` data frame from lab 6.
+
+### Exercise 9
+
+Make a table of the MAGs found in soils with a pH < 4.0.
+
+
+

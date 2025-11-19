@@ -15,6 +15,7 @@ R Labs
 * Lab 9 - [Sequence Alignment, Phylogenetic Analysis and Tree Visualization](labs/lab9_ggtree.html) 
 * Lab 10 : [Detecting Patters with Regular Expressions](labs/lab10_regex.html)
 * Lab 11 : [Joining Data Frames](labs/lab11_joins.html)
+* Lab 12 : [Accessing NEON Metadata for Metagenomics](labs/lab12_soilchem.html)
 
 Unity Labs
 
