@@ -355,6 +355,7 @@ Let's first import our tree data. We're going to work with a made-up phylogeny w
 
 ```{r read.tree}
 tree <- read.tree("data/lab9/tree_newick.nwk")
+# tree <- read.tree("/work/pi_bio678_umass_edu/data/lab9/tree_newick.nwk")
 tree
 ```
 
@@ -604,6 +605,7 @@ Finally, let's add some tip labels. We'll want to right-align them, and by defau
 ```{r beastplot, fig.keep="last", fig.width=11, fig.height=11}
 # Read the data
 tree <- read.beast("data/lab9/flu_tree_beast.tree")
+# tree <- read.tree("/work/pi_bio678_umass_edu/data/lab9/flu_tree_beast.tree")
 # supply a most recent sampling date so you get the dates
 # and add a scale bar
 ggtree(tree, mrsd="2013-01-01") + 
@@ -619,6 +621,10 @@ Finally, let's look at `?msaplot`. This puts the multiple sequence alignment and
 
 ```{r msaplot, fig.width=11, fig.height=11}
 msaplot(p=ggtree(tree), fasta="data/lab9/flu_aasequence.fasta", window=c(150, 175))
+
+#msaplot(p=ggtree(tree), fasta="/work/pi_bio678_umass_edu/data/lab9/flu_aasequence.fasta", window=c(150, 175))
+
+
 ```
 
 
