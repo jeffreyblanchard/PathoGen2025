@@ -69,10 +69,6 @@ Bioconductor packages usually have great documentation in the form of *vignettes
 
 Just like R packages from CRAN, you only need to install Bioconductor packages once, then load them every time you start a new R session. Load the tidyverse package first.
 
-```{r load_ggtree_without_junk, echo=FALSE}
-suppressPackageStartupMessages(suppressWarnings(library(tidyverse)))
-suppressPackageStartupMessages(suppressWarnings(library(ggtree)))
-```
 
 ```{r load_ggtree}
 # You may need to install the treeio, rphylopic and ggimage packages
@@ -620,11 +616,9 @@ ggtree(tree, mrsd="2013-01-01") +
 Finally, let's look at `?msaplot`. This puts the multiple sequence alignment and the tree side-by-side. The function takes a tree object (produced with `ggtree()`) and the path to the FASTA multiple sequence alignment. You can do it with the entire MSA, or you could restrict to just a window. Want something interesting-looking, but maybe not all that useful? Try changing the coordinate system of the plot itself by passing `+ coord_polar(theta="y")` to the end of the command!
 
 ```{r msaplot, fig.width=11, fig.height=11}
+# msaplot(p=ggtree(tree), fasta="/work/pi_bio678_umass_edu/data/lab9/flu_aasequence.fasta", window=c(150, 175))
+
 msaplot(p=ggtree(tree), fasta="data/lab9/flu_aasequence.fasta", window=c(150, 175))
-
-#msaplot(p=ggtree(tree), fasta="/work/pi_bio678_umass_edu/data/lab9/flu_aasequence.fasta", window=c(150, 175))
-
-
 ```
 
 
