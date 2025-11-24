@@ -30,4 +30,4 @@ Unity Labs
 
 AI-driven labs
 
-* Lab S6 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data](labs/lab6s_neon_multi.html)
+* Lab S6 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data](labs/lab6s_neon_multi.html)
