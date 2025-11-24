@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Labs – PathoGen</title>
+<title>Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data – PathoGen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,40 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1667,7 +1701,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4720,7 +4754,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">PathoGen</span>
     </a>
   </div>
@@ -4731,19 +4765,19 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./labs.html" aria-current="page"> 
+    <a class="nav-link" href="../labs.html"> 
 <span class="menu-text">Labs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./methods.html"> 
+    <a class="nav-link" href="../methods.html"> 
 <span class="menu-text">CURE Methods</span></a>
   </li>  
 </ul>
@@ -4757,15 +4791,31 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#on-the-computer" id="toc-on-the-computer" class="nav-link" data-scroll-target="#on-the-computer">On the computer</a>
+  <ul class="collapse">
+  <li><a href="#load-the-libraries" id="toc-load-the-libraries" class="nav-link" data-scroll-target="#load-the-libraries">Load the libraries</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1---preparing-your-neon_soilmags_soilchem-file" id="toc-exercise-1---preparing-your-neon_soilmags_soilchem-file" class="nav-link" data-scroll-target="#exercise-1---preparing-your-neon_soilmags_soilchem-file">Exercise 1 - Preparing your NEON_soilMAGs_soilChem file</a></li>
+  <li><a href="#exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first." id="toc-exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first." class="nav-link" data-scroll-target="#exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first.">Exercise 2 - Upload this file to co-pilot (you may need to download to your computer first).</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Labs</h1>
+<h1 class="title">Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data</h1>
 </div>
 
 
@@ -4782,38 +4832,54 @@ vertical-align: -.125em;
 </header>
 
 
-<p>R Labs</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li>Lab 1 : <a href="labs/lab1_overview.html">Overview &amp; Getting Started</a></li>
-<li>Lab 2 : <a href="labs/lab2_AI_ggplot.html">Learning R with the Help of AI tools Starting with Graphing using ggplot</a></li>
-<li>Lab 3 : <a href="./labs/lab3_data_transformation.html">Data Transformation with dplyr</a></li>
-<li>Lab 4 : <a href="./labs/lab4_coding_import.html">Coding Basics, Style and Data Read/Write</a></li>
-<li>Lab 5 : <a href="./labs/lab5_NEON_tables.html">Working with NEON Metagenome Assembled Genomes (MAGs / bins)</a></li>
-<li>Lab 6 : <a href="labs/lab6_NEON_pub_graphics.html">ggplotting with NEON MAG data</a></li>
-<li>Lab 7 : <a href="labs/lab7_covid.html">Data Tidying, Transformation and Visualization with COVID-19 reporting data</a></li>
-<li>Lab 8: Catch up, <a href="https://www.nature.com/articles/d41586-024-04195-3">What Will viruses Do Next?</a>, <a href="https://arcinstitute.org/news/hie-king-first-synthetic-phage">The First AI Genomes</a> and <a href="https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc">metagenome Brainstorming</a></li>
-<li>Lab 9 - <a href="labs/lab9_ggtree.html">Sequence Alignment, Phylogenetic Analysis and Tree Visualization</a></li>
-<li>Lab 10 : <a href="labs/lab10_regex.html">Detecting Patters with Regular Expressions</a></li>
-<li>Lab 11 : <a href="labs/lab11_joins.html">Joining Data Frames</a></li>
-<li>Lab 12 : <a href="labs/lab12_soilchem.html">Accessing NEON Metadata for Metagenomics</a></li>
+<li>What can we do using an AI prompt?</li>
 </ul>
-<p>Sharing and Publishing</p>
-<ul>
-<li>Lab S1 : <a href="labs/lab1s_quarto.html">Quarto</a></li>
-<li>Lab S2 : <a href="labs/lab2s_biblio.html">Adding References to Your Report with Zotero</a></li>
-<li>Lab S3 : <a href="labs/lab3s_github.html">Connecting a Github repo site with a RStudio project</a></li>
-</ul>
-<p>Unity Labs</p>
-<ul>
-<li>Lab S4 : <a href="labs/lab4s_shell.html">Working on the command line in Terminal with Shell</a></li>
-<li>Lab S5 - <a href="labs/lab5s_jobs.html">Running bioinformatics software interactively and in batches</a></li>
-</ul>
-<p>AI-driven labs</p>
-<ul>
-<li>Lab S6 : <a href="labs/lab6s_neon_multi.html">AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data</a></li>
-</ul>
+</section>
+<section id="on-the-computer" class="level2">
+<h2 class="anchored" data-anchor-id="on-the-computer">On the computer</h2>
+<section id="load-the-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-libraries">Load the libraries</h3>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(respirometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>Turn in typical lab report with your code and results.</p>
+<section id="exercise-1---preparing-your-neon_soilmags_soilchem-file" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1---preparing-your-neon_soilmags_soilchem-file">Exercise 1 - Preparing your NEON_soilMAGs_soilChem file</h3>
+<p>We are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(NEON_soilMAGs_soilChem,<span class="at">file =</span> <span class="st">&quot;NEON_soilMAGs_soilChem.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first." class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first.">Exercise 2 - Upload this file to co-pilot (you may need to download to your computer first).</h3>
+<p>Give co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?</p>
+</section>
+<section id="exercise-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<p>This is an open ended lab. Spend at the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

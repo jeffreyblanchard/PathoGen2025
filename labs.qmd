@@ -17,19 +17,17 @@ R Labs
 * Lab 11 : [Joining Data Frames](labs/lab11_joins.html)
 * Lab 12 : [Accessing NEON Metadata for Metagenomics](labs/lab12_soilchem.html)
 
-Unity Labs
-
-* Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
-* Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
-
 Sharing and Publishing
 
 * Lab S1 : [Quarto](labs/lab1s_quarto.html)
 * Lab S2 : [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
 * Lab S3 : [Connecting a Github repo site with a RStudio project](labs/lab3s_github.html)
 
+Unity Labs
 
+* Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
+* Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
 
-Manuscript
+AI-driven labs
 
-* PathoGen manuscript : Deadline Dec 10
+* Lab S6 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data](labs/lab6s_neon_multi.html)

@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What Will viruses Do Next?, The First AI Genomes and metagenome Brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\nLab 11 : Joining Data Frames\nLab 12 : Accessing NEON Metadata for Metagenomics\n\nUnity Labs\n\nLab S4 : Working on the command line in Terminal with Shell\nLab S5 - Running bioinformatics software interactively and in batches\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\n\nManuscript\n\nPathoGen manuscript : Deadline Dec 10"
+    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What Will viruses Do Next?, The First AI Genomes and metagenome Brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\nLab 11 : Joining Data Frames\nLab 12 : Accessing NEON Metadata for Metagenomics\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\n\nUnity Labs\n\nLab S4 : Working on the command line in Terminal with Shell\nLab S5 - Running bioinformatics software interactively and in batches\n\nAI-driven labs\n\nLab S6 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data"
   },
   {
     "objectID": "report.html",
@@ -1566,5 +1566,47 @@
     "title": "Lab 12 - Accessing NEON Metadata for Metagenomics",
     "section": "Exercises",
     "text": "Exercises\n\nExercise 1\nThe dataframe sls_soilCoreCollection contains alot of useful information for analyzing the NEON MAGs. Create a new dataframe coreCollectionSubset with just the following columns\n\nsampleID\ndecimalLatitude\ndecimalLongitude\nelevation\nsoilTemp\n\n\n\nExercise 2\nFollowing the above examples with chemEx join genSampleExample and coreCollectionSubset.\n\n\nExercise 3\nGet the mean for each mean for each metagenome genomicsSampleID for each column in your data frame from Ex. 2.\n\n\nExercise 4\nJoin the data frame from Ex. 3 with the soil moisture and pH measurments in genome_groups_all_mean.\n\n\nExercise 5\nUsing the genomicsSampleID column, make a new column with the siteID (e.g. HARV). There is a similar example in lab 6 where we parsed the NEON MAG data.\n\n\nExercise 6\nMake a box plot with the soilpH by siteID\n\n\nExercise 7\nCalculate the mean soilTemp and soilMoisture for each siteID. Make a graph of mean soilTemp vs soilMoisture\n\n\nExercise 8\nJoin your data frame from Ex 4 with the NEON_MAGs_soil data frame from lab 6.\n\n\nExercise 9\nMake a table of the MAGs found in soils with a pH &lt; 4.0."
+  },
+  {
+    "objectID": "labs/lab6s_neon_multi_key.html",
+    "href": "labs/lab6s_neon_multi_key.html",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "section": "",
+    "text": "What can we do using an AI prompt?"
+  },
+  {
+    "objectID": "labs/lab6s_neon_multi_key.html#learning-objectives",
+    "href": "labs/lab6s_neon_multi_key.html#learning-objectives",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "section": "",
+    "text": "What can we do using an AI prompt?"
+  },
+  {
+    "objectID": "labs/lab6s_neon_multi_key.html#on-the-computer",
+    "href": "labs/lab6s_neon_multi_key.html#on-the-computer",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "section": "On the computer",
+    "text": "On the computer\n\nLoad the libraries\n\n\nR code\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(DT)\nlibrary(viridis)\nlibrary(janitor)\nlibrary(plotly)\nlibrary(respirometry)"
+  },
+  {
+    "objectID": "labs/lab6s_neon_multi_key.html#exercises",
+    "href": "labs/lab6s_neon_multi_key.html#exercises",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "section": "Exercises",
+    "text": "Exercises\nTurn in typical lab report with your code and results.\n\nExercise 1 - Preparing your NEON_soilMAGs_soilChem file\nWe are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file\n\n\nR code\nwrite.csv(NEON_soilMAGs_soilChem,file = \"NEON_soilMAGs_soilChem.csv\")\n\n\n\n\nExercise 2 - Upload this file to co-pilot (you may need to download to your computer first).\nGive co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?\n\n\nExercise 3\nThis is an open ended lab. Spend at the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break."
+  },
+  {
+    "objectID": "labs/lab6s_neon_multi.html#on-the-computer",
+    "href": "labs/lab6s_neon_multi.html#on-the-computer",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "section": "On the computer",
+    "text": "On the computer\n\nLoad the libraries\n\n\nR code\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(DT)\nlibrary(viridis)\nlibrary(janitor)\nlibrary(plotly)\nlibrary(respirometry)"
+  },
+  {
+    "objectID": "labs/lab6s_neon_multi.html#exercises",
+    "href": "labs/lab6s_neon_multi.html#exercises",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "section": "Exercises",
+    "text": "Exercises\nTurn in typical lab report with your code and results.\n\nExercise 1 - Preparing your NEON_soilMAGs_soilChem file\nWe are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file\n\n\nR code\nwrite.csv(NEON_soilMAGs_soilChem,file = \"NEON_soilMAGs_soilChem.csv\")\n\n\n\n\nExercise 2 - Upload this file to co-pilot (you may need to download to your computer first).\nGive co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?\n\n\nExercise 3\nThis is an open ended lab. Spend the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break. Turn in what you get done by the end of class."
   }
 ]

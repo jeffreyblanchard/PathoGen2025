@@ -1,0 +1,44 @@
+---
+title: "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data"
+---
+
+## Learning objectives
+
+## On the computer
+
+### Load the libraries
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(viridis)
+library(janitor)
+library(plotly)
+library(respirometry)
+```
+
+
+## Exercises 
+
+Turn in typical lab report with your code and results.
+
+### Exercise 1 - Preparing your NEON_soilMAGs_soilChem file
+
+We are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file
+
+```{r}
+#| eval: false
+write.csv(NEON_soilMAGs_soilChem,file = "NEON_soilMAGs_soilChem.csv")
+```
+
+### Exercise 2 - Upload this file to co-pilot (you may need to download to your computer first).
+
+Give co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?
+
+### Exercise 3
+
+This is an open ended lab. Spend the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break. Turn in what you get done by the end of class.
+
+ 
+ 
