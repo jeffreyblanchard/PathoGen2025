@@ -1,5 +1,5 @@
 ---
-title: "Pathogen Genome Analysis Fall 2025"
+title: "Schedule Fall 2025"
 ---
 
 ![Joint Genome Institute Mural - artist Nigel Sussman - https://jgi.doe.gov/science-stories/jgi25](images/JGI_MuralImage.png)
