@@ -10,11 +10,10 @@ website:
         text: Home
       - href: labs.qmd
         text: Labs
+      - href: schedule.qmd
+        text: Schedule        
       - href: projects.qmd
         text: Projects
-      - href: methods.qmd
-        text: CURE Methods
-
 format:
   html:
     toc: true

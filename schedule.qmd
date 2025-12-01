@@ -9,24 +9,24 @@ title: "Pathogen Genome Analysis Fall 2025"
 * Sept 17 (Wed) - Lab 3: Data Transformation with dyplr 
 * Sept 22 (Mon) - Discussion of research project possibilities 
 * Sept 24 (Wed) - Lab 4: Coding Basics, Style and Data Read/Write
-* Sept 29 (Mon) - Discussion of project methods and the scope of what is possible (in 10 weeks)
-* Oct 1 (Wed) - Lab 5: NEON Data Visualization
-* Oct 6 (Mon) - TBD
-* Oct 8 (Wed) - Lab 6: Table joins of NEON MAG, metagenomic and chemistry data
+* Sept 29 (Mon) - Discussion of the NEON data set and projects
+* Oct 1 (Wed) - Lab 5 : Working with NEON Metagenome Assembled Genomes (MAGs/bins)
+* Oct 6 (Mon) - Lab S2 : Adding References to Your Report with Zotero
+* Oct 8 (Wed) - Lab 6: ggplotting with NEON MAG data
 * Oct 13 (Mon) Holiday – Indigenous People’s Day
-* Oct 15 (Wed) - Lab 7: Geographic mapping the NEON data
+* Oct 15 (Wed) - Lab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data
 * Oct 20 (Mon) - Dr. Jennifer DeBruyn - All Ooze Considered
-* Oct 22 (Wed) - Lab 8: Genome representations
-* Oct 27 (Mon) - TBD
-* Oct 29 (Wed) - Lab 9: Phylogenetic tree visualization using ggtree
-* Nov 3 (Mon) - TBD
-* Nov 5 (Wed) - Lab 10: Read abundance - normalization and statistics
-* Nov 10 (Mon) - TBD
-* Nov 12 (Wed) - Lab 11: TBD based on research project directions
-* Nov 17 (Mon) - TBD
-* Nov 19 (Wed) - Lab 12: TBD based on research project directions
-* Nov 24 (Mon) - Research project workday
+* Oct 22 (Wed) - Lab 8: Metagenome brainstorming with AI
+* Oct 27 (Mon) - Lab S3 : Connecting a Github repo site with a new RStudio project
+* Oct 29 (Wed) - Lab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization
+* Nov 3 (Mon) - Lab S4 : Working on the command line in Terminal with Shell
+* Nov 5 (Wed) - Lab 10 : Detecting Patterns in Regular Expression
+* Nov 10 (Mon) - Lab S5 : Running bioinformatics software interactively and in batches
+* Nov 12 (Wed) - Lab 11 : Joining Data Frames
+* Nov 17 (Mon) - Catch up
+* Nov 19 (Wed) - Lab 12 : Accessing NEON Metadata for Metagenomics
+* Nov 24 (Mon) - Lab S6 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part I
 * Nov 26 (Wed) Holiday - Thanksgiving
-* Dec 1 (Mon) - Research project workday
-* Dec 3 (Wed) - Research project presentations
-* Dec 8 (Mon) - Research project presentations
+* Dec 1 (Mon) - Lab S7 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II
+* Dec 3 (Wed) - Lab 13 : 
+* Dec 8 (Mon) - Lab S8 : 
