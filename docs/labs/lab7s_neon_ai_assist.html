@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part I – PathoGen</title>
+<title>Lab S7 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II – PathoGen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4801,12 +4801,7 @@ vertical-align: -.125em;
   <ul class="collapse">
   <li><a href="#load-the-libraries" id="toc-load-the-libraries" class="nav-link" data-scroll-target="#load-the-libraries">Load the libraries</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1---preparing-your-neon_soilmags_soilchem-file" id="toc-exercise-1---preparing-your-neon_soilmags_soilchem-file" class="nav-link" data-scroll-target="#exercise-1---preparing-your-neon_soilmags_soilchem-file">Exercise 1 - Preparing your NEON_soilMAGs_soilChem file</a></li>
-  <li><a href="#exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first." id="toc-exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first." class="nav-link" data-scroll-target="#exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first.">Exercise 2 - Upload this file to co-pilot (you may need to download to your computer first).</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
-  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -4815,7 +4810,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part I</h1>
+<h1 class="title">Lab S7 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II</h1>
 </div>
 
 
@@ -4855,27 +4850,42 @@ vertical-align: -.125em;
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>Turn in typical lab report with your code and results.</p>
-<section id="exercise-1---preparing-your-neon_soilmags_soilchem-file" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1---preparing-your-neon_soilmags_soilchem-file">Exercise 1 - Preparing your NEON_soilMAGs_soilChem file</h3>
-<p>We are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file</p>
-<div class="cell">
-<details open class="code-fold">
-<summary>R code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(NEON_soilMAGs_soilChem,<span class="at">file =</span> <span class="st">&quot;NEON_soilMAGs_soilChem.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first." class="level3">
-<h3 class="anchored" data-anchor-id="exercise-2---upload-this-file-to-co-pilot-you-may-need-to-download-to-your-computer-first.">Exercise 2 - Upload this file to co-pilot (you may need to download to your computer first).</h3>
-<p>Give co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?</p>
-</section>
-<section id="exercise-3" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
-<p>This is an open ended lab. Spend at the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break.</p>
+<p>Today we will build on the self-motivated analysis of the NEON MAGs and their associated metadata (including the soil chemistry data). As with last week upload your <code>NEON_soilMAGs_soilChem.csv</code> file into co-pilot. Then ask for suggestions in the types of analysis you can do. This week pick a different category than last week. Some possibilies are</p>
+<ol type="1">
+<li>Community Composition &amp; Diversity</li>
+</ol>
+<ul>
+<li>Taxonomic profiling: Summarize relative abundances of phyla, classes, or genera across sites.</li>
+<li>Alpha diversity: Compute metrics like Shannon, Simpson, and richness for each site.</li>
+<li>Beta diversity: Compare community composition between sites using Bray-Curtis or UniFrac distances.</li>
+<li>Ordination: Perform PCA, NMDS, or PCoA to visualize differences in microbial communities.</li>
+</ul>
+<ol start="2" type="1">
+<li>Environmental Correlations</li>
+</ol>
+<ul>
+<li>Soil chemistry vs. taxonomy: Correlate pH, moisture, temperature, and elevation with microbial diversity or specific taxa.</li>
+<li>Gradient analysis: Identify taxa enriched along environmental gradients (e.g., moisture or pH).</li>
+<li>Canonical Correspondence Analysis (CCA): Link community composition to environmental variables.</li>
+</ul>
+<ol start="3" type="1">
+<li>Biogeography &amp; Spatial Patterns</li>
+</ol>
+<ul>
+<li>Mapping taxa distributions: Visualize where specific taxa or functional groups occur across latitude/longitude.</li>
+<li>Spatial autocorrelation: Test if microbial communities are structured by geography.</li>
+<li>Distance-decay analysis: Examine how community similarity decreases with geographic distance.</li>
+</ul>
+<ol start="4" type="1">
+<li>Co-occurrence &amp; Network Analysis</li>
+</ol>
+<ul>
+<li>Microbial interaction networks: Build co-occurrence networks to identify potential ecological interactions.</li>
+<li>Module detection: Identify clusters of taxa that respond similarly to environmental factors.</li>
+</ul>
+<p>Ask co-pilot for guidance and code in doing your analysis. As with last week this is an open ended lab. The expectations are that you spend class time exploring one of these areas and submit a lab report with your code.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

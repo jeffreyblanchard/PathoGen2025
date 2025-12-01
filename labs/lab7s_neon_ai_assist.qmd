@@ -1,0 +1,51 @@
+---
+title: "Lab S7 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II"
+---
+
+## Learning objectives
+
+## On the computer
+
+### Load the libraries
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(viridis)
+library(janitor)
+library(plotly)
+library(respirometry)
+```
+
+## Exercises 
+
+Today we will build on the self-motivated analysis of the NEON MAGs and their associated metadata (including the soil chemistry data). As with last week upload your `NEON_soilMAGs_soilChem.csv` file into co-pilot. Then ask for suggestions in the types of analysis you can do. This week pick a different category than last week. Some possibilies are
+
+1. Community Composition & Diversity
+
+-  Taxonomic profiling: Summarize relative abundances of phyla, classes, or genera across sites.
+-  Alpha diversity: Compute metrics like Shannon, Simpson, and richness for each site.
+-  Beta diversity: Compare community composition between sites using Bray-Curtis or UniFrac distances.
+-  Ordination: Perform PCA, NMDS, or PCoA to visualize differences in microbial communities.
+
+2. Environmental Correlations
+
+-  Soil chemistry vs. taxonomy: Correlate pH, moisture, temperature, and elevation with microbial diversity or specific taxa.
+-  Gradient analysis: Identify taxa enriched along environmental gradients (e.g., moisture or pH).
+-  Canonical Correspondence Analysis (CCA): Link community composition to environmental variables.
+
+3. Biogeography & Spatial Patterns
+
+-  Mapping taxa distributions: Visualize where specific taxa or functional groups occur across latitude/longitude.
+-  Spatial autocorrelation: Test if microbial communities are structured by geography.
+-  Distance-decay analysis: Examine how community similarity decreases with geographic distance.
+
+4. Co-occurrence & Network Analysis
+
+-  Microbial interaction networks: Build co-occurrence networks to identify potential ecological interactions.
+-  Module detection: Identify clusters of taxa that respond similarly to environmental factors.
+
+Ask co-pilot for guidance and code in doing your analysis. As with last week this is an open ended lab. The expectations are that you spend class time exploring one of these areas and submit a lab report with your code.
+
+

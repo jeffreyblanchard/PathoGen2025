@@ -60,7 +60,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What Will viruses Do Next?, The First AI Genomes and metagenome Brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\nLab 11 : Joining Data Frames\nLab 12 : Accessing NEON Metadata for Metagenomics\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\n\nUnity Labs\n\nLab S4 : Working on the command line in Terminal with Shell\nLab S5 - Running bioinformatics software interactively and in batches\n\nAI-driven labs\n\nLab S6 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data"
+    "text": "R Labs\n\nLab 1 : Overview & Getting Started\nLab 2 : Learning R with the Help of AI tools Starting with Graphing using ggplot\nLab 3 : Data Transformation with dplyr\nLab 4 : Coding Basics, Style and Data Read/Write\nLab 5 : Working with NEON Metagenome Assembled Genomes (MAGs / bins)\nLab 6 : ggplotting with NEON MAG data\nLab 7 : Data Tidying, Transformation and Visualization with COVID-19 reporting data\nLab 8: Catch up, What Will viruses Do Next?, The First AI Genomes and metagenome Brainstorming\nLab 9 - Sequence Alignment, Phylogenetic Analysis and Tree Visualization\nLab 10 : Detecting Patters with Regular Expressions\nLab 11 : Joining Data Frames\nLab 12 : Accessing NEON Metadata for Metagenomics\n\nSharing and Publishing\n\nLab S1 : Quarto\nLab S2 : Adding References to Your Report with Zotero\nLab S3 : Connecting a Github repo site with a RStudio project\n\nUnity Labs\n\nLab S4 : Working on the command line in Terminal with Shell\nLab S5 - Running bioinformatics software interactively and in batches\n\nAI-driven labs\n\nLab S6 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data - I\nLab S7 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data - II"
   },
   {
     "objectID": "report.html",
@@ -1598,15 +1598,29 @@
   {
     "objectID": "labs/lab6s_neon_multi.html#on-the-computer",
     "href": "labs/lab6s_neon_multi.html#on-the-computer",
-    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part I",
     "section": "On the computer",
     "text": "On the computer\n\nLoad the libraries\n\n\nR code\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(DT)\nlibrary(viridis)\nlibrary(janitor)\nlibrary(plotly)\nlibrary(respirometry)"
   },
   {
     "objectID": "labs/lab6s_neon_multi.html#exercises",
     "href": "labs/lab6s_neon_multi.html#exercises",
-    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data",
+    "title": "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part I",
     "section": "Exercises",
     "text": "Exercises\nTurn in typical lab report with your code and results.\n\nExercise 1 - Preparing your NEON_soilMAGs_soilChem file\nWe are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file\n\n\nR code\nwrite.csv(NEON_soilMAGs_soilChem,file = \"NEON_soilMAGs_soilChem.csv\")\n\n\n\n\nExercise 2 - Upload this file to co-pilot (you may need to download to your computer first).\nGive co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?\n\n\nExercise 3\nThis is an open ended lab. Spend at the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break."
+  },
+  {
+    "objectID": "labs/lab7s_neon_ai_assist.html#on-the-computer",
+    "href": "labs/lab7s_neon_ai_assist.html#on-the-computer",
+    "title": "Lab S7 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II",
+    "section": "On the computer",
+    "text": "On the computer\n\nLoad the libraries\n\n\nR code\nlibrary(tidyverse)\nlibrary(lubridate)\nlibrary(DT)\nlibrary(viridis)\nlibrary(janitor)\nlibrary(plotly)\nlibrary(respirometry)"
+  },
+  {
+    "objectID": "labs/lab7s_neon_ai_assist.html#exercises",
+    "href": "labs/lab7s_neon_ai_assist.html#exercises",
+    "title": "Lab S7 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II",
+    "section": "Exercises",
+    "text": "Exercises\nToday we will build on the self-motivated analysis of the NEON MAGs and their associated metadata (including the soil chemistry data). As with last week upload your NEON_soilMAGs_soilChem.csv file into co-pilot. Then ask for suggestions in the types of analysis you can do. This week pick a different category than last week. Some possibilies are\n\nCommunity Composition & Diversity\n\n\nTaxonomic profiling: Summarize relative abundances of phyla, classes, or genera across sites.\nAlpha diversity: Compute metrics like Shannon, Simpson, and richness for each site.\nBeta diversity: Compare community composition between sites using Bray-Curtis or UniFrac distances.\nOrdination: Perform PCA, NMDS, or PCoA to visualize differences in microbial communities.\n\n\nEnvironmental Correlations\n\n\nSoil chemistry vs. taxonomy: Correlate pH, moisture, temperature, and elevation with microbial diversity or specific taxa.\nGradient analysis: Identify taxa enriched along environmental gradients (e.g., moisture or pH).\nCanonical Correspondence Analysis (CCA): Link community composition to environmental variables.\n\n\nBiogeography & Spatial Patterns\n\n\nMapping taxa distributions: Visualize where specific taxa or functional groups occur across latitude/longitude.\nSpatial autocorrelation: Test if microbial communities are structured by geography.\nDistance-decay analysis: Examine how community similarity decreases with geographic distance.\n\n\nCo-occurrence & Network Analysis\n\n\nMicrobial interaction networks: Build co-occurrence networks to identify potential ecological interactions.\nModule detection: Identify clusters of taxa that respond similarly to environmental factors.\n\nAsk co-pilot for guidance and code in doing your analysis. As with last week this is an open ended lab. The expectations are that you spend class time exploring one of these areas and submit a lab report with your code."
   }
 ]
