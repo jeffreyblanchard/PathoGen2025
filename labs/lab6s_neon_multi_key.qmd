@@ -1,0 +1,270 @@
+---
+title: "Lab S6 - AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data"
+---
+
+## Learning objectives
+
+## On the computer
+
+### Load the libraries
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(viridis)
+library(janitor)
+library(plotly)
+library(respirometry)
+```
+
+
+#### Reading and cleaning freshwater and soil MAGs
+
+```{r}
+# This is the location used for Github
+NEON_MAGs_prelim <- read_tsv("../data/NEON_metadata/exported_img_bins_Gs0166454_NEON.tsv") |> 
+# This is the location used for the class data directory on Unity
+# NEON_MAGs_prelim <- read_tsv("/work/pi_bio678_umass_edu/data_NEON/exported_img_bins_Gs0166454_NEON.tsv") |>
+  
+  clean_names() |> 
+  
+  # Add a new column community corresponding to different communities names in the genome_name
+  mutate(community = case_when(
+    str_detect(genome_name, "Freshwater sediment microbial communities") ~ "Freshwater sediment microbial communitie",
+    str_detect(genome_name, "Freshwater biofilm microbial communities") ~ "Freshwater biofilm microbial communities",
+    str_detect(genome_name, "Freshwater microbial communities") ~ "Freshwater microbial communities",
+    str_detect(genome_name, "Soil microbial communities") ~ "Soil microbial communities",
+    TRUE ~ NA_character_
+  )) |> 
+  
+  # Create a column type that is either Freshwater or Soil
+  mutate(type = case_when(
+    str_detect(genome_name, "Freshwater sediment microbial communities") ~ "Freshwater",
+    str_detect(genome_name, "Freshwater biofilm microbial communities") ~ "Freshwater",
+    str_detect(genome_name, "Freshwater microbial communities") ~ "Freshwater",
+    str_detect(genome_name, "Soil microbial communities") ~ "Soil",
+    TRUE ~ NA_character_
+  )) |> 
+  
+  # Get rid of the communities strings
+  mutate_at("genome_name", str_replace, "Freshwater sediment microbial communities from ", "") |> 
+  mutate_at("genome_name", str_replace, "Freshwater biofilm microbial communities from", "") |> 
+  mutate_at("genome_name", str_replace, "Freshwater microbial communities from ", "") |> 
+  mutate_at("genome_name", str_replace, "Soil microbial communities from ", "") |> 
+
+  # separate site from sample name 
+  separate(genome_name, c("site","sample_name"), " - ") |>   
+  
+  # Deal with these unknow fields in the sample name by creating a new column and removing them from the sample name
+  mutate(sample_unknown = case_when(
+    str_detect(sample_name, ".SS.") ~ "SS",
+    str_detect(sample_name, ".C0.") ~ "C0",
+    str_detect(sample_name, ".C1.") ~ "C1",
+    str_detect(sample_name, ".C2.") ~ "C2",
+    TRUE ~ NA_character_
+  )) |> 
+
+# These fields are all associated with "Freshwater microbial communities from...   
+# SS - near stream sensor
+# C0 - non-stratified lake/river surface near buoy
+# C1 - stratified lake surface/epilimnion near buoy
+# C2 - stratified lake hypolimnion near buoy
+# EPIPSAMMON  - biofilm on sand/silt
+# EPILITHON - biofilm on rocks/cobbles
+# EPIPHYTON - biofilm that grows on the stems and leaves of aquatic plants
+  
+# These fields are all associated with "Freshwater biofilm microbial communities from
+# EPILITHON - biofilm on rocks/cobbles
+  
+# These fields are all associated with "Freshwater sediment microbial communities from 
+# EPIPSAMMON - biofilm on sand/silt
+  
+  mutate_at("sample_name", str_replace, ".SS", "") |> 
+  mutate_at("sample_name", str_replace, ".C0", "") |> 
+  mutate_at("sample_name", str_replace, ".C1", "") |> 
+  mutate_at("sample_name", str_replace, ".C2", "") |> 
+  
+
+  # Get rid of the the common strings at the end of sample names
+  mutate_at("sample_name", str_replace, "-GEN-DNA1", "") |>  
+  mutate_at("sample_name", str_replace, "-COMP-DNA1", "") |>  
+  mutate_at("sample_name", str_replace, "-COMP-DNA2", "") |>  
+  mutate_at("sample_name", str_replace, ".DNA-DNA1", "") |>
+  mutate_at("sample_name", str_replace, "_v2", "") |>
+  mutate_at("sample_name", str_replace, " \\(version 2\\)", "") |>
+  mutate_at("sample_name", str_replace, " \\(version 3\\)", "") |>
+  
+# Separate out the taxonomy groups
+  separate(gtdb_taxonomy_lineage, c("domain", "phylum", "class", "order", "family", "genus"), "; ", remove = FALSE)
+```
+
+```{r}
+# This block is for separating out the freshwater sample names
+NEON_MAGs_freshwater <- NEON_MAGs_prelim |>
+  filter(type == "Freshwater") |>
+  # separate the Sample Name into Site ID and plot info
+  separate(sample_name, c("site_ID","date", "layer", "subplot"), "\\.", remove = FALSE) |>
+  mutate(quadrant = NA_character_)
+```
+
+```{r}
+# This block is for separating out the soil sample names
+NEON_MAGs_soil <- NEON_MAGs_prelim |>
+  filter(type == "Soil") |>
+  # separate the Sample Name into Site ID and plot info
+  separate(sample_name, c("site_ID","subplot.layer.date"), "_", remove = FALSE,) |> 
+  # some sample names have 3 fields while others have a fourth field for the quadrant. This code create a field for the quadrant when present and adds na for samples from combined cores.
+  extract(
+    subplot.layer.date,
+    into = c("subplot", "layer", "quadrant", "date"),
+    regex = "^([^-]+)-([^-]+)(?:-([^-]+))?-([^-]+)$",
+    remove = FALSE
+  ) |>
+  mutate(quadrant = na_if(quadrant, "")) |>
+  select(-subplot.layer.date)
+```
+
+```{r}
+# This combines the soil and freshwater data frames
+NEON_MAGs <-bind_rows(NEON_MAGs_freshwater, NEON_MAGs_soil) |>
+  # This changes the format of the data column
+  mutate(date = ymd(date))
+```
+
+#### mySoilChem
+
+```{r}
+# Read in the soilChem data object
+## This is the path for working on Unity
+# soilChem <- readRDS("/work/pi_bio678_umass_edu/data_NEON/soilChem.rds")
+
+## This is the path for Jeff's personal computer
+soilChem <- readRDS("../data/NEON_metadata/soilChem.rds")
+```
+
+```{r}
+# split up the pooled list into new columns
+genomicSamples <- soilChem$sls_metagenomicsPooling |>
+  tidyr::separate(genomicsPooledIDList, into=c("first","second","third"),sep="\\|",fill="right") |>
+  dplyr::select(genomicsSampleID,first,second,third)
+
+head(genomicSamples)
+```
+
+Now we will adjust the table so that each sampleID is a row, with the genomicsSampleID listed for each sample:
+
+```{r}
+genSampleExample <- genomicSamples |> 
+  tidyr::pivot_longer(cols=c("first","second","third"),values_to = "sampleID") |>
+  dplyr::select(sampleID,genomicsSampleID) |>
+  drop_na()
+```
+
+```{r}
+chemEx <- soilChem$sls_soilMoisture |>
+  dplyr::select(sampleID,soilMoisture)
+
+## now combine the tables 
+combinedTab_soilMoisture <- left_join(genSampleExample,chemEx, by = "sampleID") |> drop_na()
+```
+
+
+```{r}
+genome_groups_mean <- combinedTab_soilMoisture %>%
+  group_by(genomicsSampleID) %>%
+  summarize_at(c("soilMoisture"), mean)
+```
+
+```{r}
+soilpH_Example <- soilChem$sls_soilpH %>%
+  dplyr::filter(sampleID %in% combinedTab_soilMoisture$sampleID) %>%
+  dplyr::select(sampleID,soilInWaterpH,soilInCaClpH)
+
+# now join with the existing table
+combinedTab_pH <- left_join(combinedTab_soilMoisture, soilpH_Example, by = "sampleID")
+
+```
+
+```{r}
+# Remember to install the respirometry package
+
+genome_groups_pH <- combinedTab_pH %>%
+  group_by(genomicsSampleID) %>%
+  summarize_at(c("soilInWaterpH","soilInCaClpH"), mean_pH) 
+```
+
+```{r}
+genome_groups_all_mean <- combinedTab_pH %>%
+  group_by(genomicsSampleID) %>%
+  {left_join(
+    summarize_at(.,vars("soilMoisture"), mean),
+    summarize_at(.,vars("soilInWaterpH","soilInCaClpH"), mean_pH)
+  )}
+```
+
+```{r}
+genSampleExample <- genomicSamples |> 
+  tidyr::pivot_longer(cols=c("first","second","third"),values_to = "sampleID") |>
+  dplyr::select(sampleID,genomicsSampleID) |>
+  drop_na()
+```
+
+```{r}
+soilCoreCollection <- soilChem$sls_soilCoreCollection |>
+  dplyr::select(sampleID, decimalLatitude, decimalLongitude, elevation, soilTemp)
+
+## now combine the tables 
+combinedTab_soilCoreCollection <- left_join(genSampleExample,soilCoreCollection, by = "sampleID") |> drop_na()
+```
+
+```{r}
+# now join with the existing table
+combinedTab <- combinedTab_pH |> 
+  select(- genomicsSampleID) |> 
+  left_join(combinedTab_soilCoreCollection, by = "sampleID")
+```
+
+
+```{r}
+mySoilChem_mean <- combinedTab %>%
+  group_by(genomicsSampleID) %>%
+  {left_join(
+    summarize_at(.,vars("soilMoisture", "decimalLatitude", "decimalLongitude", "elevation", "soilTemp"), mean),
+    summarize_at(.,vars("soilInWaterpH","soilInCaClpH"), mean_pH)
+  )}
+```
+
+#### Join Soil NEON MAGs and mySoilChem_mean
+
+
+```{r}
+NEON_soilMAGs_soilChem <- mySoilChem_mean |> 
+  mutate_at("genomicsSampleID", str_replace, "-COMP", "") |>  
+  left_join(NEON_MAGs_soil, c("genomicsSampleID" = "sample_name")) |> 
+  select(- sample_unknown)
+```
+
+
+## Exercises 
+
+Turn in typical lab report with your code and results.
+
+### Exercise 1 - Preparing your NEON_soilMAGs_soilChem file
+
+We are going to start with the data frame that you created in Lab 12 ex8 by joining the genome_groups_all_means and NEON_MAGs_soil dataframes. For consistency I am going to call this NEON_soilMAGs_soilChem. Write this data frame to a file
+
+```{r}
+write.csv(NEON_soilMAGs_soilChem,file = "NEON_soilMAGs_soilChem.csv")
+```
+
+### Exercise 2 - Upload this file to co-pilot (you may need to download to your computer first).
+
+Give co-pilot a prompt such as - This is a csv file of metagenome assembled genomes, with their taxonomy, geographic location, soil chemistry and other metadata. What type of analysis can I do with this dataset in R?
+
+### Exercise 3
+
+This is an open ended lab. Spend at the class time today try to do either Taxonomic Composition or Environmental Correlations. We will return to this next Monday after the break. 
+
+ 
+ 

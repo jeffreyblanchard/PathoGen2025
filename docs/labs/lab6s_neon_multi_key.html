@@ -4851,6 +4851,280 @@ vertical-align: -.125em;
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(respirometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<section id="reading-and-cleaning-freshwater-and-soil-mags" class="level4">
+<h4 class="anchored" data-anchor-id="reading-and-cleaning-freshwater-and-soil-mags">Reading and cleaning freshwater and soil MAGs</h4>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the location used for Github</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>NEON_MAGs_prelim <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;../data/NEON_metadata/exported_img_bins_Gs0166454_NEON.tsv&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the location used for the class data directory on Unity</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># NEON_MAGs_prelim &lt;- read_tsv(&quot;/work/pi_bio678_umass_edu/data_NEON/exported_img_bins_Gs0166454_NEON.tsv&quot;) |&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a new column community corresponding to different communities names in the genome_name</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">community =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Freshwater sediment microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Freshwater sediment microbial communitie&quot;</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Freshwater biofilm microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Freshwater biofilm microbial communities&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Freshwater microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Freshwater microbial communities&quot;</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Soil microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Soil microbial communities&quot;</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a column type that is either Freshwater or Soil</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Freshwater sediment microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Freshwater&quot;</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Freshwater biofilm microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Freshwater&quot;</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Freshwater microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Freshwater&quot;</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(genome_name, <span class="st">&quot;Soil microbial communities&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Soil&quot;</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get rid of the communities strings</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;genome_name&quot;</span>, str_replace, <span class="st">&quot;Freshwater sediment microbial communities from &quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;genome_name&quot;</span>, str_replace, <span class="st">&quot;Freshwater biofilm microbial communities from&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;genome_name&quot;</span>, str_replace, <span class="st">&quot;Freshwater microbial communities from &quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;genome_name&quot;</span>, str_replace, <span class="st">&quot;Soil microbial communities from &quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># separate site from sample name </span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(genome_name, <span class="fu">c</span>(<span class="st">&quot;site&quot;</span>,<span class="st">&quot;sample_name&quot;</span>), <span class="st">&quot; - &quot;</span>) <span class="sc">|&gt;</span>   </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Deal with these unknow fields in the sample name by creating a new column and removing them from the sample name</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample_unknown =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(sample_name, <span class="st">&quot;.SS.&quot;</span>) <span class="sc">~</span> <span class="st">&quot;SS&quot;</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(sample_name, <span class="st">&quot;.C0.&quot;</span>) <span class="sc">~</span> <span class="st">&quot;C0&quot;</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(sample_name, <span class="st">&quot;.C1.&quot;</span>) <span class="sc">~</span> <span class="st">&quot;C1&quot;</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(sample_name, <span class="st">&quot;.C2.&quot;</span>) <span class="sc">~</span> <span class="st">&quot;C2&quot;</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># These fields are all associated with &quot;Freshwater microbial communities from...   </span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co"># SS - near stream sensor</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co"># C0 - non-stratified lake/river surface near buoy</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co"># C1 - stratified lake surface/epilimnion near buoy</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co"># C2 - stratified lake hypolimnion near buoy</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># EPIPSAMMON  - biofilm on sand/silt</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co"># EPILITHON - biofilm on rocks/cobbles</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co"># EPIPHYTON - biofilm that grows on the stems and leaves of aquatic plants</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co"># These fields are all associated with &quot;Freshwater biofilm microbial communities from</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># EPILITHON - biofilm on rocks/cobbles</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># These fields are all associated with &quot;Freshwater sediment microbial communities from </span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co"># EPIPSAMMON - biofilm on sand/silt</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;.SS&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;.C0&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;.C1&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;.C2&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get rid of the the common strings at the end of sample names</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;-GEN-DNA1&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;-COMP-DNA1&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;-COMP-DNA2&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;.DNA-DNA1&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot;_v2&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot; </span><span class="sc">\\</span><span class="st">(version 2</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;sample_name&quot;</span>, str_replace, <span class="st">&quot; </span><span class="sc">\\</span><span class="st">(version 3</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate out the taxonomy groups</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(gtdb_taxonomy_lineage, <span class="fu">c</span>(<span class="st">&quot;domain&quot;</span>, <span class="st">&quot;phylum&quot;</span>, <span class="st">&quot;class&quot;</span>, <span class="st">&quot;order&quot;</span>, <span class="st">&quot;family&quot;</span>, <span class="st">&quot;genus&quot;</span>), <span class="st">&quot;; &quot;</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This block is for separating out the freshwater sample names</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>NEON_MAGs_freshwater <span class="ot">&lt;-</span> NEON_MAGs_prelim <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Freshwater&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># separate the Sample Name into Site ID and plot info</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(sample_name, <span class="fu">c</span>(<span class="st">&quot;site_ID&quot;</span>,<span class="st">&quot;date&quot;</span>, <span class="st">&quot;layer&quot;</span>, <span class="st">&quot;subplot&quot;</span>), <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">quadrant =</span> <span class="cn">NA_character_</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This block is for separating out the soil sample names</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>NEON_MAGs_soil <span class="ot">&lt;-</span> NEON_MAGs_prelim <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&quot;Soil&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># separate the Sample Name into Site ID and plot info</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(sample_name, <span class="fu">c</span>(<span class="st">&quot;site_ID&quot;</span>,<span class="st">&quot;subplot.layer.date&quot;</span>), <span class="st">&quot;_&quot;</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>,) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># some sample names have 3 fields while others have a fourth field for the quadrant. This code create a field for the quadrant when present and adds na for samples from combined cores.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    subplot.layer.date,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;subplot&quot;</span>, <span class="st">&quot;layer&quot;</span>, <span class="st">&quot;quadrant&quot;</span>, <span class="st">&quot;date&quot;</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">regex =</span> <span class="st">&quot;^([^-]+)-([^-]+)(?:-([^-]+))?-([^-]+)$&quot;</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">remove =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">quadrant =</span> <span class="fu">na_if</span>(quadrant, <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>subplot.layer.date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This combines the soil and freshwater data frames</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>NEON_MAGs <span class="ot">&lt;-</span><span class="fu">bind_rows</span>(NEON_MAGs_freshwater, NEON_MAGs_soil) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This changes the format of the data column</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="mysoilchem" class="level4">
+<h4 class="anchored" data-anchor-id="mysoilchem">mySoilChem</h4>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the soilChem data object</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## This is the path for working on Unity</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># soilChem &lt;- readRDS(&quot;/work/pi_bio678_umass_edu/data_NEON/soilChem.rds&quot;)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## This is the path for Jeff&#39;s personal computer</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>soilChem <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;../data/NEON_metadata/soilChem.rds&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split up the pooled list into new columns</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>genomicSamples <span class="ot">&lt;-</span> soilChem<span class="sc">$</span>sls_metagenomicsPooling <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(genomicsPooledIDList, <span class="at">into=</span><span class="fu">c</span>(<span class="st">&quot;first&quot;</span>,<span class="st">&quot;second&quot;</span>,<span class="st">&quot;third&quot;</span>),<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\\</span><span class="st">|&quot;</span>,<span class="at">fill=</span><span class="st">&quot;right&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(genomicsSampleID,first,second,third)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genomicSamples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          genomicsSampleID                  first                 second
+1 HARV_034-O-20230703-COMP HARV_034-O-23-20230703 HARV_034-O-41-20230703
+2 HARV_033-O-20230703-COMP HARV_033-O-39-20230703 HARV_033-O-21-20230703
+3 HARV_035-O-20230704-COMP HARV_035-O-23-20230704 HARV_035-O-41-20230704
+4 HARV_037-O-20230704-COMP HARV_037-O-41-20230704 HARV_037-O-21-20230704
+5 HARV_013-O-20230704-COMP HARV_013-O-39-20230704 HARV_013-O-41-20230704
+6 HARV_001-O-20230705-COMP HARV_001-O-41-20230705 HARV_001-O-21-20230705
+                   third
+1 HARV_034-O-39-20230703
+2 HARV_033-O-41-20230703
+3 HARV_035-O-21-20230704
+4 HARV_037-O-23-20230704
+5 HARV_013-O-23-20230704
+6 HARV_001-O-23-20230705</code></pre>
+</div>
+</div>
+<p>Now we will adjust the table so that each sampleID is a row, with the genomicsSampleID listed for each sample:</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>genSampleExample <span class="ot">&lt;-</span> genomicSamples <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;first&quot;</span>,<span class="st">&quot;second&quot;</span>,<span class="st">&quot;third&quot;</span>),<span class="at">values_to =</span> <span class="st">&quot;sampleID&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sampleID,genomicsSampleID) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>chemEx <span class="ot">&lt;-</span> soilChem<span class="sc">$</span>sls_soilMoisture <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sampleID,soilMoisture)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## now combine the tables </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>combinedTab_soilMoisture <span class="ot">&lt;-</span> <span class="fu">left_join</span>(genSampleExample,chemEx, <span class="at">by =</span> <span class="st">&quot;sampleID&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>genome_groups_mean <span class="ot">&lt;-</span> combinedTab_soilMoisture <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genomicsSampleID) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="fu">c</span>(<span class="st">&quot;soilMoisture&quot;</span>), mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>soilpH_Example <span class="ot">&lt;-</span> soilChem<span class="sc">$</span>sls_soilpH <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(sampleID <span class="sc">%in%</span> combinedTab_soilMoisture<span class="sc">$</span>sampleID) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sampleID,soilInWaterpH,soilInCaClpH)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># now join with the existing table</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>combinedTab_pH <span class="ot">&lt;-</span> <span class="fu">left_join</span>(combinedTab_soilMoisture, soilpH_Example, <span class="at">by =</span> <span class="st">&quot;sampleID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember to install the respirometry package</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>genome_groups_pH <span class="ot">&lt;-</span> combinedTab_pH <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genomicsSampleID) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_at</span>(<span class="fu">c</span>(<span class="st">&quot;soilInWaterpH&quot;</span>,<span class="st">&quot;soilInCaClpH&quot;</span>), mean_pH) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>genome_groups_all_mean <span class="ot">&lt;-</span> combinedTab_pH <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genomicsSampleID) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">left_join</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_at</span>(.,<span class="fu">vars</span>(<span class="st">&quot;soilMoisture&quot;</span>), mean),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_at</span>(.,<span class="fu">vars</span>(<span class="st">&quot;soilInWaterpH&quot;</span>,<span class="st">&quot;soilInCaClpH&quot;</span>), mean_pH)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>genSampleExample <span class="ot">&lt;-</span> genomicSamples <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(<span class="st">&quot;first&quot;</span>,<span class="st">&quot;second&quot;</span>,<span class="st">&quot;third&quot;</span>),<span class="at">values_to =</span> <span class="st">&quot;sampleID&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sampleID,genomicsSampleID) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>soilCoreCollection <span class="ot">&lt;-</span> soilChem<span class="sc">$</span>sls_soilCoreCollection <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(sampleID, decimalLatitude, decimalLongitude, elevation, soilTemp)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="do">## now combine the tables </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>combinedTab_soilCoreCollection <span class="ot">&lt;-</span> <span class="fu">left_join</span>(genSampleExample,soilCoreCollection, <span class="at">by =</span> <span class="st">&quot;sampleID&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># now join with the existing table</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>combinedTab <span class="ot">&lt;-</span> combinedTab_pH <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span> genomicsSampleID) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(combinedTab_soilCoreCollection, <span class="at">by =</span> <span class="st">&quot;sampleID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mySoilChem_mean <span class="ot">&lt;-</span> combinedTab <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genomicsSampleID) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">left_join</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_at</span>(.,<span class="fu">vars</span>(<span class="st">&quot;soilMoisture&quot;</span>, <span class="st">&quot;decimalLatitude&quot;</span>, <span class="st">&quot;decimalLongitude&quot;</span>, <span class="st">&quot;elevation&quot;</span>, <span class="st">&quot;soilTemp&quot;</span>), mean),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_at</span>(.,<span class="fu">vars</span>(<span class="st">&quot;soilInWaterpH&quot;</span>,<span class="st">&quot;soilInCaClpH&quot;</span>), mean_pH)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  )}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="join-soil-neon-mags-and-mysoilchem_mean" class="level4">
+<h4 class="anchored" data-anchor-id="join-soil-neon-mags-and-mysoilchem_mean">Join Soil NEON MAGs and mySoilChem_mean</h4>
+<div class="cell">
+<details open class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>NEON_soilMAGs_soilChem <span class="ot">&lt;-</span> mySoilChem_mean <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">&quot;genomicsSampleID&quot;</span>, str_replace, <span class="st">&quot;-COMP&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span>  </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(NEON_MAGs_soil, <span class="fu">c</span>(<span class="st">&quot;genomicsSampleID&quot;</span> <span class="ot">=</span> <span class="st">&quot;sample_name&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span> sample_unknown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
 </section>
 </section>
 <section id="exercises" class="level2">
@@ -4862,7 +5136,7 @@ vertical-align: -.125em;
 <div class="cell">
 <details open class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(NEON_soilMAGs_soilChem,<span class="at">file =</span> <span class="st">&quot;NEON_soilMAGs_soilChem.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(NEON_soilMAGs_soilChem,<span class="at">file =</span> <span class="st">&quot;NEON_soilMAGs_soilChem.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
