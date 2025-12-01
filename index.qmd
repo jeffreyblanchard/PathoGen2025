@@ -1,5 +1,5 @@
 ---
-title: "Human [Environmental] Pathogen [Meta]Genome Analysis Fall 2025"
+title: "Metagenome Analysis Lab Fall 2025"
 ---
 
 
@@ -7,4 +7,4 @@ title: "Human [Environmental] Pathogen [Meta]Genome Analysis Fall 2025"
 
 
 
-This is a rendering of files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for Biology 478/678 Pathogen Genome Analysis Lab taught at the University of Massachusetts Amherst by [Prof. Jeffrey Blanchard](https://jeffreyblanchard.github.io/lab/).
+This is a rendering of files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for Biology 478/678 Metagenome Analysis Lab taught at the University of Massachusetts Amherst by [Prof. Jeffrey Blanchard](https://jeffreyblanchard.github.io/lab/).
