@@ -2,6 +2,8 @@
 title: "Pathogen Genome Analysis Fall 2025"
 ---
 
+![Joint Genome Institute Mural - artist Nigel Sussman - ](https://jgi.doe.gov/who-we-are/virtual-tour/mural)
+
 * Sept 3 (Wed) - Course Introduction & Lab 1: Introduction to Unity, R and RStudio
 * Sept 8 (Mon) - Discussion of research project possibilities 
 * Sept 10 (Wed) - Lab 2: Coding in R with generative AI
