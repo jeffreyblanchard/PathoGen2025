@@ -2,34 +2,38 @@
 title: "Labs"
 ---
 
-R Labs
+![Group Vibes](images/group_vibe.png)
 
-* Lab 1 : [Overview & Getting Started](labs/lab1_overview.html)
-* Lab 2 : [Learning R with the Help of AI tools Starting with Graphing using ggplot](labs/lab2_AI_ggplot.html)
-* Lab 3 : [Data Transformation with dplyr](labs/lab3_data_transformation.qmd)
-* Lab 4 : [Coding Basics, Style and Data Read/Write](labs/lab4_coding_import.qmd)
-* Lab 5 : [Working with NEON Metagenome Assembled Genomes (MAGs / bins)](labs/lab5_NEON_tables.qmd)
-* Lab 6 : [ggplotting with NEON MAG data](labs/lab6_NEON_pub_graphics.html)
-* Lab 7 : [Data Tidying, Transformation and Visualization with COVID-19 reporting data](labs/lab7_covid.html)
-* Lab 8: Catch up, [What Will viruses Do Next?](https://www.nature.com/articles/d41586-024-04195-3), [The First AI Genomes](https://arcinstitute.org/news/hie-king-first-synthetic-phage) and [metagenome Brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
-* Lab 9 - [Sequence Alignment, Phylogenetic Analysis and Tree Visualization](labs/lab9_ggtree.html) 
-* Lab 10 : [Detecting Patters with Regular Expressions](labs/lab10_regex.html)
-* Lab 11 : [Joining Data Frames](labs/lab11_joins.html)
-* Lab 12 : [Accessing NEON Metadata for Metagenomics](labs/lab12_soilchem.html)
-* Lab 13 : [Creating a detailed report with explanations from the NEON MAG data](labs/lab13_ai_soilChemMAGs.html)
+**Long Labs**
+
+-   Lab 1 : [Overview & Getting Started](labs/lab1_overview.html)
+-   Lab 2 : [Learning R with the Help of AI tools Starting with Graphing using ggplot](labs/lab2_AI_ggplot.html)
+-   Lab 3 : [Data Transformation with dplyr](labs/lab3_data_transformation.qmd)
+-   Lab 4 : [Coding Basics, Style and Data Read/Write](labs/lab4_coding_import.qmd)
+-   Lab 5 : [Working with NEON Metagenome Assembled Genomes (MAGs / bins)](labs/lab5_NEON_tables.qmd)
+-   Lab 6 : [ggplotting with NEON MAG data](labs/lab6_NEON_pub_graphics.html)
+-   Lab 7 : [Data Tidying, Transformation and Visualization with COVID-19 reporting data](labs/lab7_covid.html)
+-   Lab 8: Catch up, [What Will viruses Do Next?](https://www.nature.com/articles/d41586-024-04195-3), [The First AI Genomes](https://arcinstitute.org/news/hie-king-first-synthetic-phage) and [metagenome Brainstorming](https://lucid.app/lucidspark/c06e7281-775f-42fe-af28-575afe457a40/edit?invitationId=inv_197475dd-6f27-44b7-9a22-805928e4acdc)
+-   Lab 9 - [Sequence Alignment, Phylogenetic Analysis and Tree Visualization](labs/lab9_ggtree.html)
+-   Lab 10 : [Detecting Patters with Regular Expressions](labs/lab10_regex.html)
+-   Lab 11 : [Joining Data Frames](labs/lab11_joins.html)
+-   Lab 12 : [Accessing NEON Metadata for Metagenomics](labs/lab12_soilchem.html)
+-   Lab 13 : [Creating a detailed report with explanations from the NEON MAG data](labs/lab13_ai_soilChemMAGs.html)
+
+**Short Labs**
 
 Sharing and Publishing
 
-* Lab S1 : [Quarto](labs/lab1s_quarto.html)
-* Lab S2 : [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
-* Lab S3 : [Connecting a Github repo site with a RStudio project](labs/lab3s_github.html)
+-   Lab S1 : [Quarto](labs/lab1s_quarto.html)
+-   Lab S2 : [Adding References to Your Report with Zotero](labs/lab2s_biblio.html)
+-   Lab S3 : [Connecting a Github repo site with a RStudio project](labs/lab3s_github.html)
 
-Unity Labs
+Unity
 
-* Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
-* Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
+-   Lab S4 : [Working on the command line in Terminal with Shell](labs/lab4s_shell.html)
+-   Lab S5 - [Running bioinformatics software interactively and in batches](labs/lab5s_jobs.html)
 
-AI-driven labs
+AI-driven
 
-* Lab S6 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data - I](labs/lab6s_neon_multi.html)
-* Lab S7 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data - II](labs/lab7s_neon_ai_assist.html)
+-   Lab S6 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data - I](labs/lab6s_neon_multi.html)
+-   Lab S7 : [AI assisted analysis of the NEON MAG taxonomy, soil chemistry and spatial location data - II](labs/lab7s_neon_ai_assist.html)
