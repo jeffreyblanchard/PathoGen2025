@@ -1,0 +1,151 @@
+---
+title: "Comprehensive Microbial Co-occurrence and Network Analysis"
+author: "NEON Soil MAGs Analysis"
+date: "`r Sys.Date()`"
+---
+
+# Introduction
+
+This comprehensive report includes:
+- Data preprocessing and normalization.
+- Static network visualization.
+- Interactive network visualization with taxonomy tooltips and module color coding.
+- Module detection visualization.
+- Interactive soil chemistry correlation heatmap.
+
+## Required Packages
+
+```{r setup, message=FALSE}
+library(tidyverse)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(readr)
+library(visNetwork)
+library(plotly)
+```
+
+# 1. Load and Inspect Data
+
+```{r load-data}
+mags_data <- read_csv("NEON_soilMAGs_soilChem.csv")
+glimpse(mags_data)
+```
+
+# 2. Preprocessing and Aggregation
+
+We use `gene_count` as abundance metric and normalize by sample.
+
+```{r preprocess}
+data_filtered <- mags_data %>%
+  filter(!is.na(genus), !is.na(gene_count)) %>%
+  select(genomicsSampleID, genus, gene_count, gtdb_taxonomy_lineage)
+
+abundance_matrix <- data_filtered %>%
+  group_by(genomicsSampleID, genus) %>%
+  summarise(abundance = sum(gene_count), .groups = "drop") %>%
+  pivot_wider(names_from = genus, values_from = abundance, values_fill = 0)
+
+abundance_matrix <- abundance_matrix %>%
+  mutate(across(-genomicsSampleID, ~ .x / sum(.x)))
+```
+
+# 3. Compute Co-occurrence Correlations
+
+```{r correlation}
+abundance_only <- abundance_matrix %>% select(-genomicsSampleID)
+cor_matrix <- cor(abundance_only, method = "spearman")
+cor_edges <- as.data.frame(as.table(cor_matrix)) %>%
+  filter(Var1 != Var2, Freq > 0.6)
+```
+
+# 4. Build Network and Detect Modules
+
+```{r network-modules}
+network_graph <- graph_from_data_frame(d = cor_edges, directed = FALSE)
+communities <- cluster_louvain(network_graph)
+graph_tbl <- as_tbl_graph(network_graph) %>%
+  mutate(module = communities$membership)
+```
+
+# 5. Static Network Visualization
+
+```{r static-network, fig.width=8, fig.height=6}
+ggraph(network_graph, layout = "fr") +
+  geom_edge_link(aes(edge_alpha = Freq), show.legend = FALSE) +
+  geom_node_point(color = "steelblue", size = 5) +
+  geom_node_text(aes(label = name), repel = TRUE) +
+  theme_void()
+```
+
+# 6. Module Detection Visualization
+
+```{r module-visualization, fig.width=8, fig.height=6}
+ggraph(graph_tbl, layout = "fr") +
+  geom_edge_link(alpha = 0.3) +
+  geom_node_point(aes(color = as.factor(module)), size = 5) +
+  geom_node_text(aes(label = name), repel = TRUE) +
+  theme_void()
+```
+
+# 7. Interactive Network Visualization with Tooltips and Color Coding
+
+```{r prepare-visnetwork}
+node_info <- graph_tbl %>%
+  as_tibble() %>%
+  rename(genus = name) %>%
+  left_join(data_filtered %>% select(genus, gtdb_taxonomy_lineage) %>% distinct(), by = "genus")
+
+node_info <- node_info %>% distinct(genus, .keep_all = TRUE)
+
+nodes <- data.frame(
+  id = node_info$genus,
+  label = node_info$genus,
+  title = paste("Taxonomy:", node_info$gtdb_taxonomy_lineage),
+  color = as.factor(node_info$module)
+)
+
+edges <- cor_edges %>% distinct(Var1, Var2, .keep_all = TRUE) %>%
+  rename(from = Var1, to = Var2, value = Freq)
+```
+
+```{r interactive-network}
+visNetwork(nodes, edges) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE) %>%
+  visEdges(smooth = FALSE) %>%
+  visLegend() %>%
+  visLayout(randomSeed = 123)
+```
+
+# 8. Interactive Soil Chemistry Correlation Heatmap
+
+```{r soil-heatmap}
+module_abundance <- graph_tbl %>%
+  as_tibble() %>%
+  select(name, module) %>%
+  inner_join(data_filtered, by = c("name" = "genus")) %>%
+  group_by(genomicsSampleID, module) %>%
+  summarise(module_abundance = sum(gene_count), .groups = "drop") %>%
+  pivot_wider(names_from = module, values_from = module_abundance, values_fill = 0)
+
+soil_data <- mags_data %>% select(genomicsSampleID, soilMoisture, soilTemp, soilInWaterpH)
+merged_data <- inner_join(module_abundance, soil_data, by = "genomicsSampleID")
+
+cor_matrix_soil <- cor(merged_data %>% select(-genomicsSampleID), method = "spearman")
+
+cor_long <- as.data.frame(as.table(cor_matrix_soil))
+
+plot_ly(
+  x = unique(cor_long$Var2),
+  y = unique(cor_long$Var1),
+  z = matrix(cor_long$Freq, nrow = length(unique(cor_long$Var1)), byrow = TRUE),
+  type = "heatmap",
+  colorscale = "RdBu",
+  reversescale = TRUE
+) %>%
+  layout(title = "Module vs Soil Chemistry Correlation Heatmap", xaxis = list(title = "Variables"), yaxis = list(title = "Modules"))
+```
+
+# Conclusion
+
+This comprehensive report combines static and interactive visualizations, module detection, and environmental correlations for microbial co-occurrence analysis.

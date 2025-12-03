@@ -9,7 +9,7 @@ This lab was designed based on the tutorial [Access NEON Data for Metagenomics](
 -   Storing Multiple Data Frames in a Single Object in R
 -   How to save and read RDS files
 -   Accessing data from a national repository
--   Joinging data frames
+-   Joining data frames
 
 ## Fixing lab 9 and future labs
 

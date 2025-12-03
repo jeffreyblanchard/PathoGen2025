@@ -1,0 +1,111 @@
+---
+title: "Environmental Correlations in Microbial Communities (NEON MAGs)"
+author: "Tutorial"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: readable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(vegan)
+library(plotly)
+```
+
+# Introduction
+This tutorial explores **environmental correlations** in microbial communities using NEON MAGs data:
+- Correlate soil chemistry (pH, moisture, temperature, elevation) with microbial diversity and taxa.
+- Perform gradient analysis to identify taxa enriched along environmental gradients.
+- Use Canonical Correspondence Analysis (CCA) to link community composition to environmental variables.
+
+## Step 1: Load and Prepare Data
+```{r}
+df <- read_csv("NEON_soilMAGs_soilChem.csv")
+
+# Select relevant columns
+df <- df %>%
+  filter(!is.na(genomicsSampleID)) %>%
+  mutate(siteID = site_ID,
+         sampleID = genomicsSampleID) %>%
+  select(sampleID, siteID, phylum, soilMoisture, soilTemp, soilInWaterpH, soilInCaClpH, elevation)
+```
+
+## Step 2: Aggregate Data by Sample
+```{r}
+tax_profile <- df %>%
+  group_by(sampleID, phylum) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  pivot_wider(names_from = phylum, values_from = count, values_fill = 0)
+
+# Merge with environmental data
+env_data <- df %>% select(sampleID, soilMoisture, soilTemp, soilInWaterpH, soilInCaClpH, elevation) %>% distinct()
+merged_data <- left_join(tax_profile, env_data, by = "sampleID")
+```
+
+## Step 3: Correlation Analysis
+**Explanation**: Correlate soil variables with diversity metrics and selected taxa.
+```{r}
+# Compute diversity metrics
+abundance_matrix <- merged_data %>% select(-sampleID, -soilMoisture, -soilTemp, -soilInWaterpH, -soilInCaClpH, -elevation)
+shannon <- diversity(abundance_matrix, index = "shannon")
+simpson <- diversity(abundance_matrix, index = "simpson")
+richness <- specnumber(abundance_matrix)
+
+# Combine with environmental data
+corr_df <- merged_data %>% select(sampleID, soilMoisture, soilTemp, soilInWaterpH, soilInCaClpH, elevation) %>%
+  mutate(Shannon = shannon, Simpson = simpson, Richness = richness)
+
+# Correlation plot
+ggplot(corr_df, aes(x = soilMoisture, y = Shannon)) +
+  geom_point() + geom_smooth(method = "lm") +
+  labs(title = "Correlation: Soil Moisture vs Shannon Diversity")
+```
+
+## Step 4: Gradient Analysis
+**Explanation**: Identify taxa enriched along pH or moisture gradients.
+```{r}
+# Example: Correlation of Acidobacteriota abundance with pH
+target_taxon <- "Acidobacteriota"
+merged_data %>%
+  ggplot(aes(x = soilInWaterpH, y = !!sym(target_taxon))) +
+  geom_point() + geom_smooth(method = "lm") +
+  labs(title = paste("Gradient Analysis: ", target_taxon, " vs pH"))
+```
+
+## Step 5: Canonical Correspondence Analysis (CCA)
+**Explanation**: Link community composition to environmental variables.
+```{r}
+# Prepare matrices
+abundance_matrix <- merged_data %>% select(-sampleID, -soilMoisture, -soilTemp, -soilInWaterpH, -soilInCaClpH, -elevation)
+env_matrix <- merged_data %>% select(soilMoisture, soilTemp, soilInWaterpH, soilInCaClpH, elevation)
+
+# Perform CCA
+cca_model <- cca(abundance_matrix ~ ., data = env_matrix)
+summary(cca_model)
+
+# Interactive CCA plot
+cca_sites <- scores(cca_model, display = "sites")
+cca_env <- scores(cca_model, display = "bp")
+cca_df <- as.data.frame(cca_sites)
+cca_df$sampleID <- rownames(cca_df)
+cca_env_df <- as.data.frame(cca_env)
+cca_env_df$variable <- rownames(cca_env_df)
+
+p_cca <- ggplot() +
+  geom_point(data = cca_df, aes(x = CCA1, y = CCA2, text = sampleID), color = "blue") +
+  geom_segment(data = cca_env_df, aes(x = 0, y = 0, xend = CCA1, yend = CCA2, text = variable),
+               arrow = arrow(length = unit(0.3, "cm")), color = "red") +
+  geom_text(data = cca_env_df, aes(x = CCA1, y = CCA2, label = variable), vjust = -0.5) +
+  labs(title = "CCA: Community vs Environment") + theme_minimal()
+
+ggplotly(p_cca, tooltip = c("text"))
+```
+
+# Interpretation
+- Correlation plots show relationships between soil variables and diversity.
+- Gradient analysis highlights taxa responding to environmental gradients.
+- CCA links overall community composition to environmental drivers.

@@ -1,0 +1,78 @@
+---
+title: "Comprehensive Biogeography & Spatial Patterns in Microbial Communities (NEON MAGs)"
+author: "Tutorial"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: readable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(vegan)
+library(geosphere)
+library(plotly)
+library(leaflet)
+```
+
+# Introduction
+This comprehensive tutorial combines:
+- Static and interactive maps of taxa distributions.
+- Spatial autocorrelation using Mantel test.
+- Distance-decay analysis with significance tests and interactive visualization.
+
+## Step 1: Load and Prepare Data
+```{r}
+df <- read_csv("NEON_soilMAGs_soilChem.csv")
+
+df <- df %>%
+  filter(!is.na(decimalLatitude), !is.na(decimalLongitude)) %>%
+  mutate(siteID = site_ID,
+         sampleID = genomicsSampleID) %>%
+  select(sampleID, siteID, decimalLatitude, decimalLongitude, phylum)
+```
+
+## Step 2: Static Mapping of Taxa Distributions
+**Explanation**: Visualize where specific taxa occur using ggplot2.
+```{r}
+acidobacteria <- df %>% filter(phylum == "Acidobacteriota")
+
+ggplot(acidobacteria, aes(x = decimalLongitude, y = decimalLatitude)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  labs(title = "Distribution of Acidobacteriota", x = "Longitude", y = "Latitude") +
+  theme_minimal()
+```
+
+## Step 3: Interactive Mapping with Leaflet
+**Explanation**: Explore taxa distributions interactively.
+```{r}
+leaflet(acidobacteria) %>%
+  addTiles() %>%
+  addCircleMarkers(~decimalLongitude, ~decimalLatitude,
+                   popup = ~paste("Site:", siteID),
+                   color = "blue", radius = 5, fillOpacity = 0.7) %>%
+  addLegend("bottomright", colors = "blue", labels = "Acidobacteriota", title = "Taxon")
+```
+
+## Step 4: Spatial Autocorrelation (Mantel Test)
+**Explanation**: Test if microbial communities are spatially structured.
+```{r}
+abundance <- df %>%
+  group_by(sampleID, phylum) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  pivot_wider(names_from = phylum, values_from = count, values_fill = 0)
+
+coords <- df %>% select(sampleID, decimalLatitude, decimalLongitude) %>% distinct()
+geo_dist <- distm(coords %>% select(decimalLongitude, decimalLatitude), fun = distHaversine)
+rownames(geo_dist) <- coords$sampleID
+colnames(geo_dist) <- coords$sampleID
+
+abundance_matrix <- abundance %>% select(-sampleID)
+bray_dist <- vegdist(abundance_matrix, method = "bray")
+
+mantel_result <- mantel(bray_dist, as.dist(geo_dist))
+mantel_result
+```

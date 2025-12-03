@@ -1,0 +1,152 @@
+---
+title: "Comprehensive Community Composition & Diversity Analysis of NEON MAGs by SiteID"
+author: "Tutorial"
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plotly)
+library(tidyverse)
+library(vegan)
+library(phyloseq)
+library(ggplot2)
+library(grid)
+```
+
+# Introduction
+This tutorial aggregates data by **siteID** instead of sampleID and includes:
+- Taxonomic profiling
+- Alpha and beta diversity
+- Ordination (PCoA, NMDS)
+- Constrained ordination (CCA, RDA) with soil chemistry
+- Color-coded biplots and interactive plots
+- Variance explained and significance tests
+
+## Step 1: Load and Prepare Data
+**Explanation**: Aggregate MAG counts and soil chemistry by siteID.
+```{r}
+df <- read_csv("NEON_soilMAGs_soilChem.csv")
+
+df <- df %>%
+  filter(!is.na(genomicsSampleID)) %>%
+  mutate(siteID = site_ID) %>%
+  select(siteID, phylum, soilMoisture, soilTemp, soilInWaterpH, soilInCaClpH)
+```
+
+## Step 2: Taxonomic Profiling by Site
+**Explanation**: Summarize phylum-level counts per site.
+```{r}
+tax_profile <- df %>%
+  group_by(siteID, phylum) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  mutate(rel_abundance = count / sum(count))
+
+ggplot(tax_profile, aes(x = siteID, y = rel_abundance, fill = phylum)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(title = "Taxonomic Profile by Site", y = "Relative Abundance") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1), legend.position = "right")
+```
+
+## Step 3: Alpha Diversity
+**Explanation**: Compute diversity metrics at site level.
+```{r}
+abundance_matrix <- tax_profile %>%
+  pivot_wider(names_from = phylum, values_from = count, values_fill = 0)
+abundance_matrix <- abundance_matrix %>% distinct(siteID, .keep_all = TRUE)
+abundance_matrix <- abundance_matrix %>% filter(!is.na(siteID))
+rn <- abundance_matrix$siteID
+abundance_matrix <- abundance_matrix %>% select(-siteID)
+abundance_matrix <- as.data.frame(lapply(abundance_matrix, as.numeric))
+rownames(abundance_matrix) <- rn
+abundance_matrix <- abundance_matrix[rowSums(abundance_matrix) > 0, ]
+
+shannon <- diversity(abundance_matrix, index = "shannon")
+simpson <- diversity(abundance_matrix, index = "simpson")
+richness <- specnumber(abundance_matrix)
+alpha_div <- tibble(siteID = rownames(abundance_matrix), Shannon = shannon, Simpson = simpson, Richness = richness)
+alpha_div
+```
+
+## Step 4: Beta Diversity
+**Explanation**: Bray-Curtis dissimilarity between sites.
+```{r}
+bray_dist <- vegdist(abundance_matrix, method = "bray")
+as.matrix(bray_dist)[1:5, 1:5]
+```
+
+## Step 5: Ordination (PCoA and NMDS)
+**Explanation**: Visualize site-level differences.
+```{r}
+pcoa_coords <- cmdscale(bray_dist, k = 2)
+pcoa_df <- as_tibble(pcoa_coords) %>% mutate(siteID = rownames(pcoa_coords))
+
+ggplot(pcoa_df, aes(x = V1, y = V2, label = siteID)) + geom_point() + geom_text(vjust = -0.5) + labs(title = "PCoA (Bray-Curtis)")
+
+nmds <- metaMDS(abundance_matrix, distance = "bray", k = 2)
+nmds_df <- as_tibble(nmds$points) %>% mutate(siteID = rownames(nmds$points))
+
+ggplot(nmds_df, aes(x = MDS1, y = MDS2, label = siteID)) + geom_point() + geom_text(vjust = -0.5) + labs(title = "NMDS (Bray-Curtis)")
+```
+
+## Step 6: Soil Chemistry Integration for CCA and RDA with Interactive Color-Coded Biplots
+**Explanation**: Aggregate soil chemistry by site and visualize environmental influence.
+```{r}
+soil_data <- df %>% group_by(siteID) %>% summarise(across(c(soilMoisture, soilTemp, soilInWaterpH, soilInCaClpH), mean, na.rm = TRUE))
+soil_data <- soil_data %>% filter(siteID %in% rownames(abundance_matrix))
+soil_data <- column_to_rownames(soil_data, "siteID")
+soil_data <- as.data.frame(lapply(soil_data, as.numeric))
+rownames(soil_data) <- rownames(abundance_matrix)
+
+variable_types <- tibble(variable = c("soilMoisture", "soilTemp", "soilInWaterpH", "soilInCaClpH"),
+                         type = c("Moisture", "Temperature", "pH", "pH"))
+
+# CCA
+cca_model <- cca(abundance_matrix ~ ., data = soil_data)
+cca_var <- summary(cca_model)$concont$importance[2,]
+cca_sites <- scores(cca_model, display = "sites")
+cca_env <- scores(cca_model, display = "bp")
+cca_df <- as.data.frame(cca_sites)
+cca_df$siteID <- rownames(cca_df)
+cca_env_df <- as.data.frame(cca_env)
+cca_env_df$variable <- rownames(cca_env_df)
+cca_env_df <- left_join(cca_env_df, variable_types, by = "variable")
+
+p_cca <- ggplot() +
+  geom_point(data = cca_df, aes(x = CCA1, y = CCA2, text = siteID), color = "blue") +
+  geom_segment(data = cca_env_df, aes(x = 0, y = 0, xend = CCA1, yend = CCA2, color = type, text = variable),
+               arrow = arrow(length = unit(0.3, "cm"))) +
+  geom_text(data = cca_env_df, aes(x = CCA1, y = CCA2, label = variable), vjust = -0.5) +
+  scale_color_manual(values = c("Moisture" = "blue", "Temperature" = "orange", "pH" = "green")) +
+  labs(title = paste("CCA Interactive Biplot (Variance Explained: CCA1 =", round(cca_var[1]*100, 1), "%, CCA2 =", round(cca_var[2]*100, 1), "% )"),
+       color = "Variable Type") + theme_minimal()
+
+ggplotly(p_cca, tooltip = c("text"))
+
+# RDA
+rda_model <- rda(abundance_matrix ~ ., data = soil_data)
+rda_var <- summary(rda_model)$cont$importance[2,]
+rda_sites <- scores(rda_model, display = "sites")
+rda_env <- scores(rda_model, display = "bp")
+rda_df <- as.data.frame(rda_sites)
+rda_df$siteID <- rownames(rda_df)
+rda_env_df <- as.data.frame(rda_env)
+rda_env_df$variable <- rownames(rda_env_df)
+rda_env_df <- left_join(rda_env_df, variable_types, by = "variable")
+
+p_rda <- ggplot() +
+  geom_point(data = rda_df, aes(x = RDA1, y = RDA2, text = siteID), color = "darkgreen") +
+  geom_segment(data = rda_env_df, aes(x = 0, y = 0, xend = RDA1, yend = RDA2, color = type, text = variable),
+               arrow = arrow(length = unit(0.3, "cm"))) +
+  geom_text(data = rda_env_df, aes(x = RDA1, y = RDA2, label = variable), vjust = -0.5) +
+  scale_color_manual(values = c("Moisture" = "blue", "Temperature" = "orange", "pH" = "green")) +
+  labs(title = paste("RDA Interactive Biplot (Variance Explained: RDA1 =", round(rda_var[1]*100, 1), "%, RDA2 =", round(rda_var[2]*100, 1), "% )"),
+       color = "Variable Type") + theme_minimal()
+
+ggplotly(p_rda, tooltip = c("text"))
+```
+
+# Interpretation
+- Aggregated by siteID for broader ecological patterns.
+- Hover for details in interactive plots.
