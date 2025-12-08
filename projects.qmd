@@ -41,7 +41,3 @@ JGI has done all lot of data processing for us, but there is much still to do.
 NEON has produced metagenomic data as data product since 2014. The Joint Genome Institute has recently annotated version all reads prior to 20222 [Gs0144570](https://gold.jgi.doe.gov/study?id=Gs0144570). However, these metagenomes have a low sequencing depth and therefore are difficult to use for assembling bacterial genomes.
 
 Last year JGI and NEON collaborated to produce metagenomes which are ~10-fold deeper which allow for better assemble of reads into gene length and greater fragments.  We will work with the [NEON 2023 Gs0166454](https://gold.jgi.doe.gov/study?id=Gs0166454) study set. Although some of the data for 2024 is available, JGI is still processing the data and producing annotations (see above illustration).
-
-
-
-

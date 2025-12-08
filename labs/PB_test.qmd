@@ -1,0 +1,62 @@
+---
+title: "PB seminar"
+---
+
+First make a new folder "PBseminar" for the course materials
+
+
+
+In RStudio Upload the file into your directory (import directly from github).
+
+```{r}
+
+raw_url <- "https://raw.githubusercontent.com/jeffreyblanchard/PathoGen2025/refs/heads/main/labs/NEON_soilMAGs_soilChem.csv"
+
+mag <- readr::read_csv(raw_url, show_col_types = FALSE)
+
+```
+
+In co-pilot paste this prompt
+This is a file with metagenomic assembled genomes (MAGs) from National Ecological Observatory Network metagenomic data.  It contains the MAG taxonomy, genome statistics and associated soil chemistry data. Using R and tidyverse could you write the code to make a graph shows the phyla that are present at the NEON sites.
+
+```{r}
+
+library(tidyverse)
+library(janitor)    # clean_names()
+library(lubridate)
+
+# 1) Load
+path <- "NEON_soilMAGs_soilChem.csv"
+mag <- readr::read_csv(path, show_col_types = FALSE) |> janitor::clean_names()
+
+# 2) (Optional) Define a quality filter for MAGs — adjust thresholds to taste
+mag <- mag |>
+  mutate(
+    bin_quality = factor(bin_quality, levels = c("HQ","MQ","LQ"), ordered = TRUE),
+    hq_flag = (bin_completeness >= 90 & bin_contamination <= 5) | bin_quality == "HQ"
+  )
+
+# 3) Choose whether to use all MAGs or only high-quality ones
+use_hq_only <- TRUE
+mag_use <- if (use_hq_only) mag |> filter(hq_flag) else mag
+
+# 4) Compute presence per (site_id, phylum)
+presence_df <- mag_use |>
+  filter(!is.na(site_id), !is.na(phylum)) |>
+  distinct(site_id, phylum, bin_id) |>               # distinct MAGs
+  summarize(present = n() > 0, .by = c(site_id, phylum)) # logical presence
+
+# 5) Plot presence/absence as a tile heatmap
+ggplot(presence_df, aes(x = site_id, y = phylum, fill = present)) +
+  geom_tile(color = "grey80") +
+  scale_fill_manual(values = c(`TRUE` = "#2c7fb8", `FALSE` = "white"),
+                    breaks = c(TRUE, FALSE),
+                    labels = c("Present", "Absent")) +
+  labs(title = "Phyla present at each NEON site",
+       x = "Site", y = "Phylum", fill = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())
+
+```
+
