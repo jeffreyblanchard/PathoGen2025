@@ -1,5 +1,5 @@
 ---
-title: "Environmental Metagenome Analysis Lab Fall 2025"
+title: "Environmental Metagenome Analysis in R Lab Fall 2025"
 ---
 
 
@@ -7,4 +7,4 @@ title: "Environmental Metagenome Analysis Lab Fall 2025"
 
 
 
-This is a rendering of files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for Biology 478/678 Metagenome Analysis Lab taught at the University of Massachusetts Amherst by [Prof. Jeffrey Blanchard](https://jeffreyblanchard.github.io/lab/).
+This is a rendering of files from the [course repository](https://github.com/jeffreyblanchard/PathoGen2025) for Biology 478/678 Metagenome Analysis in R Lab taught at the University of Massachusetts Amherst by [Prof. Jeffrey Blanchard](https://jeffreyblanchard.github.io/lab/).
