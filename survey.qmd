@@ -29,7 +29,7 @@ library(knitr) # this is needed for rendering
 ```
 ### Overview
 
-These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The resulting [csv file](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey/bio478_survey_responses.csv) with the survey results is in the course GitHub repository. These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using [UMass Amherst GenAI platform](https://www.umass.edu/it/genai/platform).
+These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The resulting [csv file](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey/bio478_survey_responses.csv) with the survey results is in the course GitHub repository. These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the [UMass Amherst GenAI platform](https://www.umass.edu/it/genai/platform).
 
 ### Prior Coding Experience 
 
