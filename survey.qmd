@@ -1,5 +1,5 @@
 ---
-title: "Learning R with Generative AI in a Metagenomic Data Science Course - Survey Results"
+title: "Learning R with Generative AI in a Metagenomics Data Science Course - Survey Results"
 #date: "`r format(Sys.time(), '%d %B, %Y')`"
 #author:
 #  - name: Jeffrey L Blanchard
