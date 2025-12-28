@@ -16,7 +16,7 @@ format:
   html:
     toc: true
     toc_float: true
-    code-fold: show
+    code-fold: true
     code-summary: "R code"
     embed-resources: true
     theme: yeti

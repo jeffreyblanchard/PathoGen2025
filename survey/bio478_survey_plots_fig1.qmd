@@ -1,0 +1,199 @@
+---
+title: "Learning to Code in R with Generative AI - Survey Response Graphs"
+execute:
+  echo: false
+---
+
+
+```{r}
+library(tidyverse) 
+library(janitor)
+library(scales)
+library(patchwork)   
+library(sessioninfo)
+```
+
+### Main Likert graph
+
+```{r}
+# Read CSV 
+df <- readr::read_csv("bio478_survey_responses.csv")
+
+# Domain order (will be used to control facet/plot sequence)
+domains <- c(
+  "Helpfulness of generative AI",
+  "Inquiry & exploration",
+  "Impact on learning"
+)
+
+# find columns that match any domain substring
+col_matches <- names(df)[sapply(names(df), function(nm) any(sapply(domains, function(d) str_detect(nm, fixed(d)))))]
+if (length(col_matches) == 0) stop("No matching columns found. Check column names or adjust domain patterns.")
+raw_help <- df |> select(all_of(col_matches))
+```
+
+```{r col-info}
+# helper to detect domain and extract item text inside brackets if present
+detect_domain <- function(colname, domain_vec) {
+  idx <- which(sapply(domain_vec, function(d) str_detect(colname, fixed(d))))
+  if (length(idx) == 0) return(NA_character_)
+  domain_vec[idx[1]]
+}
+
+col_info <- tibble(orig_name = names(raw_help)) |>
+  mutate(domain = map_chr(orig_name, ~ detect_domain(.x, domains)),
+         item = if_else(str_detect(orig_name, "\\[.*\\]"),
+                        str_extract(orig_name, "(?<=\\[).+?(?=\\])"),
+                        str_remove(orig_name, fixed(domain))),
+         item = str_trim(item),
+         item = if_else(item == "" | is.na(item), orig_name, item))
+```
+
+```{r pivot-map}
+# Agreement levels and robust mapping function
+agree_levels <- c("Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree")
+
+map_to_agree <- function(x) {
+  x <- stringr::str_squish(as.character(x))
+  x_lower <- tolower(x)
+  case_when(
+    # helpfulness -> agreement mapping
+    x_lower %in% c("not at all helpful", "not helpful", "not at all helpful to not helpful") ~ "Strongly disagree",
+    x_lower %in% c("slightly helpful") ~ "Disagree",
+    x_lower %in% c("moderately helpful") ~ "Neutral",
+    x_lower %in% c("very helpful") ~ "Agree",
+    x_lower %in% c("extremely helpful") ~ "Strongly agree",
+    # direct agreement variants
+    x_lower %in% c("strongly disagree", "strong disagree") ~ "Strongly disagree",
+    x_lower %in% c("disagree") ~ "Disagree",
+    x_lower %in% c("neutral", "neither agree nor disagree", "neither") ~ "Neutral",
+    x_lower %in% c("agree") ~ "Agree",
+    x_lower %in% c("strongly agree", "strong agree") ~ "Strongly agree",
+    # already canonical
+    x %in% agree_levels ~ x,
+    TRUE ~ NA_character_
+  )
+}
+
+# pivot to long, join col_info, map responses, compute counts and percentages
+agree_levels <- c("Strongly disagree","Disagree","Neutral","Agree","Strongly agree")
+
+long <- raw_help %>%
+  pivot_longer(cols = everything(), names_to = "orig_name", values_to = "response_raw") %>%
+  left_join(col_info, by = "orig_name") %>%
+  mutate(response_mapped = map_to_agree(response_raw)) %>%
+  group_by(domain, item, response_mapped) %>%
+  summarise(n = n(), .groups = "drop_last") %>%
+  group_by(domain, item) %>%
+  # add rows for any missing response levels per domain/item
+  complete(response_mapped = agree_levels, fill = list(n = 0)) %>%
+  # make sure response_mapped is an ordered factor with the exact levels
+  mutate(response_mapped = factor(response_mapped, levels = agree_levels, ordered = TRUE),
+         total_n = sum(n),
+         pct = ifelse(total_n > 0, n / total_n, 0)) %>%
+  ungroup()
+
+
+# report any unmapped response variants
+unmapped <- raw_help |>
+  pivot_longer(cols = everything(), names_to = "orig_name", values_to = "response_raw") |>
+  distinct(response_raw) |>
+  mutate(mapped = map_to_agree(response_raw)) |>
+  filter(is.na(mapped))
+
+# if (nrow(unmapped) > 0) {
+#  message("Unmapped response variants detected (consider adding mappings to map_to_agree):")
+#  print(unmapped$response_raw)
+#} else {
+#  message("No unmapped response variants detected based on current mapping.")
+# }
+```
+
+```{r item-summary}
+# compute per-item positive proportion (Agree + Strongly agree) per domain
+item_summary <- long |>
+  filter(!is.na(response_mapped)) |>
+  group_by(domain, item) |>
+  summarize(total_n = sum(n, na.rm = TRUE),
+            positive_n = sum(n[response_mapped %in% c("Agree", "Strongly agree")], na.rm = TRUE),
+            positive_pct = if_else(total_n > 0, positive_n / total_n, 0),
+            .groups = "drop")
+```
+
+```{r build-plots, message=FALSE, warning=FALSE}
+# Prepare per-domain data frames (only domains present)
+domain_dfs <- long |>
+  filter(!is.na(response_mapped)) |>
+  group_split(domain)
+names(domain_dfs) <- map_chr(domain_dfs, ~ unique(.x$domain))
+
+# keep only requested domains that actually exist in data
+present_domains <- intersect(domains, names(domain_dfs))
+domain_dfs <- domain_dfs[present_domains]
+
+# count items per domain for relative heights
+item_counts <- map_int(domain_dfs, ~ length(unique(.x$item)))
+
+# color palette and common y-limits
+cols <- c("Strongly disagree" = "#d73027",
+          "Disagree" = "#fc8d59",
+          "Neutral" = "#fee090",
+          "Agree" = "#91bfdb",
+          "Strongly agree" = "#1a9850")
+y_limits <- c(0, 1)
+
+# Build one ggplot per domain. Ensure scale_fill includes all five categories and uses a one-row legend.
+plot_list <- imap(domain_dfs, function(df_dom, dom_name) {
+  # determine ordering by positive_pct (descending), tie-break by total_n (descending)
+  item_order <- item_summary |>
+    filter(domain == dom_name) |>
+    arrange(-desc(positive_pct), desc(total_n)) |>
+    pull(item)
+  if (length(item_order) == 0) item_order <- unique(df_dom$item)
+
+  df_dom2 <- df_dom |>
+    mutate(item = factor(item, levels = item_order, ordered = TRUE))
+
+  ggplot(df_dom2, aes(x = item, y = pct, fill = response_mapped)) +
+    geom_col(width = 0.75, color = NA) +
+    coord_flip() +
+    scale_y_continuous(labels = percent_format(accuracy = 1), limits = y_limits, expand = c(0,0)) +
+    scale_fill_manual(
+        values = cols,
+        breaks = agree_levels,
+        limits = agree_levels,    # ensure every plot's scale has the same keys
+        drop = FALSE,             # don't drop unused factor levels
+        guide = guide_legend(nrow = 1, byrow = TRUE),
+        name = "Response"
+    ) +
+    labs(title = dom_name, x = NULL, y = NULL) +
+    theme_minimal(base_size = 12) +
+    theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+          axis.text.y = element_text(size = 10),
+          panel.grid.major.y = element_blank(),
+          plot.margin = margin(6,6,6,6),
+          text = element_text(color = "black"),
+          legend.position = "bottom")
+})
+```
+
+```{r combine-and-print}
+#| fig-height: 6
+#| fig-width: 12
+
+# Combine vertically with a single collected legend at bottom
+combined <- wrap_plots(plot_list, ncol = 1, guides = "collect") +
+  plot_layout(heights = item_counts, guides = "collect") & theme(legend.position = "bottom")
+
+# show graph
+combined
+```
+
+```{r}
+ggsave(file = "fig1.jpg", width=12, height=6, units="in") 
+```
+
+```{r}
+ggsave(file = "fig1.png", width=12, height=6, units="in") 
+```
+
