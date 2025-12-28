@@ -1,12 +1,12 @@
 ---
 title: "Learning to Code in R with Generative AI - Survey Results"
-format:
-  pdf:
-    toc: true
-    number-sections: true
-    colorlinks: true
-execute:
-  echo: false
+#format:
+#  pdf:
+#    toc: true
+#    number-sections: true
+#    colorlinks: true
+#execute:
+#  echo: false
 ---
 
 ```{r}
@@ -19,7 +19,7 @@ library(knitr) # this is needed for rendering
 ```
 ### Overview
 
-These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The resulting csv file with the survey results is in the course GitHub repository (https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey/bio478_survey_responses.csv). These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo.
+These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The resulting [csv file](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey/bio478_survey_responses.csv) with the survey results is in the course GitHub repository. These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html).
 
 ### Prior Coding Experience 
 
@@ -31,7 +31,7 @@ cols5 <- c("#d73027","#fc8d59","#fee090","#91bfdb","#1a9850")
 
 ```{r single-stacked-read-clean}
 # Read CSV for single stacked bar plots
-df_survey <- readr::read_csv("bio478_survey_responses.csv") |>
+df_survey <- readr::read_csv("survey/bio478_survey_responses.csv") |>
   clean_names() 
 ```
 
@@ -276,7 +276,7 @@ mutate(pct = n / sum(n)) |>
 
 ```{r combined-likert-read-org}
 # Read CSV
-df <- readr::read_csv("bio478_survey_responses.csv")
+df <- readr::read_csv("survey/bio478_survey_responses.csv")
 
 # Domain order (used to control facet/plot sequence)
 domains <- c(
@@ -449,7 +449,7 @@ rm(list = ls())
 percent_base <- "answerers" # "answerers" or "all"
 
 ## Read data and detect the column
-df <- read_csv("bio478_survey_responses.csv")
+df <- read_csv("survey/bio478_survey_responses.csv")
 
 # detect the multi-response column (flexible by partial name)
 resp_col <- names(df)[str_detect(names(df), regex("When AI was wrong", ignore_case = TRUE))][1]
@@ -532,7 +532,7 @@ rm(list = ls())
 percent_base <- "answerers" # "answerers" or "all"
 
 ## Read data and detect the column
-df <- read_csv("bio478_survey_responses.csv")
+df <- read_csv("survey/bio478_survey_responses.csv")
 
 resp_col <- names(df)[str_detect(names(df), regex("Common issues encountered", ignore_case = TRUE))][1]
 if(is.na(resp_col)) stop("Could not find a column matching 'Common issues encountered' in the CSV.")
@@ -615,7 +615,7 @@ rm(list = ls())
 percent_base <- "answerers" # "answerers" or "all"
 
 ## Read data and detect the column
-df <- read_csv("bio478_survey_responses.csv")
+df <- read_csv("survey/bio478_survey_responses.csv")
 
 resp_col <- names(df)[str_detect(names(df), regex("Where more support would help", ignore_case = TRUE))][1]
 if(is.na(resp_col)) stop("Could not find a column matching 'Where more support would help' in the CSV.")
@@ -690,7 +690,7 @@ p
 
 ```{r open-response}
 # Read CSV for open_response
-df_survey <- readr::read_csv("bio478_survey_responses.csv") |>
+df_survey <- readr::read_csv("survey/bio478_survey_responses.csv") |>
   clean_names() 
 ```
 

@@ -12,6 +12,8 @@ website:
         text: Labs
       - href: projects.qmd
         text: Projects
+      - href: survey.qmd
+        text: Survey
 format:
   html:
     toc: true
