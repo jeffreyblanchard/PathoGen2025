@@ -91,7 +91,7 @@ Here are a few other popular table making packages
 
 ### Examples using the NEON data table
 
-Our data that we will work with today can be found by searching metagenome bins associated with GOLD Study ID Gs0161344 [IMG/MER](https://img.jgi.doe.gov/cgi-bin/mer/main.cgi?section=MetagenomeBinSearch&page=searchForm)
+Our data that we will work with today can be found by searching metagenome bins associated with GOLD Study ID Gs0166454 [IMG/MER](https://img.jgi.doe.gov/cgi-bin/mer/main.cgi?section=MetagenomeBinSearch&page=searchForm)
 
 A description of the column headers for the file we will work with
 
