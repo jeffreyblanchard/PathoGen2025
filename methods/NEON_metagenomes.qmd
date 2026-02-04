@@ -1,0 +1,159 @@
+---
+title: "NEON Metagenome Samples Summary"
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(viridis)
+library(janitor)
+```
+
+Save file to have version used
+
+```{r}
+NEON_metaG_prelim <- read_csv("../data/NEON_metadata/GOLD_Study_ID_Gs0166454_NEON_2023-4x.csv") |> 
+clean_names() 
+```
+
+```{r}
+NEON_metaG_prelim <- NEON_metaG_prelim |> 
+
+# Add a new column community corresponding to different communities names in the project_name
+
+  mutate(community = case_when(
+    str_detect(project_name, "Freshwater sediment microbial communities") ~ "Freshwater sediment microbial communitie",
+    str_detect(project_name, "Freshwater biofilm microbial communities") ~ "Freshwater biofilm microbial communities",
+    str_detect(project_name, "Freshwater microbial communities") ~ "Freshwater microbial communities",
+    str_detect(project_name, "Soil microbial communities") ~ "Soil microbial communities",
+    TRUE ~ NA_character_
+  )) |> 
+  
+  # Create a column type that is either Freshwater or Soil
+  mutate(type = case_when(
+    str_detect(project_name, "Freshwater sediment microbial communities") ~ "Freshwater",
+    str_detect(project_name, "Freshwater biofilm microbial communities") ~ "Freshwater",
+    str_detect(project_name, "Freshwater microbial communities") ~ "Freshwater",
+    str_detect(project_name, "Soil microbial communities") ~ "Soil",
+    TRUE ~ NA_character_
+  )) |> 
+  
+  # Get rid of the communities strings
+  mutate_at("project_name", str_replace, "Freshwater sediment microbial communities from ", "") |> 
+  mutate_at("project_name", str_replace, "Freshwater biofilm microbial communities from", "") |> 
+  mutate_at("project_name", str_replace, "Freshwater microbial communities from ", "") |> 
+  mutate_at("project_name", str_replace, "Soil microbial communities from ", "") |> 
+
+  # separate site from sample name 
+  separate(project_name, c("site","sample_name"), " - ") |>   
+  
+  # Deal with these unknown fields in the sample name by creating a new column and removing them from the sample name
+  mutate(sample_unknown = case_when(
+    str_detect(sample_name, ".SS.") ~ "SS",
+    str_detect(sample_name, ".C0.") ~ "C0",
+    str_detect(sample_name, ".C1.") ~ "C1",
+    str_detect(sample_name, ".C2.") ~ "C2",
+    TRUE ~ NA_character_
+  )) |> 
+
+# These fields are all associated with "Freshwater microbial communities from...   
+# SS - near stream sensor
+# C0 - non-stratified lake/river surface near buoy
+# C1 - stratified lake surface/epilimnion near buoy
+# C2 - stratified lake hypolimnion near buoy
+# EPIPSAMMON  - biofilm on sand/silt
+# EPILITHON - biofilm on rocks/cobbles
+# EPIPHYTON - biofilm that grows on the stems and leaves of aquatic plants
+  
+# These fields are all associated with "Freshwater biofilm microbial communities from
+# EPILITHON - biofilm on rocks/cobbles
+  
+# These fields are all associated with "Freshwater sediment microbial communities from 
+# EPIPSAMMON - biofilm on sand/silt
+  
+  mutate_at("sample_name", str_replace, ".SS", "") |> 
+  mutate_at("sample_name", str_replace, ".C0", "") |> 
+  mutate_at("sample_name", str_replace, ".C1", "") |> 
+  mutate_at("sample_name", str_replace, ".C2", "") |> 
+  
+
+  # Get rid of the the common strings at the end of sample names
+  mutate_at("sample_name", str_replace, "-GEN-DNA1", "") |>  
+  mutate_at("sample_name", str_replace, "-COMP-DNA1", "") |>  
+  mutate_at("sample_name", str_replace, "-COMP-DNA2", "") |>  
+  mutate_at("sample_name", str_replace, ".DNA-DNA1", "") |>
+  mutate_at("sample_name", str_replace, "_v2", "") |>
+  mutate_at("sample_name", str_replace, " \\(version 2\\)", "") |>
+  mutate_at("sample_name", str_replace, " \\(version 3\\)", "") |> 
+  
+# Some TOOK sites have an extra field. Remove it
+# TOOK.OT. 
+
+  mutate_at("sample_name", str_replace, ".OT", "") |> 
+  mutate_at("sample_name", str_replace, ".IF", "")
+```
+
+### This block is for separating out the freshwater sample names
+
+```{r}
+NEON_metaG_freshwater <- NEON_metaG_prelim |>
+  filter(type == "Freshwater") |>
+  # separate the Sample Name into Site ID and plot info
+  separate(sample_name, c("site_ID","date", "layer", "subplot"), "\\.", remove = FALSE) |>
+  mutate(quadrant = NA_character_)
+```
+
+### This block is for separating out the soil sample names
+```{r}
+NEON_metaG_soil <- NEON_metaG_prelim |>
+  filter(type == "Soil") |>
+  # separate the Sample Name into Site ID and plot info
+  separate(sample_name, c("site_ID","subplot.layer.date"), "_", remove = FALSE,) |> 
+  # some sample names have 3 fields while others have a fourth field for the quadrant. This code create a field for the quadrant when present and adds na for samples from combined cores.
+  extract(
+    subplot.layer.date,
+    into = c("subplot", "layer", "quadrant", "date"),
+    regex = "^([^-]+)-([^-]+)(?:-([^-]+))?-([^-]+)$",
+    remove = FALSE
+  ) |>
+  mutate(quadrant = na_if(quadrant, "")) |>
+  select(-subplot.layer.date)
+```
+
+### This combines the soil and freshwater data frames
+```{r}
+NEON_metaG <- bind_rows(NEON_metaG_freshwater, NEON_metaG_soil) |>
+  # This changes the format of the data column
+  mutate(date = ymd(date)) |> 
+  mutate(year = year(date))
+```
+
+
+# Make a table of the soiil samples each year by site
+
+
+```{r}
+NEON_metaG_soil_counts <- NEON_metaG |>
+  filter(type == "Soil") |> 
+  group_by(type, site_ID, year) |> 
+  summarize(count = n())
+```
+
+```{r}
+datatable(NEON_metaG_soil_counts)
+```
+# Make a table of the freshwaqter samples each year by site
+
+
+```{r}
+NEON_metaG_water_counts <- NEON_metaG |>
+  filter(type == "Freshwater") |> 
+  group_by(type, site_ID) |> 
+  summarize(count = n())
+```
+
+```{r}
+datatable(NEON_metaG_water_counts)
+```
