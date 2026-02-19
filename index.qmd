@@ -3,7 +3,7 @@ title: "Environmental Metagenome Analysis in R Lab Fall 2025"
 ---
 
 
-!["Metagnomes! They're always on hand to help with mining sequence from those complicated microbiomes" -  [redpenblackpen by Jason Mcdermott](https://www.instagram.com/redpenblackpen/)](images/redpenblackpen_metagnomes.png)
+!["Metagnomes! They're always on hand to help with mining sequence from those complicated microbiomes" -  [redpenblackpen by Jason McDermott](https://www.instagram.com/redpenblackpen/)](images/redpenblackpen_metagnomes.png)
 
 
 

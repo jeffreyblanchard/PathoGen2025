@@ -157,3 +157,13 @@ NEON_metaG_water_counts <- NEON_metaG |>
 ```{r}
 datatable(NEON_metaG_water_counts)
 ```
+
+
+```{r}
+
+NEON_metaG_soil_plots <- NEON_metaG |>
+  filter(type == "Soil")
+  
+write_csv(NEON_metaG_soil_plots, "../data/NEON_metadata/GOLD_Study_ID_Gs0166454_NEON_2023-4_plots.csv")
+```
+
