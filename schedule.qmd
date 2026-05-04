@@ -30,5 +30,5 @@ title: "Schedule Fall 2025"
 * Nov 24 (Mon) - Lab S6 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part I
 * Nov 26 (Wed) Holiday - Thanksgiving
 * Dec 1 (Mon) - Lab S7 : AI assisted analysis of the NEON MAG taxonomy, soil chemistry and location data - Part II
-* Dec 3 (Wed) - Lab 13 : 
-* Dec 8 (Mon) - Lab S8 : 
+* Dec 3 (Wed) - Lab 13 : Creating a detailed report with explanations from the NEON MAG data
+* Dec 8 (Mon) - Wrap up and course survey

@@ -1,0 +1,131 @@
+---
+title: "Syllabus"
+---
+
+**BIOLOGY 478:678 (161685): Metagenome Analysis in R**
+
+**FALL SEMESTER 2025**
+
+## **Course Description**
+
+This laboratory course will teach practical reproducible research skills for analyzing metagenomic data in the R statistical programming language and using bioinformatics software on clusters at Massachusetts Green High Performance Computing Center. Topics include genome structure and evolution, microbiomes and environmental DNA and RNA sequencing. No prior computing skills are required.
+
+## **Learning Goals** 
+
+The course supports Biology learning goals listed on our [departmental web site](https://www.umass.edu/biology/academics/undergraduate-program/learning-goals).
+
+The perspectives gained include:
+
+-   New insights into "how one thinks" about a problem, in particular about the depth and large scale of analyses possible with bioinformatics skills that makes seemingly intractable hypotheses testable.
+
+-   An understanding of the interconnectedness of knowledge through working with genome annotation derived in large part from model systems.
+
+-   Confidence in oneself as a College-Trained Biologist through hands-on bioinformatic labs that emphasize problem solving.
+
+-   A realization of the impact biological science can have on the environment and society.
+
+-   A consciousness of the need for clearly communicating and documenting code.
+
+-   An ability to understand different solutions to the same problem.
+
+The skills acquired include: 
+
+-   Applying quantitative reasoning to biological questions through analyzing data using statistical methods, constructing graphs and interpreting the results in their biological context. 
+
+-   Communicating ideas and arguments effectively through class presentations and a final project.
+
+-   Providing constructive feedback on written assignments and oral presentations.
+
+-   The development of these perspectives and skills will increase your competitiveness for internships, jobs, graduate programs and professional schools. 
+
+-   Providing constructive feedback on written assignments and oral presentations 
+
+Dispositions developed:
+
+-   The skills to become a lifelong, self-directed learner.
+
+-   Value diverse perspectives in biology; identify how racism, bias, and exclusion impedes effective engagement and participation in science and society; and help to create inclusive learning and working environments.
+
+The development of these perspectives and skills will increase your competitiveness for internships, jobs, graduate programs and professional schools.
+
+## **When and Where**
+
+**Labs:** Mondays 11:15-12:05 and Wednesday 9:05-12:05 in Morrill III 311
+
+**Help Sessions:** Tuesdays 10:00-11:00 and Fridays 12:30-1:30 in person at Morrill III 409 or on Zoom - https://umass-amherst.zoom.us/s/98761942634
+
+**Contact Information**
+
+Instructor: Prof. Jeffrey Blanchard \
+Office: Morrill III 409 \
+Office hours:  If you would like to meet with me, please schedule an appointment. I am easily reachable through email. \
+Email: jlb\@umass.edu\
+Tel: 577-2130 \
+pronouns: he/him or they/them
+
+**Course Materials** This course will leverage 2nd edition of R for Data Science which is available on line for free - <https://r4ds.hadley.nz/>. We will use RStudio through the OpenOnDemand interactive application on Unity, a collaborative, multi-institutional high-performance computing cluster. Data from the National Ecological Observatory Network (NEON) will be used in many of the weekly labs. Other course materials may include primary research articles, scientific reviews, tutorials, videos, podcasts, Ted Talks, newspaper articles and other materials.\
+\
+**Canvas** On the Canvas site for this class ([https://umamherst.instructure.com/courses/28478](/courses/28478) ) is a posting of this syllabus, the detailed lecture and reading schedule, due dates, and links to more information.
+
+**Course Github** The course materials include the labs and the necessary data files are available on Github - https://jeffreyblanchard.github.io/PathoGen2025/ This ensures you can continue to use the labs and data in later courses and after you graduate from UMass. It also makes it easy for me to update labs on the fly during class.
+
+**Discord** For discussion and posting questions to me and the class - Invite link - <https://discord.gg/aSN3ZRbJLinks> (you don't need to use your real name.
+
+## **Grading**
+
+**Expectations.**  Up to 1.5 hrs reading/preparation for each class. Attendance at each class. Participation in class discussions, chat and forums. I will monitor chat and forums for adhere to the course code of conduct, but will not otherwise directly comment as these are student forums. Questions and issues may be further addressed in course discussions. 
+
+There is a total of 240 possible points
+
+-   Wednesday Labs (13 \@ 15 pts) 195 pts
+
+-   Monday Labs (9 \@ 5 pts) 45 pts
+
+-   Attendance and Participation (This will be used to boost your grade if you are within 1% of the next highest grade)\*
+
+There is no final exam.
+
+| Grade | Percent |
+|-------|---------|
+| A     | 93      |
+| A-    | 90      |
+| B+    | 87      |
+| B     | 83      |
+| B-    | 80      |
+| C+    | 77      |
+| C     | 73      |
+| C-    | 70      |
+| D+    | 67      |
+| D     | 63      |
+
+*Problems Sets.* The R-based problems will take 2-4 hrs to complete (including class time). The problem sets are due on Canvas at the beginning of the next lab class. The labs are cumulative, so it is difficult to work on the next lab without having completed the previous lab. 2 points will be deducted for each day (or fraction there of that it is late) unless you have previously contacted me about an extension.
+
+*Attendance and Participation.* You are expected to have read/view the assigned material prior to class. You are encouraged to ask questions during class and many classes will have a discussion component. I will call directly on students to foster participation.
+
+## **Accommodation Statement**
+
+The University of Massachusetts Amherst is committed to providing an equal educational opportunity for all students.  If you have a documented physical, psychological, or learning disability on file with Disability Services (DS), you may be eligible for reasonable academic accommodations to help you succeed in this course.  If you have a documented disability that requires an accommodation, please notify me within the first two weeks of the semester so that we may make appropriate arrangements.  For further information, please visit Disability Services (<https://www.umass.edu/disability/)>
+
+## **Academic Honesty Statement**
+
+Since the integrity of the academic enterprise of any institution of higher education requires honesty in scholarship and research, academic honesty is required of all students at the University of Massachusetts Amherst.  Academic dishonesty is prohibited in all programs of the University.  Academic dishonesty includes but is not limited to: cheating, fabrication, plagiarism, and facilitating dishonesty.  Appropriate sanctions may be imposed on any student who has committed an act of academic dishonesty.  Instructors should take reasonable steps to address academic misconduct.  Any person who has reason to believe that a student has committed academic dishonesty should bring such information to the attention of the appropriate course instructor as soon as possible.  Instances of academic dishonesty not related to a specific course should be brought to the attention of the appropriate department Head or Chair.  Since students are expected to be familiar with this policy and the commonly accepted standards of academic integrity, ignorance of such standards is not normally sufficient evidence of lack of intent (<http://www.umass.edu/dean_students/codeofconduct/acadhonesty/)>.  
+
+## **Academic Integrity Statement**
+
+UMass Amherst is strongly committed to academic integrity, which is defined as completing all academic work without cheating, lying, stealing, or receiving unauthorized assistance from any other person, or using any source of information not appropriately authorized or attributed. As a community, we hold each other accountable and support each other’s knowledge and understanding of academic integrity. Academic dishonesty is prohibited in all programs of the University and includes but is not limited to: Cheating, fabrication, plagiarism, lying, and facilitating dishonesty, via analogue and digital means. Sanctions may be imposed on any student who has committed or participated in an academic integrity infraction. Any person who has reason to believe that a student has committed an academic integrity infraction should bring such information to the attention of the appropriate course instructor as soon as possible. All students at the University of Massachusetts Amherst have read and acknowledged the Commitment to Academic Integrity and are knowingly responsible for completing all work with integrity and in accordance with the policy: (<https://www.umass.edu/senate/book/academic-regulations-academic-integrity-policy>) 
+
+## **Title IX Statement**
+
+In accordance with Title IX of the Education Amendments of 1972 that prohibits gender-based discrimination in educational settings that receive federal funds, the University of Massachusetts Amherst is committed to providing a safe learning environment for all students, free from all forms of discrimination, including sexual assault, sexual harassment, domestic violence, dating violence, stalking, and retaliation. This includes interactions in person or online through digital platforms and social media. Title IX also protects against discrimination on the basis of pregnancy, childbirth, false pregnancy, miscarriage, abortion, or related conditions, including recovery. There are resources here on campus to support you. A summary of the available Title IX resources (confidential and non-confidential) can be found at the following link: https://www.umass.edu/titleix/resources. You do not need to make a formal report to access them. If you need immediate support, you are not alone. Free and confidential support is available 24 hours a day / 7 days a week / 365 days a year at the SASA Hotline 413-545-0800.
+
+## **Diversity and Inclusion Statement**
+
+A culturally diverse campus is integral to academic excellence and that our students, faculty, and staff should reflect the diverse world in which we live. The university recognizes and values the wide range of voices and perspectives in all spheres of the academic enterprise. The University of Massachusetts Amherst is committed to policies that promote inclusiveness, social justice, and respect for all, regardless of race, color, religion, creed, gender, sexual orientation, age, national or ethnic origin, physical or mental disability, political belief or affiliation, marital status, veteran status, immigration status, gender identity and expression, genetic information, or any other characteristic or status protected by state or federal laws. I will acknowledge your gender pronoun preference listed in SPIRE and/or communicated to me during the course. For more information see the University's [Office of Equity and Inclusion.](https://www.umass.edu/diversity/office-equity-inclusion)
+
+## **Generative Artificial Intelligence Statement**
+
+We will use and discuss appropriate use of generative AI frequently in class. [Copilot Chat](https://www.bing.com/chat) is included in the UMass agreement with Microsoft. You can choose to use AI tools to help brainstorm and to revise existing work you have written. When you submit your assignment, I expect you to clearly reference the parts AI help facilitate. If you want to learn more about specific AI tools, such as AI Text and Media-based platforms, check out our detailed articles from the [UMass IDEAS team](https://www.umass.edu/ideas/generative-artificial-intelligence "Link"). 
+
+## **Wellness Statement**
+
+I strongly encourage you to check[ Support and Resources UMass Amherst Students](https://www.umass.edu/coronavirus/students). The [Center for Counseling and Psychological Health](https://www.umass.edu/counseling) and[ Center for Women and Community](https://www.umass.edu/cwc/) are both providing remote support for students who are struggling with mental health. For students who are experiencing financial insecurity, there are short-term emergency loans through the[ Dean of Students Office.](https://www.umass.edu/dean_students/support/loan-program)
