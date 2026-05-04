@@ -4,13 +4,15 @@ title: "Syllabus"
 
 **BIOLOGY 478:678 (161685): Metagenome Analysis in R**
 
+![[Joint Genome Institute Mural - artist Nigel Sussman](https://jgi.doe.gov/science-stories/jgi25) ](images/JGI_MuralImage.png)
+
 **FALL SEMESTER 2025**
 
 ## **Course Description**
 
 This laboratory course will teach practical reproducible research skills for analyzing metagenomic data in the R statistical programming language and using bioinformatics software on clusters at Massachusetts Green High Performance Computing Center. Topics include genome structure and evolution, microbiomes and environmental DNA and RNA sequencing. No prior computing skills are required.
 
-## **Learning Goals** 
+## **Learning Goals**
 
 The course supports Biology learning goals listed on our [departmental web site](https://www.umass.edu/biology/academics/undergraduate-program/learning-goals).
 
@@ -56,11 +58,11 @@ The development of these perspectives and skills will increase your competitiven
 
 **Contact Information**
 
-Instructor: Prof. Jeffrey Blanchard \
-Office: Morrill III 409 \
-Office hours:  If you would like to meet with me, please schedule an appointment. I am easily reachable through email. \
+Instructor: Prof. Jeffrey Blanchard\
+Office: Morrill III 409\
+Office hours:  If you would like to meet with me, please schedule an appointment. I am easily reachable through email.\
 Email: jlb\@umass.edu\
-Tel: 577-2130 \
+Tel: 577-2130\
 pronouns: he/him or they/them
 
 **Course Materials** This course will leverage 2nd edition of R for Data Science which is available on line for free - <https://r4ds.hadley.nz/>. We will use RStudio through the OpenOnDemand interactive application on Unity, a collaborative, multi-institutional high-performance computing cluster. Data from the National Ecological Observatory Network (NEON) will be used in many of the weekly labs. Other course materials may include primary research articles, scientific reviews, tutorials, videos, podcasts, Ted Talks, newspaper articles and other materials.\
@@ -128,4 +130,4 @@ We will use and discuss appropriate use of generative AI frequently in class. [C
 
 ## **Wellness Statement**
 
-I strongly encourage you to check[ Support and Resources UMass Amherst Students](https://www.umass.edu/coronavirus/students). The [Center for Counseling and Psychological Health](https://www.umass.edu/counseling) and[ Center for Women and Community](https://www.umass.edu/cwc/) are both providing remote support for students who are struggling with mental health. For students who are experiencing financial insecurity, there are short-term emergency loans through the[ Dean of Students Office.](https://www.umass.edu/dean_students/support/loan-program)
+I strongly encourage you to check[Support and Resources UMass Amherst Students](https://www.umass.edu/coronavirus/students). The [Center for Counseling and Psychological Health](https://www.umass.edu/counseling) and[Center for Women and Community](https://www.umass.edu/cwc/) are both providing remote support for students who are struggling with mental health. For students who are experiencing financial insecurity, there are short-term emergency loans through the[Dean of Students Office.](https://www.umass.edu/dean_students/support/loan-program)
