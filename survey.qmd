@@ -445,6 +445,8 @@ combined <- wrap_plots(plot_list, ncol = 1, guides = "collect") +
   plot_layout(heights = item_counts, guides = "collect") & theme(legend.position = "bottom")
 
 combined
+
+# ggsave("survey/combined_likert.tiff", width = 11, height = 15)
 ```
 
 ###  When AI was wrong, I typically… - multiple response
