@@ -29,7 +29,7 @@ library(knitr) # this is needed for rendering
 ```
 ### Overview
 
-These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The resulting [csv file](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey/bio478_survey_responses.csv) with the survey results is in the course GitHub repository. These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the [UMass Amherst GenAI platform](https://www.umass.edu/it/genai/platform) with OpenAI GPT-5-mini.
+These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The resulting [csv file](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey/bio478_survey_responses.csv) with the survey results is in the course GitHub repository. These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the [UMass Amherst GenAI platform](https://www.umass.edu/it/genai/platform).
 
 ### Prior Coding Experience 
 
@@ -41,7 +41,7 @@ cols5 <- c("#d73027","#fc8d59","#fee090","#91bfdb","#1a9850")
 
 ```{r single-stacked-read-clean}
 # Read CSV for single stacked bar plots
-df_survey <- readr::read_csv("survey/bio478_survey_responses.csv") |>
+df_survey <- readr::read_csv("bio478_survey_responses.csv") |>
   clean_names() 
 ```
 
@@ -286,7 +286,7 @@ mutate(pct = n / sum(n)) |>
 
 ```{r combined-likert-read-org}
 # Read CSV
-df <- readr::read_csv("survey/bio478_survey_responses.csv")
+df <- readr::read_csv("bio478_survey_responses.csv")
 
 # Domain order (used to control facet/plot sequence)
 domains <- c(
@@ -459,7 +459,7 @@ rm(list = ls())
 percent_base <- "answerers" # "answerers" or "all"
 
 ## Read data and detect the column
-df <- read_csv("survey/bio478_survey_responses.csv")
+df <- read_csv("bio478_survey_responses.csv")
 
 # detect the multi-response column (flexible by partial name)
 resp_col <- names(df)[str_detect(names(df), regex("When AI was wrong", ignore_case = TRUE))][1]
@@ -542,7 +542,7 @@ rm(list = ls())
 percent_base <- "answerers" # "answerers" or "all"
 
 ## Read data and detect the column
-df <- read_csv("survey/bio478_survey_responses.csv")
+df <- read_csv("bio478_survey_responses.csv")
 
 resp_col <- names(df)[str_detect(names(df), regex("Common issues encountered", ignore_case = TRUE))][1]
 if(is.na(resp_col)) stop("Could not find a column matching 'Common issues encountered' in the CSV.")
@@ -625,7 +625,7 @@ rm(list = ls())
 percent_base <- "answerers" # "answerers" or "all"
 
 ## Read data and detect the column
-df <- read_csv("survey/bio478_survey_responses.csv")
+df <- read_csv("bio478_survey_responses.csv")
 
 resp_col <- names(df)[str_detect(names(df), regex("Where more support would help", ignore_case = TRUE))][1]
 if(is.na(resp_col)) stop("Could not find a column matching 'Where more support would help' in the CSV.")
@@ -696,35 +696,11 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
 p
 ```
 
-### Table - Overall effectiveness / Likelihood to recommend AI
-
-```{r overall_effectiveness}
-cols <- c(
-  "Overall effectiveness of AI in this course",
-  "Likelihood to recommend AI use in similar courses"
-)
-
-res <- df |>
-  select(any_of(cols)) |>
-  pivot_longer(everything(), names_to = "column", values_to = "value") |>
-  mutate(value = as.numeric(value)) |>                # convert to numeric
-  group_by(column) |>
-  summarise(
-    mean = mean(value, na.rm = TRUE),
-    sd   = sd(value, na.rm = TRUE),
-    n    = sum(!is.na(value)),
-    .groups = "drop"
-  ) |>
-  mutate(mean = round(mean, 2), sd = round(sd, 2))
-
-kable(res)
-```
-
 ### Examples of helpful AI responses - Open response
 
 ```{r open-response}
 # Read CSV for open_response
-df_survey <- readr::read_csv("survey/bio478_survey_responses.csv") |>
+df_survey <- readr::read_csv("bio478_survey_responses.csv") |>
   clean_names() 
 ```
 
@@ -754,66 +730,26 @@ wrapped_text <- str_wrap(df_survey$final_comments_and_suggestions, width = 80, i
 cat(wrapped_text, sep = "\n\n")
 ```
 
-### Analysis of open responses using common themes
+### Table - Overall effectiveness / Likelihood to recommend AI
 
-All open-text responses from four survey sections (Above sections 0.13-0.16) were systematically reviewed and coded thematically. A coding scheme was developed inductively from the response data and applied consistently across all substantive responses using Anthropic Claude 4.6 Sonnet. Responses marked NA, N/A, or providing only brief affirmations (e.g., "Thank you") were excluded as non-substantive. Multiple codes were permitted per response when a single response addressed more than one theme. The denominator for percentage calculations reflects the number of substantive responses in each section. JLB manually reviewed and edited the assignment of comments to responses themes.
+```{r overall_effectiveness}
+cols <- c(
+  "Overall effectiveness of AI in this course",
+  "Likelihood to recommend AI use in similar courses"
+)
 
-```{r}
-#| fig-width: 9
-#| fig-height: 12
-#| 
-# Load the common theme annotations
-
-survey_comments_data <- read_csv("survey/Comment_Theme_Associations_Full_ed.csv")
-
-# Create a summary table that can be used for making a bar plot
-
-theme_by_section <- survey_comments_data |>
-  filter(Substantive == "Yes") |>
-  select(Section, Theme_1, Theme_2, Theme_3) |>
-  pivot_longer(
-    cols = starts_with("Theme_"),
-    names_to = "theme_position",
-    values_to = "theme"
-  ) |>
-  filter(!is.na(theme) & theme != "Excluded" & theme != "") |>
-  group_by(Section, theme) |>
+res <- df |>
+  select(any_of(cols)) |>
+  pivot_longer(everything(), names_to = "column", values_to = "value") |>
+  mutate(value = as.numeric(value)) |>                # convert to numeric
+  group_by(column) |>
   summarise(
-    count = n(),
+    mean = mean(value, na.rm = TRUE),
+    sd   = sd(value, na.rm = TRUE),
+    n    = sum(!is.na(value)),
     .groups = "drop"
   ) |>
-  group_by(Section) |>
-  mutate(
-    percent = count / sum(count)
-  ) |>
-  ungroup() 
+  mutate(mean = round(mean, 2), sd = round(sd, 2))
 
-# Bar plot of four sections
-theme_by_section |>
-  filter(count > 0) |>
-  mutate(
-    theme_section = fct_reorder(
-      interaction(theme, Section, sep = "___"),
-      percent
-    )
-  ) |>
-  ggplot(aes(x = theme_section, y = percent)) +
-  geom_col(fill = "#881c1c") +
-  geom_text(
-    aes(label = scales::percent(percent, accuracy = 1)),
-    hjust = -0.05,            # push text past bar end
-    size = 3
-  ) +
-  coord_flip() +
-  facet_wrap(~ Section, ncol = 1, scales = "free_y") +
-  scale_x_discrete(labels = function(x) sub("___.*$", "", x)) +
-  scale_y_continuous(labels = scales::percent) +
-  labs(
-    x = NULL,
-    y = "Percent of responses",
-    title = "Theme distribution by section"
-  ) +
-  theme_minimal() +
-  theme(text = element_text(color = "black"), axis.text.x = element_text(hjust = 1))
+kable(res)
 ```
-
