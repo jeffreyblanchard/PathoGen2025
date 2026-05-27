@@ -1,24 +1,16 @@
 ---
 title: "Learning R with Generative AI in a Metagenomics Data Science Course – Survey Results"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-#format:
-#  pdf:
-#    toc: false
-#    number-sections: false
-#    colorlinks: true
-execute:
-  echo: false
 ---
 
 
-# Author Information
+### Overview
 
-**Jeffrey L Blanchard**  
-ORCID: 0000-0002-7310-9678  
-Email: jlb@umass.edu  
-University of Massachusetts Amherst  
-Amherst, MA  
-https://jeffreyblanchard.github.io/lab/
+These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The R code for producing many of these graphs was developed interactively using the UMass Amherst GenAI platform with OpenAI GPT-5-mini or Anthropic Claude 4.6 Opus. 
+
+The student's perspectives from this survey are the basis of ["Learning R with generative AI in a metagenomic data science course"](https://doi.org/10.1128/jmbe.00343-25 ) published in a Special Series of the Journal of Microbiology and Biology Education on the Practical and Positive Uses of AI in STEM.
+
+
+### Libraries
 
 ```{r}
 library(tidyverse) 
@@ -26,13 +18,8 @@ library(janitor)
 library(scales)
 library(patchwork)   
 library(sessioninfo)
-library(knitr) # this is needed for rendering
+library(knitr) 
 ```
-### Overview
-
-These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The input files with the with the raw survey results and the thematic coding of the open responses can be found in in the course [GitHub repository](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey). These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the UMass Amherst GenAI platform with OpenAI GPT-5-mini or Anthropic Claude 4.6 Opus. 
-
-The student's perspectives from this survey are the basis of ["Learning R with generative AI in a metagenomic data science course"}(https://doi.org/10.1128/jmbe.00343-25 ) published in a Special Series of the Journal of Microbiology and Biology Education on the Practical and Positive Uses of AI in STEM.
 
 ### Figure S1. Prior Coding Experience 
 
@@ -848,3 +835,5 @@ open_responses <- theme_by_section |>
 open_responses
 # ggsave("survey/open_responses.jpg", width = 9, height = 12)
 ```
+
+

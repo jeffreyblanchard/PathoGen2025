@@ -2,7 +2,7 @@
 title: "Learning R with Generative AI in a Metagenomics Data Science Course – Survey Results"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 format:
-  pdf:
+  html:
     toc: false
     number-sections: false
     colorlinks: true
@@ -30,9 +30,7 @@ library(knitr) # this is needed for rendering
 ```
 ### Overview
 
-These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The input files with the with the raw survey results and the thematic coding of the open responses can be found in in the course [GitHub repository](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey). These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the UMass Amherst GenAI platform with OpenAI GPT-5-mini or Anthropic Claude 4.6 Opus. 
-
-The student's perspectives from this survey are the basis of ["Learning R with generative AI in a metagenomic data science course"](https://doi.org/10.1128/jmbe.00343-25 ) published in a Special Series of the Journal of Microbiology and Biology Education on the Practical and Positive Uses of AI in STEM.
+These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The input files with the with the raw survey results and the thematic coding of the open responses can be found in in the course [GitHub repository](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey). These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the UMass Amherst GenAI platform with OpenAI GPT-5-mini or Anthropic Claude 4.6 Opus
 
 ### Figure S1. Prior Coding Experience 
 
@@ -60,7 +58,7 @@ experience_levels = c(
 "None"
 )
 
-Prior_Coding_Experience <- df_survey |>
+df_survey |>
   count(prior_coding_experience, name = "n") |>
   complete(prior_coding_experience = experience_levels, fill = list(n = 0)) |>
   mutate(prior_coding_experience = factor(prior_coding_experience, levels = experience_levels)) |>
@@ -77,9 +75,6 @@ ggplot(aes(x = 1, y = n, fill = prior_coding_experience)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-
-Prior_Coding_Experience
-#ggsave("survey/Prior_Coding_Experience.jpg", width = 10, height = 2)
 ```
 
 ### Figure S2. Frequency of AI Use
@@ -96,7 +91,7 @@ experience_levels <- c(
 "Daily"
 )
 
-Frequency_of_AI_Use <- df_survey |>
+df_survey |>
   count(frequency_of_ai_use_in_this_course, name = "n") |>
   complete(frequency_of_ai_use_in_this_course = experience_levels, fill = list(n = 0))  |>
   mutate(frequency_of_ai_use_in_this_course = factor(frequency_of_ai_use_in_this_course, levels = experience_levels))  |>
@@ -113,9 +108,6 @@ ggplot(aes(x = 1, y = n, fill = frequency_of_ai_use_in_this_course)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-
-Frequency_of_AI_Use
-#ggsave("survey/Frequency_of_AI_Use.jpg", width = 10, height = 2)
 ```
 
 ### Figure S3. How much time did using AI save me?
@@ -132,7 +124,7 @@ experience_levels <- c(
 "3+ hrs"
 )
 
-How_much_time <- df_survey |>
+df_survey |>
   count(how_much_time_did_using_ai_save_me, name = "n") |>
   complete(how_much_time_did_using_ai_save_me = experience_levels, fill = list(n = 0))  |>
   mutate(how_much_time_did_using_ai_save_me = factor(how_much_time_did_using_ai_save_me, levels = experience_levels))  |>
@@ -150,9 +142,6 @@ ggplot(aes(x = 1, y = n, fill = how_much_time_did_using_ai_save_me)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-
-How_much_time
-#ggsave("survey/How_much_time.jpg", width = 10, height = 2)
 ```
 
 ### Figure S4. Frequency of incorrect AI output
@@ -169,7 +158,7 @@ experience_levels <- c(
 "Very Often"
 )
 
-Frequency_of_incorrect_AI <- df_survey |>
+df_survey |>
   count(frequency_of_incorrect_ai_output, name = "n") |>
   complete(frequency_of_incorrect_ai_output = experience_levels, fill = list(n = 0))  |>
   mutate(frequency_of_incorrect_ai_output = factor(frequency_of_incorrect_ai_output, levels = experience_levels))  |>
@@ -188,8 +177,6 @@ ggplot(aes(x = 1, y = n, fill = frequency_of_incorrect_ai_output)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
 
-Frequency_of_incorrect_AI
-#ggsave("survey/Frequency_of_incorrect_AI.jpg", width = 10, height = 2)
 ```
 
 ### Figure S5. Did you become more engaged or interactive in solving problems using AI?
@@ -206,7 +193,7 @@ experience_levels <- c(
 "Much more engaged"
 )
 
-Did_you_become_more_engaged <- df_survey |>
+df_survey |>
   count(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, name = "n") |>
   complete(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai = experience_levels, fill = list(n = 0))  |>
   mutate(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai = factor(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, levels = experience_levels))  |>
@@ -225,8 +212,6 @@ mutate(pct = n / sum(n)) |>
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
 
-Did_you_become_more_engaged
-#ggsave("survey/Did_you_become_more_engaged.jpg", width = 10, height = 2)
 ```
 
 ###  Figure S6. Confidence change in programming in R 
@@ -243,7 +228,7 @@ experience_levels <- c(
 "Much higher"
 )
 
-Confidence_change <- df_survey |>
+df_survey |>
   count(confidence_change_in_programming_in_r, name = "n") |>
   complete(confidence_change_in_programming_in_r = experience_levels, fill = list(n = 0))  |>
   mutate(confidence_change_in_programming_in_r = factor(confidence_change_in_programming_in_r, levels = experience_levels))  |>
@@ -261,10 +246,7 @@ mutate(pct = n / sum(n)) |>
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-
-
-Confidence_change
-#ggsave("survey/Confidence_change.jpg", width = 10, height = 2)
+  
 ```
 
 ###  Figure S7. Clarity of instructions on AI use
@@ -281,7 +263,7 @@ experience_levels <- c(
 "Very clear"
 )
 
-Clarity_of_instructions <- df_survey |>
+df_survey |>
   count(clarity_of_instructions_on_ai_use, name = "n") |>
   complete(clarity_of_instructions_on_ai_use = experience_levels, fill = list(n = 0))  |>
   mutate(clarity_of_instructions_on_ai_use = factor(clarity_of_instructions_on_ai_use, levels = experience_levels))  |>
@@ -299,9 +281,6 @@ mutate(pct = n / sum(n)) |>
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-
-Clarity_of_instructions
-#ggsave("survey/Clarity_of_instructions.jpg", width = 10, height = 2)
 ```
 
 ### Figure S8. Combined likert graph of multiple choice grids
@@ -468,7 +447,7 @@ combined <- wrap_plots(plot_list, ncol = 1, guides = "collect") +
 
 combined
 
-#ggsave("survey/combined_likert.jpg", width = 11, height = 15)
+# ggsave("survey/combined_likert.tiff", width = 11, height = 15)
 ```
 
 ###  Figure S9. When AI was wrong, I typically…
@@ -552,7 +531,6 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
   theme(panel.grid.major.y = element_blank())
 
 p
-# ggsave("survey/when_AI_wrong.jpg", width = 10, height = 5)
 ```
 
 ###  Figure S10. Common issues encountered
@@ -636,7 +614,6 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
   theme(panel.grid.major.y = element_blank())
 
 p
-# ggsave("survey/common_issues.jpg", width = 10, height = 4)
 ```
 
 ###  Figure S11. Where more support would help
@@ -720,7 +697,6 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
   theme(panel.grid.major.y = element_blank())
 
 p
-# ggsave("survey/more_support.jpg", width = 10, height = 4)
 ```
 
 ### Table S1 - Overall effectiveness / Likelihood to recommend AI
@@ -733,16 +709,16 @@ cols <- c(
 
 res <- df |>
   select(any_of(cols)) |>
-  pivot_longer(everything(), names_to = "Prompt", values_to = "value") |>
+  pivot_longer(everything(), names_to = "column", values_to = "value") |>
   mutate(value = as.numeric(value)) |>                # convert to numeric
-  group_by(Prompt) |>
+  group_by(column) |>
   summarise(
-    Mean = mean(value, na.rm = TRUE),
-    SD   = sd(value, na.rm = TRUE),
-    N    = sum(!is.na(value)),
+    mean = mean(value, na.rm = TRUE),
+    sd   = sd(value, na.rm = TRUE),
+    n    = sum(!is.na(value)),
     .groups = "drop"
   ) |>
-  mutate(Mean = round(Mean, 2), SD = round(SD, 2))
+  mutate(mean = round(mean, 2), sd = round(sd, 2))
 
 kable(res)
 ```
@@ -818,7 +794,7 @@ theme_by_section <- survey_comments_data |>
   ungroup() 
 
 # Bar plot of four sections
-open_responses <- theme_by_section |>
+theme_by_section |>
   filter(count > 0) |>
   mutate(
     theme_section = fct_reorder(
@@ -844,8 +820,5 @@ open_responses <- theme_by_section |>
   ) +
   theme_minimal() +
   theme(text = element_text(color = "black"), axis.text.x = element_text(hjust = 1))
-
-open_responses
-# ggsave("survey/open_responses.jpg", width = 9, height = 12)
 ```
 
