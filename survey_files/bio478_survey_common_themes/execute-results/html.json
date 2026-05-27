@@ -1,0 +1,17 @@
+{
+  "hash": "2259f5d86bdf50e38f809c6cbb659dde",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Learning to Code in R with Generative AI - Common Theme Associations\"\nexecute:\n  echo: false\n---\n\n::: {.cell}\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 6 × 7\n  Response_ID Section    Comment_Abbreviated Theme_1 Theme_2 Theme_3 Substantive\n  <chr>       <chr>      <chr>               <chr>   <chr>   <chr>   <chr>      \n1 0.13_R01    0.13 Help… It telling me how … Brains… Code g… <NA>    Yes        \n2 0.13_R02    0.13 Help… Sometime when I di… Step-b… <NA>    <NA>    Yes        \n3 0.13_R03    0.13 Help… Before we learned … Syntax… Code g… <NA>    Yes        \n4 0.13_R04    0.13 Help… Writing code block… Code g… <NA>    <NA>    Yes        \n5 0.13_R05    0.13 Help… clarity on homewor… Genera… <NA>    <NA>    Yes        \n6 0.13_R06    0.13 Help… Giving me differen… Brains… <NA>    <NA>    Yes        \n```\n\n\n:::\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 37 × 4\n   Section                          theme                          count percent\n   <chr>                            <chr>                          <int>   <dbl>\n 1 0.13 Helpful AI Interactions     Brainstorming analyses and vi…     5  0.0962\n 2 0.13 Helpful AI Interactions     Code generation for novel ana…     8  0.154 \n 3 0.13 Helpful AI Interactions     Code optimization and improve…     4  0.0769\n 4 0.13 Helpful AI Interactions     Error diagnosis and debugging     18  0.346 \n 5 0.13 Helpful AI Interactions     General/non-specific               4  0.0769\n 6 0.13 Helpful AI Interactions     Metacognitive code comparison      1  0.0192\n 7 0.13 Helpful AI Interactions     Output interpretation              1  0.0192\n 8 0.13 Helpful AI Interactions     Step-by-step code explanations     7  0.135 \n 9 0.13 Helpful AI Interactions     Syntax and function explanati…     4  0.0769\n10 0.14 Problematic AI Interactions Code provided without explana…     5  0.0862\n# ℹ 27 more rows\n```\n\n\n:::\n:::\n\n\n\n\n\n\n### VISUALIZATION: BAR PLOT OF THEMES BY SECTION COUNT\n\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](bio478_survey_common_themes_files/figure-html/unnamed-chunk-2-1.png){width=576}\n:::\n:::\n\n\n\n\n\n### VISUALIZATION: BAR PLOT OF THEMES BY SECTION PERCENT\n\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](bio478_survey_common_themes_files/figure-html/unnamed-chunk-3-1.png){width=864}\n:::\n:::\n",
+    "supporting": [
+      "bio478_survey_common_themes_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

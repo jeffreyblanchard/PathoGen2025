@@ -1,69 +1,57 @@
 ---
-title: "Graphs of AI survey results"
+title: "Learning R with Generative AI in a Metagenomics Data Science Course – Survey Results"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format:
+  pdf:
+    toc: false
+    number-sections: false
+    colorlinks: true
 execute:
   echo: false
 ---
 
-###  Load libraries and read in survey 
+
+# Author Information
+
+**Jeffrey L Blanchard**  
+ORCID: 0000-0002-7310-9678  
+Email: jlb@umass.edu  
+University of Massachusetts Amherst  
+Amherst, MA  
+https://jeffreyblanchard.github.io/lab/
+
 ```{r}
 library(tidyverse) 
 library(janitor)
 library(scales)
 library(patchwork)   
 library(sessioninfo)
-library(knitr)
+library(knitr) # this is needed for rendering
 ```
+### Overview
 
-```{r}
-# 5 color palete
+These graphs, tables and open responses are from an anonymous Google forms survey that was designed to solicit students’ personal experience on the effectiveness of using generative AI in this course. The input files with the with the raw survey results and the thematic coding of the open responses can be found in in the course [GitHub repository](https://github.com/jeffreyblanchard/PathoGen2025/tree/main/survey). These results are generated from this csv file and the underlying R code can also be found in the above GitHub repo and are rendered on this [survey page](https://jeffreyblanchard.github.io/PathoGen2025/survey.html). The R code for producing many of these graphs was developed interactively using the UMass Amherst GenAI platform with OpenAI GPT-5-mini or Anthropic Claude 4.6 Opus. 
+
+The student's perspectives from this survey are the basis of ["Learning R with generative AI in a metagenomic data science course"}(https://doi.org/10.1128/jmbe.00343-25 ) published in a Special Series of the Journal of Microbiology and Biology Education on the Practical and Positive Uses of AI in STEM.
+
+### Figure S1. Prior Coding Experience 
+
+```{r single-stacked-color-palette}
+# 5 color likert palette for single stacked bar plots
 cols5 <- c("#d73027","#fc8d59","#fee090","#91bfdb","#1a9850")
 ```
 
 
-```{r}
-# Read CSV (adjust path if needed)
-df_survey <- readr::read_csv("bio478_survey_responses.csv") |>
+```{r single-stacked-read-clean}
+# Read CSV for single stacked bar plots
+df_survey <- readr::read_csv("survey/bio478_survey_responses.csv") |>
   clean_names() 
 ```
 
-### Prior Coding Experience - Barplot 
-
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-experience_levels = c(
-"Extensive (multiple courses or projects)",
-"Moderate (regular use in another language)",
-"Some (one course or self-study)",
-"Very limited (a few tutorials or labs)",
-"None"
-)
-
-df_survey |>
-  count(prior_coding_experience, name = "n") |>
-   complete(prior_coding_experience = experience_levels, fill = list(n = 0))  |>
-  mutate(prior_coding_experience = factor(prior_coding_experience, levels = experience_levels))  |>
-  mutate(pct = n / sum(n)) |>
-
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = prior_coding_experience, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "Prior coding experience",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-
-### Prior Coding Experience - Single stacked bar 
-
-```{r}
+```{r prior_coding_experience}
 #| fig-height: 2 
 #| fig-width: 10
+
 experience_levels = c(
 "Extensive (multiple courses or projects)",
 "Moderate (regular use in another language)",
@@ -72,7 +60,7 @@ experience_levels = c(
 "None"
 )
 
-df_survey |>
+Prior_Coding_Experience <- df_survey |>
   count(prior_coding_experience, name = "n") |>
   complete(prior_coding_experience = experience_levels, fill = list(n = 0)) |>
   mutate(prior_coding_experience = factor(prior_coding_experience, levels = experience_levels)) |>
@@ -81,8 +69,7 @@ df_survey |>
 ggplot(aes(x = 1, y = n, fill = prior_coding_experience)) +
   geom_col(position = "fill") +          
   scale_fill_manual(values = cols5) +
-# stacked to 100%
-  coord_flip() +                                                     # horizontal bar
+  coord_flip() +                                                    
   scale_y_continuous(labels = percent_format(accuracy = 1),
                      expand = expansion(mult = c(0, 0.05))) +
   labs(title = "Prior coding experience",
@@ -90,44 +77,14 @@ ggplot(aes(x = 1, y = n, fill = prior_coding_experience)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
+
+Prior_Coding_Experience
+#ggsave("survey/Prior_Coding_Experience.jpg", width = 10, height = 2)
 ```
 
-### Frequency of AI Use  - Barplot 
+### Figure S2. Frequency of AI Use
 
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-
-experience_levels <- c(
-"I did not use AI",
-"I tried it once or twice",
-"About once per week",
-"A few times per week",
-"Daily"
-)
-
-df_survey |>
-  count(frequency_of_ai_use_in_this_course, name = "n") |>
-  complete(frequency_of_ai_use_in_this_course = experience_levels, fill = list(n = 0))  |>
-  mutate(frequency_of_ai_use_in_this_course = factor(frequency_of_ai_use_in_this_course, levels = experience_levels))  |>
-  mutate(pct = n / sum(n)) |>
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = frequency_of_ai_use_in_this_course, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "Frequency of AI Use",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-
-### Frequency of AI Use  - Single stacked bar
-
-```{r}
+```{r frequency_of_ai_use}
 #| fig-height: 2 
 #| fig-width: 10
 
@@ -139,7 +96,7 @@ experience_levels <- c(
 "Daily"
 )
 
-df_survey |>
+Frequency_of_AI_Use <- df_survey |>
   count(frequency_of_ai_use_in_this_course, name = "n") |>
   complete(frequency_of_ai_use_in_this_course = experience_levels, fill = list(n = 0))  |>
   mutate(frequency_of_ai_use_in_this_course = factor(frequency_of_ai_use_in_this_course, levels = experience_levels))  |>
@@ -148,8 +105,7 @@ df_survey |>
 ggplot(aes(x = 1, y = n, fill = frequency_of_ai_use_in_this_course)) +
   geom_col(position = "fill") +          
   scale_fill_manual(values = cols5) +
-# stacked to 100%
-  coord_flip() +                                                     # horizontal bar
+  coord_flip() +                                                   
   scale_y_continuous(labels = percent_format(accuracy = 1),
                      expand = expansion(mult = c(0, 0.05))) +
   labs(title = "Frequency of AI Use",
@@ -157,43 +113,12 @@ ggplot(aes(x = 1, y = n, fill = frequency_of_ai_use_in_this_course)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
+
+Frequency_of_AI_Use
+#ggsave("survey/Frequency_of_AI_Use.jpg", width = 10, height = 2)
 ```
 
-
-
-### How much time did using AI save me?- Barplot 
-
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-
-experience_levels <- c(
-"< 0.5 hr total",
-"0.5-1 hrs",
-"1-2 hrs",
-"2-3 hrs",
-"3+ hrs"
-)
-
-df_survey |>
-  count(how_much_time_did_using_ai_save_me, name = "n") |>
-  complete(how_much_time_did_using_ai_save_me = experience_levels, fill = list(n = 0))  |>
-  mutate(how_much_time_did_using_ai_save_me = factor(how_much_time_did_using_ai_save_me, levels = experience_levels))  |>
-  mutate(pct = n / sum(n)) |>
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = how_much_time_did_using_ai_save_me, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "How much time did using AI save me?",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-### How much time did using AI save me?- Single stacked bar
+### Figure S3. How much time did using AI save me?
 
 ```{r}
 #| fig-height: 2 
@@ -207,7 +132,7 @@ experience_levels <- c(
 "3+ hrs"
 )
 
-df_survey |>
+How_much_time <- df_survey |>
   count(how_much_time_did_using_ai_save_me, name = "n") |>
   complete(how_much_time_did_using_ai_save_me = experience_levels, fill = list(n = 0))  |>
   mutate(how_much_time_did_using_ai_save_me = factor(how_much_time_did_using_ai_save_me, levels = experience_levels))  |>
@@ -225,41 +150,12 @@ ggplot(aes(x = 1, y = n, fill = how_much_time_did_using_ai_save_me)) +
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
+
+How_much_time
+#ggsave("survey/How_much_time.jpg", width = 10, height = 2)
 ```
 
-### Frequency of incorrect AI output - Barplot 
-
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-
-experience_levels <- c(
-"Never",
-"Rarely",
-"Sometimes",
-"Often",
-"Very Often"
-)
-
-df_survey |>
-  count(frequency_of_incorrect_ai_output, name = "n") |>
-  complete(frequency_of_incorrect_ai_output = experience_levels, fill = list(n = 0))  |>
-  mutate(frequency_of_incorrect_ai_output = factor(frequency_of_incorrect_ai_output, levels = experience_levels))  |>
-mutate(pct = n / sum(n)) |>
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = frequency_of_incorrect_ai_output, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "Frequency of incorrect AI output",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-### Frequency of incorrect AI output - Single stacked bar 
+### Figure S4. Frequency of incorrect AI output
 
 ```{r}
 #| fig-height: 2
@@ -273,7 +169,7 @@ experience_levels <- c(
 "Very Often"
 )
 
-df_survey |>
+Frequency_of_incorrect_AI <- df_survey |>
   count(frequency_of_incorrect_ai_output, name = "n") |>
   complete(frequency_of_incorrect_ai_output = experience_levels, fill = list(n = 0))  |>
   mutate(frequency_of_incorrect_ai_output = factor(frequency_of_incorrect_ai_output, levels = experience_levels))  |>
@@ -292,41 +188,11 @@ ggplot(aes(x = 1, y = n, fill = frequency_of_incorrect_ai_output)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
 
+Frequency_of_incorrect_AI
+#ggsave("survey/Frequency_of_incorrect_AI.jpg", width = 10, height = 2)
 ```
 
-### Did you become more engaged or interactive in solving problems using AI? - Barplot 
-
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-
-experience_levels <- c(
-"Much less engaged",
-"Slightly less engaged",
-"No change",
-"Slightly more engaged",
-"Much more engaged"
-)
-
-df_survey |>
-  count(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, name = "n") |>
-  complete(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai = experience_levels, fill = list(n = 0))  |>
-  mutate(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai = factor(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, levels = experience_levels))  |>
-mutate(pct = n / sum(n)) |>
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "Did you become more engaged or interactive in solving problems using AI?",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-### Did you become more engaged or interactive in solving problems using AI? - Single stacked bar
+### Figure S5. Did you become more engaged or interactive in solving problems using AI?
 
 ```{r}
 #| fig-height: 2 
@@ -340,7 +206,7 @@ experience_levels <- c(
 "Much more engaged"
 )
 
-df_survey |>
+Did_you_become_more_engaged <- df_survey |>
   count(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, name = "n") |>
   complete(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai = experience_levels, fill = list(n = 0))  |>
   mutate(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai = factor(did_you_become_more_engaged_or_interactive_in_solving_problems_using_ai, levels = experience_levels))  |>
@@ -359,41 +225,11 @@ mutate(pct = n / sum(n)) |>
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
 
+Did_you_become_more_engaged
+#ggsave("survey/Did_you_become_more_engaged.jpg", width = 10, height = 2)
 ```
 
-###  Confidence change in programming in R - Barplot 
-
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-
-experience_levels <- c(
-"Much lower",
-"Lower",
-"About the same",
-"Higher",
-"Much higher"
-)
-
-df_survey |>
-  count(confidence_change_in_programming_in_r, name = "n") |>
-  complete(confidence_change_in_programming_in_r = experience_levels, fill = list(n = 0))  |>
-  mutate(confidence_change_in_programming_in_r = factor(confidence_change_in_programming_in_r, levels = experience_levels))  |>
-mutate(pct = n / sum(n)) |>
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = confidence_change_in_programming_in_r, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "Confidence change in programming in R",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-###  Confidence change in programming in R - Single stacked bar 
+###  Figure S6. Confidence change in programming in R 
 
 ```{r}
 #| fig-height: 2 
@@ -407,7 +243,7 @@ experience_levels <- c(
 "Much higher"
 )
 
-df_survey |>
+Confidence_change <- df_survey |>
   count(confidence_change_in_programming_in_r, name = "n") |>
   complete(confidence_change_in_programming_in_r = experience_levels, fill = list(n = 0))  |>
   mutate(confidence_change_in_programming_in_r = factor(confidence_change_in_programming_in_r, levels = experience_levels))  |>
@@ -425,43 +261,13 @@ mutate(pct = n / sum(n)) |>
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-  
+
+
+Confidence_change
+#ggsave("survey/Confidence_change.jpg", width = 10, height = 2)
 ```
 
-###  Clarity of instructions on AI use - Barplot 
-
-```{r}
-#| fig-height: 3 
-#| fig-width: 10
-
-experience_levels <- c(
-"Very unclear",
-"Unclear",
-"Neutral",
-"Clear",
-"Very clear"
-)
-
-df_survey |>
-  count(clarity_of_instructions_on_ai_use, name = "n") |>
-  complete(clarity_of_instructions_on_ai_use = experience_levels, fill = list(n = 0))  |>
-  mutate(clarity_of_instructions_on_ai_use = factor(clarity_of_instructions_on_ai_use, levels = experience_levels))  |>
-mutate(pct = n / sum(n)) |>
-# Plot: horizontal bars with count + percent at end of each bar
-ggplot(aes(x = clarity_of_instructions_on_ai_use, y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
-  coord_flip() +
-  scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
-  geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
-            hjust = -0.02, size = 3.2) +
-  labs(title = "Clarity of instructions on AI use",
-       x = NULL, y = "Percentage of respondents") +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.major.y = element_blank())
-```
-
-
-###  Clarity of instructions on AI use - Single stacked bar
+###  Figure S7. Clarity of instructions on AI use
 
 ```{r}
 #| fig-height: 2
@@ -475,7 +281,7 @@ experience_levels <- c(
 "Very clear"
 )
 
-df_survey |>
+Clarity_of_instructions <- df_survey |>
   count(clarity_of_instructions_on_ai_use, name = "n") |>
   complete(clarity_of_instructions_on_ai_use = experience_levels, fill = list(n = 0))  |>
   mutate(clarity_of_instructions_on_ai_use = factor(clarity_of_instructions_on_ai_use, levels = experience_levels))  |>
@@ -493,26 +299,27 @@ mutate(pct = n / sum(n)) |>
   theme_minimal(base_size = 12) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         panel.grid.major.y = element_blank())
-  
+
+Clarity_of_instructions
+#ggsave("survey/Clarity_of_instructions.jpg", width = 10, height = 2)
 ```
 
-### Main Likert graph
+### Figure S8. Combined likert graph of multiple choice grids
 
+```{r combined-likert-read-org}
+# Read CSV
+df <- readr::read_csv("survey/bio478_survey_responses.csv")
 
-```{r}
-# Read CSV (adjust path if needed)
-df <- readr::read_csv("bio478_survey_responses.csv")
-
-# Requested domain order (will be used to control facet/plot sequence)
+# Domain order (used to control facet/plot sequence)
 domains <- c(
-  "Helpfulness of generative AI for each use case",
-  "Impact on learning",
-  "Impact on metagenomics learning",
-  "Code quality outcomes using AI",
-  "Trust calibration",
-  "Ethical alignment",
+  "Helpfulness of generative AI",
   "Inquiry & exploration",
-  "\"Vibe code\" outcomes"
+  "Impact on learning",
+  "Code quality outcomes using AI",
+  "\"Vibe code\" outcomes",
+  "Impact on metagenomics learning",
+  "Trust calibration",
+  "Ethical alignment"
 )
 
 # find columns that match any domain substring
@@ -521,7 +328,7 @@ if (length(col_matches) == 0) stop("No matching columns found. Check column name
 raw_help <- df |> select(all_of(col_matches))
 ```
 
-```{r col-info}
+```{r combined-likert-col-info}
 # helper to detect domain and extract item text inside brackets if present
 detect_domain <- function(colname, domain_vec) {
   idx <- which(sapply(domain_vec, function(d) str_detect(colname, fixed(d))))
@@ -538,7 +345,7 @@ col_info <- tibble(orig_name = names(raw_help)) |>
          item = if_else(item == "" | is.na(item), orig_name, item))
 ```
 
-```{r pivot-map}
+```{r combined-likert-pivot-map}
 # Agreement levels and robust mapping function
 agree_levels <- c("Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree")
 
@@ -565,33 +372,25 @@ map_to_agree <- function(x) {
 }
 
 # pivot to long, join col_info, map responses, compute counts and percentages
-long <- raw_help |>
-  pivot_longer(cols = everything(), names_to = "orig_name", values_to = "response_raw") |>
-  left_join(col_info, by = "orig_name") |>
-  mutate(response_mapped = map_to_agree(response_raw),
-         response_mapped = factor(response_mapped, levels = agree_levels, ordered = TRUE)) |>
-  group_by(domain, item, response_mapped) |>
-  tally(name = "n") |>
-  group_by(domain, item) |>
-  mutate(pct = n / sum(n)) |>
+agree_levels <- c("Strongly disagree","Disagree","Neutral","Agree","Strongly agree")
+
+long <- raw_help %>%
+  pivot_longer(cols = everything(), names_to = "orig_name", values_to = "response_raw") %>%
+  left_join(col_info, by = "orig_name") %>%
+  mutate(response_mapped = map_to_agree(response_raw)) %>%
+  group_by(domain, item, response_mapped) %>%
+  summarise(n = n(), .groups = "drop_last") %>%
+  group_by(domain, item) %>%
+  # add rows for any missing response levels per domain/item
+  complete(response_mapped = agree_levels, fill = list(n = 0)) %>%
+  # make sure response_mapped is an ordered factor with the exact levels
+  mutate(response_mapped = factor(response_mapped, levels = agree_levels, ordered = TRUE),
+         total_n = sum(n),
+         pct = ifelse(total_n > 0, n / total_n, 0)) %>%
   ungroup()
-
-# report any unmapped response variants
-unmapped <- raw_help |>
-  pivot_longer(cols = everything(), names_to = "orig_name", values_to = "response_raw") |>
-  distinct(response_raw) |>
-  mutate(mapped = map_to_agree(response_raw)) |>
-  filter(is.na(mapped))
-
-# if (nrow(unmapped) > 0) {
-#  message("Unmapped response variants detected (consider adding mappings to map_to_agree):")
-#  print(unmapped$response_raw)
-#} else {
-#  message("No unmapped response variants detected based on current mapping.")
-# }
 ```
 
-```{r item-summary}
+```{r combined-likert-item-summary}
 # compute per-item positive proportion (Agree + Strongly agree) per domain
 item_summary <- long |>
   filter(!is.na(response_mapped)) |>
@@ -602,7 +401,7 @@ item_summary <- long |>
             .groups = "drop")
 ```
 
-```{r build-plots, message=FALSE, warning=FALSE}
+```{r combined-likert-build-plots, message=FALSE, warning=FALSE}
 # Prepare per-domain data frames (only domains present)
 domain_dfs <- long |>
   filter(!is.na(response_mapped)) |>
@@ -640,10 +439,14 @@ plot_list <- imap(domain_dfs, function(df_dom, dom_name) {
     geom_col(width = 0.75, color = NA) +
     coord_flip() +
     scale_y_continuous(labels = percent_format(accuracy = 1), limits = y_limits, expand = c(0,0)) +
-    scale_fill_manual(values = cols,
-                      breaks = agree_levels,
-                      guide = guide_legend(nrow = 1, byrow = TRUE),
-                      name = "Response") +
+    scale_fill_manual(
+        values = cols,
+        breaks = agree_levels,
+        limits = agree_levels,    # ensure every plot's scale has the same keys
+        drop = FALSE,             # don't drop unused factor levels
+        guide = guide_legend(nrow = 1, byrow = TRUE),
+        name = "Response"
+    ) +
     labs(title = dom_name, x = NULL, y = NULL) +
     theme_minimal(base_size = 12) +
     theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
@@ -651,37 +454,36 @@ plot_list <- imap(domain_dfs, function(df_dom, dom_name) {
           panel.grid.major.y = element_blank(),
           plot.margin = margin(6,6,6,6),
           text = element_text(color = "black"),
-          legend.position = "bottom")   # keep legend present for collection
+          legend.position = "bottom")
 })
 ```
 
-```{r combine-and-print}
+```{r combined-likert-combine-display}
 #| fig-height: 14 
-#| fig-width: 10
+#| fig-width: 11
 
 # Combine vertically with a single collected legend at bottom
 combined <- wrap_plots(plot_list, ncol = 1, guides = "collect") +
   plot_layout(heights = item_counts, guides = "collect") & theme(legend.position = "bottom")
 
-print(combined)
+combined
+
+#ggsave("survey/combined_likert.jpg", width = 11, height = 15)
 ```
 
-###  When AI was wrong, I typically… - Barplot 
+###  Figure S9. When AI was wrong, I typically…
 
-```{r}
-# remove all objects from the environment
+```{r when_ai_wrong-clear}
+# remove all objects from the environment - ha!
 rm(list = ls())
 ```
 
-```{r}
+```{r when_ai_wrong-read}
 # Choose whether percentages should be relative to respondents who answered this question ("answerers") or relative to all survey respondents ("all"):
 percent_base <- "answerers" # "answerers" or "all"
-csv_path <- "bio478_survey_responses.csv" # adjust path if needed
-```
 
-```{r read-data}
 ## Read data and detect the column
-df <- readr::read_csv(csv_path)
+df <- read_csv("survey/bio478_survey_responses.csv")
 
 # detect the multi-response column (flexible by partial name)
 resp_col <- names(df)[str_detect(names(df), regex("When AI was wrong", ignore_case = TRUE))][1]
@@ -689,7 +491,7 @@ if(is.na(resp_col)) stop("Could not find a column matching 'When AI was wrong' i
 # resp_col
 ```
 
-```{r prepare}
+```{r when_ai_wrong-prepare}
 # Prepare answers (split multi-response entries)
 # ensure respondent id exists
 if(!"respondent_id" %in% names(df)) df <- df |> mutate(respondent_id = row_number())
@@ -711,12 +513,12 @@ df_answers <- df |>
 # df_answers |> distinct(answer) |> arrange(answer)
 ```
 
-```{r options-order}
+```{r when_ai_wrong-options-order}
 # If custom order not provided, infer from observed answers:
 options_order <- if(exists("options_order")) options_order else df_answers |> distinct(answer) |> pull(answer)
 ```
 
-```{r counts}
+```{r when_ai_wrong-counts}
 # Count and compute percentages
 counts <- df_answers |>
   count(answer, name = "n") |>
@@ -733,16 +535,12 @@ if(tolower(percent_base) == "all"){
 }
 ```
 
-
-```{r plot}
-#| fig-height: 5 
+```{r when_ai_wrong-plot}
+#| fig-height: 4 
 #| fig-width: 10
 
-# Plot
-library(ggplot2)
-
 p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
+  geom_col(fill = "#881c1c", width = 0.7) +
   coord_flip() +
   scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
   geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
@@ -754,33 +552,29 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
   theme(panel.grid.major.y = element_blank())
 
 p
+# ggsave("survey/when_AI_wrong.jpg", width = 10, height = 5)
 ```
 
-###  Common issues encountered - Barplot 
-
+###  Figure S10. Common issues encountered
 
 ```{r}
 # remove all objects from the environment
 rm(list = ls())
 ```
 
-
-```{r}
+```{r common_issues-read}
 # Choose whether percentages should be relative to respondents who answered this question ("answerers") or relative to all survey respondents ("all"):
 percent_base <- "answerers" # "answerers" or "all"
-csv_path <- "bio478_survey_responses.csv" # adjust path if needed
-```
 
-```{r}
 ## Read data and detect the column
-df <- readr::read_csv(csv_path)
+df <- read_csv("survey/bio478_survey_responses.csv")
 
 resp_col <- names(df)[str_detect(names(df), regex("Common issues encountered", ignore_case = TRUE))][1]
 if(is.na(resp_col)) stop("Could not find a column matching 'Common issues encountered' in the CSV.")
 # resp_col
 ```
 
-```{r}
+```{r common_issues-prepare}
 # Prepare answers (split multi-response entries)
 # ensure respondent id exists
 if(!"respondent_id" %in% names(df)) df <- df |> mutate(respondent_id = row_number())
@@ -802,12 +596,12 @@ df_answers <- df |>
 # df_answers |> distinct(answer) |> arrange(answer)
 ```
 
-```{r}
+```{r common_issues-order}
 # If custom order not provided, infer from observed answers:
 options_order <- if(exists("options_order")) options_order else df_answers |> distinct(answer) |> pull(answer)
 ```
 
-```{r}
+```{r common_issues-count}
 # Count and compute percentages
 counts <- df_answers |>
   count(answer, name = "n") |>
@@ -825,16 +619,12 @@ if(tolower(percent_base) == "all"){
 
 ```
 
-
-```{r}
-#| fig-height: 5
+```{r common_issues-plot}
+#| fig-height: 4
 #| fig-width: 10
 
-# Plot
-library(ggplot2)
-
 p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
+  geom_col(fill = "#881c1c", width = 0.7) +
   coord_flip() +
   scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
   geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
@@ -846,34 +636,29 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
   theme(panel.grid.major.y = element_blank())
 
 p
+# ggsave("survey/common_issues.jpg", width = 10, height = 4)
 ```
 
-
-###  Where more support would help - Barplot 
-
+###  Figure S11. Where more support would help
 
 ```{r}
 # remove all objects from the environment
 rm(list = ls())
 ```
 
-
-```{r}
+```{r support_would_help-read}
 # Choose whether percentages should be relative to respondents who answered this question ("answerers") or relative to all survey respondents ("all"):
 percent_base <- "answerers" # "answerers" or "all"
-csv_path <- "bio478_survey_responses.csv" # adjust path if needed
-```
 
-```{r}
 ## Read data and detect the column
-df <- readr::read_csv(csv_path)
+df <- read_csv("survey/bio478_survey_responses.csv")
 
 resp_col <- names(df)[str_detect(names(df), regex("Where more support would help", ignore_case = TRUE))][1]
 if(is.na(resp_col)) stop("Could not find a column matching 'Where more support would help' in the CSV.")
 # resp_col
 ```
 
-```{r}
+```{r support_would_help-prepare}
 # Prepare answers (split multi-response entries)
 # ensure respondent id exists
 if(!"respondent_id" %in% names(df)) df <- df |> mutate(respondent_id = row_number())
@@ -895,12 +680,12 @@ df_answers <- df |>
 # df_answers |> distinct(answer) |> arrange(answer)
 ```
 
-```{r}
+```{r support_would_help-order}
 # If custom order not provided, infer from observed answers:
 options_order <- if(exists("options_order")) options_order else df_answers |> distinct(answer) |> pull(answer)
 ```
 
-```{r}
+```{r support_would_help-count}
 # Count and compute percentages
 counts <- df_answers |>
   count(answer, name = "n") |>
@@ -918,15 +703,12 @@ if(tolower(percent_base) == "all"){
 ```
 
 
-```{r}
-#| fig-height: 5 
+```{r support_would_help-plot}
+#| fig-height: 4 
 #| fig-width: 10
 
-# Plot
-library(ggplot2)
-
 p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
-  geom_col(fill = "#4C78A8", width = 0.7) +
+  geom_col(fill = "#881c1c", width = 0.7) +
   coord_flip() +
   scale_y_continuous(labels = percent_format(accuracy = 1), expand = expansion(mult = c(0, 0.12))) +
   geom_text(aes(label = paste0(n, " (", scales::percent(pct, accuracy = 1), ")")),
@@ -938,11 +720,12 @@ p <- ggplot(counts, aes(x = fct_rev(answer), y = pct)) +
   theme(panel.grid.major.y = element_blank())
 
 p
+# ggsave("survey/more_support.jpg", width = 10, height = 4)
 ```
 
-### Table - Overall effectiveness / Likelihood to recommend AI
+### Table S1 - Overall effectiveness / Likelihood to recommend AI
 
-```{r}
+```{r overall_effectiveness}
 cols <- c(
   "Overall effectiveness of AI in this course",
   "Likelihood to recommend AI use in similar courses"
@@ -950,17 +733,119 @@ cols <- c(
 
 res <- df |>
   select(any_of(cols)) |>
-  pivot_longer(everything(), names_to = "column", values_to = "value") |>
+  pivot_longer(everything(), names_to = "Prompt", values_to = "value") |>
   mutate(value = as.numeric(value)) |>                # convert to numeric
-  group_by(column) |>
+  group_by(Prompt) |>
   summarise(
-    mean = mean(value, na.rm = TRUE),
-    sd   = sd(value, na.rm = TRUE),
-    n    = sum(!is.na(value)),
+    Mean = mean(value, na.rm = TRUE),
+    SD   = sd(value, na.rm = TRUE),
+    N    = sum(!is.na(value)),
     .groups = "drop"
   ) |>
-  mutate(mean = round(mean, 2), sd = round(sd, 2))
+  mutate(Mean = round(Mean, 2), SD = round(SD, 2))
 
 kable(res)
+```
+
+### Table S2. Examples of helpful AI responses - Open response
+
+```{r open-response}
+# Read CSV for open_response
+df_survey <- readr::read_csv("survey/bio478_survey_responses.csv") |>
+  clean_names() 
+```
+
+```{r could_you_give_short_examples_of_a_helpful_ai_response}
+wrapped_text <- str_wrap(df_survey$could_you_give_short_examples_of_a_helpful_ai_response, width = 80, indent = 0, exdent = 0, whitespace_only = TRUE)
+cat(wrapped_text, sep = "\n\n")
+```
+
+### Table S3. Examples of unhelpful or incorrect AI responses - Open response
+
+```{r could_you_give_short_examples_of_unhelpful}
+wrapped_text <- str_wrap(df_survey$could_you_give_short_examples_of_unhelpful_or_incorrect_ai_responses, width = 80, indent = 0, exdent = 0, whitespace_only = TRUE)
+cat(wrapped_text, sep = "\n\n")
+```
+
+### Table S4. Suggested changes for future offering - Open response
+
+```{r suggested_changes_for_future_offerings}
+wrapped_text <- str_wrap(df_survey$suggested_changes_for_future_offerings, width = 80, indent = 0, exdent = 0, whitespace_only = TRUE)
+cat(wrapped_text, sep = "\n\n")
+```
+
+### Table S5. Final comments and suggestions - Open response
+
+```{r final_comments_and_suggestions}
+wrapped_text <- str_wrap(df_survey$final_comments_and_suggestions, width = 80, indent = 0, exdent = 0, whitespace_only = TRUE)
+cat(wrapped_text, sep = "\n\n")
+```
+
+### Analysis of open responses using common themes - Overview
+
+All open-text responses from four survey sections (Above Tables S2-S5) were systematically reviewed and coded thematically. A coding scheme was developed inductively from the response data and applied consistently across all substantive responses using Anthropic Claude 4.6 Sonnet. Responses marked NA, N/A, or providing only brief affirmations (e.g., "Thank you") were excluded as non-substantive. Multiple codes were permitted per response when a single response addressed more than one theme. The denominator for percentage calculations reflects the number of substantive responses in each section. JLB manually reviewed and edited the assignment of comments to responses themes.
+
+### Figure S12. Analysis of open responses using common themes
+
+```{r}
+#| fig-width: 9
+#| fig-height: 12
+#| 
+# Load the common theme annotations
+
+survey_comments_data <- read_csv("survey/Comment_Theme_Associations_Full_ed.csv")
+
+# Create a summary table that can be used for making a bar plot
+
+theme_by_section <- survey_comments_data |>
+  filter(Substantive == "Yes") |>
+  select(Section, Theme_1, Theme_2, Theme_3) |>
+  pivot_longer(
+    cols = starts_with("Theme_"),
+    names_to = "theme_position",
+    values_to = "theme"
+  ) |>
+  filter(!is.na(theme) & theme != "Excluded" & theme != "") |>
+  group_by(Section, theme) |>
+  summarise(
+    count = n(),
+    .groups = "drop"
+  ) |>
+  group_by(Section) |>
+  mutate(
+    percent = count / sum(count)
+  ) |>
+  ungroup() 
+
+# Bar plot of four sections
+open_responses <- theme_by_section |>
+  filter(count > 0) |>
+  mutate(
+    theme_section = fct_reorder(
+      interaction(theme, Section, sep = "___"),
+      percent
+    )
+  ) |>
+  ggplot(aes(x = theme_section, y = percent)) +
+  geom_col(fill = "#881c1c") +
+  geom_text(
+    aes(label = scales::percent(percent, accuracy = 1)),
+    hjust = -0.05,            # push text past bar end
+    size = 3
+  ) +
+  coord_flip() +
+  facet_wrap(~ Section, ncol = 1, scales = "free_y") +
+  scale_x_discrete(labels = function(x) sub("___.*$", "", x)) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    x = NULL,
+    y = "Percent of responses",
+    title = "Theme distribution by section"
+  ) +
+  theme_minimal() +
+  theme(text = element_text(color = "black"), axis.text.x = element_text(hjust = 1))
+
+open_responses
+# ggsave("survey/open_responses.jpg", width = 9, height = 12)
 ```
 

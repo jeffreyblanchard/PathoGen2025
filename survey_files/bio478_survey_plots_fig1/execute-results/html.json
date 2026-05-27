@@ -1,0 +1,17 @@
+{
+  "hash": "c453c9f5a84d4f9c81a729ab6506aca7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Learning to Code in R with Generative AI - Survey Response Graphs\"\nexecute:\n  echo: false\n---\n\n::: {.cell}\n\n:::\n\n\n\n\n### Main Likert graph\n\n\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](bio478_survey_plots_fig1_files/figure-html/combine-and-print-1.png){width=1152}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n",
+    "supporting": [
+      "bio478_survey_plots_fig1_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
