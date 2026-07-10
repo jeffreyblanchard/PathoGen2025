@@ -10,7 +10,7 @@ title: "Syllabus"
 
 ## **Course Description**
 
-This laboratory course will teach practical reproducible research skills for analyzing metagenomic data in the R statistical programming language and using bioinformatics software on clusters at Massachusetts Green High Performance Computing Center. Topics include genome structure and evolution, microbiomes, metagenomes and environmental DNA sequencing. No prior computing skills are required.  
+This laboratory course will teach practical reproducible research skills for analyzing metagenomic data in the R statistical programming language and using bioinformatics software.  We will work on computer nodes available through the Massachusetts Green High Performance Computing Center. Topics include genome structure and evolution, microbiomes, metagenomes and environmental DNA sequencing. No prior computing skills are required.  
 
 ## **Learning Goals**
 
